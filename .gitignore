@@ -1,0 +1,12 @@
+# Only the ENCRYPTED secret may be committed; block any plaintext.
+secrets/*
+!secrets/.gitkeep
+!secrets/*.enc.yaml
+
+# Never commit the age private key or other secrets.
+keys.txt
+*.pem
+.env
+
+# Build artifact (regenerate with Compress-Archive / zip).
+slawrensen-site-deploy.zip

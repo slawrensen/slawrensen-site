@@ -1,0 +1,22 @@
+# Cloudflare Pages response headers — ported from the old Apache .htaccess.
+# (HTTPS is enforced by Cloudflare, so the mod_rewrite redirect is not needed;
+# the SiteGround-specific no-cache cookie hack is dropped too.)
+
+# Security headers on every response. HSTS only takes effect once a response is
+# already served over HTTPS; no `preload` so HTTPS can still be disabled later.
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+# HTML must revalidate on every request so deploys are visible immediately.
+/
+  Cache-Control: no-cache, must-revalidate
+/*.html
+  Cache-Control: no-cache, must-revalidate
+
+# Images and the favicon change rarely and may cache for a day (rename to bust).
+/assets/*
+  Cache-Control: public, max-age=86400
+/favicon.svg
+  Cache-Control: public, max-age=86400

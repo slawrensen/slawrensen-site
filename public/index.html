@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>slawrensen</title>
+<meta name="description" content="Independent software that reads your machine and respects it. No ads, no telemetry, open source. Maker of HWiNFO Sensors for the Elgato Stream Deck.">
+<meta name="theme-color" content="#08090b">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://slawrensen.com/">
+<meta property="og:title" content="slawrensen">
+<meta property="og:description" content="Independent software that reads your machine and respects it. No ads, no telemetry, open source.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://slawrensen.com/">
+<meta property="og:site_name" content="slawrensen">
+<meta property="og:image" content="https://slawrensen.com/assets/hwinfo-sensors.png">
+<meta property="og:image:width" content="1072">
+<meta property="og:image:height" content="602">
+<meta property="og:image:alt" content="HWiNFO Sensors on an Elgato Stream Deck showing seven themes and live sensor keys">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="slawrensen · precision software for Windows">
+<meta name="twitter:description" content="Independent software that reads your machine and respects it. No ads, no telemetry, open source.">
+<meta name="twitter:image" content="https://slawrensen.com/assets/hwinfo-sensors.png">
+<style>
+  :root{
+    --bg:#08090b; --bg2:#0c0e12; --card:#111419; --card2:#151a21;
+    --line:#1d222b; --line2:#262d38;
+    --text:#e8eaef; --muted:#98a0ac; --faint:#8b93a1;
+    --accent:#5eb8ff; --accent2:#8a7cff;
+    --grad:linear-gradient(135deg,var(--accent),var(--accent2));
+    --warn:#f5a623; --crit:#e5484d; --ok:#48c9a0;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:"SF Mono","Cascadia Code","JetBrains Mono",Consolas,ui-monospace,monospace;
+    --maxw:1080px;
+    --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:48px; --s8:64px; --s9:96px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:var(--sans); line-height:1.6;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  a{color:inherit; text-decoration:none}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:6px}
+  .btn-primary:focus-visible{outline:2px solid #fff; outline-offset:3px}
+  img{max-width:100%; height:auto; display:block}
+  figure{margin:0}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
+  .mono{font-family:var(--mono); letter-spacing:.02em}
+  .eyebrow{
+    font-family:var(--mono); font-size:12px; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--accent);
+  }
+  section[id]{scroll-margin-top:80px}
+
+  /* nav */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(8,9,11,.72); backdrop-filter:saturate(140%) blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  @supports not (backdrop-filter:blur(1px)){ header.nav{background:rgba(8,9,11,.96)} }
+  .nav-inner{display:flex; align-items:center; justify-content:space-between; height:64px}
+  .brand{display:flex; align-items:center; gap:12px; font-weight:600; letter-spacing:-.01em}
+  .brand .mark{
+    width:30px; height:30px; border-radius:8px; flex:none;
+    background:var(--grad);
+    display:grid; place-items:center; color:#07090c; font-weight:800; font-size:14px;
+    font-family:var(--mono);
+  }
+  .nav-links{display:flex; align-items:center; gap:28px; font-size:14px; color:var(--muted)}
+  .nav-links a:hover{color:var(--text)}
+  .nav-links .gh{color:var(--text); font-weight:500}
+  @media(max-width:560px){
+    .nav-inner{flex-wrap:wrap; height:auto; padding:10px 0}
+    .nav-links{width:100%; gap:4px 20px; font-size:14px}
+    .nav-links a{display:inline-flex; align-items:center; min-height:44px; padding:0 2px}
+  }
+
+  /* hero */
+  .hero{position:relative; overflow:hidden; padding:96px 0 64px}
+  .hero::before{
+    content:""; position:absolute; inset:-40% 0 auto 0; height:520px; z-index:0;
+    background:
+      radial-gradient(600px 300px at 22% 0%, rgba(94,184,255,.16), transparent 70%),
+      radial-gradient(560px 320px at 82% 12%, rgba(138,124,255,.14), transparent 70%);
+    pointer-events:none;
+  }
+  .hero .wrap{position:relative; z-index:1}
+  .hero h1{
+    font-size:clamp(34px,6vw,58px); line-height:1.08; letter-spacing:-.02em;
+    margin:16px 0 0; font-weight:700; max-width:16ch;
+  }
+  .hero h1 .grad{
+    background:var(--grad);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero p.lead{font-size:clamp(16px,2.2vw,20px); color:var(--muted); max-width:56ch; margin:24px 0 0}
+  .cta-row{display:flex; flex-wrap:wrap; gap:14px; margin-top:32px}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; height:46px; padding:0 22px;
+    border-radius:12px; font-weight:600; font-size:15px; border:1px solid transparent;
+    transition:transform .12s ease, background .15s ease, border-color .15s ease;
+  }
+  .btn:hover{transform:translateY(-1px)}
+  .btn-primary{background:var(--grad); color:#06080b}
+  .btn-ghost{border-color:var(--line2); color:var(--text); background:var(--card)}
+  .btn-ghost:hover{border-color:#33404f; background:var(--card2)}
+  .btn svg{width:17px; height:17px}
+
+  /* section scaffolding */
+  section{padding:72px 0; border-top:1px solid var(--line)}
+  .sec-head{max-width:60ch}
+  .sec-head h2{font-size:clamp(24px,3.4vw,34px); letter-spacing:-.02em; margin:16px 0 0; font-weight:600}
+  .sec-head p{color:var(--muted); margin:14px 0 0; font-size:18px}
+  @media(max-width:640px){ .hero{padding:56px 0 40px} section{padding:48px 0} }
+
+  /* product */
+  .product{
+    margin-top:40px; background:linear-gradient(180deg,var(--card),var(--bg2));
+    border:1px solid #2c3340; border-radius:16px; padding:clamp(22px,3.4vw,38px);
+    box-shadow:0 1px 0 rgba(255,255,255,.03) inset, 0 40px 80px -48px rgba(94,184,255,.18), 0 24px 60px -40px rgba(0,0,0,.9);
+  }
+  .product .phead{max-width:66ch}
+  .product .phead h3{font-size:clamp(20px,2.6vw,26px); letter-spacing:-.01em; margin:16px 0 0; font-weight:600}
+  .product .phead p{color:var(--muted); margin:14px 0 0; font-size:16px}
+  .product .pshot{margin:30px 0 0}
+  .product .pshot img{
+    width:100%; max-width:1000px; margin-inline:auto; border-radius:12px;
+    border:1px solid var(--line2); box-shadow:0 24px 64px -32px rgba(0,0,0,.95);
+  }
+  .product .pshot figcaption{
+    margin-top:12px; text-align:center; color:var(--faint); font-size:12px;
+    font-family:var(--mono); letter-spacing:.04em;
+  }
+  .pmeta{display:flex; flex-wrap:wrap; align-items:center; gap:22px; margin-top:30px}
+  .chips{display:flex; flex-wrap:wrap; gap:8px}
+  .chip{
+    font-family:var(--mono); font-size:12px; letter-spacing:.02em; color:#c7ccd4; padding:5px 11px;
+    border:1px solid var(--line2); border-radius:999px; background:#0e1116;
+  }
+  .chip.ok{color:var(--ok); border-color:rgba(72,201,160,.35)}
+  .prod-links{display:flex; flex-wrap:wrap; gap:12px; align-items:center}
+  .prod-links .btn{height:42px; font-size:14px}
+  .soon{margin:16px 0 0; color:var(--faint); font-family:var(--mono); font-size:12px}
+  @media(max-width:560px){ .pmeta{flex-direction:column; align-items:flex-start; gap:18px} }
+
+  /* principles */
+  .grid4{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-top:40px}
+  .pcard{background:var(--card); border:1px solid var(--line2); border-radius:16px; padding:22px}
+  .pcard .ic{width:30px; height:30px; color:var(--accent); margin-bottom:14px}
+  .pcard h4{margin:0; font-size:16px; font-weight:600; letter-spacing:-.01em}
+  .pcard p{margin:8px 0 0; color:var(--muted); font-size:14px}
+
+  /* about */
+  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start; margin-top:36px}
+  @media(max-width:820px){ .about-grid{grid-template-columns:1fr} }
+  .about-grid p{color:var(--muted); font-size:16px; margin:0 0 16px}
+  .about-grid p strong{color:var(--text); font-weight:600}
+
+  /* footer */
+  footer{border-top:1px solid var(--line); padding:56px 0 64px; color:var(--muted)}
+  .foot-top{display:flex; flex-wrap:wrap; gap:24px}
+  .foot-links{display:flex; gap:24px; font-size:14px; margin-left:auto}
+  .foot-links a:hover{color:var(--text)}
+  .legal{margin-top:32px; font-size:12px; color:var(--faint); max-width:70ch; line-height:1.7}
+  .legal a{color:var(--muted); text-decoration:underline}
+
+  @media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.001ms !important; transition-duration:.001ms !important}
+    html{scroll-behavior:auto}
+    .btn:hover{transform:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="/">
+      <span class="mark">SL</span>
+      <span>slawrensen</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#products">Products</a>
+      <a href="#principles">Principles</a>
+      <a href="#about">About</a>
+      <a class="gh" href="https://github.com/slawrensen" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" style="border-top:0">
+    <div class="wrap">
+      <span class="eyebrow">Independent software</span>
+      <h1>Precision instruments for the <span class="grad">Windows desktop.</span></h1>
+      <p class="lead">Small, honest tools that read your machine and respect it. No ads, no telemetry, open source. Built to be fast, quiet, and trustworthy.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#products">Explore the products</a>
+        <a class="btn btn-ghost" href="https://github.com/slawrensen" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          View on GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="products">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Products / 01</span>
+        <h2>HWiNFO Sensors for Stream Deck</h2>
+        <p>Live HWiNFO hardware sensors on your Elgato Stream Deck, updated every second. The whole wall reads like one instrument.</p>
+      </div>
+
+      <div class="product">
+        <div class="phead">
+          <span class="eyebrow">Windows / Elgato Stream Deck</span>
+          <h3>Your hardware, at a glance</h3>
+          <p>Put CPU and GPU temperature, clock speeds, fan RPM, usage and power on your keys and dials. Seven display themes, aviation-style amber warn and red critical alert colors, live sparklines, and full dial support on the Stream Deck + and + XL: rotate, push and touch gestures, rotation sets with named groups, and a Control key that drives dials from anywhere.</p>
+        </div>
+        <figure class="pshot">
+          <img src="assets/hwinfo-sensors.png" width="1072" height="602"
+               alt="A Stream Deck showing HWiNFO Sensors: seven display themes across the top row, amber warn and red critical alert states below, each key with a live value, unit and sparkline, plus two Stream Deck + dials">
+          <figcaption>Seven themes, warn and critical alert states, and Stream Deck + dials</figcaption>
+        </figure>
+        <div class="pmeta">
+          <div class="chips">
+            <span class="chip">Windows x64</span>
+            <span class="chip">Stream Deck 6.9+</span>
+            <span class="chip">MIT license</span>
+            <span class="chip ok">Free</span>
+            <span class="chip ok">Open source</span>
+            <span class="chip ok">No telemetry</span>
+          </div>
+          <div class="prod-links">
+            <a class="btn btn-primary" href="https://marketplace.elgato.com/product/hwinfo-sensors-82436166-3d61-4527-9034-8fdf16d92c54" target="_blank" rel="noopener">Elgato Marketplace</a>
+            <a class="btn btn-ghost" href="https://docs.slawrensen.com/hwinfo-streamdeck/" target="_blank" rel="noopener">Documentation</a>
+            <a class="btn btn-ghost" href="https://github.com/slawrensen/hwinfo-streamdeck" target="_blank" rel="noopener">Source code</a>
+          </div>
+        </div>
+        <p class="soon">v1.3.0 · updated Jul 2026 · on the Elgato Marketplace</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="principles">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">How I build</span>
+        <h2>Principles</h2>
+        <p>The same four rules apply to everything on this site, and everything that comes next.</p>
+      </div>
+      <div class="grid4">
+        <div class="pcard">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><path d="M3 3l18 18M9.9 4.24A9 9 0 0119.76 14.1M6.2 6.2A9 9 0 004.24 9.9"/><circle cx="12" cy="12" r="3"/></svg>
+          <h4>No ads. Ever.</h4>
+          <p>Nothing on screen you did not ask for. No upsells, no nags, no dark patterns.</p>
+        </div>
+        <div class="pcard">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4z"/></svg>
+          <h4>No telemetry.</h4>
+          <p>It runs entirely on your machine and phones home to nobody. It makes no network requests.</p>
+        </div>
+        <div class="pcard">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg>
+          <h4>Open source.</h4>
+          <p>Every line is on GitHub. Read it, audit it, or build it yourself from source.</p>
+        </div>
+        <div class="pcard">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><path d="M13 2L4.5 13H11l-1 9 8.5-11H12l1-9z"/></svg>
+          <h4>Lean and efficient.</h4>
+          <p>Measured in kilobytes and microseconds. Idle when nothing is changing, so it never taxes your rig.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">About</span>
+        <h2>Built by one person, on purpose.</h2>
+      </div>
+      <div class="about-grid">
+        <div>
+          <p>I am <strong>slawrensen</strong>, an independent developer. I build small, honest tools for people who care how their machines run.</p>
+          <p>Every product here is made to be fast, quiet, and trustworthy: no accounts, no tracking, no lock-in. If it reads your hardware, it does so locally and tells you exactly what it does.</p>
+        </div>
+        <div>
+          <p>The work is open source, so you never have to take my word for any of it. The code is the documentation of intent.</p>
+          <p>Questions, bugs, or ideas go through <a href="https://github.com/slawrensen/hwinfo-streamdeck/issues" target="_blank" rel="noopener" style="color:var(--accent)">GitHub Issues</a>, where they are answered in the open.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <a class="brand" href="/">
+        <span class="mark">SL</span>
+        <span>slawrensen</span>
+      </a>
+      <nav class="foot-links" aria-label="Footer">
+        <a href="#products">Products</a>
+        <a href="https://docs.slawrensen.com/hwinfo-streamdeck/" target="_blank" rel="noopener">Docs</a>
+        <a href="https://github.com/slawrensen" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+    <p class="legal">
+      Not affiliated with, endorsed by, or sponsored by REALiX, Elgato, or Corsair.
+      "HWiNFO" is a trademark of REALiX, s.r.o. "Stream Deck" and "Elgato" are trademarks
+      of Corsair Memory, Inc. All product names and trademarks are the property of their
+      respective owners.<br>
+      &copy; 2026 slawrensen. Built with no trackers and no cookies.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

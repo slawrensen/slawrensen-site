@@ -1,0 +1,5 @@
+# SOPS config. Encrypts secrets/*.enc.yaml to the local age key.
+# The matching PRIVATE key lives at ~/.config/sops/age/keys.txt and is never committed.
+creation_rules:
+  - path_regex: \.enc\.ya?ml$
+    age: age1vfwgjjemqmzxjx50rxqjf9c8r57v74ad5n0s59lygjykpp2h8ulql6qnvl
