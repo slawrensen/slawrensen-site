@@ -32,6 +32,7 @@
     --accent:#5cb8ff; --accent-2:#8f7cff; --accent-ink:#05070a;
     --grad:linear-gradient(115deg,var(--accent),var(--accent-2));
     --ok:#49d3a4; --warn:#f5a623; --crit:#e5484d;
+    --tick:rgba(152,166,192,.13); --tick-major:rgba(152,166,192,.24);
     --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     --mono:"SF Mono","Cascadia Code","JetBrains Mono",Consolas,ui-monospace,monospace;
     --maxw:1120px;
@@ -63,12 +64,26 @@
   .rails{position:fixed; inset:0; z-index:-1; pointer-events:none; display:none}
   @media(min-width:1240px){
     .rails{display:block}
+    /* instrument bezel: hairline + etched ruler ticks facing outward, pitch matches the dot-grid */
     .rails::before,.rails::after{
-      content:""; position:absolute; top:0; bottom:0; width:1px;
-      background:linear-gradient(transparent, var(--line-2) 14%, var(--line-2) 86%, transparent);
+      content:""; position:absolute; top:0; bottom:0; width:9px;
+      -webkit-mask-image:linear-gradient(transparent, #000 14%, #000 86%, transparent);
+              mask-image:linear-gradient(transparent, #000 14%, #000 86%, transparent);
     }
-    .rails::before{left:calc(50% - var(--maxw)/2 - 1px)}
-    .rails::after{right:calc(50% - var(--maxw)/2 - 1px)}
+    .rails::before{
+      left:calc(50% - var(--maxw)/2 - 9px);
+      background:
+        linear-gradient(var(--line-2),var(--line-2)) 100% 0 / 1px 100% no-repeat,
+        repeating-linear-gradient(180deg, var(--tick) 0 1px, transparent 1px 44px) 100% 0 / 5px 100% no-repeat,
+        repeating-linear-gradient(180deg, var(--tick-major) 0 1px, transparent 1px 220px) 100% 0 / 9px 100% no-repeat;
+    }
+    .rails::after{
+      right:calc(50% - var(--maxw)/2 - 9px);
+      background:
+        linear-gradient(var(--line-2),var(--line-2)) 0 0 / 1px 100% no-repeat,
+        repeating-linear-gradient(180deg, var(--tick) 0 1px, transparent 1px 44px) 0 0 / 5px 100% no-repeat,
+        repeating-linear-gradient(180deg, var(--tick-major) 0 1px, transparent 1px 220px) 0 0 / 9px 100% no-repeat;
+    }
   }
   /* scroll-progress signal */
   .progress{
@@ -139,6 +154,29 @@
     animation:drift 20s ease-in-out infinite;
   }
   @keyframes drift{0%,100%{transform:translate3d(0,0,0)} 50%{transform:translate3d(2.2%,-1.6%,0)}}
+  /* hero trace field — decorative oscilloscope behind the headline */
+  .trace{
+    position:absolute; inset:0; z-index:-1; width:100%; height:100%; pointer-events:none;
+    -webkit-mask-image:linear-gradient(180deg, transparent, #000 24%, #000 78%, transparent);
+            mask-image:linear-gradient(180deg, transparent, #000 24%, #000 78%, transparent);
+  }
+  @media(max-width:640px){ .trace{opacity:.55} }
+  .hero .wrap{position:relative}
+  /* decorative sensor keys in the hero corner — wide screens only */
+  .hud{position:absolute; top:2px; right:var(--gutter); width:158px; display:none; flex-direction:column; gap:10px; pointer-events:none}
+  @media(min-width:1100px){ .hud{display:flex} }
+  .skey{
+    border:1px solid var(--line-2); border-radius:10px; padding:10px 12px 11px;
+    background:linear-gradient(180deg, rgba(16,19,25,.82), rgba(13,16,21,.82));
+    box-shadow:0 1px 0 rgba(255,255,255,.04) inset, 0 16px 34px -22px rgba(0,0,0,.9);
+  }
+  .sk-top{display:flex; align-items:center; justify-content:space-between; gap:8px}
+  .sk-top span{font-family:var(--mono); font-size:.6rem; letter-spacing:.14em; color:var(--faint)}
+  .sk-dot{width:5px; height:5px; flex:none; border-radius:50%; background:var(--ok); box-shadow:0 0 6px rgba(73,211,164,.55)}
+  .sk-val{display:flex; align-items:baseline; gap:4px; margin-top:5px; font-family:var(--mono); font-size:1.04rem; color:var(--text); font-variant-numeric:tabular-nums}
+  .sk-val em{font-style:normal; font-size:.64rem; letter-spacing:.06em; color:var(--faint)}
+  .skey svg{display:block; width:100%; height:17px; margin-top:8px; color:var(--accent); opacity:.9}
+  .skey:nth-child(2) svg{color:var(--accent-2)}
   .hero h1{
     font-size:var(--fs-display); line-height:1.03; letter-spacing:-.025em;
     font-weight:700; margin-top:.42em; max-width:15ch; text-wrap:balance;
@@ -161,7 +199,14 @@
   .btn svg{width:17px; height:17px; flex:none}
 
   /* section scaffolding */
-  main>section{padding-block:clamp(58px,8vw,108px); border-top:1px solid var(--line)}
+  main>section{position:relative; padding-block:clamp(58px,8vw,108px); border-top:1px solid var(--line)}
+  /* one-shot hairline glint the first time a section comes alive */
+  .js-reveal main>section.lit::after{
+    content:""; position:absolute; top:-1px; left:0; right:0; height:1px; pointer-events:none;
+    background:linear-gradient(90deg, transparent, rgba(92,184,255,.6) 40%, rgba(143,124,255,.6) 60%, transparent) -260px 0 / 240px 1px no-repeat;
+    animation:glint 1.5s linear .12s 1 both;
+  }
+  @keyframes glint{from{background-position:-260px 0} to{background-position:calc(100% + 260px) 0}}
   .sec-head{max-width:60ch}
   .sec-head h2{font-size:var(--fs-h2); line-height:1.1; letter-spacing:-.02em; font-weight:600; margin-top:.5em; text-wrap:balance}
   .sec-head p{color:var(--muted); font-size:clamp(1rem,.96rem + .3vw,1.15rem); margin-top:.62em; max-width:52ch; text-wrap:pretty}
@@ -209,7 +254,8 @@
   @media(min-width:540px){ .grid4{grid-template-columns:repeat(2,1fr)} }
   @media(min-width:960px){ .grid4{grid-template-columns:repeat(4,1fr)} }
   .pcard{
-    position:relative; background:linear-gradient(180deg,var(--panel-2),var(--panel));
+    position:relative; display:flex; flex-direction:column;
+    background:linear-gradient(180deg,var(--panel-2),var(--panel));
     border:1px solid var(--line-2); border-radius:var(--radius-sm); padding:clamp(20px,2.4vw,26px);
     transition:border-color .2s var(--ease), transform .2s var(--ease);
   }
@@ -217,6 +263,12 @@
   .pcard .ic{width:30px; height:30px; color:var(--accent); margin-bottom:16px}
   .pcard h4{font-size:1rem; font-weight:600; letter-spacing:-.01em}
   .pcard p{margin-top:9px; color:var(--muted); font-size:.9rem}
+  /* micro-stat readout — each principle reads like a sensor key */
+  .pstat{display:flex; align-items:center; gap:10px; margin-top:auto; padding-top:18px; pointer-events:none}
+  .pstat .l{font-family:var(--mono); font-size:.62rem; letter-spacing:.14em; color:var(--faint); white-space:nowrap}
+  .pstat .ln{flex:1; border-bottom:1px dotted #262e3b; margin-top:1px}
+  .pstat .v{font-family:var(--mono); font-size:.72rem; color:var(--muted); font-variant-numeric:tabular-nums; white-space:nowrap; transition:color .25s var(--ease)}
+  .pcard:hover .pstat .v{color:var(--ok)}
 
   /* about */
   .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:clamp(28px,5vw,56px); align-items:start; margin-top:clamp(28px,4vw,40px)}
@@ -232,6 +284,11 @@
   .foot-top{display:flex; flex-wrap:wrap; align-items:center; gap:20px 24px}
   .foot-links{display:flex; gap:clamp(18px,2vw,26px); font-size:.9rem; margin-left:auto}
   .foot-links a:hover{color:var(--text)}
+  /* footer status lamp — decorative, calm */
+  .sig{display:inline-flex; align-items:center; gap:9px; font-family:var(--mono); font-size:.64rem; letter-spacing:.18em; color:var(--faint); pointer-events:none; white-space:nowrap}
+  .sig-dot{position:relative; width:7px; height:7px; flex:none; border-radius:50%; background:var(--ok); box-shadow:0 0 8px rgba(73,211,164,.5)}
+  .sig-dot::after{content:""; position:absolute; inset:-4px; border-radius:50%; border:1px solid var(--ok); opacity:0; animation:sigping 4.4s var(--ease) infinite}
+  @keyframes sigping{0%{transform:scale(.4); opacity:.7} 60%,100%{transform:scale(1.9); opacity:0}}
   .legal{margin-top:clamp(24px,3vw,34px); font-size:.74rem; color:var(--faint); max-width:74ch; line-height:1.7}
   .legal a{color:var(--muted); text-decoration:underline}
   @media(max-width:560px){ .foot-links{margin-left:0; width:100%} }
@@ -242,6 +299,7 @@
   .js-reveal .hero .wrap>[data-reveal]:nth-child(2){transition-delay:70ms}
   .js-reveal .hero .wrap>[data-reveal]:nth-child(3){transition-delay:140ms}
   .js-reveal .hero .wrap>[data-reveal]:nth-child(4){transition-delay:210ms}
+  .js-reveal .hero .wrap>.hud[data-reveal]{transition-delay:300ms}
   .js-reveal .grid4>[data-reveal]:nth-child(2){transition-delay:70ms}
   .js-reveal .grid4>[data-reveal]:nth-child(3){transition-delay:140ms}
   .js-reveal .grid4>[data-reveal]:nth-child(4){transition-delay:210ms}
@@ -276,6 +334,7 @@
 
 <main>
   <section class="hero">
+    <canvas class="trace" aria-hidden="true"></canvas>
     <div class="wrap">
       <span class="eyebrow" data-reveal>Independent software</span>
       <h1 data-reveal>Precision instruments for the <span class="grad">Windows desktop.</span></h1>
@@ -286,6 +345,18 @@
           <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
           View on GitHub
         </a>
+      </div>
+      <div class="hud" aria-hidden="true" data-reveal>
+        <div class="skey" data-base="56.3" data-amp="0.8" data-dec="1">
+          <div class="sk-top"><span>CPU PKG</span><i class="sk-dot"></i></div>
+          <div class="sk-val"><span class="sk-num">56.3</span><em>°C</em></div>
+          <svg viewBox="0 0 120 32" preserveAspectRatio="none" fill="none" focusable="false"><polyline points="0,17 10,15 20,18 30,14 40,17 50,13 60,16 70,18 80,14 90,16 100,12 110,15 120,14" stroke="currentColor" stroke-width="1.5" vector-effect="non-scaling-stroke"/></svg>
+        </div>
+        <div class="skey" data-base="1176" data-amp="46" data-dec="0">
+          <div class="sk-top"><span>GPU FAN</span><i class="sk-dot"></i></div>
+          <div class="sk-val"><span class="sk-num">1176</span><em>RPM</em></div>
+          <svg viewBox="0 0 120 32" preserveAspectRatio="none" fill="none" focusable="false"><polyline points="0,14 10,17 20,15 30,18 40,14 50,16 60,12 70,15 80,17 90,14 100,16 110,13 120,15" stroke="currentColor" stroke-width="1.5" vector-effect="non-scaling-stroke"/></svg>
+        </div>
       </div>
     </div>
   </section>
@@ -345,21 +416,25 @@
           <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><path d="M3 3l18 18M9.9 4.24A9 9 0 0119.76 14.1M6.2 6.2A9 9 0 004.24 9.9"/><circle cx="12" cy="12" r="3"/></svg>
           <h4>No ads. Ever.</h4>
           <p>Nothing on screen you did not ask for. No upsells, no nags, no dark patterns.</p>
+          <div class="pstat" aria-hidden="true"><span class="l">ADS</span><span class="ln"></span><span class="v">0</span></div>
         </div>
         <div class="pcard" data-reveal>
           <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4z"/></svg>
           <h4>No telemetry.</h4>
           <p>It runs entirely on your machine and phones home to nobody. It makes no network requests.</p>
+          <div class="pstat" aria-hidden="true"><span class="l">NET REQUESTS</span><span class="ln"></span><span class="v">0</span></div>
         </div>
         <div class="pcard" data-reveal>
           <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg>
           <h4>Open source.</h4>
           <p>Every line is on GitHub. Read it, audit it, or build it yourself from source.</p>
+          <div class="pstat" aria-hidden="true"><span class="l">OPEN SOURCE</span><span class="ln"></span><span class="v">100%</span></div>
         </div>
         <div class="pcard" data-reveal>
           <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><path d="M13 2L4.5 13H11l-1 9 8.5-11H12l1-9z"/></svg>
           <h4>Lean and efficient.</h4>
           <p>Measured in kilobytes and microseconds. Idle when nothing is changing, so it never taxes your rig.</p>
+          <div class="pstat" aria-hidden="true"><span class="l">IDLE LOAD</span><span class="ln"></span><span class="v">0.0%</span></div>
         </div>
       </div>
     </div>
@@ -392,6 +467,7 @@
         <span class="mark">SL</span>
         <span>slawrensen</span>
       </a>
+      <span class="sig" aria-hidden="true"><span class="sig-dot"></span>SIGNAL OK</span>
       <nav class="foot-links" aria-label="Footer">
         <a href="#products">Products</a>
         <a href="https://docs.slawrensen.com/hwinfo-streamdeck/" target="_blank" rel="noopener">Docs</a>
@@ -423,7 +499,7 @@
   if('IntersectionObserver' in window){
     if(!reduce){
       var io=new IntersectionObserver(function(es){
-        es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+        es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); var sc=e.target.closest('section'); if(sc&&sc.id)sc.classList.add('lit'); io.unobserve(e.target); } });
       },{rootMargin:'0px 0px -8% 0px', threshold:.08});
       document.querySelectorAll('[data-reveal]').forEach(function(el){ io.observe(el); });
     }
@@ -441,6 +517,130 @@
       },{rootMargin:'-45% 0px -50% 0px', threshold:0});
       secs.forEach(function(s){ so.observe(s); });
     }
+  }
+
+  /* sensor trace field + hero readouts — the page's single rAF loop.
+     Pauses when the tab is hidden or the hero is offscreen; delta-timed; DPR capped at 2. */
+  var cv=document.querySelector('canvas.trace');
+  if(cv&&cv.getContext){
+    var ctx=cv.getContext('2d');
+    var W=0,H=0,grads=null,gGrid=null;
+    var TR=[
+      {c:'92,184,255', a:.22, amp:.60, f1:.0052, f2:.0131, s1:.110, s2:.049, ph:0,   dot:1},
+      {c:'143,124,255',a:.17, amp:.52, f1:.0044, f2:.0118, s1:.083, s2:.037, ph:2.1, dot:1},
+      {c:'163,171,184',a:.10, amp:.44, f1:.0060, f2:.0104, s1:.057, s2:.029, ph:4.4, dot:0}
+    ];
+    var buildGrads=function(){
+      grads=TR.map(function(tr){
+        var g=ctx.createLinearGradient(0,0,W,0);
+        g.addColorStop(0,'rgba('+tr.c+',0)');
+        g.addColorStop(.45,'rgba('+tr.c+','+(tr.a*.35).toFixed(3)+')');
+        g.addColorStop(.85,'rgba('+tr.c+','+tr.a+')');
+        g.addColorStop(1,'rgba('+tr.c+','+(tr.a*.75).toFixed(3)+')');
+        return g;
+      });
+      gGrid=ctx.createLinearGradient(0,0,W,0);
+      gGrid.addColorStop(0,'rgba(140,162,195,0)');
+      gGrid.addColorStop(.35,'rgba(140,162,195,.03)');
+      gGrid.addColorStop(1,'rgba(140,162,195,.08)');
+    };
+    function sizeCv(){
+      var r=cv.getBoundingClientRect(), w=Math.round(r.width), h=Math.round(r.height);
+      if(!w||!h) return false;
+      var d=Math.min(2,window.devicePixelRatio||1), bw=Math.round(w*d), bh=Math.round(h*d);
+      W=w; H=h;
+      if(bw===cv.width&&bh===cv.height&&grads) return true;
+      cv.width=bw; cv.height=bh;
+      ctx.setTransform(d,0,0,d,0,0);
+      buildGrads();
+      return true;
+    }
+    function wave(tr,x,t){
+      return Math.sin(x*tr.f1+t*tr.s1+tr.ph)*.58+Math.sin(x*tr.f2-t*tr.s2+tr.ph*1.7)*.27+Math.sin(x*.0014+t*.02+tr.ph*.6)*.32;
+    }
+    function draw(t){
+      ctx.clearRect(0,0,W,H);
+      var top=H*.30, bot=H*.80, mid=(top+bot)/2, half=(bot-top)/2, i, x, y, tr;
+      ctx.lineWidth=1; ctx.strokeStyle=gGrid;
+      ctx.font='10px "SF Mono", Consolas, ui-monospace, monospace';
+      ctx.textAlign='right'; ctx.fillStyle='rgba(150,172,205,.15)';
+      ctx.fillText('°C', W-10, top-16);
+      var lb=['70','60','50','40'];
+      for(i=0;i<4;i++){
+        y=Math.round(top+(bot-top)*i/3)+.5;
+        ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke();
+        ctx.fillText(lb[i], W-10, y-5);
+      }
+      ctx.lineWidth=1.4; ctx.lineJoin='round';
+      var xe=W-16;
+      for(i=0;i<3;i++){
+        tr=TR[i];
+        ctx.strokeStyle=grads[i];
+        ctx.beginPath();
+        for(x=-4;x<xe;x+=6){
+          y=mid+wave(tr,x,t)*half*tr.amp;
+          if(x===-4)ctx.moveTo(x,y); else ctx.lineTo(x,y);
+        }
+        y=mid+wave(tr,xe,t)*half*tr.amp;
+        ctx.lineTo(xe,y);
+        ctx.stroke();
+        if(tr.dot){
+          ctx.fillStyle='rgba('+tr.c+',.08)';
+          ctx.beginPath(); ctx.arc(xe,y,6,0,6.2832); ctx.fill();
+          ctx.fillStyle='rgba('+tr.c+',.85)';
+          ctx.beginPath(); ctx.arc(xe,y,2,0,6.2832); ctx.fill();
+        }
+      }
+    }
+    var keys=[].slice.call(document.querySelectorAll('.skey')).map(function(el,i){
+      return {
+        n:el.querySelector('.sk-num'), p:el.querySelector('polyline'),
+        base:parseFloat(el.getAttribute('data-base'))||0,
+        amp:parseFloat(el.getAttribute('data-amp'))||1,
+        dec:parseInt(el.getAttribute('data-dec'),10)||0,
+        seed:i*3.9+1.7, hist:null
+      };
+    });
+    function kval(k,t){ return k.base+(Math.sin(t*.12+k.seed)*.55+Math.sin(t*.043+k.seed*2.3)*.45)*k.amp; }
+    function morph(t){
+      keys.forEach(function(k){
+        if(!k.n) return;
+        var v=kval(k,t), s=v.toFixed(k.dec), j, y, pts='';
+        if(k.n.textContent!==s) k.n.textContent=s;
+        if(!k.p) return;
+        if(!k.hist){ k.hist=[]; for(j=12;j>=0;j--) k.hist.push(kval(k,t-j*2.2)); }
+        else{ k.hist.push(v); k.hist.shift(); }
+        for(j=0;j<13;j++){
+          y=Math.max(2.5,Math.min(29.5,16-((k.hist[j]-k.base)/k.amp)*11));
+          pts+=j*10+','+y.toFixed(1)+' ';
+        }
+        k.p.setAttribute('points',pts.trim());
+      });
+    }
+    var rafId=null, lastT=0, simT=37.2, acc=9, onScreen=true;
+    function frame(now){
+      var dt=Math.min(.1,(now-lastT)/1000)||0; lastT=now;
+      simT+=dt; acc+=dt;
+      draw(simT);
+      if(acc>2.2){ acc=0; morph(simT); }
+      rafId=requestAnimationFrame(frame);
+    }
+    function upd(){
+      var run=onScreen&&!document.hidden&&!reduce&&!!grads;
+      if(run&&rafId==null){ lastT=performance.now(); rafId=requestAnimationFrame(frame); }
+      else if(!run&&rafId!=null){ cancelAnimationFrame(rafId); rafId=null; }
+    }
+    if(sizeCv()) draw(simT);
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){ onScreen=es[es.length-1].isIntersecting; upd(); },{threshold:0}).observe(cv);
+    }
+    document.addEventListener('visibilitychange',upd);
+    addEventListener('resize',function(){ if(sizeCv()&&rafId==null) draw(simT); },{passive:true});
+    try{
+      var mq=matchMedia('(prefers-reduced-motion: reduce)');
+      if(mq.addEventListener) mq.addEventListener('change',function(ev){ reduce=ev.matches; upd(); if(reduce&&grads) draw(simT); });
+    }catch(e){}
+    upd();
   }
 })();
 </script>

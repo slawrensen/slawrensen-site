@@ -8,7 +8,7 @@ HWiNFO Sensors for the Elgato Stream Deck.
 
 ```
 public/
-  index.html    the whole site — self-contained (inline CSS + a few lines of JS)
+  index.html    the whole site — self-contained (inline CSS + dependency-free vanilla JS)
   _headers      Cloudflare Pages security + cache headers
   favicon.svg   brand mark
   robots.txt
