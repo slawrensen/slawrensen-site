@@ -10,3 +10,7 @@ keys.txt
 
 # Build artifact (regenerate with Compress-Archive / zip).
 slawrensen-site-deploy.zip
+
+# Local tooling caches (never deploy or commit these).
+.wrangler/
+node_modules/
