@@ -31,7 +31,9 @@ jobs:
             fi
           }
           check '<script[^>]+src=' 'external or separate <script src> found - the page must stay self-contained'
-          check '<link[^>]+href="https?://' 'external stylesheet/resource <link> found'
+          # Only relations that actually fetch something. rel=canonical and
+          # rel=icon (relative) are absolute-URL-bearing but request-free.
+          check '<link[^>]+rel="?(stylesheet|preload|prefetch|preconnect|dns-prefetch|modulepreload)' 'a fetching <link> (stylesheet/preload/preconnect) found'
           check '@import' 'CSS @import found - would create an extra request'
           check 'url\((https?:)?//' 'absolute url() reference found in CSS'
           check 'fetch\(|XMLHttpRequest|navigator\.sendBeacon|new WebSocket' 'network call found in page script'
