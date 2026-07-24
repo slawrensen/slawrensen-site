@@ -12,7 +12,8 @@ public/
   _headers      Cloudflare Pages security + cache headers
   favicon.svg   brand mark
   robots.txt
-  assets/hwinfo-sensors.png
+  404.html      styled 404 page
+  assets/       product screenshot (webp), device photo (webp), social card (jpg)
 .github/workflows/pages-deployment.yaml   CI/CD
 ```
 

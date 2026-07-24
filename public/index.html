@@ -3,31 +3,30 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>slawrensen</title>
-<meta name="description" content="Independent software that reads your machine and respects it. No ads, no telemetry, open source. Maker of HWiNFO Sensors for the Elgato Stream Deck.">
+<title>HWiNFO Sensors for Stream Deck — slawrensen</title>
+<meta name="description" content="HWiNFO Sensors for Stream Deck: live CPU and GPU temperatures, clocks, fan RPM, usage and power on your Elgato keys and dials. Free, open source, no telemetry.">
 <meta name="theme-color" content="#08090b">
 <meta name="color-scheme" content="dark">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://slawrensen.com/">
-<meta property="og:title" content="slawrensen">
-<meta property="og:description" content="Independent software that reads your machine and respects it. No ads, no telemetry, open source.">
+<meta property="og:title" content="HWiNFO Sensors for Stream Deck — slawrensen">
+<meta property="og:description" content="HWiNFO Sensors for Stream Deck: live CPU and GPU temperatures, clocks, fan RPM, usage and power on your Elgato keys and dials. Free, open source, no telemetry.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://slawrensen.com/">
 <meta property="og:site_name" content="slawrensen">
-<meta property="og:image" content="https://slawrensen.com/assets/hwinfo-sensors.png">
-<meta property="og:image:width" content="1072">
-<meta property="og:image:height" content="602">
-<meta property="og:image:alt" content="HWiNFO Sensors on an Elgato Stream Deck showing seven themes and live sensor keys">
+<meta property="og:image" content="https://slawrensen.com/assets/og-card-v1.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A Stream Deck + XL on a desk, its 36 keys showing live CPU temperatures, clock speeds, usage and voltages from HWiNFO, with six dial readouts on the touch strip">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="slawrensen · precision software for Windows">
-<meta name="twitter:description" content="Independent software that reads your machine and respects it. No ads, no telemetry, open source.">
-<meta name="twitter:image" content="https://slawrensen.com/assets/hwinfo-sensors.png">
-<script>try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js-reveal')}catch(e){}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"HWiNFO Sensors for Stream Deck","applicationCategory":"UtilitiesApplication","operatingSystem":"Windows","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"url":"https://slawrensen.com/","downloadUrl":"https://marketplace.elgato.com/product/hwinfo-sensors-82436166-3d61-4527-9034-8fdf16d92c54","codeRepository":"https://github.com/slawrensen/hwinfo-streamdeck","author":{"@type":"Person","name":"slawrensen","url":"https://github.com/slawrensen"}}</script>
+<script>try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window)document.documentElement.classList.add('js-reveal')}catch(e){}</script>
 <style>
   :root{
     color-scheme:dark;
     --bg:#08090b; --bg-elev:#0b0d11; --panel:#0d1015; --panel-2:#101319;
-    --line:#171b22; --line-2:#222835;
+    --line:#171b22; --line-2:#222835; --line-ui:#525c6b;
     --text:#e9ebf0; --muted:#a3abb8; --faint:#7b8493;
     --accent:#5cb8ff; --accent-2:#8f7cff; --accent-ink:#05070a;
     --grad:linear-gradient(115deg,var(--accent),var(--accent-2));
@@ -37,6 +36,7 @@
     --mono:"SF Mono","Cascadia Code","JetBrains Mono",Consolas,ui-monospace,monospace;
     --maxw:1120px;
     --gutter:clamp(26px, 4vw + 8px, 60px);
+    --nav-h:65px;
     --radius:18px; --radius-sm:12px;
     --ease:cubic-bezier(.22,.61,.36,1);
     --fs-display:clamp(2.25rem, 1.3rem + 4.2vw, 4rem);
@@ -50,7 +50,7 @@
   body{
     background:var(--bg); color:var(--text); overflow-x:clip;
     font-family:var(--sans); font-size:16px; line-height:1.65;
-    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    -webkit-font-smoothing:antialiased;
   }
   /* ambient instrument dot-grid, fixed + faint, fades downward */
   body::before{
@@ -97,6 +97,9 @@
   ::selection{background:rgba(94,184,255,.26); color:#fff}
   :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:8px}
   .btn-primary:focus-visible{outline:2px solid #fff; outline-offset:3px}
+  /* keep the sticky nav from swallowing anchor targets and focused controls */
+  section[id]{scroll-margin-top:calc(var(--nav-h) + 16px)}
+  a[href],button,summary,[tabindex]{scroll-margin-block:calc(var(--nav-h) + 12px) 24px}
 
   .wrap{width:100%; max-width:var(--maxw); margin-inline:auto; padding-inline:var(--gutter)}
   @supports(padding:max(0px)){
@@ -108,7 +111,6 @@
     text-transform:uppercase; color:var(--accent);
   }
   .eyebrow::before{content:""; width:22px; height:1px; background:currentColor; opacity:.55}
-  section[id]{scroll-margin-top:84px}
 
   /* nav */
   header.nav{
@@ -138,10 +140,17 @@
   }
   .nav-links .gh{color:var(--text); font-weight:500}
   @media(max-width:600px){
+    :root{--nav-h:120px}
     .nav-inner{flex-wrap:wrap; min-height:0; padding-block:11px; gap:0}
-    .nav-links{width:100%; justify-content:space-between; gap:8px; margin-top:11px; padding-top:11px; border-top:1px solid var(--line); font-size:.86rem}
-    .nav-links a{display:inline-flex; align-items:center; min-height:38px}
+    /* the link row becomes an instrument mode-selector: four equal cells, etched dividers */
+    .nav-links{
+      width:100%; display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+      margin-top:11px; padding-top:11px; border-top:1px solid var(--line); font-size:.86rem;
+    }
+    .nav-links a{display:inline-flex; align-items:center; justify-content:center; min-height:44px}
+    .nav-links a:not(:last-child){border-inline-end:1px solid var(--line)}
   }
+  @media(max-width:380px){ .nav-links{font-size:.82rem} }
 
   /* hero */
   .hero{position:relative; isolation:isolate; overflow:clip; border-top:0; padding:clamp(58px,10vw,124px) 0 clamp(52px,7vw,88px)}
@@ -159,12 +168,12 @@
     position:absolute; inset:0; z-index:-1; width:100%; height:100%; pointer-events:none;
     -webkit-mask-image:linear-gradient(180deg, transparent, #000 24%, #000 78%, transparent);
             mask-image:linear-gradient(180deg, transparent, #000 24%, #000 78%, transparent);
+    opacity:.75;
   }
-  @media(max-width:640px){ .trace{opacity:.55} }
   .hero .wrap{position:relative}
   /* decorative sensor keys in the hero corner — wide screens only */
   .hud{position:absolute; top:2px; right:var(--gutter); width:158px; display:none; flex-direction:column; gap:10px; pointer-events:none}
-  @media(min-width:1100px){ .hud{display:flex} }
+  @media(min-width:820px){ .hud{display:flex} }
   .skey{
     border:1px solid var(--line-2); border-radius:10px; padding:10px 12px 11px;
     background:linear-gradient(180deg, rgba(16,19,25,.82), rgba(13,16,21,.82));
@@ -194,8 +203,8 @@
   .btn:active{transform:translateY(0)}
   .btn-primary{background:var(--grad); color:var(--accent-ink); box-shadow:0 12px 30px -14px var(--accent), 0 1px 0 rgba(255,255,255,.28) inset}
   .btn-primary:hover{box-shadow:0 18px 42px -16px var(--accent), 0 1px 0 rgba(255,255,255,.34) inset}
-  .btn-ghost{border-color:var(--line-2); color:var(--text); background:var(--panel)}
-  .btn-ghost:hover{border-color:#39424f; background:var(--panel-2)}
+  .btn-ghost{border-color:var(--line-ui); color:var(--text); background:var(--panel)}
+  .btn-ghost:hover{border-color:#79839a; background:var(--panel-2)}
   .btn svg{width:17px; height:17px; flex:none}
 
   /* section scaffolding */
@@ -226,19 +235,56 @@
   .phead{max-width:66ch}
   .phead h3{font-size:var(--fs-h3); letter-spacing:-.015em; font-weight:600; margin-top:.5em}
   .phead p{color:var(--muted); font-size:1rem; margin-top:.7em}
+  /* spec readout rows — the feature set as instrument labels, not a paragraph */
+  .pspec{list-style:none; padding:0; margin-top:clamp(20px,2.6vw,28px)}
+  .pspec li{
+    display:grid; grid-template-columns:92px 1fr; gap:14px; align-items:baseline;
+    padding:11px 0; border-top:1px solid var(--line); color:var(--muted); font-size:.92rem;
+  }
+  .pspec .l{font-family:var(--mono); font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--faint)}
+  .pspec a{color:var(--accent); border-bottom:1px solid rgba(94,184,255,.35)}
+  .pspec a:hover{border-bottom-color:var(--accent)}
+  @media(max-width:560px){ .pspec li{grid-template-columns:1fr; gap:4px} }
+
   .pshot{position:relative; margin-top:clamp(24px,3.5vw,34px)}
   .shot-frame{position:relative; border:1px solid var(--line-2); border-radius:var(--radius-sm); overflow:hidden; background:#0a0c10; box-shadow:0 24px 60px -34px rgba(0,0,0,.95)}
   .shot-scroll{overflow:hidden}
   .shot-scroll img{width:100%; display:block; margin-inline:auto}
+  .shot-scroll:focus-visible{outline:2px solid var(--accent); outline-offset:-2px}
+  .shot-hint{
+    position:absolute; right:10px; bottom:10px; z-index:3; display:none;
+    font-family:var(--mono); font-size:.6rem; letter-spacing:.14em; color:var(--faint);
+  }
   .pshot figcaption{margin-top:14px; text-align:center; color:var(--faint); font-size:.75rem; font-family:var(--mono); letter-spacing:.04em}
   @media(max-width:640px){
-    .shot-scroll{overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch; scrollbar-width:thin; scrollbar-color:var(--line-2) transparent}
-    .shot-scroll img{width:auto; max-width:none; height:clamp(240px,64vw,300px)}
+    .shot-scroll{overflow-x:auto; overflow-y:hidden; overscroll-behavior-x:contain; -webkit-overflow-scrolling:touch; scrollbar-width:thin; scrollbar-color:var(--line-2) transparent}
+    .shot-scroll img{width:auto; max-width:none; height:clamp(270px,74vw,330px)}
     .shot-frame::after{content:""; position:absolute; top:0; right:0; bottom:0; width:44px; pointer-events:none; z-index:2; background:linear-gradient(90deg, transparent, rgba(8,9,11,.9))}
-    .pshot figcaption::after{content:"  ·  drag to explore →"; color:var(--accent)}
+    .shot-hint{display:block}
+    /* bleed the scroller to the card's inner edges so more of the deck is visible */
+    .pshot-scan{margin-inline:calc(-1 * clamp(20px,3.2vw,40px))}
+    .pshot-scan .shot-frame{border-inline:0; border-radius:0}
+    .pshot-scan figcaption{padding-inline:clamp(20px,3.2vw,40px)}
   }
+  /* the real device */
+  .pphoto{margin-top:clamp(26px,3.5vw,36px)}
+  .pphoto img{width:100%; border:1px solid var(--line-2); border-radius:var(--radius-sm); box-shadow:0 24px 60px -34px rgba(0,0,0,.95)}
+
+  /* setup — the three steps that actually get it running */
+  .psetup{
+    list-style:none; padding:0; margin-top:clamp(24px,3vw,32px);
+    counter-reset:s; border-top:1px solid var(--line);
+  }
+  .psetup li{
+    counter-increment:s; display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:baseline;
+    padding:14px 0; border-bottom:1px solid var(--line); color:var(--muted); font-size:.95rem;
+  }
+  .psetup li::before{content:counter(s,decimal-leading-zero); font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; color:var(--faint)}
+  .psetup b{color:var(--text); font-weight:600}
+  .psetup-note{margin-top:14px; color:var(--faint); font-size:.85rem; max-width:66ch}
+
   .pmeta{display:flex; flex-wrap:wrap; align-items:center; gap:clamp(16px,3vw,24px); margin-top:clamp(24px,3vw,32px)}
-  .chips{display:flex; flex-wrap:wrap; gap:8px}
+  .chips{display:flex; flex-wrap:wrap; gap:8px; list-style:none; padding:0}
   .chip{
     font-family:var(--mono); font-size:.72rem; letter-spacing:.02em; color:#c7ccd4; padding:6px 11px;
     border:1px solid var(--line-2); border-radius:999px; background:#0e1116;
@@ -247,6 +293,8 @@
   .prod-links{display:flex; flex-wrap:wrap; gap:12px; align-items:center}
   .prod-links .btn{height:44px; font-size:.9rem}
   .soon{margin-top:clamp(16px,2vw,20px); color:var(--faint); font-family:var(--mono); font-size:.74rem; letter-spacing:.02em}
+  .soon a{color:var(--muted); border-bottom:1px solid var(--line-2)}
+  .soon a:hover{color:var(--text)}
   @media(max-width:560px){ .pmeta{flex-direction:column; align-items:flex-start; gap:18px} }
 
   /* principles */
@@ -261,10 +309,10 @@
   }
   .pcard:hover{border-color:#2f3846; transform:translateY(-3px)}
   .pcard .ic{width:30px; height:30px; color:var(--accent); margin-bottom:16px}
-  .pcard h4{font-size:1rem; font-weight:600; letter-spacing:-.01em}
+  .pcard h3{font-size:1rem; font-weight:600; letter-spacing:-.01em}
   .pcard p{margin-top:9px; color:var(--muted); font-size:.9rem}
   /* micro-stat readout — each principle reads like a sensor key */
-  .pstat{display:flex; align-items:center; gap:10px; margin-top:auto; padding-top:18px; pointer-events:none}
+  .pstat{display:flex; align-items:center; gap:10px; margin-top:auto; padding-top:18px}
   .pstat .l{font-family:var(--mono); font-size:.62rem; letter-spacing:.14em; color:var(--faint); white-space:nowrap}
   .pstat .ln{flex:1; border-bottom:1px dotted #262e3b; margin-top:1px}
   .pstat .v{font-family:var(--mono); font-size:.72rem; color:var(--muted); font-variant-numeric:tabular-nums; white-space:nowrap; transition:color .25s var(--ease)}
@@ -272,7 +320,7 @@
 
   /* about */
   .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:clamp(28px,5vw,56px); align-items:start; margin-top:clamp(28px,4vw,40px)}
-  @media(max-width:760px){ .about-grid{grid-template-columns:1fr; gap:clamp(16px,4vw,22px)} }
+  @media(max-width:900px){ .about-grid{grid-template-columns:1fr; gap:clamp(16px,4vw,22px)} }
   .about-grid p{color:var(--muted); font-size:1.02rem; margin-bottom:16px; max-width:60ch; text-wrap:pretty}
   .about-grid p:last-child{margin-bottom:0}
   .about-grid strong{color:var(--text); font-weight:600}
@@ -280,9 +328,14 @@
   .about-grid a:hover{border-bottom-color:var(--accent)}
 
   /* footer */
-  footer{border-top:1px solid var(--line); padding-block:clamp(44px,6vw,64px); color:var(--muted)}
+  footer{
+    border-top:1px solid var(--line); color:var(--muted);
+    padding-block:clamp(44px,6vw,64px);
+    padding-bottom:calc(clamp(44px,6vw,64px) + env(safe-area-inset-bottom,0px));
+  }
   .foot-top{display:flex; flex-wrap:wrap; align-items:center; gap:20px 24px}
-  .foot-links{display:flex; gap:clamp(18px,2vw,26px); font-size:.9rem; margin-left:auto}
+  .foot-links{display:flex; flex-wrap:wrap; gap:clamp(18px,2vw,26px); font-size:.9rem; margin-left:auto}
+  .foot-links a{display:inline-flex; align-items:center; min-height:32px}
   .foot-links a:hover{color:var(--text)}
   /* footer status lamp — decorative, calm */
   .sig{display:inline-flex; align-items:center; gap:9px; font-family:var(--mono); font-size:.64rem; letter-spacing:.18em; color:var(--faint); pointer-events:none; white-space:nowrap}
@@ -291,11 +344,22 @@
   @keyframes sigping{0%{transform:scale(.4); opacity:.7} 60%,100%{transform:scale(1.9); opacity:0}}
   .legal{margin-top:clamp(24px,3vw,34px); font-size:.74rem; color:var(--faint); max-width:74ch; line-height:1.7}
   .legal a{color:var(--muted); text-decoration:underline}
-  @media(max-width:560px){ .foot-links{margin-left:0; width:100%} }
+  @media(max-width:600px){
+    .foot-links{margin-left:0; width:100%; gap:22px}
+    .foot-links a{display:inline-flex; align-items:center; min-height:44px}
+    .legal{font-size:.78rem}
+  }
+  /* stacked CTAs share one width instead of wrapping ragged */
+  @media(max-width:430px){
+    .cta-row,.prod-links{display:grid; grid-template-columns:minmax(0,300px); gap:12px}
+    .cta-row .btn,.prod-links .btn{width:100%}
+  }
 
-  /* reveal (only when JS + motion allowed) */
+  /* reveal (only when JS + motion + IntersectionObserver are all present) */
   .js-reveal [data-reveal]{opacity:0; transform:translateY(16px); transition:opacity .7s var(--ease), transform .7s var(--ease)}
   .js-reveal [data-reveal].in{opacity:1; transform:none}
+  /* a keyboard user must never land on a link that is still fading in */
+  .js-reveal [data-reveal]:focus-within{opacity:1!important; transform:none!important; transition:none}
   .js-reveal .hero .wrap>[data-reveal]:nth-child(2){transition-delay:70ms}
   .js-reveal .hero .wrap>[data-reveal]:nth-child(3){transition-delay:140ms}
   .js-reveal .hero .wrap>[data-reveal]:nth-child(4){transition-delay:210ms}
@@ -304,6 +368,16 @@
   .js-reveal .grid4>[data-reveal]:nth-child(3){transition-delay:140ms}
   .js-reveal .grid4>[data-reveal]:nth-child(4){transition-delay:210ms}
   .js-reveal .about-grid>[data-reveal]:nth-child(2){transition-delay:90ms}
+
+  /* Windows High Contrast: keep every boundary and state visible */
+  @media (forced-colors: active){
+    .hero h1 .grad{background:none; color:CanvasText; -webkit-text-fill-color:currentColor}
+    .btn-primary{background:ButtonFace; color:ButtonText; border:1px solid ButtonText}
+    .nav-links a[aria-current]{text-decoration:underline; text-underline-offset:5px}
+    .nav-links a[aria-current]::after{display:none}
+    .trace{display:none}
+    .pcard,.product,.chip,.shot-frame,.btn-ghost,.pphoto img{border-color:CanvasText}
+  }
 
   @media(prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
@@ -320,7 +394,7 @@
 <header class="nav">
   <div class="wrap nav-inner">
     <a class="brand" href="/">
-      <span class="mark">SL</span>
+      <span class="mark" aria-hidden="true">SL</span>
       <span>slawrensen</span>
     </a>
     <nav class="nav-links" aria-label="Primary">
@@ -338,9 +412,9 @@
     <div class="wrap">
       <span class="eyebrow" data-reveal>Independent software</span>
       <h1 data-reveal>Precision instruments for the <span class="grad">Windows desktop.</span></h1>
-      <p class="lead" data-reveal>Small, honest tools that read your machine and respect it. No ads, no telemetry, open source. Built to be fast, quiet, and trustworthy.</p>
+      <p class="lead" data-reveal>Small, honest tools that read your machine and respect it. HWiNFO Sensors puts live CPU and GPU temperatures, clock speeds, fan RPM, usage and power on your Elgato Stream Deck keys and dials. No ads, no telemetry, open source.</p>
       <div class="cta-row" data-reveal>
-        <a class="btn btn-primary" href="#products">Explore the products</a>
+        <a class="btn btn-primary" href="#products">Get HWiNFO Sensors</a>
         <a class="btn btn-ghost" href="https://github.com/slawrensen" target="_blank" rel="noopener">
           <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
           View on GitHub
@@ -361,50 +435,74 @@
     </div>
   </section>
 
-  <section id="products">
+  <section id="products" tabindex="-1">
     <div class="wrap">
       <div class="sec-head" data-reveal>
         <span class="eyebrow">Products / 01</span>
         <h2>HWiNFO Sensors for Stream Deck</h2>
-        <p>Live HWiNFO hardware sensors on your Elgato Stream Deck, updated every second. The whole wall reads like one instrument.</p>
+        <p>A Stream Deck plugin that puts live HWiNFO hardware sensors on your keys and dials, updated every second.</p>
       </div>
 
       <div class="product" data-reveal>
         <div class="phead">
           <span class="eyebrow">Windows / Elgato Stream Deck</span>
           <h3>Your hardware, at a glance</h3>
-          <p>Put CPU and GPU temperature, clock speeds, fan RPM, usage and power on your keys and dials. Seven display themes, aviation-style amber warn and red critical alert colors, live sparklines, and full dial support on the Stream Deck + and + XL: rotate, push and touch gestures, rotation sets with named groups, and a Control key that drives dials from anywhere.</p>
+          <p>Put CPU and GPU temperature, clock speeds, fan RPM, usage and power on your keys and dials.</p>
         </div>
-        <figure class="pshot">
+
+        <ul class="pspec">
+          <li><span class="l">Keys</span><span>Any Stream Deck. One sensor per key, with a live sparkline.</span></li>
+          <li><span class="l">Dials</span><span>Stream Deck + and Stream Deck + XL: rotate, push and touch, rotation sets with named groups, and a Control key that drives dials from anywhere. <a href="https://docs.slawrensen.com/hwinfo-streamdeck/hardware.html" target="_blank" rel="noopener">Hardware compatibility</a></span></li>
+          <li><span class="l">Display</span><span>Seven themes, including a high-contrast light theme for bright rooms and low vision. Amber warn and red critical alerts keep the same palette on every theme, so an alert stays unmistakable with any colour vision.</span></li>
+          <li><span class="l">Status</span><span>When HWiNFO stops publishing, keys say so: every failure state renders a screen that names the problem and its fix, instead of a stale number pretending to be live.</span></li>
+        </ul>
+
+        <figure class="pshot pshot-scan">
           <div class="shot-frame">
-            <div class="shot-scroll">
-              <img src="assets/hwinfo-sensors.png" width="1072" height="602"
+            <div class="shot-scroll" tabindex="0" role="group" aria-label="Product screenshot — scroll horizontally to pan">
+              <img src="assets/hwinfo-sensors.webp" width="1072" height="602" decoding="async"
                    alt="A Stream Deck showing HWiNFO Sensors: seven display themes across the top row, amber warn and red critical alert states below, each key with a live value, unit and sparkline, plus two Stream Deck + dials">
             </div>
+            <span class="shot-hint" aria-hidden="true">SCROLL</span>
           </div>
           <figcaption>Seven themes, warn and critical alert states, and Stream Deck + dials</figcaption>
         </figure>
+
+        <figure class="pshot pphoto">
+          <img src="assets/streamdeck-plusxl.webp" width="1000" height="907" loading="lazy" decoding="async"
+               alt="A Stream Deck + XL on a wooden desk, its 36 keys showing live CPU core temperatures, clock speeds, usage percentages and voltages from HWiNFO, one key amber and one red demonstrating warn and critical alerts, with six dial readouts on the touch strip below">
+          <figcaption>Stream Deck + XL, 36 keys and six dials live on HWiNFO — 9 July 2026</figcaption>
+        </figure>
+
+        <ol class="psetup">
+          <li><span><b>Install the plugin</b> from the Elgato Marketplace, or double-click the .streamDeckPlugin from GitHub Releases.</span></li>
+          <li><span><b>Run HWiNFO</b> (free or Pro) and tick <b>Shared Memory Support</b> in its Settings. HWiNFO and the Stream Deck app must run at the same privilege level — both elevated or both normal.</span></li>
+          <li><span><b>Drag Sensor Reading onto a key</b> and pick a sensor from the searchable list. The key goes live immediately.</span></li>
+        </ol>
+        <p class="psetup-note">Free HWiNFO switches Shared Memory off after 12 hours. If you have Gadget reporting enabled, the plugin falls back to it automatically and upgrades itself back the moment Shared Memory returns. HWiNFO is a separate free program by REALiX; this plugin does not bundle it.</p>
+
         <div class="pmeta">
-          <div class="chips">
-            <span class="chip">Windows x64</span>
-            <span class="chip">Stream Deck 6.9+</span>
-            <span class="chip">MIT license</span>
-            <span class="chip ok">Free</span>
-            <span class="chip ok">Open source</span>
-            <span class="chip ok">No telemetry</span>
-          </div>
+          <ul class="chips" role="list">
+            <li class="chip">Windows x64</li>
+            <li class="chip">Stream Deck 6.9+</li>
+            <li class="chip">Dials: Stream Deck + / + XL</li>
+            <li class="chip">MIT license</li>
+            <li class="chip ok">Free</li>
+            <li class="chip ok">Open source</li>
+            <li class="chip ok">No telemetry</li>
+          </ul>
           <div class="prod-links">
             <a class="btn btn-primary" href="https://marketplace.elgato.com/product/hwinfo-sensors-82436166-3d61-4527-9034-8fdf16d92c54" target="_blank" rel="noopener">Elgato Marketplace</a>
-            <a class="btn btn-ghost" href="https://docs.slawrensen.com/hwinfo-streamdeck/" target="_blank" rel="noopener">Documentation</a>
+            <a class="btn btn-ghost" href="https://docs.slawrensen.com/hwinfo-streamdeck/getting-started.html" target="_blank" rel="noopener">Setup guide</a>
             <a class="btn btn-ghost" href="https://github.com/slawrensen/hwinfo-streamdeck" target="_blank" rel="noopener">Source code</a>
           </div>
         </div>
-        <p class="soon">v1.3.0 · updated Jul 2026 · on the Elgato Marketplace</p>
+        <p class="soon"><a href="https://github.com/slawrensen/hwinfo-streamdeck/releases/latest" target="_blank" rel="noopener">v1.3.0</a> · updated Jul 2026</p>
       </div>
     </div>
   </section>
 
-  <section id="principles">
+  <section id="principles" tabindex="-1">
     <div class="wrap">
       <div class="sec-head" data-reveal>
         <span class="eyebrow">How I build</span>
@@ -414,33 +512,34 @@
       <div class="grid4">
         <div class="pcard" data-reveal>
           <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><path d="M3 3l18 18M9.9 4.24A9 9 0 0119.76 14.1M6.2 6.2A9 9 0 004.24 9.9"/><circle cx="12" cy="12" r="3"/></svg>
-          <h4>No ads. Ever.</h4>
+          <h3>No ads. Ever.</h3>
           <p>Nothing on screen you did not ask for. No upsells, no nags, no dark patterns.</p>
           <div class="pstat" aria-hidden="true"><span class="l">ADS</span><span class="ln"></span><span class="v">0</span></div>
         </div>
         <div class="pcard" data-reveal>
           <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4z"/></svg>
-          <h4>No telemetry.</h4>
+          <h3>No telemetry.</h3>
           <p>It runs entirely on your machine and phones home to nobody. It makes no network requests.</p>
           <div class="pstat" aria-hidden="true"><span class="l">NET REQUESTS</span><span class="ln"></span><span class="v">0</span></div>
         </div>
         <div class="pcard" data-reveal>
           <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg>
-          <h4>Open source.</h4>
+          <h3>Open source.</h3>
           <p>Every line is on GitHub. Read it, audit it, or build it yourself from source.</p>
-          <div class="pstat" aria-hidden="true"><span class="l">OPEN SOURCE</span><span class="ln"></span><span class="v">100%</span></div>
+          <div class="pstat"><span class="l">LICENSE</span><span class="ln"></span><span class="v">MIT</span></div>
         </div>
         <div class="pcard" data-reveal>
           <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><path d="M13 2L4.5 13H11l-1 9 8.5-11H12l1-9z"/></svg>
-          <h4>Lean and efficient.</h4>
+          <h3>Lean and efficient.</h3>
           <p>Measured in kilobytes and microseconds. Idle when nothing is changing, so it never taxes your rig.</p>
-          <div class="pstat" aria-hidden="true"><span class="l">IDLE LOAD</span><span class="ln"></span><span class="v">0.0%</span></div>
+          <div class="pstat"><span class="l">PARSE</span><span class="ln"></span><span class="v">6.9 µs</span></div>
         </div>
       </div>
+      <p class="soon">Measured, logged and reproducible — <a href="https://github.com/slawrensen/hwinfo-streamdeck/blob/main/PERF.md" target="_blank" rel="noopener">PERF.md</a></p>
     </div>
   </section>
 
-  <section id="about">
+  <section id="about" tabindex="-1">
     <div class="wrap">
       <div class="sec-head" data-reveal>
         <span class="eyebrow">About</span>
@@ -448,11 +547,12 @@
       </div>
       <div class="about-grid">
         <div data-reveal>
-          <p>I am <strong>slawrensen</strong>, an independent developer. I build small, honest tools for people who care how their machines run.</p>
-          <p>Every product here is made to be fast, quiet, and trustworthy: no accounts, no tracking, no lock-in. If it reads your hardware, it does so locally and tells you exactly what it does.</p>
+          <p>I am <strong><a href="https://github.com/slawrensen" target="_blank" rel="noopener">slawrensen</a></strong>, an independent developer. I build small, honest tools for people who care how their machines run.</p>
+          <p>Every product here is made to be fast, quiet, and trustworthy. If it reads your hardware, it does so locally and tells you exactly what it does.</p>
         </div>
         <div data-reveal>
           <p>The work is open source, so you never have to take my word for any of it. The code is the documentation of intent.</p>
+          <p>HWiNFO Sensors is a ground-up TypeScript rewrite on Elgato's official SDK, inspired by the archived Go-based plugin by @shayne — no code shared, credits in <a href="https://github.com/slawrensen/hwinfo-streamdeck/blob/main/NOTICE.md" target="_blank" rel="noopener">NOTICE.md</a>.</p>
           <p>Questions, bugs, or ideas go through <a href="https://github.com/slawrensen/hwinfo-streamdeck/issues" target="_blank" rel="noopener">GitHub Issues</a>, where they are answered in the open.</p>
         </div>
       </div>
@@ -464,13 +564,14 @@
   <div class="wrap">
     <div class="foot-top">
       <a class="brand" href="/">
-        <span class="mark">SL</span>
+        <span class="mark" aria-hidden="true">SL</span>
         <span>slawrensen</span>
       </a>
       <span class="sig" aria-hidden="true"><span class="sig-dot"></span>SIGNAL OK</span>
       <nav class="foot-links" aria-label="Footer">
         <a href="#products">Products</a>
         <a href="https://docs.slawrensen.com/hwinfo-streamdeck/" target="_blank" rel="noopener">Docs</a>
+        <a href="https://marketplace.elgato.com/product/hwinfo-sensors-82436166-3d61-4527-9034-8fdf16d92c54" target="_blank" rel="noopener">Marketplace</a>
         <a href="https://github.com/slawrensen" target="_blank" rel="noopener">GitHub</a>
       </nav>
     </div>
@@ -486,13 +587,18 @@
 
 <script>
 (function(){
+try{
   var root=document.documentElement;
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var bar=document.querySelector('.progress');
+  var links={}, secs=[];
   function onScroll(){
-    if(!bar) return;
-    var h=root.scrollHeight-root.clientHeight;
-    bar.style.transform='scaleX('+(h>0?Math.min(1,Math.max(0,root.scrollTop/h)):0)+')';
+    if(bar){
+      var h=root.scrollHeight-root.clientHeight;
+      bar.style.transform='scaleX('+(h>0?Math.min(1,Math.max(0,root.scrollTop/h)):0)+')';
+    }
+    /* back at the top there is no current section — clear the stale underline */
+    if(root.scrollTop<120){ for(var k in links) links[k].removeAttribute('aria-current'); }
   }
   addEventListener('scroll',onScroll,{passive:true}); addEventListener('resize',onScroll,{passive:true}); onScroll();
 
@@ -503,7 +609,6 @@
       },{rootMargin:'0px 0px -8% 0px', threshold:.08});
       document.querySelectorAll('[data-reveal]').forEach(function(el){ io.observe(el); });
     }
-    var links={}, secs=[];
     document.querySelectorAll('.nav-links a[href^="#"]').forEach(function(a){
       var id=a.getAttribute('href').slice(1), s=document.getElementById(id);
       if(s){ links[id]=a; secs.push(s); }
@@ -512,18 +617,22 @@
       var so=new IntersectionObserver(function(es){
         es.forEach(function(e){
           var a=links[e.target.id]; if(!a) return;
-          if(e.isIntersecting){ for(var k in links) links[k].removeAttribute('aria-current'); a.setAttribute('aria-current','true'); }
+          if(e.isIntersecting){ for(var k in links) links[k].removeAttribute('aria-current'); a.setAttribute('aria-current','location'); }
         });
       },{rootMargin:'-45% 0px -50% 0px', threshold:0});
       secs.forEach(function(s){ so.observe(s); });
     }
+  }else{
+    /* no IntersectionObserver: the reveal styles would hide the page forever */
+    root.classList.remove('js-reveal');
   }
 
   /* sensor trace field + hero readouts — the page's single rAF loop.
-     Pauses when the tab is hidden or the hero is offscreen; delta-timed; DPR capped at 2. */
+     Pauses when the tab is hidden or the hero is offscreen; delta-timed; draws at 30 Hz. */
   var cv=document.querySelector('canvas.trace');
   if(cv&&cv.getContext){
     var ctx=cv.getContext('2d');
+    var hud=document.querySelector('.hud');
     var W=0,H=0,grads=null,gGrid=null;
     var TR=[
       {c:'92,184,255', a:.22, amp:.60, f1:.0052, f2:.0131, s1:.110, s2:.049, ph:0,   dot:1},
@@ -561,15 +670,18 @@
     function draw(t){
       ctx.clearRect(0,0,W,H);
       var top=H*.30, bot=H*.80, mid=(top+bot)/2, half=(bot-top)/2, i, x, y, tr;
+      var wide=W>=680;
       ctx.lineWidth=1; ctx.strokeStyle=gGrid;
-      ctx.font='10px "SF Mono", Consolas, ui-monospace, monospace';
-      ctx.textAlign='right'; ctx.fillStyle='rgba(150,172,205,.15)';
-      ctx.fillText('°C', W-10, top-16);
+      if(wide){
+        ctx.font='10px "SF Mono", Consolas, ui-monospace, monospace';
+        ctx.textAlign='right'; ctx.fillStyle='rgba(150,172,205,.15)';
+        ctx.fillText('°C', W-10, top-16);
+      }
       var lb=['70','60','50','40'];
       for(i=0;i<4;i++){
         y=Math.round(top+(bot-top)*i/3)+.5;
         ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke();
-        ctx.fillText(lb[i], W-10, y-5);
+        if(wide) ctx.fillText(lb[i], W-10, y-5);
       }
       ctx.lineWidth=1.4; ctx.lineJoin='round';
       var xe=W-16;
@@ -584,7 +696,7 @@
         y=mid+wave(tr,xe,t)*half*tr.amp;
         ctx.lineTo(xe,y);
         ctx.stroke();
-        if(tr.dot){
+        if(tr.dot&&wide){
           ctx.fillStyle='rgba('+tr.c+',.08)';
           ctx.beginPath(); ctx.arc(xe,y,6,0,6.2832); ctx.fill();
           ctx.fillStyle='rgba('+tr.c+',.85)';
@@ -617,12 +729,13 @@
         k.p.setAttribute('points',pts.trim());
       });
     }
-    var rafId=null, lastT=0, simT=37.2, acc=9, onScreen=true;
+    var rafId=null, lastT=0, simT=37.2, acc=9, accD=0, onScreen=true;
     function frame(now){
       var dt=Math.min(.1,(now-lastT)/1000)||0; lastT=now;
-      simT+=dt; acc+=dt;
-      draw(simT);
-      if(acc>2.2){ acc=0; morph(simT); }
+      simT+=dt; acc+=dt; accD+=dt;
+      /* 30 Hz is indistinguishable at these speeds and halves the composite cost */
+      if(accD>=1/30){ accD=0; draw(simT); }
+      if(acc>2.2){ acc=0; if(hud&&hud.offsetParent!==null) morph(simT); }
       rafId=requestAnimationFrame(frame);
     }
     function upd(){
@@ -635,13 +748,17 @@
       new IntersectionObserver(function(es){ onScreen=es[es.length-1].isIntersecting; upd(); },{threshold:0}).observe(cv);
     }
     document.addEventListener('visibilitychange',upd);
-    addEventListener('resize',function(){ if(sizeCv()&&rafId==null) draw(simT); },{passive:true});
+    addEventListener('resize',function(){ if(sizeCv()){ upd(); if(rafId==null) draw(simT); } },{passive:true});
     try{
       var mq=matchMedia('(prefers-reduced-motion: reduce)');
       if(mq.addEventListener) mq.addEventListener('change',function(ev){ reduce=ev.matches; upd(); if(reduce&&grads) draw(simT); });
     }catch(e){}
     upd();
   }
+}catch(e){
+  /* never let a script failure leave the page hidden behind reveal styles */
+  document.documentElement.classList.remove('js-reveal');
+}
 })();
 </script>
 </body>
