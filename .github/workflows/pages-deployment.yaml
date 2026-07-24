@@ -18,9 +18,57 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # The site promises "no ads, no telemetry" and "no trackers and no
+      # cookies". That promise is only worth something if it is enforced, so
+      # fail the build if the source ever grows an external dependency.
+      - name: Verify the source ships no external requests
+        run: |
+          fail=0
+          check() { # pattern, human description
+            if grep -REn "$1" public --include='*.html' --include='*.css'; then
+              echo "::error::$2"
+              fail=1
+            fi
+          }
+          check '<script[^>]+src=' 'external or separate <script src> found - the page must stay self-contained'
+          check '<link[^>]+href="https?://' 'external stylesheet/resource <link> found'
+          check '@import' 'CSS @import found - would create an extra request'
+          check 'url\((https?:)?//' 'absolute url() reference found in CSS'
+          check 'fetch\(|XMLHttpRequest|navigator\.sendBeacon|new WebSocket' 'network call found in page script'
+          check 'document\.cookie|localStorage|sessionStorage' 'client-side storage/cookie use found'
+          if [ "$fail" = "1" ]; then
+            echo "Brand-promise check FAILED (see errors above)."
+            exit 1
+          fi
+          echo "Source is self-contained: no external requests, no storage, no cookies."
+
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy public --project-name=slawrensen
+
+      # Catches trackers injected at the EDGE (e.g. Cloudflare Web Analytics /
+      # RUM auto-injection), which no source check can see.
+      - name: Verify the live page ships no trackers
+        run: |
+          url="https://slawrensen.com/"
+          for i in 1 2 3 4 5 6; do
+            body="$(curl -fsSL "${url}?ci=$(date +%s)-$i" || true)"
+            if [ -n "$body" ]; then
+              if printf '%s' "$body" | grep -qE 'cloudflareinsights|<script[^>]+src=' ; then
+                echo "Attempt $i: tracker/external script present, retrying after propagation..."
+              else
+                echo "Live page is clean: no injected beacon, no external scripts."
+                exit 0
+              fi
+            else
+              echo "Attempt $i: no response yet, retrying..."
+            fi
+            sleep 15
+          done
+          echo "::error::The deployed page contains an injected tracker or external script."
+          echo "If this is Cloudflare Web Analytics, disable auto-injection:"
+          echo "  Dashboard > Analytics & Logs > Web Analytics > slawrensen.com > Manage site"
+          exit 1
