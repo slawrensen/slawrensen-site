@@ -17,6 +17,7 @@
     color-scheme:dark;
   }
   *{box-sizing:border-box; margin:0}
+  a{color:inherit; text-decoration:none}
   body{
     min-height:100svh; display:grid; place-items:center; padding:32px;
     background:var(--bg); color:var(--text); font-family:var(--sans); line-height:1.65;
@@ -35,7 +36,7 @@
     font-family:var(--mono); font-size:.72rem; letter-spacing:.2em; text-transform:uppercase;
   }
   .eyebrow::before{content:""; width:22px; height:1px; background:currentColor; opacity:.55}
-  h1{font-size:clamp(1.7rem,1.2rem + 2vw,2.4rem); letter-spacing:-.02em; margin-top:.5em; font-weight:600}
+  h1{font-size:clamp(1.7rem,1.2rem + 2vw,2.4rem); line-height:1.12; letter-spacing:-.02em; margin-top:.5em; font-weight:600; text-wrap:balance}
   p{color:var(--muted); margin-top:14px}
   a.home{
     display:inline-flex; align-items:center; gap:9px; margin-top:28px; height:46px; padding:0 20px;
@@ -44,7 +45,7 @@
   }
   a.home:hover{border-color:#39424f}
   :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:8px}
-  .brand{display:inline-flex; align-items:center; gap:11px; margin-bottom:30px; font-weight:600}
+  .brand{display:flex; width:max-content; align-items:center; gap:11px; margin-bottom:30px; font-weight:600}
   .mark{
     width:30px; height:30px; border-radius:9px; display:grid; place-items:center;
     background:linear-gradient(115deg,var(--accent),var(--accent-2));
