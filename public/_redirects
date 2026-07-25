@@ -1,0 +1,14 @@
+# Retired image paths.
+#
+# Image filenames carry a version so that changed bytes never reuse a URL (see
+# _headers). The cost of that policy is that every previous filename 404s the
+# moment it is renamed, which breaks any external link, embed, or social card
+# that was scraped while the old name was live.
+#
+# These keep those references resolving to the current art instead of dying.
+# One redirect per retired name, newest target on the right.
+/assets/hwinfo-sensors.webp        /assets/hwinfo-sensors-v3.webp        301
+/assets/hwinfo-sensors-v2.webp     /assets/hwinfo-sensors-v3.webp        301
+/assets/hwinfo-layouts.webp        /assets/hwinfo-layouts-v2.webp        301
+/assets/streamdeck-plusxl.webp     /assets/streamdeck-plusxl-v2.webp     301
+/assets/og-card-v1.jpg             /assets/og-card-v2.jpg                301
