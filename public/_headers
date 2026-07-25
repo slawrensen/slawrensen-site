@@ -33,6 +33,14 @@
 /favicon.svg
   Cache-Control: public, max-age=86400
 
-# The social card carries a version in its name, which is what earns a long TTL.
-/assets/og-card-v1.jpg
+# A version in the filename is what earns a long TTL: the name changes when the
+# bytes change, so a stale copy can never be served. Unversioned assets stay on
+# the one-day ceiling above.
+/assets/og-card-v2.jpg
+  Cache-Control: public, max-age=31536000, immutable
+/assets/hwinfo-sensors-v2.webp
+  Cache-Control: public, max-age=31536000, immutable
+/assets/hwinfo-layouts-v2.webp
+  Cache-Control: public, max-age=31536000, immutable
+/assets/streamdeck-plusxl-v2.webp
   Cache-Control: public, max-age=31536000, immutable
