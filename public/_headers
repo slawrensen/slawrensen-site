@@ -1,4 +1,4 @@
-# Cloudflare Pages response headers — ported from the old Apache .htaccess.
+# Cloudflare Pages response headers: ported from the old Apache .htaccess.
 # (HTTPS is enforced by Cloudflare, so the mod_rewrite redirect is not needed.)
 
 # Security headers on every response. HSTS only takes effect once a response is
@@ -7,11 +7,11 @@
 # The CSP is the page's "no telemetry" promise made browser-enforceable:
 # default-src 'none' inherits to connect-src, font-src, media-src, worker-src
 # and manifest-src, so fetch/XHR/beacons/WebSockets, web fonts and CDNs are all
-# impossible — any visitor can verify the claim in one DevTools glance.
+# impossible: any visitor can verify the claim in one DevTools glance.
 # 'unsafe-inline' is deliberate and required: the page is a single file whose
 # CSS and JS are inline. A hash-based policy would silently break the page on
 # every hand edit, and there is no build step to regenerate hashes.
-# No report-uri/report-to — that would phone home.
+# No report-uri/report-to: that would phone home.
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
@@ -27,7 +27,7 @@
   Cache-Control: no-cache, must-revalidate
 
 # Images and the favicon change rarely and may cache for a day. Filenames are
-# not content-hashed, so a day is the honest ceiling — rename to bust.
+# not content-hashed, so a day is the honest ceiling: rename to bust.
 /assets/*
   Cache-Control: public, max-age=86400
 /favicon.svg
