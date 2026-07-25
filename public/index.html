@@ -451,7 +451,7 @@
         </div>
 
         <ul class="pspec">
-          <li><span class="l">Keys</span><span>Any Stream Deck. One sensor per key, with a live sparkline.</span></li>
+          <li><span class="l">Keys</span><span>Any Stream Deck. One reading per key with a live sparkline, bar or ring gauge, or stack two, three or four readings on a single key.</span></li>
           <li><span class="l">Dials</span><span>Stream Deck + and Stream Deck + XL: rotate, push and touch, rotation sets with named groups, and a Control key that drives dials from anywhere. <a href="https://docs.slawrensen.com/hwinfo-streamdeck/hardware.html" target="_blank" rel="noopener">Hardware compatibility</a></span></li>
           <li><span class="l">Display</span><span>Seven themes, including a high-contrast light theme for bright rooms and low vision. Amber warn and red critical alerts keep the same palette on every theme, so an alert stays unmistakable with any colour vision.</span></li>
           <li><span class="l">Status</span><span>When HWiNFO stops publishing, keys say so: every failure state renders a screen that names the problem and its fix, instead of a stale number pretending to be live.</span></li>
@@ -467,6 +467,17 @@
             <span class="shot-hint" aria-hidden="true">SCROLL</span>
           </div>
           <figcaption>Seven themes, warn and critical alert states, and Stream Deck + dials</figcaption>
+        </figure>
+
+        <figure class="pshot pshot-scan">
+          <div class="shot-frame">
+            <div class="shot-scroll" tabindex="0" role="group" aria-label="Multi-readout key layouts screenshot, scroll horizontally to pan">
+              <img src="assets/hwinfo-layouts.webp" width="1550" height="716" loading="lazy" decoding="async"
+                   alt="Multi-readout key and dial faces: two sensors stacked on one key, the same sensor as a min and max pair, a press-cycled pair showing MAX, a three-row key with labels left and values right, a quad grid key with four colour-coded readings, and the Stream Deck + dial overview and two-row views">
+            </div>
+            <span class="shot-hint" aria-hidden="true">SCROLL</span>
+          </div>
+          <figcaption>One key can carry two, three or four readings; dials can list the whole rotation set</figcaption>
         </figure>
 
         <figure class="pshot pphoto">
@@ -498,7 +509,7 @@
             <a class="btn btn-ghost" href="https://github.com/slawrensen/hwinfo-streamdeck" target="_blank" rel="noopener">Source code</a>
           </div>
         </div>
-        <p class="soon"><a href="https://github.com/slawrensen/hwinfo-streamdeck/releases/latest" target="_blank" rel="noopener">v1.3.0</a> · updated Jul 2026</p>
+        <p class="soon"><a href="https://github.com/slawrensen/hwinfo-streamdeck/releases/latest" target="_blank" rel="noopener">v1.4.0</a> · updated Jul 2026</p>
       </div>
     </div>
   </section>
@@ -533,7 +544,7 @@
           <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><path d="M13 2L4.5 13H11l-1 9 8.5-11H12l1-9z"/></svg>
           <h3>Lean and efficient.</h3>
           <p>Measured in kilobytes and microseconds. Idle when nothing is changing, so it never taxes your rig.</p>
-          <div class="pstat"><span class="l">PARSE</span><span class="ln"></span><span class="v">6.9 µs</span></div>
+          <div class="pstat"><span class="l">PARSE</span><span class="ln"></span><span class="v">5.9 µs</span></div>
         </div>
       </div>
     </div>
