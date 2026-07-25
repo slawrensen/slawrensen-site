@@ -38,7 +38,7 @@
 # the one-day ceiling above.
 /assets/og-card-v2.jpg
   Cache-Control: public, max-age=31536000, immutable
-/assets/hwinfo-sensors-v3.webp
+/assets/hwinfo-sensors-v4.webp
   Cache-Control: public, max-age=31536000, immutable
 /assets/hwinfo-layouts-v2.webp
   Cache-Control: public, max-age=31536000, immutable

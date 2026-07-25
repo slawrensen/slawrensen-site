@@ -7,8 +7,9 @@
 #
 # These keep those references resolving to the current art instead of dying.
 # One redirect per retired name, newest target on the right.
-/assets/hwinfo-sensors.webp        /assets/hwinfo-sensors-v3.webp        301
-/assets/hwinfo-sensors-v2.webp     /assets/hwinfo-sensors-v3.webp        301
+/assets/hwinfo-sensors.webp        /assets/hwinfo-sensors-v4.webp        301
+/assets/hwinfo-sensors-v2.webp     /assets/hwinfo-sensors-v4.webp        301
+/assets/hwinfo-sensors-v3.webp     /assets/hwinfo-sensors-v4.webp        301
 /assets/hwinfo-layouts.webp        /assets/hwinfo-layouts-v2.webp        301
 /assets/streamdeck-plusxl.webp     /assets/streamdeck-plusxl-v2.webp     301
 /assets/og-card-v1.jpg             /assets/og-card-v2.jpg                301
