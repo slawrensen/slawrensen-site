@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>HWiNFO Sensors for Stream Deck · slawrensen</title>
-<meta name="description" content="HWiNFO Sensors for Stream Deck: live CPU and GPU temperatures, clocks, fan RPM, usage and power on your Elgato keys and dials. Free, open source, no telemetry.">
+<title>Stream Deck instruments · slawrensen</title>
+<meta name="description" content="HWiNFO Sensors and Checkmk Ops Deck: hardware readings and monitoring incidents on Elgato Stream Deck keys and dials. Independent software, no ads or telemetry.">
 <meta name="theme-color" content="#08090b">
 <meta name="color-scheme" content="dark">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://slawrensen.com/">
-<meta property="og:title" content="HWiNFO Sensors for Stream Deck · slawrensen">
-<meta property="og:description" content="HWiNFO Sensors for Stream Deck: live CPU and GPU temperatures, clocks, fan RPM, usage and power on your Elgato keys and dials. Free, open source, no telemetry.">
+<meta property="og:title" content="Stream Deck instruments · slawrensen">
+<meta property="og:description" content="HWiNFO Sensors and Checkmk Ops Deck: hardware readings and monitoring incidents on Elgato Stream Deck keys and dials. Independent software, no ads or telemetry.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://slawrensen.com/">
 <meta property="og:site_name" content="slawrensen">
@@ -98,7 +98,7 @@
   :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:8px}
   .btn-primary:focus-visible{outline:2px solid #fff; outline-offset:3px}
   /* keep the sticky nav from swallowing anchor targets and focused controls */
-  section[id]{scroll-margin-top:calc(var(--nav-h) + 16px)}
+  section[id],.product[id]{scroll-margin-top:calc(var(--nav-h) + 16px)}
   a[href],button,summary,[tabindex]{scroll-margin-block:calc(var(--nav-h) + 12px) 24px}
 
   .wrap{width:100%; max-width:var(--maxw); margin-inline:auto; padding-inline:var(--gutter)}
@@ -412,9 +412,9 @@
     <div class="wrap">
       <span class="eyebrow" data-reveal>Independent software</span>
       <h1 data-reveal>Precision instruments for the <span class="grad">machine on your desk.</span></h1>
-      <p class="lead" data-reveal>Small, honest tools that read your machine and respect it. HWiNFO Sensors puts live CPU and GPU temperatures, clock speeds, fan RPM, usage and power on your Elgato Stream Deck keys and dials. No ads, no telemetry, open source.</p>
+      <p class="lead" data-reveal>Small, honest tools for the machine on your desk and the systems you look after. HWiNFO Sensors shows hardware readings; Checkmk Ops Deck brings monitoring incidents to your Stream Deck. No ads or telemetry.</p>
       <div class="cta-row" data-reveal>
-        <a class="btn btn-primary" href="#products">Get HWiNFO Sensors</a>
+        <a class="btn btn-primary" href="#products">Explore the products</a>
         <a class="btn btn-ghost" href="https://github.com/slawrensen" target="_blank" rel="noopener">
           <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
           View on GitHub
@@ -438,15 +438,16 @@
   <section id="products" tabindex="-1">
     <div class="wrap">
       <div class="sec-head" data-reveal>
-        <span class="eyebrow">Products / 01</span>
-        <h2>HWiNFO Sensors for Stream Deck</h2>
-        <p>A Stream Deck plugin that puts live HWiNFO hardware sensors on your keys and dials, updated every second.</p>
+        <span class="eyebrow">Products / 02</span>
+        <h2>Tools for your Stream Deck</h2>
+        <p>Hardware health and monitoring operations, with readable state and deliberate controls.</p>
+        <nav class="prod-links" aria-label="Choose a product"><a href="#hwinfo-sensors">HWiNFO Sensors</a><a href="#checkmk-ops-deck">Checkmk Ops Deck</a></nav>
       </div>
 
-      <div class="product" data-reveal>
+      <div class="product" id="hwinfo-sensors" tabindex="-1" data-reveal>
         <div class="phead">
           <span class="eyebrow">Windows / Elgato Stream Deck</span>
-          <h3>Your hardware, at a glance</h3>
+          <h3>HWiNFO Sensors for Stream Deck</h3>
           <p>Put CPU and GPU temperature, clock speeds, fan RPM, usage and power on your keys and dials.</p>
         </div>
 
@@ -511,6 +512,41 @@
         </div>
         <p class="soon"><a href="https://github.com/slawrensen/hwinfo-streamdeck/releases/latest" target="_blank" rel="noopener">v1.6.0</a> · updated Sep 2026</p>
       </div>
+
+      <div class="product" id="checkmk-ops-deck" tabindex="-1" data-reveal style="margin-top:32px">
+        <div class="phead">
+          <span class="eyebrow">Checkmk / Elgato Stream Deck</span>
+          <h3>Checkmk Ops Deck</h3>
+          <p>A ranked monitoring board that keeps the incident, its state and its next deliberate action within reach.</p>
+        </div>
+        <ul class="pspec">
+          <li><span class="l">Board</span><span>Host and service problems, state counts and handling badges on the keys. Dials navigate mode, group, queue and severity.</span></li>
+          <li><span class="l">Trust</span><span>Stale, offline and authentication states remain visible. Two configured sites share a ranked board, with each incident retaining its origin.</span></li>
+          <li><span class="l">Control</span><span>Read-only by default. Optional acknowledgements, downtime and comments require explicit opt-in, separate credentials and deliberate confirmation.</span></li>
+          <li><span class="l">Privacy</span><span>Connects to the Checkmk origins you configure. No ads or telemetry. Secrets are sealed with Windows DPAPI or a macOS Keychain-backed master key.</span></li>
+          <li><span class="l">Status</span><span>Private release candidate. Windows and macOS acceptance must validate the same package before a public release; native Mac and physical-device checks remain open.</span></li>
+        </ul>
+        <figure class="pshot pphoto">
+          <img src="assets/checkmk-ops-deck-demo.png" width="1584" height="1088" loading="lazy" decoding="async"
+               alt="Generated Checkmk Ops Deck demo: site totals, OK WARN CRIT and UNKNOWN counters, ranked host and service problems, stale and acknowledgement badges">
+          <figcaption>Generated from the current renderer with sanitized demo data. This is not a hardware photograph or dual-platform acceptance evidence.</figcaption>
+        </figure>
+        <ol class="psetup">
+          <li><span><b>Install an approved package</b> through the Stream Deck app and place a Dynamic Tile.</span></li>
+          <li><span><b>Connect a read-only Checkmk user</b>, save its secret and test the host and service reads.</span></li>
+          <li><span><b>Install or build your board</b>, then read the ranked queue or open an incident. Guarded writes remain optional.</span></li>
+        </ol>
+        <div class="pmeta">
+          <ul class="chips" role="list">
+            <li class="chip">Stream Deck 6.9+</li>
+            <li class="chip">Windows / macOS targets</li>
+            <li class="chip">MIT license</li>
+            <li class="chip ok">Read-only default</li>
+            <li class="chip ok">No telemetry</li>
+          </ul>
+        </div>
+        <p class="soon">Documentation prepared for docs.slawrensen.com/checkmk-ops-deck/. Public documentation and downloads are not yet available. The source repository is currently private.</p>
+      </div>
     </div>
   </section>
 
@@ -536,15 +572,15 @@
         </div>
         <div class="pcard" data-reveal>
           <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg>
-          <h3>Open source.</h3>
-          <p>Every line is on GitHub. Read it, audit it, or build it yourself from source.</p>
+          <h3>Inspectable work.</h3>
+          <p>HWiNFO Sensors is open source on GitHub. Checkmk Ops Deck is MIT licensed, with its repository private during release validation.</p>
           <div class="pstat"><span class="l">LICENSE</span><span class="ln"></span><span class="v">MIT</span></div>
         </div>
         <div class="pcard" data-reveal>
           <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><path d="M13 2L4.5 13H11l-1 9 8.5-11H12l1-9z"/></svg>
           <h3>Lean and efficient.</h3>
-          <p>Measured in kilobytes and microseconds. Idle when nothing is changing, so it never taxes your rig.</p>
-          <div class="pstat"><span class="l">PARSE</span><span class="ln"></span><span class="v">5.9 µs</span></div>
+          <p>Shared data collection and paced rendering keep the work bounded. Performance claims belong to measured product evidence.</p>
+          <div class="pstat"><span class="l">DESIGN</span><span class="ln"></span><span class="v">BOUNDED</span></div>
         </div>
       </div>
     </div>
@@ -562,9 +598,9 @@
           <p>Every product here is made to be fast, quiet, and trustworthy. If it reads your hardware, it does so locally and tells you exactly what it does.</p>
         </div>
         <div data-reveal>
-          <p>The work is open source, so you never have to take my word for any of it. The code is the documentation of intent.</p>
+          <p>Published source and explicit compatibility evidence make the work reviewable. A release candidate is labeled as such until its platform checks are complete.</p>
           <p>HWiNFO Sensors is a ground-up TypeScript rewrite on Elgato's official SDK, inspired by the archived Go-based plugin by @shayne: no code shared, credits in <a href="https://github.com/slawrensen/hwinfo-streamdeck/blob/main/NOTICE.md" target="_blank" rel="noopener">NOTICE.md</a>.</p>
-          <p>Questions, bugs, or ideas go through <a href="https://github.com/slawrensen/hwinfo-streamdeck/issues" target="_blank" rel="noopener">GitHub Issues</a>, where they are answered in the open.</p>
+          <p>HWiNFO Sensors questions, bugs, or ideas go through <a href="https://github.com/slawrensen/hwinfo-streamdeck/issues" target="_blank" rel="noopener">GitHub Issues</a>, where they are answered in the open.</p>
         </div>
       </div>
     </div>
@@ -587,8 +623,8 @@
       </nav>
     </div>
     <p class="legal">
-      Not affiliated with, endorsed by, or sponsored by REALiX, Elgato, or Corsair.
-      "HWiNFO" is a trademark of REALiX, s.r.o. "Stream Deck" and "Elgato" are trademarks
+      Not affiliated with, endorsed by, or sponsored by REALiX, Checkmk, Elgato, or Corsair.
+      "Checkmk" is a trademark of Checkmk GmbH. "HWiNFO" is a trademark of REALiX, s.r.o. "Stream Deck" and "Elgato" are trademarks
       of Corsair Memory, Inc. All product names and trademarks are the property of their
       respective owners.<br>
       &copy; 2026 slawrensen. Built with no trackers and no cookies.
