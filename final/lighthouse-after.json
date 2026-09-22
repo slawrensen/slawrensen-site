@@ -27,14 +27,14 @@
       "max": 92
     },
     "fcp": {
-      "median": 726.91815,
-      "min": 711.7197,
-      "max": 736.12765
+      "median": 723.03395,
+      "min": 717.59305,
+      "max": 724.968
     },
     "lcp": {
-      "median": 1322.4393999999998,
-      "min": 1249.8363,
-      "max": 1329.2553000000003
+      "median": 1029.0679,
+      "min": 1025.4869,
+      "max": 1245.936
     },
     "tbt": {
       "median": 0,
@@ -47,19 +47,19 @@
       "max": 0
     },
     "si": {
-      "median": 726.91815,
-      "min": 711.7197,
-      "max": 736.12765
+      "median": 723.03395,
+      "min": 717.59305,
+      "max": 724.968
     },
     "transferBytes": {
-      "median": 107688,
-      "min": 107671,
-      "max": 107732
+      "median": 142648,
+      "min": 142622,
+      "max": 142653
     },
     "requests": {
-      "median": 13,
-      "min": 13,
-      "max": 13
+      "median": 17,
+      "min": 17,
+      "max": 17
     }
   },
   "results": [
@@ -68,13 +68,13 @@
       "accessibility": 100,
       "bestPractices": 100,
       "seo": 92,
-      "fcp": 711.7197,
-      "lcp": 1322.4393999999998,
+      "fcp": 723.03395,
+      "lcp": 1029.0679,
       "tbt": 0,
       "cls": 0,
-      "si": 711.7197,
-      "transferBytes": 107708,
-      "requests": 13,
+      "si": 723.03395,
+      "transferBytes": 142648,
+      "requests": 17,
       "lcpElement": null,
       "failedAudits": [
         "robots-txt (0)"
@@ -87,13 +87,13 @@
       "accessibility": 100,
       "bestPractices": 100,
       "seo": 92,
-      "fcp": 726.91815,
-      "lcp": 1249.8363,
+      "fcp": 723.17025,
+      "lcp": 1108.3405,
       "tbt": 0,
       "cls": 0,
-      "si": 726.91815,
-      "transferBytes": 107732,
-      "requests": 13,
+      "si": 723.17025,
+      "transferBytes": 142622,
+      "requests": 17,
       "lcpElement": null,
       "failedAudits": [
         "robots-txt (0)"
@@ -106,13 +106,13 @@
       "accessibility": 100,
       "bestPractices": 100,
       "seo": 92,
-      "fcp": 725.973,
-      "lcp": 1320.946,
+      "fcp": 724.968,
+      "lcp": 1245.936,
       "tbt": 0,
       "cls": 0,
-      "si": 725.973,
-      "transferBytes": 107688,
-      "requests": 13,
+      "si": 724.968,
+      "transferBytes": 142642,
+      "requests": 17,
       "lcpElement": null,
       "failedAudits": [
         "robots-txt (0)"
@@ -125,13 +125,13 @@
       "accessibility": 100,
       "bestPractices": 100,
       "seo": 92,
-      "fcp": 733.33365,
-      "lcp": 1323.6673,
+      "fcp": 719.24345,
+      "lcp": 1025.4869,
       "tbt": 0,
       "cls": 0,
-      "si": 733.33365,
-      "transferBytes": 107671,
-      "requests": 13,
+      "si": 719.24345,
+      "transferBytes": 142648,
+      "requests": 17,
       "lcpElement": null,
       "failedAudits": [
         "robots-txt (0)"
@@ -144,13 +144,13 @@
       "accessibility": 100,
       "bestPractices": 100,
       "seo": 92,
-      "fcp": 736.12765,
-      "lcp": 1329.2553000000003,
+      "fcp": 717.59305,
+      "lcp": 1026.1861,
       "tbt": 0,
       "cls": 0,
-      "si": 736.12765,
-      "transferBytes": 107688,
-      "requests": 13,
+      "si": 717.59305,
+      "transferBytes": 142653,
+      "requests": 17,
       "lcpElement": null,
       "failedAudits": [
         "robots-txt (0)"

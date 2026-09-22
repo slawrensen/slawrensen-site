@@ -1,0 +1,2 @@
+Source is self-contained: no external requests, no scripts, no storage, no cookies; every asset is versioned.
+check-source exit=0

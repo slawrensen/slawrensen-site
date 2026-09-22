@@ -1,0 +1,110 @@
+{
+  "root": "<scratch>/baseline/public",
+  "startedAt": "2026-09-22T18:42:28.576Z",
+  "server": "http://127.0.0.1:8798/",
+  "options": {
+    "root": "<scratch>/baseline/public",
+    "out": "<repo>/-evidence/before-reduced-motion",
+    "pages": "/",
+    "engines": "chromium",
+    "viewports": "390x844,1440x900",
+    "full": true,
+    "reduce": true,
+    "port": "8798"
+  },
+  "runs": [
+    {
+      "engine": "chromium",
+      "page": "/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "chromium-home-390x844-reduce.jpg",
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "scrollHeight": 6387,
+      "cls": 0,
+      "cookies": "",
+      "localStorageKeys": [],
+      "consoleMsgs": [],
+      "pageErrors": [],
+      "crossOrigin": [],
+      "requests": [
+        {
+          "url": "/assets/hwinfo-sensors-v4.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 79174
+        },
+        {
+          "url": "/",
+          "type": "document",
+          "status": 200,
+          "bytes": 45973
+        },
+        {
+          "url": "/assets/hwinfo-layouts-v2.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 76772
+        },
+        {
+          "url": "/assets/streamdeck-plusxl-v2.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 73418
+        }
+      ],
+      "totalDecodedBytes": 275337
+    },
+    {
+      "engine": "chromium",
+      "page": "/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "screenshot": "chromium-home-1440x900-reduce.jpg",
+      "horizontalOverflow": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "scrollHeight": 6062,
+      "cls": 0,
+      "cookies": "",
+      "localStorageKeys": [],
+      "consoleMsgs": [],
+      "pageErrors": [],
+      "crossOrigin": [],
+      "requests": [
+        {
+          "url": "/assets/hwinfo-sensors-v4.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 79174
+        },
+        {
+          "url": "/",
+          "type": "document",
+          "status": 200,
+          "bytes": 45973
+        },
+        {
+          "url": "/assets/hwinfo-layouts-v2.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 76772
+        },
+        {
+          "url": "/assets/streamdeck-plusxl-v2.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 73418
+        }
+      ],
+      "totalDecodedBytes": 275337
+    }
+  ],
+  "chromiumVersion": "153.0.8010.12"
+}

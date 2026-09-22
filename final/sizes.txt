@@ -1,0 +1,2 @@
+public/index.html raw 47051 brotli 10118 gzip 12120
+public/404.html raw 4173 brotli 1452 gzip 1811

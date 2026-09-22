@@ -1,0 +1,14 @@
+Lighthouse 13.5.0, 5 cold runs, lighthouse default mobile (Moto G Power, simulated slow 4G, 4x CPU)
+  performance    median     100   range 100-100
+  accessibility  median     100   range 100-100
+  bestPractices  median     100   range 100-100
+  seo            median      92   range 92-92
+  fcp            median     723   range 718-725
+  lcp            median    1029   range 1025-1246
+  tbt            median       0   range 0-0
+  cls            median   0.000   range 0.000-0.000
+  si             median     723   range 718-725
+  transferBytes  median  142648   range 142622-142653
+  requests       median      17   range 17-17
+  LCP element: null
+  Audits below 1 (first run): robots-txt (0)

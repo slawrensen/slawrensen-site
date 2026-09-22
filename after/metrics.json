@@ -1,6 +1,6 @@
 {
   "root": "<repo>/public",
-  "startedAt": "2026-09-22T18:20:19.484Z",
+  "startedAt": "2026-09-22T18:41:13.840Z",
   "server": "http://127.0.0.1:8797/",
   "options": {
     "root": "public",
@@ -22,7 +22,7 @@
       "horizontalOverflow": false,
       "scrollWidth": 320,
       "clientWidth": 320,
-      "scrollHeight": 9401,
+      "scrollHeight": 9745,
       "cls": 0,
       "cookies": "",
       "localStorageKeys": [],
@@ -34,7 +34,7 @@
           "url": "/",
           "type": "document",
           "status": 200,
-          "bytes": 40065
+          "bytes": 47051
         },
         {
           "url": "/assets/deck-keys-v1-640.webp",
@@ -43,31 +43,49 @@
           "bytes": 40008
         },
         {
-          "url": "/assets/face-void-v1.webp",
+          "url": "/assets/face-void-v1-144.webp",
           "type": "image",
           "status": 200,
-          "bytes": 3050
+          "bytes": 3132
         },
         {
-          "url": "/assets/face-paper-v1.webp",
+          "url": "/assets/face-graphite-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2960
+        },
+        {
+          "url": "/assets/face-ultraviolet-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3234
+        },
+        {
+          "url": "/assets/face-forest-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3596
+        },
+        {
+          "url": "/assets/face-midnight-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3730
+        },
+        {
+          "url": "/assets/face-paper-v1-144.webp",
           "type": "image",
           "status": 200,
           "bytes": 2442
         },
         {
-          "url": "/assets/face-crit-v1.webp",
+          "url": "/assets/face-ember-v1-144.webp",
           "type": "image",
           "status": 200,
-          "bytes": 2660
+          "bytes": 3412
         },
         {
-          "url": "/assets/status-start-v1.webp",
-          "type": "image",
-          "status": 200,
-          "bytes": 5576
-        },
-        {
-          "url": "/assets/face-warn-v1.webp",
+          "url": "/assets/face-warn-v1-144.webp",
           "type": "image",
           "status": 200,
           "bytes": 2966
@@ -77,6 +95,18 @@
           "type": "image",
           "status": 200,
           "bytes": 4630
+        },
+        {
+          "url": "/assets/face-crit-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2660
+        },
+        {
+          "url": "/assets/status-start-v1.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 5576
         },
         {
           "url": "/assets/status-stale-shm-v1.webp",
@@ -91,28 +121,34 @@
           "bytes": 4506
         },
         {
-          "url": "/assets/dial-one-v1.webp",
+          "url": "/assets/deck-dials-v1-700.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 9192
+        },
+        {
+          "url": "/assets/dial-one-v1-233.webp",
           "type": "image",
           "status": 200,
           "bytes": 7142
         },
         {
-          "url": "/assets/dial-rows3-v1.webp",
+          "url": "/assets/dial-rows3-v1-233.webp",
           "type": "image",
           "status": 200,
           "bytes": 7602
         },
         {
-          "url": "/assets/dial-rows2-v1.webp",
-          "type": "image",
-          "status": 200,
-          "bytes": 9424
-        },
-        {
-          "url": "/assets/dial-crit-v1.webp",
+          "url": "/assets/dial-crit-v1-233.webp",
           "type": "image",
           "status": 200,
           "bytes": 6134
+        },
+        {
+          "url": "/assets/dial-rows2-v1-233.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 9424
         },
         {
           "url": "/assets/status-busy-v1.webp",
@@ -121,7 +157,7 @@
           "bytes": 5226
         }
       ],
-      "totalDecodedBytes": 146977
+      "totalDecodedBytes": 180169
     },
     {
       "engine": "chromium",
@@ -134,7 +170,7 @@
       "horizontalOverflow": false,
       "scrollWidth": 360,
       "clientWidth": 360,
-      "scrollHeight": 8904,
+      "scrollHeight": 9291,
       "cls": 0,
       "cookies": "",
       "localStorageKeys": [],
@@ -146,7 +182,7 @@
           "url": "/",
           "type": "document",
           "status": 200,
-          "bytes": 40065
+          "bytes": 47051
         },
         {
           "url": "/assets/deck-keys-v1-640.webp",
@@ -155,28 +191,52 @@
           "bytes": 40008
         },
         {
-          "url": "/assets/face-void-v1.webp",
+          "url": "/assets/face-void-v1-144.webp",
           "type": "image",
           "status": 200,
-          "bytes": 3050
+          "bytes": 3132
         },
         {
-          "url": "/assets/status-shm-off-v1.webp",
+          "url": "/assets/face-graphite-v1-144.webp",
           "type": "image",
           "status": 200,
-          "bytes": 4630
+          "bytes": 2960
         },
         {
-          "url": "/assets/face-warn-v1.webp",
+          "url": "/assets/face-midnight-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3730
+        },
+        {
+          "url": "/assets/face-forest-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3596
+        },
+        {
+          "url": "/assets/face-ember-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3412
+        },
+        {
+          "url": "/assets/face-warn-v1-144.webp",
           "type": "image",
           "status": 200,
           "bytes": 2966
         },
         {
-          "url": "/assets/face-crit-v1.webp",
+          "url": "/assets/face-ultraviolet-v1-144.webp",
           "type": "image",
           "status": 200,
-          "bytes": 2660
+          "bytes": 3234
+        },
+        {
+          "url": "/assets/face-paper-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2442
         },
         {
           "url": "/assets/status-stale-shm-v1.webp",
@@ -185,16 +245,10 @@
           "bytes": 5546
         },
         {
-          "url": "/assets/status-start-v1.webp",
+          "url": "/assets/face-crit-v1-144.webp",
           "type": "image",
           "status": 200,
-          "bytes": 5576
-        },
-        {
-          "url": "/assets/face-paper-v1.webp",
-          "type": "image",
-          "status": 200,
-          "bytes": 2442
+          "bytes": 2660
         },
         {
           "url": "/assets/status-denied-v1.webp",
@@ -203,25 +257,43 @@
           "bytes": 4506
         },
         {
-          "url": "/assets/dial-one-v1.webp",
+          "url": "/assets/status-start-v1.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 5576
+        },
+        {
+          "url": "/assets/status-shm-off-v1.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 4630
+        },
+        {
+          "url": "/assets/deck-dials-v1-700.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 9192
+        },
+        {
+          "url": "/assets/dial-one-v1-233.webp",
           "type": "image",
           "status": 200,
           "bytes": 7142
         },
         {
-          "url": "/assets/dial-rows3-v1.webp",
+          "url": "/assets/dial-rows3-v1-233.webp",
           "type": "image",
           "status": 200,
           "bytes": 7602
         },
         {
-          "url": "/assets/dial-rows2-v1.webp",
+          "url": "/assets/dial-rows2-v1-233.webp",
           "type": "image",
           "status": 200,
           "bytes": 9424
         },
         {
-          "url": "/assets/dial-crit-v1.webp",
+          "url": "/assets/dial-crit-v1-233.webp",
           "type": "image",
           "status": 200,
           "bytes": 6134
@@ -233,7 +305,7 @@
           "bytes": 5226
         }
       ],
-      "totalDecodedBytes": 146977
+      "totalDecodedBytes": 180169
     },
     {
       "engine": "chromium",
@@ -246,7 +318,7 @@
       "horizontalOverflow": false,
       "scrollWidth": 390,
       "clientWidth": 390,
-      "scrollHeight": 8567,
+      "scrollHeight": 8966,
       "cls": 0,
       "cookies": "",
       "localStorageKeys": [],
@@ -258,7 +330,7 @@
           "url": "/",
           "type": "document",
           "status": 200,
-          "bytes": 40065
+          "bytes": 47051
         },
         {
           "url": "/assets/deck-keys-v1-640.webp",
@@ -267,34 +339,58 @@
           "bytes": 40008
         },
         {
-          "url": "/assets/face-void-v1.webp",
+          "url": "/assets/face-void-v1-144.webp",
           "type": "image",
           "status": 200,
-          "bytes": 3050
+          "bytes": 3132
         },
         {
-          "url": "/assets/face-paper-v1.webp",
+          "url": "/assets/face-graphite-v1-144.webp",
           "type": "image",
           "status": 200,
-          "bytes": 2442
+          "bytes": 2960
         },
         {
-          "url": "/assets/face-warn-v1.webp",
+          "url": "/assets/face-midnight-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3730
+        },
+        {
+          "url": "/assets/face-forest-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3596
+        },
+        {
+          "url": "/assets/face-warn-v1-144.webp",
           "type": "image",
           "status": 200,
           "bytes": 2966
         },
         {
-          "url": "/assets/face-crit-v1.webp",
+          "url": "/assets/face-ember-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3412
+        },
+        {
+          "url": "/assets/face-ultraviolet-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3234
+        },
+        {
+          "url": "/assets/face-paper-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2442
+        },
+        {
+          "url": "/assets/face-crit-v1-144.webp",
           "type": "image",
           "status": 200,
           "bytes": 2660
-        },
-        {
-          "url": "/assets/status-start-v1.webp",
-          "type": "image",
-          "status": 200,
-          "bytes": 5576
         },
         {
           "url": "/assets/status-shm-off-v1.webp",
@@ -303,10 +399,10 @@
           "bytes": 4630
         },
         {
-          "url": "/assets/status-stale-shm-v1.webp",
+          "url": "/assets/status-start-v1.webp",
           "type": "image",
           "status": 200,
-          "bytes": 5546
+          "bytes": 5576
         },
         {
           "url": "/assets/status-denied-v1.webp",
@@ -315,25 +411,37 @@
           "bytes": 4506
         },
         {
-          "url": "/assets/dial-one-v1.webp",
+          "url": "/assets/status-stale-shm-v1.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 5546
+        },
+        {
+          "url": "/assets/deck-dials-v1-700.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 9192
+        },
+        {
+          "url": "/assets/dial-one-v1-233.webp",
           "type": "image",
           "status": 200,
           "bytes": 7142
         },
         {
-          "url": "/assets/dial-rows3-v1.webp",
+          "url": "/assets/dial-rows3-v1-233.webp",
           "type": "image",
           "status": 200,
           "bytes": 7602
         },
         {
-          "url": "/assets/dial-rows2-v1.webp",
+          "url": "/assets/dial-rows2-v1-233.webp",
           "type": "image",
           "status": 200,
           "bytes": 9424
         },
         {
-          "url": "/assets/dial-crit-v1.webp",
+          "url": "/assets/dial-crit-v1-233.webp",
           "type": "image",
           "status": 200,
           "bytes": 6134
@@ -345,7 +453,7 @@
           "bytes": 5226
         }
       ],
-      "totalDecodedBytes": 146977
+      "totalDecodedBytes": 180169
     },
     {
       "engine": "chromium",
@@ -358,7 +466,7 @@
       "horizontalOverflow": false,
       "scrollWidth": 768,
       "clientWidth": 768,
-      "scrollHeight": 7137,
+      "scrollHeight": 7673,
       "cls": 0,
       "cookies": "",
       "localStorageKeys": [],
@@ -370,7 +478,7 @@
           "url": "/",
           "type": "document",
           "status": 200,
-          "bytes": 40065
+          "bytes": 47051
         },
         {
           "url": "/assets/deck-keys-v1-900.webp",
@@ -379,28 +487,64 @@
           "bytes": 61144
         },
         {
-          "url": "/assets/face-void-v1.webp",
+          "url": "/assets/face-void-v1-288.webp",
           "type": "image",
           "status": 200,
-          "bytes": 3050
+          "bytes": 6006
         },
         {
-          "url": "/assets/face-paper-v1.webp",
+          "url": "/assets/face-void-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3132
+        },
+        {
+          "url": "/assets/face-ultraviolet-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3234
+        },
+        {
+          "url": "/assets/face-midnight-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3730
+        },
+        {
+          "url": "/assets/face-forest-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3596
+        },
+        {
+          "url": "/assets/face-paper-v1-144.webp",
           "type": "image",
           "status": 200,
           "bytes": 2442
         },
         {
-          "url": "/assets/face-crit-v1.webp",
+          "url": "/assets/face-graphite-v1-144.webp",
           "type": "image",
           "status": 200,
-          "bytes": 2660
+          "bytes": 2960
         },
         {
-          "url": "/assets/face-warn-v1.webp",
+          "url": "/assets/face-ember-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3412
+        },
+        {
+          "url": "/assets/face-warn-v1-144.webp",
           "type": "image",
           "status": 200,
           "bytes": 2966
+        },
+        {
+          "url": "/assets/face-crit-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2660
         },
         {
           "url": "/assets/status-start-v1.webp",
@@ -415,40 +559,46 @@
           "bytes": 4630
         },
         {
+          "url": "/assets/status-stale-shm-v1.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 5546
+        },
+        {
           "url": "/assets/status-denied-v1.webp",
           "type": "image",
           "status": 200,
           "bytes": 4506
         },
         {
-          "url": "/assets/dial-crit-v1.webp",
+          "url": "/assets/deck-dials-v1-1200.webp",
           "type": "image",
           "status": 200,
-          "bytes": 6134
+          "bytes": 19568
         },
         {
-          "url": "/assets/dial-rows3-v1.webp",
+          "url": "/assets/dial-rows3-v1-466.webp",
           "type": "image",
           "status": 200,
-          "bytes": 7602
+          "bytes": 10758
         },
         {
-          "url": "/assets/dial-rows2-v1.webp",
+          "url": "/assets/dial-one-v1-466.webp",
           "type": "image",
           "status": 200,
-          "bytes": 9424
+          "bytes": 7906
         },
         {
-          "url": "/assets/dial-one-v1.webp",
+          "url": "/assets/dial-crit-v1-466.webp",
           "type": "image",
           "status": 200,
-          "bytes": 7142
+          "bytes": 7650
         },
         {
-          "url": "/assets/status-stale-shm-v1.webp",
+          "url": "/assets/dial-rows2-v1-466.webp",
           "type": "image",
           "status": 200,
-          "bytes": 5546
+          "bytes": 12198
         },
         {
           "url": "/assets/status-busy-v1.webp",
@@ -457,7 +607,7 @@
           "bytes": 5226
         }
       ],
-      "totalDecodedBytes": 168113
+      "totalDecodedBytes": 225897
     },
     {
       "engine": "chromium",
@@ -470,7 +620,7 @@
       "horizontalOverflow": false,
       "scrollWidth": 1440,
       "clientWidth": 1440,
-      "scrollHeight": 5402,
+      "scrollHeight": 5909,
       "cls": 0,
       "cookies": "",
       "localStorageKeys": [],
@@ -482,7 +632,7 @@
           "url": "/",
           "type": "document",
           "status": 200,
-          "bytes": 40065
+          "bytes": 47051
         },
         {
           "url": "/assets/deck-keys-v1-640.webp",
@@ -491,34 +641,64 @@
           "bytes": 40008
         },
         {
-          "url": "/assets/face-void-v1.webp",
+          "url": "/assets/face-void-v1-288.webp",
           "type": "image",
           "status": 200,
-          "bytes": 3050
+          "bytes": 6006
         },
         {
-          "url": "/assets/face-paper-v1.webp",
+          "url": "/assets/face-void-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3132
+        },
+        {
+          "url": "/assets/face-ultraviolet-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3234
+        },
+        {
+          "url": "/assets/face-midnight-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3730
+        },
+        {
+          "url": "/assets/face-forest-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3596
+        },
+        {
+          "url": "/assets/face-paper-v1-144.webp",
           "type": "image",
           "status": 200,
           "bytes": 2442
         },
         {
-          "url": "/assets/face-crit-v1.webp",
+          "url": "/assets/face-graphite-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2960
+        },
+        {
+          "url": "/assets/face-ember-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3412
+        },
+        {
+          "url": "/assets/face-crit-v1-144.webp",
           "type": "image",
           "status": 200,
           "bytes": 2660
         },
         {
-          "url": "/assets/face-warn-v1.webp",
+          "url": "/assets/face-warn-v1-144.webp",
           "type": "image",
           "status": 200,
           "bytes": 2966
-        },
-        {
-          "url": "/assets/status-start-v1.webp",
-          "type": "image",
-          "status": 200,
-          "bytes": 5576
         },
         {
           "url": "/assets/status-shm-off-v1.webp",
@@ -527,10 +707,10 @@
           "bytes": 4630
         },
         {
-          "url": "/assets/status-denied-v1.webp",
+          "url": "/assets/status-start-v1.webp",
           "type": "image",
           "status": 200,
-          "bytes": 4506
+          "bytes": 5576
         },
         {
           "url": "/assets/status-stale-shm-v1.webp",
@@ -539,28 +719,40 @@
           "bytes": 5546
         },
         {
-          "url": "/assets/dial-crit-v1.webp",
+          "url": "/assets/status-denied-v1.webp",
           "type": "image",
           "status": 200,
-          "bytes": 6134
+          "bytes": 4506
         },
         {
-          "url": "/assets/dial-rows3-v1.webp",
+          "url": "/assets/dial-rows3-v1-466.webp",
           "type": "image",
           "status": 200,
-          "bytes": 7602
+          "bytes": 10758
         },
         {
-          "url": "/assets/dial-one-v1.webp",
+          "url": "/assets/dial-one-v1-466.webp",
           "type": "image",
           "status": 200,
-          "bytes": 7142
+          "bytes": 7906
         },
         {
-          "url": "/assets/dial-rows2-v1.webp",
+          "url": "/assets/deck-dials-v1-700.webp",
           "type": "image",
           "status": 200,
-          "bytes": 9424
+          "bytes": 9192
+        },
+        {
+          "url": "/assets/dial-crit-v1-466.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 7650
+        },
+        {
+          "url": "/assets/dial-rows2-v1-466.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 12198
         },
         {
           "url": "/assets/status-busy-v1.webp",
@@ -569,7 +761,7 @@
           "bytes": 5226
         }
       ],
-      "totalDecodedBytes": 146977
+      "totalDecodedBytes": 194385
     },
     {
       "engine": "chromium",
@@ -582,7 +774,7 @@
       "horizontalOverflow": false,
       "scrollWidth": 1920,
       "clientWidth": 1920,
-      "scrollHeight": 5542,
+      "scrollHeight": 6072,
       "cls": 0,
       "cookies": "",
       "localStorageKeys": [],
@@ -594,7 +786,7 @@
           "url": "/",
           "type": "document",
           "status": 200,
-          "bytes": 40065
+          "bytes": 47051
         },
         {
           "url": "/assets/deck-keys-v1-900.webp",
@@ -603,40 +795,76 @@
           "bytes": 61144
         },
         {
-          "url": "/assets/face-void-v1.webp",
+          "url": "/assets/face-void-v1-288.webp",
           "type": "image",
           "status": 200,
-          "bytes": 3050
+          "bytes": 6006
         },
         {
-          "url": "/assets/face-warn-v1.webp",
+          "url": "/assets/face-void-v1-144.webp",
           "type": "image",
           "status": 200,
-          "bytes": 2966
+          "bytes": 3132
         },
         {
-          "url": "/assets/face-crit-v1.webp",
+          "url": "/assets/face-ultraviolet-v1-144.webp",
           "type": "image",
           "status": 200,
-          "bytes": 2660
+          "bytes": 3234
         },
         {
-          "url": "/assets/face-paper-v1.webp",
+          "url": "/assets/face-midnight-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3730
+        },
+        {
+          "url": "/assets/face-forest-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3596
+        },
+        {
+          "url": "/assets/face-paper-v1-144.webp",
           "type": "image",
           "status": 200,
           "bytes": 2442
         },
         {
-          "url": "/assets/status-start-v1.webp",
+          "url": "/assets/face-graphite-v1-144.webp",
           "type": "image",
           "status": 200,
-          "bytes": 5576
+          "bytes": 2960
+        },
+        {
+          "url": "/assets/face-ember-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3412
+        },
+        {
+          "url": "/assets/face-crit-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2660
+        },
+        {
+          "url": "/assets/face-warn-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2966
         },
         {
           "url": "/assets/status-shm-off-v1.webp",
           "type": "image",
           "status": 200,
           "bytes": 4630
+        },
+        {
+          "url": "/assets/status-start-v1.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 5576
         },
         {
           "url": "/assets/status-stale-shm-v1.webp",
@@ -651,28 +879,34 @@
           "bytes": 4506
         },
         {
-          "url": "/assets/dial-crit-v1.webp",
+          "url": "/assets/deck-dials-v1-700.webp",
           "type": "image",
           "status": 200,
-          "bytes": 6134
+          "bytes": 9192
         },
         {
-          "url": "/assets/dial-rows2-v1.webp",
+          "url": "/assets/dial-rows2-v1-466.webp",
           "type": "image",
           "status": 200,
-          "bytes": 9424
+          "bytes": 12198
         },
         {
-          "url": "/assets/dial-one-v1.webp",
+          "url": "/assets/dial-crit-v1-466.webp",
           "type": "image",
           "status": 200,
-          "bytes": 7142
+          "bytes": 7650
         },
         {
-          "url": "/assets/dial-rows3-v1.webp",
+          "url": "/assets/dial-one-v1-466.webp",
           "type": "image",
           "status": 200,
-          "bytes": 7602
+          "bytes": 7906
+        },
+        {
+          "url": "/assets/dial-rows3-v1-466.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 10758
         },
         {
           "url": "/assets/status-busy-v1.webp",
@@ -681,7 +915,7 @@
           "bytes": 5226
         }
       ],
-      "totalDecodedBytes": 168113
+      "totalDecodedBytes": 215521
     },
     {
       "engine": "chromium",
@@ -694,7 +928,7 @@
       "horizontalOverflow": false,
       "scrollWidth": 3440,
       "clientWidth": 3440,
-      "scrollHeight": 5802,
+      "scrollHeight": 6267,
       "cls": 0,
       "cookies": "",
       "localStorageKeys": [],
@@ -706,7 +940,7 @@
           "url": "/",
           "type": "document",
           "status": 200,
-          "bytes": 40065
+          "bytes": 47051
         },
         {
           "url": "/assets/deck-keys-v1-900.webp",
@@ -715,34 +949,64 @@
           "bytes": 61144
         },
         {
-          "url": "/assets/face-void-v1.webp",
+          "url": "/assets/face-void-v1-288.webp",
           "type": "image",
           "status": 200,
-          "bytes": 3050
+          "bytes": 6006
         },
         {
-          "url": "/assets/face-paper-v1.webp",
+          "url": "/assets/face-void-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3132
+        },
+        {
+          "url": "/assets/face-ultraviolet-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3234
+        },
+        {
+          "url": "/assets/face-midnight-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3730
+        },
+        {
+          "url": "/assets/face-forest-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3596
+        },
+        {
+          "url": "/assets/face-paper-v1-144.webp",
           "type": "image",
           "status": 200,
           "bytes": 2442
         },
         {
-          "url": "/assets/face-crit-v1.webp",
+          "url": "/assets/face-graphite-v1-144.webp",
           "type": "image",
           "status": 200,
-          "bytes": 2660
+          "bytes": 2960
         },
         {
-          "url": "/assets/face-warn-v1.webp",
+          "url": "/assets/face-ember-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3412
+        },
+        {
+          "url": "/assets/face-warn-v1-144.webp",
           "type": "image",
           "status": 200,
           "bytes": 2966
         },
         {
-          "url": "/assets/status-shm-off-v1.webp",
+          "url": "/assets/face-crit-v1-144.webp",
           "type": "image",
           "status": 200,
-          "bytes": 4630
+          "bytes": 2660
         },
         {
           "url": "/assets/status-start-v1.webp",
@@ -751,10 +1015,10 @@
           "bytes": 5576
         },
         {
-          "url": "/assets/status-denied-v1.webp",
+          "url": "/assets/status-shm-off-v1.webp",
           "type": "image",
           "status": 200,
-          "bytes": 4506
+          "bytes": 4630
         },
         {
           "url": "/assets/status-stale-shm-v1.webp",
@@ -763,28 +1027,40 @@
           "bytes": 5546
         },
         {
-          "url": "/assets/dial-one-v1.webp",
+          "url": "/assets/status-denied-v1.webp",
           "type": "image",
           "status": 200,
-          "bytes": 7142
+          "bytes": 4506
         },
         {
-          "url": "/assets/dial-rows3-v1.webp",
+          "url": "/assets/dial-crit-v1-466.webp",
           "type": "image",
           "status": 200,
-          "bytes": 7602
+          "bytes": 7650
         },
         {
-          "url": "/assets/dial-rows2-v1.webp",
+          "url": "/assets/deck-dials-v1-700.webp",
           "type": "image",
           "status": 200,
-          "bytes": 9424
+          "bytes": 9192
         },
         {
-          "url": "/assets/dial-crit-v1.webp",
+          "url": "/assets/dial-one-v1-466.webp",
           "type": "image",
           "status": 200,
-          "bytes": 6134
+          "bytes": 7906
+        },
+        {
+          "url": "/assets/dial-rows3-v1-466.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 10758
+        },
+        {
+          "url": "/assets/dial-rows2-v1-466.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 12198
         },
         {
           "url": "/assets/status-busy-v1.webp",
@@ -793,7 +1069,7 @@
           "bytes": 5226
         }
       ],
-      "totalDecodedBytes": 168113
+      "totalDecodedBytes": 215521
     },
     {
       "engine": "chromium",
@@ -1016,7 +1292,7 @@
       "horizontalOverflow": false,
       "scrollWidth": 320,
       "clientWidth": 320,
-      "scrollHeight": 9425,
+      "scrollHeight": 9742,
       "cls": null,
       "cookies": "",
       "localStorageKeys": [],
@@ -1028,7 +1304,7 @@
           "url": "/",
           "type": "document",
           "status": 200,
-          "bytes": 40065
+          "bytes": 47051
         },
         {
           "url": "/assets/deck-keys-v1-640.webp",
@@ -1037,25 +1313,55 @@
           "bytes": 40008
         },
         {
-          "url": "/assets/face-void-v1.webp",
+          "url": "/assets/face-void-v1-144.webp",
           "type": "image",
           "status": 200,
-          "bytes": 3050
+          "bytes": 3132
         },
         {
-          "url": "/assets/face-paper-v1.webp",
+          "url": "/assets/face-graphite-v1-144.webp",
           "type": "image",
           "status": 200,
-          "bytes": 2442
+          "bytes": 2960
         },
         {
-          "url": "/assets/face-warn-v1.webp",
+          "url": "/assets/face-ultraviolet-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3234
+        },
+        {
+          "url": "/assets/face-midnight-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3730
+        },
+        {
+          "url": "/assets/face-forest-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3596
+        },
+        {
+          "url": "/assets/face-ember-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3412
+        },
+        {
+          "url": "/assets/face-warn-v1-144.webp",
           "type": "image",
           "status": 200,
           "bytes": 2966
         },
         {
-          "url": "/assets/face-crit-v1.webp",
+          "url": "/assets/face-paper-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2442
+        },
+        {
+          "url": "/assets/face-crit-v1-144.webp",
           "type": "image",
           "status": 200,
           "bytes": 2660
@@ -1067,16 +1373,16 @@
           "bytes": 5576
         },
         {
-          "url": "/assets/status-stale-shm-v1.webp",
-          "type": "image",
-          "status": 200,
-          "bytes": 5546
-        },
-        {
           "url": "/assets/status-shm-off-v1.webp",
           "type": "image",
           "status": 200,
           "bytes": 4630
+        },
+        {
+          "url": "/assets/status-stale-shm-v1.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 5546
         },
         {
           "url": "/assets/status-denied-v1.webp",
@@ -1085,25 +1391,31 @@
           "bytes": 4506
         },
         {
-          "url": "/assets/dial-one-v1.webp",
+          "url": "/assets/deck-dials-v1-700.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 9192
+        },
+        {
+          "url": "/assets/dial-one-v1-233.webp",
           "type": "image",
           "status": 200,
           "bytes": 7142
         },
         {
-          "url": "/assets/dial-rows3-v1.webp",
+          "url": "/assets/dial-rows3-v1-233.webp",
           "type": "image",
           "status": 200,
           "bytes": 7602
         },
         {
-          "url": "/assets/dial-rows2-v1.webp",
+          "url": "/assets/dial-rows2-v1-233.webp",
           "type": "image",
           "status": 200,
           "bytes": 9424
         },
         {
-          "url": "/assets/dial-crit-v1.webp",
+          "url": "/assets/dial-crit-v1-233.webp",
           "type": "image",
           "status": 200,
           "bytes": 6134
@@ -1115,7 +1427,7 @@
           "bytes": 5226
         }
       ],
-      "totalDecodedBytes": 146977
+      "totalDecodedBytes": 180169
     },
     {
       "engine": "webkit",
@@ -1128,7 +1440,7 @@
       "horizontalOverflow": false,
       "scrollWidth": 360,
       "clientWidth": 360,
-      "scrollHeight": 8902,
+      "scrollHeight": 9288,
       "cls": null,
       "cookies": "",
       "localStorageKeys": [],
@@ -1140,7 +1452,7 @@
           "url": "/",
           "type": "document",
           "status": 200,
-          "bytes": 40065
+          "bytes": 47051
         },
         {
           "url": "/assets/deck-keys-v1-640.webp",
@@ -1149,28 +1461,58 @@
           "bytes": 40008
         },
         {
-          "url": "/assets/face-void-v1.webp",
+          "url": "/assets/face-void-v1-144.webp",
           "type": "image",
           "status": 200,
-          "bytes": 3050
+          "bytes": 3132
         },
         {
-          "url": "/assets/face-paper-v1.webp",
+          "url": "/assets/face-graphite-v1-144.webp",
           "type": "image",
           "status": 200,
-          "bytes": 2442
+          "bytes": 2960
         },
         {
-          "url": "/assets/face-warn-v1.webp",
+          "url": "/assets/face-ultraviolet-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3234
+        },
+        {
+          "url": "/assets/face-midnight-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3730
+        },
+        {
+          "url": "/assets/face-forest-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3596
+        },
+        {
+          "url": "/assets/face-warn-v1-144.webp",
           "type": "image",
           "status": 200,
           "bytes": 2966
         },
         {
-          "url": "/assets/face-crit-v1.webp",
+          "url": "/assets/face-crit-v1-144.webp",
           "type": "image",
           "status": 200,
           "bytes": 2660
+        },
+        {
+          "url": "/assets/face-paper-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2442
+        },
+        {
+          "url": "/assets/face-ember-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3412
         },
         {
           "url": "/assets/status-start-v1.webp",
@@ -1197,25 +1539,31 @@
           "bytes": 4506
         },
         {
-          "url": "/assets/dial-one-v1.webp",
+          "url": "/assets/deck-dials-v1-700.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 9192
+        },
+        {
+          "url": "/assets/dial-one-v1-233.webp",
           "type": "image",
           "status": 200,
           "bytes": 7142
         },
         {
-          "url": "/assets/dial-rows3-v1.webp",
-          "type": "image",
-          "status": 200,
-          "bytes": 7602
-        },
-        {
-          "url": "/assets/dial-rows2-v1.webp",
+          "url": "/assets/dial-rows2-v1-233.webp",
           "type": "image",
           "status": 200,
           "bytes": 9424
         },
         {
-          "url": "/assets/dial-crit-v1.webp",
+          "url": "/assets/dial-rows3-v1-233.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 7602
+        },
+        {
+          "url": "/assets/dial-crit-v1-233.webp",
           "type": "image",
           "status": 200,
           "bytes": 6134
@@ -1227,7 +1575,7 @@
           "bytes": 5226
         }
       ],
-      "totalDecodedBytes": 146977
+      "totalDecodedBytes": 180169
     },
     {
       "engine": "webkit",
@@ -1240,7 +1588,7 @@
       "horizontalOverflow": false,
       "scrollWidth": 390,
       "clientWidth": 390,
-      "scrollHeight": 8565,
+      "scrollHeight": 8964,
       "cls": null,
       "cookies": "",
       "localStorageKeys": [],
@@ -1252,7 +1600,7 @@
           "url": "/",
           "type": "document",
           "status": 200,
-          "bytes": 40065
+          "bytes": 47051
         },
         {
           "url": "/assets/deck-keys-v1-640.webp",
@@ -1261,25 +1609,55 @@
           "bytes": 40008
         },
         {
-          "url": "/assets/face-void-v1.webp",
+          "url": "/assets/face-void-v1-144.webp",
           "type": "image",
           "status": 200,
-          "bytes": 3050
+          "bytes": 3132
         },
         {
-          "url": "/assets/face-paper-v1.webp",
+          "url": "/assets/face-graphite-v1-144.webp",
           "type": "image",
           "status": 200,
-          "bytes": 2442
+          "bytes": 2960
         },
         {
-          "url": "/assets/face-warn-v1.webp",
+          "url": "/assets/face-ultraviolet-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3234
+        },
+        {
+          "url": "/assets/face-midnight-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3730
+        },
+        {
+          "url": "/assets/face-forest-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3596
+        },
+        {
+          "url": "/assets/face-warn-v1-144.webp",
           "type": "image",
           "status": 200,
           "bytes": 2966
         },
         {
-          "url": "/assets/face-crit-v1.webp",
+          "url": "/assets/face-ember-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3412
+        },
+        {
+          "url": "/assets/face-paper-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2442
+        },
+        {
+          "url": "/assets/face-crit-v1-144.webp",
           "type": "image",
           "status": 200,
           "bytes": 2660
@@ -1309,28 +1687,34 @@
           "bytes": 4506
         },
         {
-          "url": "/assets/dial-one-v1.webp",
+          "url": "/assets/deck-dials-v1-700.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 9192
+        },
+        {
+          "url": "/assets/dial-one-v1-233.webp",
           "type": "image",
           "status": 200,
           "bytes": 7142
         },
         {
-          "url": "/assets/dial-crit-v1.webp",
+          "url": "/assets/dial-rows3-v1-233.webp",
           "type": "image",
           "status": 200,
-          "bytes": 6134
+          "bytes": 7602
         },
         {
-          "url": "/assets/dial-rows2-v1.webp",
+          "url": "/assets/dial-rows2-v1-233.webp",
           "type": "image",
           "status": 200,
           "bytes": 9424
         },
         {
-          "url": "/assets/dial-rows3-v1.webp",
+          "url": "/assets/dial-crit-v1-233.webp",
           "type": "image",
           "status": 200,
-          "bytes": 7602
+          "bytes": 6134
         },
         {
           "url": "/assets/status-busy-v1.webp",
@@ -1339,7 +1723,7 @@
           "bytes": 5226
         }
       ],
-      "totalDecodedBytes": 146977
+      "totalDecodedBytes": 180169
     },
     {
       "engine": "webkit",
@@ -1352,7 +1736,7 @@
       "horizontalOverflow": false,
       "scrollWidth": 768,
       "clientWidth": 768,
-      "scrollHeight": 7136,
+      "scrollHeight": 7672,
       "cls": null,
       "cookies": "",
       "localStorageKeys": [],
@@ -1364,7 +1748,7 @@
           "url": "/",
           "type": "document",
           "status": 200,
-          "bytes": 40065
+          "bytes": 47051
         },
         {
           "url": "/assets/deck-keys-v1-900.webp",
@@ -1373,25 +1757,61 @@
           "bytes": 61144
         },
         {
-          "url": "/assets/face-void-v1.webp",
+          "url": "/assets/face-void-v1-288.webp",
           "type": "image",
           "status": 200,
-          "bytes": 3050
+          "bytes": 6006
         },
         {
-          "url": "/assets/face-paper-v1.webp",
+          "url": "/assets/face-void-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3132
+        },
+        {
+          "url": "/assets/face-graphite-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2960
+        },
+        {
+          "url": "/assets/face-midnight-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3730
+        },
+        {
+          "url": "/assets/face-forest-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3596
+        },
+        {
+          "url": "/assets/face-ember-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3412
+        },
+        {
+          "url": "/assets/face-paper-v1-144.webp",
           "type": "image",
           "status": 200,
           "bytes": 2442
         },
         {
-          "url": "/assets/face-warn-v1.webp",
+          "url": "/assets/face-ultraviolet-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3234
+        },
+        {
+          "url": "/assets/face-warn-v1-144.webp",
           "type": "image",
           "status": 200,
           "bytes": 2966
         },
         {
-          "url": "/assets/face-crit-v1.webp",
+          "url": "/assets/face-crit-v1-144.webp",
           "type": "image",
           "status": 200,
           "bytes": 2660
@@ -1421,28 +1841,34 @@
           "bytes": 4506
         },
         {
-          "url": "/assets/dial-one-v1.webp",
+          "url": "/assets/deck-dials-v1-1200.webp",
           "type": "image",
           "status": 200,
-          "bytes": 7142
+          "bytes": 19568
         },
         {
-          "url": "/assets/dial-rows3-v1.webp",
+          "url": "/assets/dial-one-v1-466.webp",
           "type": "image",
           "status": 200,
-          "bytes": 7602
+          "bytes": 7906
         },
         {
-          "url": "/assets/dial-rows2-v1.webp",
+          "url": "/assets/dial-rows3-v1-466.webp",
           "type": "image",
           "status": 200,
-          "bytes": 9424
+          "bytes": 10758
         },
         {
-          "url": "/assets/dial-crit-v1.webp",
+          "url": "/assets/dial-rows2-v1-466.webp",
           "type": "image",
           "status": 200,
-          "bytes": 6134
+          "bytes": 12198
+        },
+        {
+          "url": "/assets/dial-crit-v1-466.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 7650
         },
         {
           "url": "/assets/status-busy-v1.webp",
@@ -1451,7 +1877,7 @@
           "bytes": 5226
         }
       ],
-      "totalDecodedBytes": 168113
+      "totalDecodedBytes": 225897
     },
     {
       "engine": "webkit",
@@ -1464,7 +1890,7 @@
       "horizontalOverflow": false,
       "scrollWidth": 1440,
       "clientWidth": 1440,
-      "scrollHeight": 5402,
+      "scrollHeight": 5908,
       "cls": null,
       "cookies": "",
       "localStorageKeys": [],
@@ -1476,7 +1902,7 @@
           "url": "/",
           "type": "document",
           "status": 200,
-          "bytes": 40065
+          "bytes": 47051
         },
         {
           "url": "/assets/deck-keys-v1-640.webp",
@@ -1485,25 +1911,61 @@
           "bytes": 40008
         },
         {
-          "url": "/assets/face-void-v1.webp",
+          "url": "/assets/face-void-v1-288.webp",
           "type": "image",
           "status": 200,
-          "bytes": 3050
+          "bytes": 6006
         },
         {
-          "url": "/assets/face-paper-v1.webp",
+          "url": "/assets/face-void-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3132
+        },
+        {
+          "url": "/assets/face-graphite-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2960
+        },
+        {
+          "url": "/assets/face-ultraviolet-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3234
+        },
+        {
+          "url": "/assets/face-midnight-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3730
+        },
+        {
+          "url": "/assets/face-forest-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3596
+        },
+        {
+          "url": "/assets/face-paper-v1-144.webp",
           "type": "image",
           "status": 200,
           "bytes": 2442
         },
         {
-          "url": "/assets/face-warn-v1.webp",
+          "url": "/assets/face-ember-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3412
+        },
+        {
+          "url": "/assets/face-warn-v1-144.webp",
           "type": "image",
           "status": 200,
           "bytes": 2966
         },
         {
-          "url": "/assets/face-crit-v1.webp",
+          "url": "/assets/face-crit-v1-144.webp",
           "type": "image",
           "status": 200,
           "bytes": 2660
@@ -1533,28 +1995,34 @@
           "bytes": 4506
         },
         {
-          "url": "/assets/dial-one-v1.webp",
+          "url": "/assets/deck-dials-v1-700.webp",
           "type": "image",
           "status": 200,
-          "bytes": 7142
+          "bytes": 9192
         },
         {
-          "url": "/assets/dial-rows3-v1.webp",
+          "url": "/assets/dial-one-v1-466.webp",
           "type": "image",
           "status": 200,
-          "bytes": 7602
+          "bytes": 7906
         },
         {
-          "url": "/assets/dial-crit-v1.webp",
+          "url": "/assets/dial-rows3-v1-466.webp",
           "type": "image",
           "status": 200,
-          "bytes": 6134
+          "bytes": 10758
         },
         {
-          "url": "/assets/dial-rows2-v1.webp",
+          "url": "/assets/dial-rows2-v1-466.webp",
           "type": "image",
           "status": 200,
-          "bytes": 9424
+          "bytes": 12198
+        },
+        {
+          "url": "/assets/dial-crit-v1-466.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 7650
         },
         {
           "url": "/assets/status-busy-v1.webp",
@@ -1563,7 +2031,7 @@
           "bytes": 5226
         }
       ],
-      "totalDecodedBytes": 146977
+      "totalDecodedBytes": 194385
     },
     {
       "engine": "webkit",
@@ -1576,7 +2044,7 @@
       "horizontalOverflow": false,
       "scrollWidth": 1920,
       "clientWidth": 1920,
-      "scrollHeight": 5542,
+      "scrollHeight": 6072,
       "cls": null,
       "cookies": "",
       "localStorageKeys": [],
@@ -1588,7 +2056,7 @@
           "url": "/",
           "type": "document",
           "status": 200,
-          "bytes": 40065
+          "bytes": 47051
         },
         {
           "url": "/assets/deck-keys-v1-900.webp",
@@ -1597,28 +2065,64 @@
           "bytes": 61144
         },
         {
-          "url": "/assets/face-void-v1.webp",
+          "url": "/assets/face-void-v1-288.webp",
           "type": "image",
           "status": 200,
-          "bytes": 3050
+          "bytes": 6006
         },
         {
-          "url": "/assets/face-paper-v1.webp",
+          "url": "/assets/face-graphite-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2960
+        },
+        {
+          "url": "/assets/face-ultraviolet-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3234
+        },
+        {
+          "url": "/assets/face-midnight-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3730
+        },
+        {
+          "url": "/assets/face-void-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3132
+        },
+        {
+          "url": "/assets/face-forest-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3596
+        },
+        {
+          "url": "/assets/face-ember-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3412
+        },
+        {
+          "url": "/assets/face-paper-v1-144.webp",
           "type": "image",
           "status": 200,
           "bytes": 2442
         },
         {
-          "url": "/assets/face-crit-v1.webp",
-          "type": "image",
-          "status": 200,
-          "bytes": 2660
-        },
-        {
-          "url": "/assets/face-warn-v1.webp",
+          "url": "/assets/face-warn-v1-144.webp",
           "type": "image",
           "status": 200,
           "bytes": 2966
+        },
+        {
+          "url": "/assets/face-crit-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2660
         },
         {
           "url": "/assets/status-start-v1.webp",
@@ -1633,40 +2137,46 @@
           "bytes": 4630
         },
         {
-          "url": "/assets/status-denied-v1.webp",
-          "type": "image",
-          "status": 200,
-          "bytes": 4506
-        },
-        {
           "url": "/assets/status-stale-shm-v1.webp",
           "type": "image",
           "status": 200,
           "bytes": 5546
         },
         {
-          "url": "/assets/dial-one-v1.webp",
+          "url": "/assets/status-denied-v1.webp",
           "type": "image",
           "status": 200,
-          "bytes": 7142
+          "bytes": 4506
         },
         {
-          "url": "/assets/dial-rows3-v1.webp",
+          "url": "/assets/deck-dials-v1-700.webp",
           "type": "image",
           "status": 200,
-          "bytes": 7602
+          "bytes": 9192
         },
         {
-          "url": "/assets/dial-crit-v1.webp",
+          "url": "/assets/dial-one-v1-466.webp",
           "type": "image",
           "status": 200,
-          "bytes": 6134
+          "bytes": 7906
         },
         {
-          "url": "/assets/dial-rows2-v1.webp",
+          "url": "/assets/dial-rows3-v1-466.webp",
           "type": "image",
           "status": 200,
-          "bytes": 9424
+          "bytes": 10758
+        },
+        {
+          "url": "/assets/dial-rows2-v1-466.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 12198
+        },
+        {
+          "url": "/assets/dial-crit-v1-466.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 7650
         },
         {
           "url": "/assets/status-busy-v1.webp",
@@ -1675,7 +2185,7 @@
           "bytes": 5226
         }
       ],
-      "totalDecodedBytes": 168113
+      "totalDecodedBytes": 215521
     },
     {
       "engine": "webkit",
@@ -1688,7 +2198,7 @@
       "horizontalOverflow": false,
       "scrollWidth": 3440,
       "clientWidth": 3440,
-      "scrollHeight": 5801,
+      "scrollHeight": 6265,
       "cls": null,
       "cookies": "",
       "localStorageKeys": [],
@@ -1700,7 +2210,7 @@
           "url": "/",
           "type": "document",
           "status": 200,
-          "bytes": 40065
+          "bytes": 47051
         },
         {
           "url": "/assets/deck-keys-v1-900.webp",
@@ -1709,40 +2219,76 @@
           "bytes": 61144
         },
         {
-          "url": "/assets/face-void-v1.webp",
+          "url": "/assets/face-void-v1-288.webp",
           "type": "image",
           "status": 200,
-          "bytes": 3050
+          "bytes": 6006
         },
         {
-          "url": "/assets/face-paper-v1.webp",
+          "url": "/assets/face-void-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3132
+        },
+        {
+          "url": "/assets/face-graphite-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2960
+        },
+        {
+          "url": "/assets/face-ultraviolet-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3234
+        },
+        {
+          "url": "/assets/face-forest-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3596
+        },
+        {
+          "url": "/assets/face-midnight-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3730
+        },
+        {
+          "url": "/assets/face-ember-v1-144.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3412
+        },
+        {
+          "url": "/assets/face-paper-v1-144.webp",
           "type": "image",
           "status": 200,
           "bytes": 2442
         },
         {
-          "url": "/assets/face-warn-v1.webp",
+          "url": "/assets/face-warn-v1-144.webp",
           "type": "image",
           "status": 200,
           "bytes": 2966
         },
         {
-          "url": "/assets/face-crit-v1.webp",
+          "url": "/assets/face-crit-v1-144.webp",
           "type": "image",
           "status": 200,
           "bytes": 2660
-        },
-        {
-          "url": "/assets/status-shm-off-v1.webp",
-          "type": "image",
-          "status": 200,
-          "bytes": 4630
         },
         {
           "url": "/assets/status-start-v1.webp",
           "type": "image",
           "status": 200,
           "bytes": 5576
+        },
+        {
+          "url": "/assets/status-shm-off-v1.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 4630
         },
         {
           "url": "/assets/status-stale-shm-v1.webp",
@@ -1757,28 +2303,34 @@
           "bytes": 4506
         },
         {
-          "url": "/assets/dial-one-v1.webp",
+          "url": "/assets/dial-one-v1-466.webp",
           "type": "image",
           "status": 200,
-          "bytes": 7142
+          "bytes": 7906
         },
         {
-          "url": "/assets/dial-rows3-v1.webp",
+          "url": "/assets/deck-dials-v1-700.webp",
           "type": "image",
           "status": 200,
-          "bytes": 7602
+          "bytes": 9192
         },
         {
-          "url": "/assets/dial-rows2-v1.webp",
+          "url": "/assets/dial-rows3-v1-466.webp",
           "type": "image",
           "status": 200,
-          "bytes": 9424
+          "bytes": 10758
         },
         {
-          "url": "/assets/dial-crit-v1.webp",
+          "url": "/assets/dial-rows2-v1-466.webp",
           "type": "image",
           "status": 200,
-          "bytes": 6134
+          "bytes": 12198
+        },
+        {
+          "url": "/assets/dial-crit-v1-466.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 7650
         },
         {
           "url": "/assets/status-busy-v1.webp",
@@ -1787,7 +2339,7 @@
           "bytes": 5226
         }
       ],
-      "totalDecodedBytes": 168113
+      "totalDecodedBytes": 215521
     },
     {
       "engine": "webkit",
