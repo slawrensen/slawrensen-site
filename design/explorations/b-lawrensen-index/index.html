@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stephen Lawrensen · slawrensen</title>
+<meta name="description" content="Stephen Lawrensen builds software under the slawrensen name. HWiNFO Sensors puts live hardware readings on Elgato Stream Deck keys and dials.">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="../../mark/sl-mark.svg" type="image/svg+xml">
+<style>
+  /* Exploration B: The Lawrensen Index. Cool white, deep ink, one sharp blue. */
+  :root{
+    color-scheme:light;
+    --paper:#f7f9fb; --white:#ffffff; --ink:#0c1420; --ink-2:#2a3544; --muted:#4b5666; --faint:#5d6878;
+    --rule:#d5dce4; --rule-2:#b8c2cd;
+    --accent:#0a62c4; --accent-tile:#5cb8ff;
+    --serif:"Iowan Old Style","Charter","Sitka Display","Sitka Text",Cambria,Georgia,serif;
+    --sans:"Segoe UI Variable Text","Segoe UI",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+    --mono:ui-monospace,"Cascadia Mono","SF Mono",Consolas,monospace;
+    --gutter:clamp(16px,4vw,48px);
+  }
+  *{box-sizing:border-box} *{margin:0}
+  html{-webkit-text-size-adjust:100%}
+  body{background:var(--paper);color:var(--ink);font:16px/1.62 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:clip}
+  a{color:var(--accent);text-underline-offset:3px;text-decoration-thickness:1px}
+  a:hover{text-decoration-thickness:2px}
+  img{display:block;max-width:100%;height:auto}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+  .skip{position:absolute;left:-9999px;top:8px;background:var(--ink);color:#fff;padding:10px 14px;z-index:10}
+  .skip:focus{left:8px}
+  .page{max-width:1320px;margin-inline:auto;padding-inline:var(--gutter)}
+
+  /* masthead */
+  .mast{padding-top:clamp(20px,3vw,36px);border-bottom:2px solid var(--ink)}
+  .mast-top{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:.9rem;color:var(--muted)}
+  .brand{display:inline-flex;align-items:center;gap:9px;color:var(--ink);text-decoration:none;font-weight:650}
+  .brand svg{width:26px;height:26px}
+  .mast h1{font-family:var(--serif);font-weight:500;font-size:clamp(3rem,1.2rem + 8.4vw,9.4rem);line-height:.92;letter-spacing:-.035em;margin-top:clamp(28px,5vw,64px);text-wrap:balance}
+  .mast-intro{display:grid;gap:18px clamp(24px,4vw,64px);grid-template-columns:1fr;padding-block:clamp(22px,3vw,34px) clamp(26px,3.4vw,40px)}
+  @media (min-width:900px){ .mast-intro{grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:end} }
+  .mast-intro .say{font-family:var(--serif);font-size:clamp(1.35rem,1.05rem + 1.1vw,2rem);line-height:1.25;letter-spacing:-.01em;max-width:30ch}
+  .mast-intro .say small{display:block;font-family:var(--sans);font-size:.8rem;letter-spacing:0;color:var(--faint);margin-top:10px}
+  .mast-intro p{color:var(--ink-2);max-width:52ch}
+  .quick{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:14px;font-weight:600}
+  .quick a{display:inline-flex;align-items:center;min-height:44px}
+
+  /* layout: author column + index */
+  .layout{display:grid;grid-template-columns:1fr;gap:0 clamp(28px,4vw,64px);padding-top:clamp(28px,4vw,48px)}
+  @media (min-width:1080px){ .layout{grid-template-columns:220px minmax(0,1fr)} }
+  .rail{font-size:.92rem}
+  @media (min-width:1080px){ .rail{position:sticky;top:24px;align-self:start} }
+  .rail h2{font-size:.78rem;font-weight:650;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+  .rail ul{list-style:none;padding:0;margin-top:6px}
+  .rail li a{display:flex;min-height:44px;align-items:center;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)}
+  .rail li a:hover{color:var(--accent)}
+  .rail .fact{margin-top:18px;color:var(--muted);font-size:.86rem}
+  @media (max-width:1079px){
+    .rail{border-bottom:1px solid var(--rule);padding-bottom:12px;margin-bottom:8px}
+    .rail ul{display:flex;flex-wrap:wrap;gap:0 18px}
+    .rail li a{border:0}
+    .rail .fact{display:none}
+  }
+
+  /* dossiers */
+  .dossier{padding-block:clamp(32px,4vw,56px);border-bottom:1px solid var(--rule-2)}
+  .d-head{display:grid;gap:8px 24px;grid-template-columns:1fr}
+  @media (min-width:760px){ .d-head{grid-template-columns:minmax(0,1fr) auto;align-items:baseline} }
+  .d-head h2{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,1.3rem + 2.6vw,3.4rem);line-height:1.02;letter-spacing:-.025em}
+  .status{font-size:.9rem;color:var(--ink-2)}
+  .status b{font-weight:650}
+  .status .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#1a7f37;margin-right:7px;transform:translateY(-1px)}
+  .d-body{display:grid;gap:clamp(22px,3vw,40px);grid-template-columns:1fr;margin-top:clamp(20px,3vw,32px)}
+  @media (min-width:980px){ .d-body{grid-template-columns:minmax(0,7fr) minmax(0,5fr)} }
+  .plate img{width:100%;background:#000}
+  .plate figcaption{font-size:.82rem;color:var(--faint);margin-top:8px}
+  .faces{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:10px}
+  .faces img{border-radius:12%}
+  .statement dl{display:grid;gap:18px}
+  .statement dt{font-size:.78rem;font-weight:650;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+  .statement dd{margin-top:4px;color:var(--ink-2)}
+  .statement dd.editorial{font-family:var(--serif);font-size:1.12rem;line-height:1.45;color:var(--ink)}
+  .statement .tag{display:inline-block;font-family:var(--sans);font-size:.72rem;letter-spacing:.04em;color:var(--faint);border:1px solid var(--rule-2);padding:0 6px;border-radius:3px;margin-left:6px;vertical-align:2px;text-transform:none}
+  .statement ul{padding-left:1.1em}
+  .statement li+li{margin-top:4px}
+  .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .btn{display:inline-flex;align-items:center;min-height:48px;padding:0 18px;font-weight:600;text-decoration:none;border-radius:3px}
+  .btn-ink{background:var(--ink);color:#fff}
+  .btn-ink:hover{background:#243144}
+  .btn-line{box-shadow:inset 0 0 0 1.5px var(--ink);color:var(--ink)}
+  .btn-line:hover{background:var(--white)}
+
+  /* signature: in-place expansion with native details */
+  .more{margin-top:clamp(24px,3vw,36px);border-top:1px solid var(--ink)}
+  details{border-bottom:1px solid var(--rule-2)}
+  summary{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:56px;cursor:pointer;list-style:none;font-weight:650;font-size:1.05rem}
+  summary::-webkit-details-marker{display:none}
+  summary .hint{font-weight:400;color:var(--faint);font-size:.9rem;margin-left:auto}
+  summary::after{content:"";flex:none;width:12px;height:12px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(45deg) translate(-3px,-3px);transition:transform .15s}
+  details[open]>summary::after{transform:rotate(225deg) translate(-3px,-3px)}
+  summary:hover{color:var(--accent)}
+  .panel{padding:4px 0 26px;display:grid;gap:18px;grid-template-columns:1fr}
+  @media (min-width:860px){ .panel.two{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:40px} }
+  .panel p,.panel li{color:var(--ink-2)}
+  .panel h3{font-size:1rem;font-weight:650}
+  .panel ol,.panel ul{padding-left:1.2em}
+  .panel li+li{margin-top:6px}
+  .levels{list-style:none;padding:0!important}
+  .levels li{display:grid;grid-template-columns:170px 1fr;gap:12px;padding:8px 0;border-top:1px solid var(--rule)}
+  @media (max-width:560px){ .levels li{grid-template-columns:1fr;gap:2px} }
+  .levels b{font-weight:650;color:var(--ink)}
+  .num{font-family:var(--mono);font-size:.9em;font-variant-numeric:tabular-nums}
+  .status-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+  .status-row img{border-radius:12%}
+  .req{display:grid;grid-template-columns:auto 1fr;gap:6px 16px}
+  .req dt{color:var(--faint)}
+
+  .small-dossier .d-body{grid-template-columns:1fr}
+  .small-dossier p{max-width:64ch;color:var(--ink-2)}
+
+  /* working rules */
+  .rules{padding-block:clamp(32px,4vw,56px);border-bottom:1px solid var(--rule-2)}
+  .rules h2,.colophon h2{font-family:var(--serif);font-weight:500;font-size:clamp(1.8rem,1.3rem + 1.8vw,2.6rem);letter-spacing:-.02em;line-height:1.05}
+  .rules ol{list-style:none;padding:0;margin-top:22px;display:grid;gap:0}
+  .rules li{display:grid;grid-template-columns:1fr;gap:6px 32px;padding:18px 0;border-top:1px solid var(--rule)}
+  @media (min-width:860px){ .rules li{grid-template-columns:minmax(0,5fr) minmax(0,7fr)} }
+  .rules h3{font-family:var(--serif);font-weight:500;font-size:1.35rem;line-height:1.2}
+  .rules p{color:var(--ink-2)}
+
+  .colophon{padding-block:clamp(32px,4vw,56px) clamp(40px,5vw,64px);display:grid;gap:18px 40px;grid-template-columns:1fr}
+  @media (min-width:860px){ .colophon{grid-template-columns:minmax(0,5fr) minmax(0,7fr)} }
+  .colophon p{color:var(--ink-2);max-width:62ch}
+  .colophon p+p{margin-top:12px}
+  footer{border-top:2px solid var(--ink);padding-block:22px 36px;font-size:.84rem;color:var(--muted)}
+  footer .row{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+  footer ul{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:0 18px}
+  footer ul a{display:inline-flex;min-height:44px;align-items:center;color:var(--ink)}
+  footer .fine{margin-top:12px;max-width:80ch;color:var(--faint)}
+  @media print{ details>*{display:block} }
+</style>
+</head>
+<body>
+<a class="skip" href="#work">Skip to the work</a>
+<div class="page">
+  <header class="mast" id="top">
+    <div class="mast-top">
+      <a class="brand" href="#top" aria-label="slawrensen, home"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="15" fill="#5cb8ff"/><path d="M29.375 19.5H20.875A4.5 4.5 0 0 0 16.375 24V27A4.5 4.5 0 0 0 20.875 31.5H24.875A4.5 4.5 0 0 1 29.375 36V39A4.5 4.5 0 0 1 24.875 43.5H16.375M40.375 16.5V43.5H52.875" fill="none" stroke="#07090c" stroke-width="6"/></svg>slawrensen</a>
+      <span>Software, 2026</span>
+    </div>
+    <h1>Stephen Lawrensen</h1>
+    <div class="mast-intro">
+      <p class="say">I build software worth keeping.<small>Systems engineer. The work below is what I have released, with the evidence for what it does.</small></p>
+      <div>
+        <p>Right now that is one product: HWiNFO Sensors, a free plugin that puts live hardware readings on the Elgato Stream Deck.</p>
+        <p class="quick"><a href="#install">Install HWiNFO Sensors</a><a href="#help">Get help</a></p>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="rail" aria-label="Index">
+      <h2>Index</h2>
+      <ul>
+        <li><a href="#products">HWiNFO Sensors</a></li>
+        <li><a href="#site">This website</a></li>
+        <li><a href="#principles">Working rules</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      <p class="fact">Everything here is made and maintained by one person. Questions go to <a href="https://github.com/slawrensen/hwinfo-streamdeck/issues">GitHub Issues</a>.</p>
+    </nav>
+
+    <main id="work">
+      <article class="dossier" id="products" aria-labelledby="d1">
+        <div class="d-head">
+          <h2 id="d1">HWiNFO Sensors for Stream Deck</h2>
+          <p class="status"><span class="dot" aria-hidden="true"></span><b>Released</b> · version <span class="num">1.6.0</span>, 5 Sep 2026 · Windows</p>
+        </div>
+        <div class="d-body">
+          <figure class="plate">
+            <img src="../assets/photo-deck-1600.webp" srcset="../assets/photo-deck-900.webp 900w, ../assets/photo-deck-1600.webp 1600w" sizes="(min-width:1080px) 50vw, 100vw" width="1600" height="1452" fetchpriority="high"
+                 alt="Photograph of a Stream Deck + XL running HWiNFO Sensors: 36 keys of CPU temperatures, clocks, usage and voltages, one amber and one red demo key, six readouts on the touch strip and six dials">
+            <figcaption>My Stream Deck + XL running the plugin. A photograph; the amber and red keys are threshold demos.</figcaption>
+            <div class="faces">
+              <img src="../assets/key-void.webp" width="144" height="144" alt="Rendered key: CPU 56.3 degrees with sparkline">
+              <img src="../assets/key-four.webp" width="144" height="144" alt="Rendered key: four readings in a grid">
+              <img src="../assets/key-warn.webp" width="144" height="144" alt="Rendered key at warn: amber field, 87 degrees">
+              <img src="../assets/key-paper.webp" width="144" height="144" alt="Rendered key in the light Paper theme: Vcore 1.288 volts">
+            </div>
+          </figure>
+          <div class="statement">
+            <dl>
+              <div><dt>The problem <span class="tag">editorial</span></dt><dd class="editorial">HWiNFO measures nearly everything in a Windows PC, but reading it means another window. A Stream Deck already has a screen under every key.</dd></div>
+              <div><dt>What was built</dt><dd><ul>
+                <li>Live HWiNFO readings on keys: temperatures, clocks, fans, usage, power.</li>
+                <li>One to four readings per key; dials on the Stream Deck + and + XL.</li>
+                <li>Seven themes, including a high-contrast light one.</li>
+                <li>Amber and red alerts that look the same on every theme.</li>
+                <li>A clear status screen, not a stale number, when HWiNFO stops.</li>
+              </ul></dd></div>
+              <div><dt>Where to inspect it</dt><dd><a href="https://github.com/slawrensen/hwinfo-streamdeck">Source (MIT)</a> · <a href="https://docs.slawrensen.com/hwinfo-streamdeck/">Documentation</a> · <a href="https://github.com/slawrensen/hwinfo-streamdeck/releases/tag/v1.6.0">Release notes</a></dd></div>
+            </dl>
+            <div class="cta">
+              <a class="btn btn-ink" href="https://marketplace.elgato.com/product/hwinfo-sensors-82436166-3d61-4527-9034-8fdf16d92c54">Get it on the Elgato Marketplace</a>
+              <a class="btn btn-line" href="https://docs.slawrensen.com/hwinfo-streamdeck/getting-started.html">Setup guide</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="more">
+          <details id="install">
+            <summary>Install <span class="hint">requirements and three steps</span></summary>
+            <div class="panel two">
+              <div>
+                <h3>You need</h3>
+                <dl class="req" style="margin-top:8px">
+                  <dt>System</dt><dd>Windows 10 or later, 64-bit</dd>
+                  <dt>App</dt><dd>Stream Deck 6.9 or later</dd>
+                  <dt>Readings</dt><dd>HWiNFO, free or Pro, with Shared Memory Support or Gadget reporting</dd>
+                  <dt>Dials</dt><dd>Stream Deck + or + XL (keys work on any model)</dd>
+                </dl>
+              </div>
+              <div>
+                <h3>Steps</h3>
+                <ol style="margin-top:8px">
+                  <li>Install from the <a href="https://marketplace.elgato.com/product/hwinfo-sensors-82436166-3d61-4527-9034-8fdf16d92c54">Elgato Marketplace</a>, or double-click the <code>.streamDeckPlugin</code> from <a href="https://github.com/slawrensen/hwinfo-streamdeck/releases/latest">GitHub Releases</a>.</li>
+                  <li>In HWiNFO's settings, tick Shared Memory Support. Run HWiNFO and the Stream Deck app at the same privilege level.</li>
+                  <li>Drag Sensor Reading onto a key and pick a sensor.</li>
+                </ol>
+                <p style="margin-top:10px;font-size:.9rem">Free HWiNFO turns Shared Memory off after 12 hours; with Gadget reporting on, the plugin falls back and recovers by itself. HWiNFO is a separate program by REALiX.</p>
+              </div>
+            </div>
+          </details>
+          <details id="evidence">
+            <summary>Evidence <span class="hint">what is verified, measured and checkable</span></summary>
+            <div class="panel">
+              <div>
+                <h3>Hardware, at four levels of confidence</h3>
+                <ul class="levels" style="margin-top:8px">
+                  <li><b>Physically verified</b><span>Stream Deck + XL: 36 keys and 6 dials on the real device.</span></li>
+                  <li><b>SDK simulated</b><span>Stream Deck +, 15-key, MK.2: driven end to end against a mock Stream Deck.</span></li>
+                  <li><b>Community verified</b><span>None yet; hardware reports are welcome.</span></li>
+                  <li><b>With limitations</b><span>XL, Mini, Neo, Mobile and others, with the caveats listed in the <a href="https://docs.slawrensen.com/hwinfo-streamdeck/hardware.html">matrix</a>.</span></li>
+                </ul>
+              </div>
+              <div>
+                <h3>Failure states it shows</h3>
+                <div class="status-row" style="margin-top:8px">
+                  <img src="../assets/status-start.webp" width="288" height="288" loading="lazy" alt="Status screen: Start HWiNFO, not detected">
+                  <img src="../assets/status-shm-off.webp" width="288" height="288" loading="lazy" alt="Status screen: Shared Memory is off">
+                  <img src="../assets/status-stale-shm.webp" width="288" height="288" loading="lazy" alt="Status screen: Not updating, check sharing">
+                  <img src="../assets/status-denied.webp" width="288" height="288" loading="lazy" alt="Status screen: Access denied, un-elevate">
+                </div>
+              </div>
+              <p>Measured: one poll of 548 live readings decodes in <span class="num">8.5 µs</span> on average over 1,000 runs, on one machine (<a href="https://github.com/slawrensen/hwinfo-streamdeck/blob/main/PERF.md">PERF.md</a>). Checkable: the native bridge is unsigned, so each release publishes SHA-256 hashes (<a href="https://github.com/slawrensen/hwinfo-streamdeck/blob/main/SECURITY.md">SECURITY.md</a>). Private: the plugin makes no network requests; its only connection is to the local Stream Deck app.</p>
+            </div>
+          </details>
+          <details id="help">
+            <summary>Documentation and help <span class="hint">docs, troubleshooting, issues</span></summary>
+            <div class="panel">
+              <ul>
+                <li><a href="https://docs.slawrensen.com/hwinfo-streamdeck/">Documentation</a>: every key and dial setting, themes, thresholds, data sources.</li>
+                <li><a href="https://docs.slawrensen.com/hwinfo-streamdeck/troubleshooting.html">Troubleshooting</a> and the <a href="https://docs.slawrensen.com/hwinfo-streamdeck/faq.html">FAQ</a>.</li>
+                <li><a href="https://github.com/slawrensen/hwinfo-streamdeck/issues">GitHub Issues</a> for bugs and questions, answered in the open.</li>
+                <li>Security reports go privately through <a href="https://github.com/slawrensen/hwinfo-streamdeck/security/advisories/new">GitHub advisories</a>.</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </article>
+
+      <article class="dossier small-dossier" id="site" aria-labelledby="d2">
+        <div class="d-head">
+          <h2 id="d2">slawrensen.com</h2>
+          <p class="status"><span class="dot" aria-hidden="true"></span><b>Live</b> · public source</p>
+        </div>
+        <div class="d-body">
+          <p>This page. Static HTML and images from one origin, with no analytics, cookies or third-party requests. A content security policy blocks outside requests in the browser, and each deploy scans the source and the live page for trackers. Cloudflare hosts it, so like any host it receives your request. <a href="https://github.com/slawrensen/slawrensen-site">Read the source</a>.</p>
+        </div>
+      </article>
+
+      <section class="rules" id="principles" aria-labelledby="r-title">
+        <h2 id="r-title">Working rules</h2>
+        <ol>
+          <li><h3>Say how sure I am.</h3><p>Support is claimed at the level it was tested, and only one device is claimed as physically verified. <a href="https://docs.slawrensen.com/hwinfo-streamdeck/hardware.html">Compatibility</a></p></li>
+          <li><h3>Show the failure.</h3><p>A key that cannot read HWiNFO says why and what to do, within 15 seconds. <a href="https://docs.slawrensen.com/hwinfo-streamdeck/status-screens.html">Status screens</a></p></li>
+          <li><h3>Measure, and say how.</h3><p>Performance figures name the harness, the machine and the run count. <a href="https://github.com/slawrensen/hwinfo-streamdeck/blob/main/PERF.md">PERF.md</a></p></li>
+          <li><h3>Make the unsigned part checkable.</h3><p>Every release since 1.4.0 publishes SHA-256 hashes for what you download. <a href="https://github.com/slawrensen/hwinfo-streamdeck/blob/main/SECURITY.md">How to verify</a></p></li>
+        </ol>
+      </section>
+
+      <section class="colophon" id="about" aria-labelledby="c-title">
+        <h2 id="c-title">About</h2>
+        <div>
+          <p>I'm Stephen Lawrensen, a systems engineer. slawrensen is the name I publish under. I design, write, test and support what is listed here myself.</p>
+          <p>HWiNFO Sensors is a ground-up TypeScript rewrite on Elgato's official SDK, inspired by <a href="https://github.com/shayne/hwinfo-streamdeck">shayne's original Go plugin</a>; no code is shared (<a href="https://github.com/slawrensen/hwinfo-streamdeck/blob/main/NOTICE.md">credits</a>). Find me at <a href="https://github.com/slawrensen">github.com/slawrensen</a>.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <div class="row">
+      <span>© 2026 Stephen Lawrensen</span>
+      <nav aria-label="Footer"><ul>
+        <li><a href="https://docs.slawrensen.com/hwinfo-streamdeck/">Docs</a></li>
+        <li><a href="https://marketplace.elgato.com/product/hwinfo-sensors-82436166-3d61-4527-9034-8fdf16d92c54">Marketplace</a></li>
+        <li><a href="https://github.com/slawrensen/hwinfo-streamdeck/issues">Issues</a></li>
+        <li><a href="https://github.com/slawrensen">GitHub</a></li>
+      </ul></nav>
+    </div>
+    <p class="fine">Not affiliated with, endorsed by, or sponsored by REALiX, Elgato or Corsair. "HWiNFO" is a trademark of REALiX, s.r.o. "Stream Deck" and "Elgato" are trademarks of Corsair Memory, Inc.</p>
+  </footer>
+</div>
+<script>
+  // Open a dossier section when its address is visited or the page is printed.
+  (function(){
+    function openFromHash(){ var el=location.hash&&document.getElementById(location.hash.slice(1)); if(el&&el.tagName==='DETAILS') el.open=true; }
+    addEventListener('hashchange',openFromHash); openFromHash();
+    addEventListener('beforeprint',function(){ document.querySelectorAll('details').forEach(function(d){ d.open=true; }); });
+  })();
+</script>
+</body>
+</html>
