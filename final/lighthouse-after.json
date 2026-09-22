@@ -1,0 +1,162 @@
+{
+  "root": "<repo>/public",
+  "runs": 5,
+  "settings": "lighthouse default mobile (Moto G Power, simulated slow 4G, 4x CPU)",
+  "lighthouseVersion": "13.5.0",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+  "lcpElement": null,
+  "summary": {
+    "performance": {
+      "median": 100,
+      "min": 100,
+      "max": 100
+    },
+    "accessibility": {
+      "median": 100,
+      "min": 100,
+      "max": 100
+    },
+    "bestPractices": {
+      "median": 100,
+      "min": 100,
+      "max": 100
+    },
+    "seo": {
+      "median": 92,
+      "min": 92,
+      "max": 92
+    },
+    "fcp": {
+      "median": 726.91815,
+      "min": 711.7197,
+      "max": 736.12765
+    },
+    "lcp": {
+      "median": 1322.4393999999998,
+      "min": 1249.8363,
+      "max": 1329.2553000000003
+    },
+    "tbt": {
+      "median": 0,
+      "min": 0,
+      "max": 0
+    },
+    "cls": {
+      "median": 0,
+      "min": 0,
+      "max": 0
+    },
+    "si": {
+      "median": 726.91815,
+      "min": 711.7197,
+      "max": 736.12765
+    },
+    "transferBytes": {
+      "median": 107688,
+      "min": 107671,
+      "max": 107732
+    },
+    "requests": {
+      "median": 13,
+      "min": 13,
+      "max": 13
+    }
+  },
+  "results": [
+    {
+      "performance": 100,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 92,
+      "fcp": 711.7197,
+      "lcp": 1322.4393999999998,
+      "tbt": 0,
+      "cls": 0,
+      "si": 711.7197,
+      "transferBytes": 107708,
+      "requests": 13,
+      "lcpElement": null,
+      "failedAudits": [
+        "robots-txt (0)"
+      ],
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36"
+    },
+    {
+      "performance": 100,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 92,
+      "fcp": 726.91815,
+      "lcp": 1249.8363,
+      "tbt": 0,
+      "cls": 0,
+      "si": 726.91815,
+      "transferBytes": 107732,
+      "requests": 13,
+      "lcpElement": null,
+      "failedAudits": [
+        "robots-txt (0)"
+      ],
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36"
+    },
+    {
+      "performance": 100,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 92,
+      "fcp": 725.973,
+      "lcp": 1320.946,
+      "tbt": 0,
+      "cls": 0,
+      "si": 725.973,
+      "transferBytes": 107688,
+      "requests": 13,
+      "lcpElement": null,
+      "failedAudits": [
+        "robots-txt (0)"
+      ],
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36"
+    },
+    {
+      "performance": 100,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 92,
+      "fcp": 733.33365,
+      "lcp": 1323.6673,
+      "tbt": 0,
+      "cls": 0,
+      "si": 733.33365,
+      "transferBytes": 107671,
+      "requests": 13,
+      "lcpElement": null,
+      "failedAudits": [
+        "robots-txt (0)"
+      ],
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36"
+    },
+    {
+      "performance": 100,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 92,
+      "fcp": 736.12765,
+      "lcp": 1329.2553000000003,
+      "tbt": 0,
+      "cls": 0,
+      "si": 736.12765,
+      "transferBytes": 107688,
+      "requests": 13,
+      "lcpElement": null,
+      "failedAudits": [
+        "robots-txt (0)"
+      ],
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36"
+    }
+  ]
+}

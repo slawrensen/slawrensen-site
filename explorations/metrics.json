@@ -1,0 +1,699 @@
+{
+  "root": "<repo>/public",
+  "startedAt": "2026-09-22T17:36:42.366Z",
+  "server": "http://127.0.0.1:8791/",
+  "options": {
+    "base": "http://127.0.0.1:8791",
+    "out": "<scratch>/evidence/explorations",
+    "pages": "/design/explorations/a-instrument-house/,/design/explorations/b-lawrensen-index/,/design/explorations/c-after-hours/",
+    "viewports": "390x844,1440x900",
+    "full": true
+  },
+  "runs": [
+    {
+      "engine": "chromium",
+      "page": "/design/explorations/a-instrument-house/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "chromium-a-instrument-house-390x844.jpg",
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "scrollHeight": 7483,
+      "cls": 0,
+      "cookies": "",
+      "localStorageKeys": [],
+      "consoleMsgs": [],
+      "pageErrors": [],
+      "crossOrigin": [],
+      "requests": [
+        {
+          "url": "/design/explorations/assets/photo-keys-900.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 61144
+        },
+        {
+          "url": "/design/explorations/assets/key-two.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 1946
+        },
+        {
+          "url": "/design/explorations/assets/key-void.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3050
+        },
+        {
+          "url": "/design/explorations/a-instrument-house/",
+          "type": "document",
+          "status": 200,
+          "bytes": 33151
+        },
+        {
+          "url": "/design/explorations/assets/key-three.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2164
+        },
+        {
+          "url": "/design/explorations/assets/key-four.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3756
+        },
+        {
+          "url": "/design/explorations/assets/key-ring.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 4108
+        },
+        {
+          "url": "/design/explorations/assets/key-bar.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2442
+        },
+        {
+          "url": "/design/explorations/assets/key-warn.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2966
+        },
+        {
+          "url": "/design/explorations/assets/key-crit.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2660
+        },
+        {
+          "url": "/design/explorations/assets/status-start.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 5576
+        },
+        {
+          "url": "/design/explorations/assets/status-shm-off.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 4630
+        },
+        {
+          "url": "/design/explorations/assets/status-stale-shm.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 5546
+        },
+        {
+          "url": "/design/explorations/assets/status-denied.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 4506
+        },
+        {
+          "url": "/design/explorations/assets/dial-one.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 7142
+        },
+        {
+          "url": "/design/explorations/assets/dial-rows3.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 7602
+        },
+        {
+          "url": "/design/explorations/assets/dial-rows2.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 9424
+        },
+        {
+          "url": "/design/explorations/assets/dial-crit.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 6134
+        },
+        {
+          "url": "/design/explorations/assets/status-busy.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 5226
+        }
+      ],
+      "totalDecodedBytes": 173173
+    },
+    {
+      "engine": "chromium",
+      "page": "/design/explorations/a-instrument-house/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "screenshot": "chromium-a-instrument-house-1440x900.jpg",
+      "horizontalOverflow": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "scrollHeight": 5230,
+      "cls": 0,
+      "cookies": "",
+      "localStorageKeys": [],
+      "consoleMsgs": [],
+      "pageErrors": [],
+      "crossOrigin": [],
+      "requests": [
+        {
+          "url": "/design/explorations/a-instrument-house/",
+          "type": "document",
+          "status": 200,
+          "bytes": 33151
+        },
+        {
+          "url": "/design/explorations/assets/photo-keys-900.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 61144
+        },
+        {
+          "url": "/design/explorations/assets/key-two.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 1946
+        },
+        {
+          "url": "/design/explorations/assets/key-void.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3050
+        },
+        {
+          "url": "/design/explorations/assets/key-four.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3756
+        },
+        {
+          "url": "/design/explorations/assets/key-three.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2164
+        },
+        {
+          "url": "/design/explorations/assets/key-ring.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 4108
+        },
+        {
+          "url": "/design/explorations/assets/key-warn.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2966
+        },
+        {
+          "url": "/design/explorations/assets/key-bar.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2442
+        },
+        {
+          "url": "/design/explorations/assets/key-crit.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2660
+        },
+        {
+          "url": "/design/explorations/assets/status-start.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 5576
+        },
+        {
+          "url": "/design/explorations/assets/status-shm-off.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 4630
+        },
+        {
+          "url": "/design/explorations/assets/status-stale-shm.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 5546
+        },
+        {
+          "url": "/design/explorations/assets/status-denied.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 4506
+        },
+        {
+          "url": "/design/explorations/assets/dial-one.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 7142
+        },
+        {
+          "url": "/design/explorations/assets/dial-rows2.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 9424
+        },
+        {
+          "url": "/design/explorations/assets/dial-rows3.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 7602
+        },
+        {
+          "url": "/design/explorations/assets/dial-crit.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 6134
+        },
+        {
+          "url": "/design/explorations/assets/status-busy.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 5226
+        }
+      ],
+      "totalDecodedBytes": 173173
+    },
+    {
+      "engine": "chromium",
+      "page": "/design/explorations/b-lawrensen-index/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "chromium-b-lawrensen-index-390x844.jpg",
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "scrollHeight": 3620,
+      "cls": 0,
+      "cookies": "",
+      "localStorageKeys": [],
+      "consoleMsgs": [],
+      "pageErrors": [],
+      "crossOrigin": [],
+      "requests": [
+        {
+          "url": "/design/explorations/b-lawrensen-index/",
+          "type": "document",
+          "status": 200,
+          "bytes": 22629
+        },
+        {
+          "url": "/design/explorations/assets/key-void.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3050
+        },
+        {
+          "url": "/design/explorations/assets/photo-deck-900.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 45306
+        },
+        {
+          "url": "/design/explorations/assets/key-four.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3756
+        },
+        {
+          "url": "/design/explorations/assets/key-warn.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2966
+        },
+        {
+          "url": "/design/explorations/assets/key-paper.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2442
+        }
+      ],
+      "totalDecodedBytes": 80149
+    },
+    {
+      "engine": "chromium",
+      "page": "/design/explorations/b-lawrensen-index/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "screenshot": "chromium-b-lawrensen-index-1440x900.jpg",
+      "horizontalOverflow": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "scrollHeight": 2878,
+      "cls": 0,
+      "cookies": "",
+      "localStorageKeys": [],
+      "consoleMsgs": [],
+      "pageErrors": [],
+      "crossOrigin": [],
+      "requests": [
+        {
+          "url": "/design/explorations/b-lawrensen-index/",
+          "type": "document",
+          "status": 200,
+          "bytes": 22629
+        },
+        {
+          "url": "/design/explorations/assets/photo-deck-900.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 45306
+        },
+        {
+          "url": "/design/explorations/assets/key-void.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3050
+        },
+        {
+          "url": "/design/explorations/assets/key-four.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3756
+        },
+        {
+          "url": "/design/explorations/assets/key-warn.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2966
+        },
+        {
+          "url": "/design/explorations/assets/key-paper.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2442
+        }
+      ],
+      "totalDecodedBytes": 80149
+    },
+    {
+      "engine": "chromium",
+      "page": "/design/explorations/c-after-hours/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "chromium-c-after-hours-390x844.jpg",
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "scrollHeight": 5320,
+      "cls": 0,
+      "cookies": "",
+      "localStorageKeys": [],
+      "consoleMsgs": [],
+      "pageErrors": [],
+      "crossOrigin": [],
+      "requests": [
+        {
+          "url": "/design/explorations/c-after-hours/",
+          "type": "document",
+          "status": 200,
+          "bytes": 25533
+        },
+        {
+          "url": "/design/explorations/assets/key-void.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3050
+        },
+        {
+          "url": "/design/explorations/assets/key-graphite.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2922
+        },
+        {
+          "url": "/design/explorations/assets/photo-keys-900.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 61144
+        },
+        {
+          "url": "/design/explorations/assets/key-ultraviolet.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3156
+        },
+        {
+          "url": "/design/explorations/assets/key-midnight.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3654
+        },
+        {
+          "url": "/design/explorations/assets/key-ember.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3412
+        },
+        {
+          "url": "/design/explorations/assets/key-paper.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2442
+        },
+        {
+          "url": "/design/explorations/assets/key-forest.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3608
+        },
+        {
+          "url": "/design/explorations/assets/key-crit.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2660
+        },
+        {
+          "url": "/design/explorations/assets/key-warn.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2966
+        },
+        {
+          "url": "/design/explorations/assets/key-two.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 1946
+        },
+        {
+          "url": "/design/explorations/assets/key-ring.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 4108
+        },
+        {
+          "url": "/design/explorations/assets/key-three.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2164
+        },
+        {
+          "url": "/design/explorations/assets/dial-one.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 7142
+        },
+        {
+          "url": "/design/explorations/assets/key-four.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3756
+        },
+        {
+          "url": "/design/explorations/assets/dial-rows2.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 9424
+        },
+        {
+          "url": "/design/explorations/assets/status-start.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 5576
+        },
+        {
+          "url": "/design/explorations/assets/status-shm-off.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 4630
+        },
+        {
+          "url": "/design/explorations/assets/status-stale-shm.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 5546
+        },
+        {
+          "url": "/design/explorations/assets/status-denied.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 4506
+        }
+      ],
+      "totalDecodedBytes": 163345
+    },
+    {
+      "engine": "chromium",
+      "page": "/design/explorations/c-after-hours/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "screenshot": "chromium-c-after-hours-1440x900.jpg",
+      "horizontalOverflow": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "scrollHeight": 4242,
+      "cls": 0,
+      "cookies": "",
+      "localStorageKeys": [],
+      "consoleMsgs": [],
+      "pageErrors": [],
+      "crossOrigin": [],
+      "requests": [
+        {
+          "url": "/design/explorations/c-after-hours/",
+          "type": "document",
+          "status": 200,
+          "bytes": 25533
+        },
+        {
+          "url": "/design/explorations/assets/photo-keys-1600.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 121802
+        },
+        {
+          "url": "/design/explorations/assets/key-graphite.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2922
+        },
+        {
+          "url": "/design/explorations/assets/key-void.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3050
+        },
+        {
+          "url": "/design/explorations/assets/key-ultraviolet.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3156
+        },
+        {
+          "url": "/design/explorations/assets/key-warn.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2966
+        },
+        {
+          "url": "/design/explorations/assets/key-ember.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3412
+        },
+        {
+          "url": "/design/explorations/assets/key-forest.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3608
+        },
+        {
+          "url": "/design/explorations/assets/key-paper.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2442
+        },
+        {
+          "url": "/design/explorations/assets/key-midnight.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3654
+        },
+        {
+          "url": "/design/explorations/assets/key-crit.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2660
+        },
+        {
+          "url": "/design/explorations/assets/key-two.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 1946
+        },
+        {
+          "url": "/design/explorations/assets/key-three.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 2164
+        },
+        {
+          "url": "/design/explorations/assets/key-four.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 3756
+        },
+        {
+          "url": "/design/explorations/assets/dial-one.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 7142
+        },
+        {
+          "url": "/design/explorations/assets/key-ring.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 4108
+        },
+        {
+          "url": "/design/explorations/assets/dial-rows2.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 9424
+        },
+        {
+          "url": "/design/explorations/assets/status-start.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 5576
+        },
+        {
+          "url": "/design/explorations/assets/status-shm-off.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 4630
+        },
+        {
+          "url": "/design/explorations/assets/status-stale-shm.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 5546
+        },
+        {
+          "url": "/design/explorations/assets/status-denied.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 4506
+        }
+      ],
+      "totalDecodedBytes": 224003
+    }
+  ],
+  "chromiumVersion": "153.0.8010.12"
+}

@@ -1,0 +1,177 @@
+{
+  "root": "<scratch>/baseline/public",
+  "runs": 5,
+  "settings": "lighthouse default mobile (Moto G Power, simulated slow 4G, 4x CPU)",
+  "lighthouseVersion": "13.5.0",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+  "lcpElement": null,
+  "summary": {
+    "performance": {
+      "median": 100,
+      "min": 100,
+      "max": 100
+    },
+    "accessibility": {
+      "median": 100,
+      "min": 100,
+      "max": 100
+    },
+    "bestPractices": {
+      "median": 100,
+      "min": 100,
+      "max": 100
+    },
+    "seo": {
+      "median": 92,
+      "min": 92,
+      "max": 92
+    },
+    "fcp": {
+      "median": 854.7957,
+      "min": 851.90835,
+      "max": 856.7183
+    },
+    "lcp": {
+      "median": 1888.1933,
+      "min": 1886.4366,
+      "max": 1891.5788000000002
+    },
+    "tbt": {
+      "median": 0,
+      "min": 0,
+      "max": 0
+    },
+    "cls": {
+      "median": 0,
+      "min": 0,
+      "max": 0
+    },
+    "si": {
+      "median": 854.7957,
+      "min": 851.90835,
+      "max": 856.7183
+    },
+    "transferBytes": {
+      "median": 248496,
+      "min": 248496,
+      "max": 248496
+    },
+    "requests": {
+      "median": 5,
+      "min": 5,
+      "max": 5
+    }
+  },
+  "results": [
+    {
+      "performance": 100,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 92,
+      "fcp": 856.7183,
+      "lcp": 1886.4366,
+      "tbt": 0,
+      "cls": 0,
+      "si": 856.7183,
+      "transferBytes": 248496,
+      "requests": 5,
+      "lcpElement": null,
+      "failedAudits": [
+        "largest-contentful-paint (0.98)",
+        "forced-reflow-insight (0)",
+        "image-delivery-insight (0)",
+        "robots-txt (0)"
+      ],
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36"
+    },
+    {
+      "performance": 100,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 92,
+      "fcp": 854.2894,
+      "lcp": 1891.5788000000002,
+      "tbt": 0,
+      "cls": 0,
+      "si": 854.2894,
+      "transferBytes": 248496,
+      "requests": 5,
+      "lcpElement": null,
+      "failedAudits": [
+        "largest-contentful-paint (0.98)",
+        "forced-reflow-insight (0)",
+        "image-delivery-insight (0)",
+        "robots-txt (0)"
+      ],
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36"
+    },
+    {
+      "performance": 100,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 92,
+      "fcp": 854.7957,
+      "lcp": 1888.5914000000002,
+      "tbt": 0,
+      "cls": 0,
+      "si": 854.7957,
+      "transferBytes": 248496,
+      "requests": 5,
+      "lcpElement": null,
+      "failedAudits": [
+        "largest-contentful-paint (0.98)",
+        "forced-reflow-insight (0)",
+        "image-delivery-insight (0)",
+        "robots-txt (0)"
+      ],
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36"
+    },
+    {
+      "performance": 100,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 92,
+      "fcp": 851.90835,
+      "lcp": 1886.8167000000003,
+      "tbt": 0,
+      "cls": 0,
+      "si": 851.90835,
+      "transferBytes": 248496,
+      "requests": 5,
+      "lcpElement": null,
+      "failedAudits": [
+        "largest-contentful-paint (0.98)",
+        "forced-reflow-insight (0)",
+        "image-delivery-insight (0)",
+        "robots-txt (0)"
+      ],
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36"
+    },
+    {
+      "performance": 100,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 92,
+      "fcp": 856.59665,
+      "lcp": 1888.1933,
+      "tbt": 0,
+      "cls": 0,
+      "si": 856.59665,
+      "transferBytes": 248496,
+      "requests": 5,
+      "lcpElement": null,
+      "failedAudits": [
+        "largest-contentful-paint (0.98)",
+        "forced-reflow-insight (0)",
+        "image-delivery-insight (0)",
+        "robots-txt (0)"
+      ],
+      "lighthouseVersion": "13.5.0",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36"
+    }
+  ]
+}

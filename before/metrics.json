@@ -1,0 +1,546 @@
+{
+  "root": "<scratch>/baseline/public",
+  "startedAt": "2026-09-22T17:14:51.419Z",
+  "server": "http://127.0.0.1:8790/",
+  "options": {
+    "root": "<local>/baseline/public",
+    "out": "<scratch>/evidence/before",
+    "pages": "/,/missing-page",
+    "full": true
+  },
+  "runs": [
+    {
+      "engine": "chromium",
+      "page": "/",
+      "viewport": {
+        "width": 320,
+        "height": 720
+      },
+      "screenshot": "chromium-home-320x720.jpg",
+      "horizontalOverflow": false,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "scrollHeight": 7117,
+      "cls": 0,
+      "cookies": "",
+      "localStorageKeys": [],
+      "consoleMsgs": [],
+      "pageErrors": [],
+      "crossOrigin": [],
+      "requests": [
+        {
+          "url": "/assets/hwinfo-sensors-v4.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 79174
+        },
+        {
+          "url": "/",
+          "type": "document",
+          "status": 200,
+          "bytes": 45973
+        },
+        {
+          "url": "/assets/hwinfo-layouts-v2.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 76772
+        },
+        {
+          "url": "/assets/streamdeck-plusxl-v2.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 73418
+        }
+      ],
+      "totalDecodedBytes": 275337
+    },
+    {
+      "engine": "chromium",
+      "page": "/",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "screenshot": "chromium-home-360x800.jpg",
+      "horizontalOverflow": false,
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "scrollHeight": 6647,
+      "cls": 0,
+      "cookies": "",
+      "localStorageKeys": [],
+      "consoleMsgs": [],
+      "pageErrors": [],
+      "crossOrigin": [],
+      "requests": [
+        {
+          "url": "/assets/hwinfo-sensors-v4.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 79174
+        },
+        {
+          "url": "/",
+          "type": "document",
+          "status": 200,
+          "bytes": 45973
+        },
+        {
+          "url": "/assets/hwinfo-layouts-v2.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 76772
+        },
+        {
+          "url": "/assets/streamdeck-plusxl-v2.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 73418
+        }
+      ],
+      "totalDecodedBytes": 275337
+    },
+    {
+      "engine": "chromium",
+      "page": "/",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "chromium-home-390x844.jpg",
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "scrollHeight": 6387,
+      "cls": 0,
+      "cookies": "",
+      "localStorageKeys": [],
+      "consoleMsgs": [],
+      "pageErrors": [],
+      "crossOrigin": [],
+      "requests": [
+        {
+          "url": "/assets/hwinfo-sensors-v4.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 79174
+        },
+        {
+          "url": "/",
+          "type": "document",
+          "status": 200,
+          "bytes": 45973
+        },
+        {
+          "url": "/assets/hwinfo-layouts-v2.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 76772
+        },
+        {
+          "url": "/assets/streamdeck-plusxl-v2.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 73418
+        }
+      ],
+      "totalDecodedBytes": 275337
+    },
+    {
+      "engine": "chromium",
+      "page": "/",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "screenshot": "chromium-home-768x1024.jpg",
+      "horizontalOverflow": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "scrollHeight": 5332,
+      "cls": 0,
+      "cookies": "",
+      "localStorageKeys": [],
+      "consoleMsgs": [],
+      "pageErrors": [],
+      "crossOrigin": [],
+      "requests": [
+        {
+          "url": "/assets/hwinfo-sensors-v4.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 79174
+        },
+        {
+          "url": "/",
+          "type": "document",
+          "status": 200,
+          "bytes": 45973
+        },
+        {
+          "url": "/assets/hwinfo-layouts-v2.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 76772
+        },
+        {
+          "url": "/assets/streamdeck-plusxl-v2.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 73418
+        }
+      ],
+      "totalDecodedBytes": 275337
+    },
+    {
+      "engine": "chromium",
+      "page": "/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "screenshot": "chromium-home-1440x900.jpg",
+      "horizontalOverflow": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "scrollHeight": 6062,
+      "cls": 0,
+      "cookies": "",
+      "localStorageKeys": [],
+      "consoleMsgs": [],
+      "pageErrors": [],
+      "crossOrigin": [],
+      "requests": [
+        {
+          "url": "/assets/hwinfo-sensors-v4.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 79174
+        },
+        {
+          "url": "/",
+          "type": "document",
+          "status": 200,
+          "bytes": 45973
+        },
+        {
+          "url": "/assets/hwinfo-layouts-v2.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 76772
+        },
+        {
+          "url": "/assets/streamdeck-plusxl-v2.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 73418
+        }
+      ],
+      "totalDecodedBytes": 275337
+    },
+    {
+      "engine": "chromium",
+      "page": "/",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "screenshot": "chromium-home-1920x1080.jpg",
+      "horizontalOverflow": false,
+      "scrollWidth": 1920,
+      "clientWidth": 1920,
+      "scrollHeight": 6062,
+      "cls": 0,
+      "cookies": "",
+      "localStorageKeys": [],
+      "consoleMsgs": [],
+      "pageErrors": [],
+      "crossOrigin": [],
+      "requests": [
+        {
+          "url": "/assets/hwinfo-sensors-v4.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 79174
+        },
+        {
+          "url": "/",
+          "type": "document",
+          "status": 200,
+          "bytes": 45973
+        },
+        {
+          "url": "/assets/hwinfo-layouts-v2.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 76772
+        },
+        {
+          "url": "/assets/streamdeck-plusxl-v2.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 73418
+        }
+      ],
+      "totalDecodedBytes": 275337
+    },
+    {
+      "engine": "chromium",
+      "page": "/",
+      "viewport": {
+        "width": 3440,
+        "height": 1440
+      },
+      "screenshot": "chromium-home-3440x1440.jpg",
+      "horizontalOverflow": false,
+      "scrollWidth": 3440,
+      "clientWidth": 3440,
+      "scrollHeight": 6062,
+      "cls": 0,
+      "cookies": "",
+      "localStorageKeys": [],
+      "consoleMsgs": [],
+      "pageErrors": [],
+      "crossOrigin": [],
+      "requests": [
+        {
+          "url": "/assets/hwinfo-sensors-v4.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 79174
+        },
+        {
+          "url": "/",
+          "type": "document",
+          "status": 200,
+          "bytes": 45973
+        },
+        {
+          "url": "/assets/hwinfo-layouts-v2.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 76772
+        },
+        {
+          "url": "/assets/streamdeck-plusxl-v2.webp",
+          "type": "image",
+          "status": 200,
+          "bytes": 73418
+        }
+      ],
+      "totalDecodedBytes": 275337
+    },
+    {
+      "engine": "chromium",
+      "page": "/missing-page",
+      "viewport": {
+        "width": 320,
+        "height": 720
+      },
+      "screenshot": "chromium-missingpage-320x720.jpg",
+      "horizontalOverflow": false,
+      "scrollWidth": 320,
+      "clientWidth": 320,
+      "scrollHeight": 720,
+      "cls": 0,
+      "cookies": "",
+      "localStorageKeys": [],
+      "consoleMsgs": [
+        "error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "pageErrors": [],
+      "crossOrigin": [],
+      "requests": [
+        {
+          "url": "/missing-page",
+          "type": "document",
+          "status": 404,
+          "bytes": 3022
+        }
+      ],
+      "totalDecodedBytes": 3022
+    },
+    {
+      "engine": "chromium",
+      "page": "/missing-page",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "screenshot": "chromium-missingpage-360x800.jpg",
+      "horizontalOverflow": false,
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "scrollHeight": 800,
+      "cls": 0,
+      "cookies": "",
+      "localStorageKeys": [],
+      "consoleMsgs": [
+        "error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "pageErrors": [],
+      "crossOrigin": [],
+      "requests": [
+        {
+          "url": "/missing-page",
+          "type": "document",
+          "status": 404,
+          "bytes": 3022
+        }
+      ],
+      "totalDecodedBytes": 3022
+    },
+    {
+      "engine": "chromium",
+      "page": "/missing-page",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "chromium-missingpage-390x844.jpg",
+      "horizontalOverflow": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "scrollHeight": 844,
+      "cls": 0,
+      "cookies": "",
+      "localStorageKeys": [],
+      "consoleMsgs": [
+        "error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "pageErrors": [],
+      "crossOrigin": [],
+      "requests": [
+        {
+          "url": "/missing-page",
+          "type": "document",
+          "status": 404,
+          "bytes": 3022
+        }
+      ],
+      "totalDecodedBytes": 3022
+    },
+    {
+      "engine": "chromium",
+      "page": "/missing-page",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "screenshot": "chromium-missingpage-768x1024.jpg",
+      "horizontalOverflow": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "scrollHeight": 1024,
+      "cls": 0,
+      "cookies": "",
+      "localStorageKeys": [],
+      "consoleMsgs": [
+        "error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "pageErrors": [],
+      "crossOrigin": [],
+      "requests": [
+        {
+          "url": "/missing-page",
+          "type": "document",
+          "status": 404,
+          "bytes": 3022
+        }
+      ],
+      "totalDecodedBytes": 3022
+    },
+    {
+      "engine": "chromium",
+      "page": "/missing-page",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "screenshot": "chromium-missingpage-1440x900.jpg",
+      "horizontalOverflow": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "scrollHeight": 900,
+      "cls": 0,
+      "cookies": "",
+      "localStorageKeys": [],
+      "consoleMsgs": [
+        "error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "pageErrors": [],
+      "crossOrigin": [],
+      "requests": [
+        {
+          "url": "/missing-page",
+          "type": "document",
+          "status": 404,
+          "bytes": 3022
+        }
+      ],
+      "totalDecodedBytes": 3022
+    },
+    {
+      "engine": "chromium",
+      "page": "/missing-page",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "screenshot": "chromium-missingpage-1920x1080.jpg",
+      "horizontalOverflow": false,
+      "scrollWidth": 1920,
+      "clientWidth": 1920,
+      "scrollHeight": 1080,
+      "cls": 0,
+      "cookies": "",
+      "localStorageKeys": [],
+      "consoleMsgs": [
+        "error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "pageErrors": [],
+      "crossOrigin": [],
+      "requests": [
+        {
+          "url": "/missing-page",
+          "type": "document",
+          "status": 404,
+          "bytes": 3022
+        }
+      ],
+      "totalDecodedBytes": 3022
+    },
+    {
+      "engine": "chromium",
+      "page": "/missing-page",
+      "viewport": {
+        "width": 3440,
+        "height": 1440
+      },
+      "screenshot": "chromium-missingpage-3440x1440.jpg",
+      "horizontalOverflow": false,
+      "scrollWidth": 3440,
+      "clientWidth": 3440,
+      "scrollHeight": 1440,
+      "cls": 0,
+      "cookies": "",
+      "localStorageKeys": [],
+      "consoleMsgs": [
+        "error: Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "pageErrors": [],
+      "crossOrigin": [],
+      "requests": [
+        {
+          "url": "/missing-page",
+          "type": "document",
+          "status": 404,
+          "bytes": 3022
+        }
+      ],
+      "totalDecodedBytes": 3022
+    }
+  ],
+  "chromiumVersion": "153.0.8010.12"
+}
