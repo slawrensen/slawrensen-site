@@ -46,6 +46,34 @@ test('WCAG 1.4.12 text spacing does not clip or overflow', async ({ page }) => {
   }
 });
 
+for (const [w, pct] of [[360, 150], [390, 175], [412, 200], [360, 200]]) {
+  test(`phone at ${w} px with text at ${pct}%: nothing runs off-screen`, async ({ page }) => {
+    await page.setViewportSize({ width: w, height: 800 });
+    await page.goto('/');
+    await page.addStyleTag({ content: `html{font-size:${pct}%!important}` });
+    const o = await overflow(page);
+    expect(o.scroll, JSON.stringify(o.wide)).toBeLessThanOrEqual(0);
+    expect(o.wide).toEqual([]);
+    const install = await page.locator('nav.primary a.cta').boundingBox();
+    expect(install.x + install.width).toBeLessThanOrEqual(w);
+  });
+}
+
+test('the nav offers Install and Help at every width', async ({ page }) => {
+  for (const w of [320, 390, 768, 1440]) {
+    await page.setViewportSize({ width: w, height: 800 });
+    await page.goto('/');
+    for (const [name, href] of [['Install', '#install'], ['Help', '#support']]) {
+      const link = page.locator('nav.primary').getByRole('link', { name, exact: true });
+      await expect(link, `${name} at ${w}`).toBeVisible();
+      await expect(link).toHaveAttribute('href', href);
+      const b = await link.boundingBox();
+      expect(b.x >= 0 && b.x + b.width <= w, `${name} inside the viewport at ${w}`).toBe(true);
+      expect(b.height, `${name} target height`).toBeGreaterThanOrEqual(44);
+    }
+  }
+});
+
 test('text at 200% of the default size still reflows at desktop width', async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 800 });
   await page.goto('/');

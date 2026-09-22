@@ -4,8 +4,10 @@
 paths on a 64-unit tile and writes `sl-mark.svg` and `sl-letters.json`
 (the raw path data the site inlines). `specimen.html` shows the result at
 16–256 px on dark and light grounds and as a circular avatar crop, next to the
-previous favicon. Run `node design/mark/sl-mark.mjs` after changing a
-parameter, then copy the path into `public/favicon.svg` and the inline marks.
+previous favicon. After changing a parameter, run `npm run mark` (it rewrites
+`sl-mark.svg`, `sl-letters.json`, `public/favicon.svg` and
+`public/apple-touch-icon.png`), then paste the new path data into the inline
+marks in `public/index.html` and `public/404.html`; a test fails until they match.
 
 ## What was wrong before
 

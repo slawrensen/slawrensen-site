@@ -14,7 +14,9 @@
 # build on any executable <script>.
 # style-src keeps 'unsafe-inline' because each page is one file with inline
 # CSS; a hash-based policy would break on every hand edit with no build step.
-# No report-uri/report-to: that would phone home.
+# No report-uri/report-to: that would phone home. (Cloudflare's edge adds its
+# own Report-To/NEL headers for Network Error Logging; that is a zone setting,
+# not this file, and the site's footer says so.)
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin

@@ -68,7 +68,7 @@ test('keyboard: skip link first, visible focus, and the install path within reac
     expect(info.ow, `focus ring width on ${info.name}`).toBeGreaterThanOrEqual(2);
     expect(info.top >= -1 && info.bottom <= info.vh + 1, `${info.name} is scrolled into view`).toBe(true);
   }
-  expect(order.slice(0, 6)).toEqual(['slawrensen home', 'HWiNFO Sensors', 'Principles', 'About', 'Install', 'Stephen Lawrensen']);
+  expect(order.slice(0, 7)).toEqual(['slawrensen home', 'HWiNFO Sensors', 'Principles', 'About', 'Help', 'Install', 'Stephen Lawrensen']);
   expect(order).toContain('Get it on the Elgato Marketplace');
 });
 
@@ -94,6 +94,19 @@ test('the comparison is a native radio group that works from the keyboard', asyn
   expect(await visible()).toEqual(['2']);
 });
 
+test('every comparison option shows exactly its own face, with a loaded image', async ({ page }) => {
+  await page.goto('/');
+  for (const [i, name] of FACE_OPTIONS.entries()) {
+    await chooseFace(page, name);
+    const shown = await page.$$eval('.face', (fs) => fs.filter((f) => getComputedStyle(f).display !== 'none').map((f) => f.dataset.f));
+    expect(shown, name).toEqual([String(i + 1)]);
+    const big = page.locator(`.face[data-f="${i + 1}"] img.big`);
+    await expect(big).toBeVisible();
+    await expect.poll(() => big.evaluate((img) => img.complete && img.naturalWidth), { message: `${name} image loads` }).toBeGreaterThan(0);
+    await expect(page.locator(`.face[data-f="${i + 1}"] h4`)).toHaveText(name === 'One reading' ? 'One reading' : new RegExp(`^${name}`));
+  }
+});
+
 test('without JavaScript every section and the first face are visible', async ({ browser }) => {
   const ctx = await browser.newContext({ javaScriptEnabled: false });
   const page = await ctx.newPage();
@@ -112,6 +125,14 @@ test('print shows every face and nothing is left invisible', async ({ page }) =>
   expect(await invisibleCount(page)).toBe(0);
   const ink = await page.$eval('h1', (h) => getComputedStyle(h).color);
   expect(ink).toBe('rgb(0, 0, 0)');
+  // The numbered notes refer to pins on the photograph, so the pins print too.
+  expect(await page.$$eval('.pin', (ps) => ps.filter((p) => getComputedStyle(p).display !== 'none').length)).toBe(4);
+});
+
+test('the 404 page prints dark text on white', async ({ page }) => {
+  await page.goto('/missing');
+  await page.emulateMedia({ media: 'print' });
+  expect(await page.$eval('h1', (h) => getComputedStyle(h).color)).toBe('rgb(0, 0, 0)');
 });
 
 test('nothing animates, with or without reduced motion', async ({ browser }) => {
@@ -134,4 +155,17 @@ test('forced colours keep control boundaries and the bracket', async ({ page, br
   expect(b).toBe('solid');
   const bracket = await page.$eval('.folio .bracket', (e) => getComputedStyle(e, '::before').borderLeftStyle);
   expect(bracket).toBe('solid');
+});
+
+test('forced colours: the radio group shows focus distinctly from selection', async ({ page, browserName }) => {
+  test.skip(browserName !== 'chromium', 'forced-colors emulation is Chromium-only in Playwright');
+  await page.emulateMedia({ forcedColors: 'active' });
+  await page.goto('/');
+  const label = page.locator('label[for="f1"]');
+  const style = () => label.evaluate((l) => { const cs = getComputedStyle(l); return `${cs.outlineStyle} ${cs.outlineWidth} ${cs.backgroundColor}`; });
+  const unfocused = await style();
+  await page.locator('#f1').focus();
+  const focused = await style();
+  expect(focused, 'focus must change something visible').not.toBe(unfocused);
+  expect(focused.startsWith('solid')).toBe(true);
 });

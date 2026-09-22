@@ -32,10 +32,22 @@ tests/                      Playwright tests run against the Pages emulator
 ## Editing content
 
 Facts on the page (versions, requirements, figures) each have a source in
-`docs/redesign/CLAIMS.md`. When the plugin releases, update the version in the
-spec sheet, the principles section and the JSON-LD block together; the tests
-fail if they disagree. Keep product faces and photographs real: crops of the
-plugin's own renders or the hardware photograph, captioned as examples.
+`docs/redesign/CLAIMS.md`. When the plugin releases, change all of these in
+`public/index.html` together, from the new release's notes and PERF.md:
+
+1. `softwareVersion` in the JSON-LD block
+2. Specification, Release row (version and month)
+3. Specification, Download row (package size)
+4. Principles, "Make the unsigned part checkable": version and pack SHA-256
+5. The release-notes link (`releases/tag/vX.Y.Z`) and its text
+6. The `PERF.md` and `SECURITY.md` links (`blob/vX.Y.Z/...`), and the
+   8.5 µs figure if the new PERF.md entry measured something else
+
+`tests/content.spec.mjs` fails if the version, the tag link and the pinned
+document links disagree; the hash, size and figure need a human check.
+Describe released features only, never previews. Keep product faces and
+photographs real: crops of the plugin's own renders or the hardware
+photograph, captioned as examples.
 
 Design tokens (colour, type, spacing, the bracket) are the `:root` variables
 at the top of `index.html`. Every text colour pair is at least 4.5:1; control

@@ -24,12 +24,20 @@ check 'url\((https?:)?//' 'absolute url() reference found in CSS'
 check 'fetch\(|XMLHttpRequest|navigator\.sendBeacon|new WebSocket' 'network call found in page script'
 check 'document\.cookie|localStorage|sessionStorage|serviceWorker' 'client-side storage, cookie or service-worker use found'
 
-# The CSP says script-src 'none'. Any <script> other than a JSON-LD data block
-# would be blocked in the browser, so catch it here instead.
-if grep -REno '<script[^>]*>' public --include='*.html' | grep -v 'type="application/ld+json"'; then
-  echo "::error::executable <script> found - the site runs no JavaScript (see the CSP in public/_headers)"
-  fail=1
-fi
+# The CSP says script-src 'none'. Anything that would run script is blocked in
+# the browser, so catch it here instead: every <script is a JSON-LD data block
+# (counted, so a tag split across lines still fails), and there are no inline
+# event handlers or javascript: URLs.
+for f in $(find public -name '*.html'); do
+  all=$(grep -o '<script' "$f" | wc -l)
+  data=$(grep -o '<script type="application/ld+json">' "$f" | wc -l)
+  if [ "$all" -ne "$data" ]; then
+    echo "::error::$f: executable <script> found - the site runs no JavaScript (see the CSP in public/_headers)"
+    fail=1
+  fi
+done
+check '[[:space:]]on[a-z]+[[:space:]]*=' 'inline event handler (on*=) found - the CSP blocks script'
+check 'javascript:' 'javascript: URL found - the CSP blocks script'
 
 # /assets/* is cached for a year as immutable, which is only safe when the
 # bytes behind a name never change: every file there needs a version.

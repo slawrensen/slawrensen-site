@@ -35,7 +35,7 @@ test('no executable script is present', async ({ page }) => {
 test('demonstration values are labelled as examples, not as the visitor\'s hardware', async ({ page }) => {
   await page.goto('/');
   const products = page.locator('#products');
-  await expect(products).toContainText('The readings are fixed examples from the author\'s machine; this page does not read yours.');
+  await expect(products).toContainText('The readings are fixed example values; this page does not read your machine.');
   await expect(page.locator('.folio figcaption')).toContainText('the numbers are that machine\'s, not yours');
 });
 

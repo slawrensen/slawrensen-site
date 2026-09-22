@@ -39,6 +39,7 @@
   .home:hover{background:var(--signal-hover)}
   .home:focus-visible{outline-color:var(--text)}
   @media (forced-colors:active){ .panel::before,.panel::after{border-color:CanvasText} .home{border:1px solid ButtonText} }
+  @media print{ :root{color-scheme:light;--bg:#fff;--surface:#fff;--line:#bbb;--text:#000;--muted:#333;--faint:#444} .home{background:none;color:#000;padding:0;text-decoration:underline} }
 </style>
 </head>
 <body>

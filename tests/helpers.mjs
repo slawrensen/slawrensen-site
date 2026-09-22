@@ -13,7 +13,8 @@ export async function scrollThrough(page) {
   await page.waitForLoadState('networkidle');
 }
 
-// Record every request, console error, page error and CSP violation.
+// Record every request, console error and uncaught page error. (A CSP
+// violation also surfaces as a console error in Chromium and WebKit.)
 export function watch(page) {
   const seen = { requests: [], consoleErrors: [], pageErrors: [] };
   page.on('request', (req) => seen.requests.push(req.url()));

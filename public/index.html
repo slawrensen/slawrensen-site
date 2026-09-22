@@ -44,8 +44,9 @@
     --arm:18px; --stroke:2px;    /* the L bracket, from the mark's L: arm length and stroke */
     --face:14%;                  /* key-face corner radius, as rendered by the plugin */
   }
-  @media (min-width:1800px){ :root{--max:1400px} html{font-size:17px} }
-  @media (min-width:2400px){ :root{--max:1680px;--arm:22px} html{font-size:19px} }
+  /* Wide screens scale the type as a percentage, so the visitor's own default size still counts. */
+  @media (min-width:1800px){ :root{--max:1400px} html{font-size:106.25%} }
+  @media (min-width:2400px){ :root{--max:1680px;--arm:22px} html{font-size:118.75%} }
   *,*::before,*::after{box-sizing:border-box;margin:0}
   html{-webkit-text-size-adjust:100%}
   body{background:var(--bg);color:var(--text);font:1rem/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:clip}
@@ -78,7 +79,8 @@
   @media (max-width:640px){
     .top .wrap{padding-block:6px}
     nav.primary{width:100%}
-    nav.primary ul{justify-content:space-between;gap:0}
+    nav.primary ul{justify-content:space-between;gap:0;flex-wrap:wrap}
+    .nav-wide{display:none}
     nav.primary a{padding:0 8px;font-size:.92rem}
     nav.primary a.cta{margin-left:0}
     .wide-only{display:none}
@@ -104,7 +106,8 @@
   .btn-secondary{box-shadow:inset 0 0 0 1px var(--control);color:var(--text)}
   .btn-secondary:hover{box-shadow:inset 0 0 0 1px var(--text)}
   .req{margin-top:18px;font-size:.9rem;color:var(--faint)}
-  .req span{white-space:nowrap}
+  @media (min-width:480px){ .req span{white-space:nowrap} }
+  code{overflow-wrap:anywhere}
   @media (max-width:430px){ .actions{display:grid;grid-template-columns:minmax(0,1fr)} }
 
   .folio{margin:10px}
@@ -148,7 +151,7 @@
   .stage{display:grid;gap:14px;margin-top:22px}
   .face{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(18px,3vw,36px);align-items:center;padding:clamp(16px,2.4vw,28px);background:var(--surface);border-radius:3px}
   .face .views{display:flex;align-items:flex-end;gap:18px}
-  .face .views figcaption,.face .views p{font-size:.74rem;color:var(--faint);margin-top:6px;text-align:center}
+  .face .views p{font-size:.74rem;color:var(--faint);margin-top:6px;text-align:center}
   .face .big{width:clamp(120px,22vw,176px);border-radius:var(--face)}
   .face .small{width:56px;border-radius:var(--face)}
   .face h4{font-size:1rem;font-weight:650;margin-bottom:10px}
@@ -168,8 +171,8 @@
 
   .tiles{display:grid;gap:clamp(8px,1.4vw,12px);grid-template-columns:repeat(4,minmax(0,1fr));max-width:560px}
   .tiles img{border-radius:var(--face)}
-  .tiles figcaption{font-size:.78rem;color:var(--muted);margin-top:6px}
-  .alerts{grid-template-columns:repeat(3,minmax(0,140px));max-width:444px}
+  .tiles figcaption{font-size:.78rem;color:var(--muted);margin-top:6px;overflow-wrap:anywhere}
+  @media (max-width:479px){ .tiles{grid-template-columns:repeat(2,minmax(0,1fr));max-width:320px} }
   .dials{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:560px}
   .dials img{border-radius:6px}
 
@@ -197,6 +200,7 @@
   .proof{padding-top:18px;border-top:var(--stroke) solid var(--control)}
   .proof p{color:var(--muted);max-width:54ch;margin-top:8px}
   .proof .ev{display:flex;align-items:center;gap:14px;margin-top:12px}
+  .proof .ev a{display:inline-flex;align-items:center;min-height:44px}
   .proof .ev img{width:56px;border-radius:var(--face)}
   .proof a{color:var(--text)}
 
@@ -225,12 +229,15 @@
   @media (forced-colors:active){
     .bracket::before,.bracket::after{border-color:CanvasText}
     .btn-primary,.btn-secondary,nav.primary a.cta,.seg label{border:1px solid ButtonText}
-    .seg input:checked+label{outline:3px solid Highlight;outline-offset:1px}
+    /* Selection as a system fill, so the outline stays free to show focus. */
+    .seg input:checked+label{forced-color-adjust:none;background:SelectedItem;color:SelectedItemText;border-color:SelectedItem}
+    .seg input:focus+label{outline:3px solid CanvasText;outline-offset:3px}
     .pin,.notes li>span:first-child{forced-color-adjust:none;background:#121417;color:#fff;box-shadow:0 0 0 2px #fff}
   }
   @media print{
     :root{color-scheme:light;--bg:#fff;--stone:#fff;--surface:#fff;--line:#bbb;--control:#666;--text:#000;--muted:#333;--faint:#444;--signal:#0a58b0}
-    .skip,nav.primary,.seg,.pin{display:none}
+    .skip,nav.primary,.seg{display:none}
+    .pin{background:#fff;color:#000;box-shadow:0 0 0 2px #000}
     .compare-block .face{display:grid!important;break-inside:avoid;border:1px solid #bbb}
     .btn{box-shadow:none;background:none;color:#000;padding:0;min-height:0;text-decoration:underline}
     section.band{padding-block:24px}
@@ -251,8 +258,9 @@
     <nav class="primary" aria-label="Primary">
       <ul>
         <li><a href="#products"><span><span class="wide-only">HWiNFO </span>Sensors</span></a></li>
-        <li><a href="#principles">Principles</a></li>
+        <li class="nav-wide"><a href="#principles">Principles</a></li>
         <li><a href="#about">About</a></li>
+        <li><a href="#support">Help</a></li>
         <li><a class="cta" href="#install">Install</a></li>
       </ul>
     </nav>
@@ -266,7 +274,7 @@
         <p class="kicker"><b>HWiNFO Sensors</b> for Elgato Stream Deck</p>
         <h1 id="hero-title">Software for people who care how their machines run.</h1>
         <p class="byline"><span>Built by <a href="#about">Stephen Lawrensen</a></span></p>
-        <p class="lead">HWiNFO Sensors puts live readings from HWiNFO on your Stream Deck: temperatures, clock speeds, fan RPM, usage and power, on the keys of any Stream Deck and the dials of the Stream Deck + and + XL. Free and open source.</p>
+        <p class="lead">HWiNFO Sensors puts live readings from HWiNFO on your Stream Deck: temperatures, clock speeds, fan RPM, usage and power, on Stream Deck keys and on the dials of the Stream Deck + and + XL. Free and open source.</p>
         <div class="actions">
           <a class="btn btn-primary" href="https://marketplace.elgato.com/product/hwinfo-sensors-82436166-3d61-4527-9034-8fdf16d92c54">Get it on the Elgato Marketplace</a>
           <a class="btn btn-secondary" href="https://docs.slawrensen.com/hwinfo-streamdeck/getting-started.html">Setup guide</a>
@@ -275,7 +283,7 @@
       </div>
       <figure class="folio">
         <div class="frame bracket">
-          <img src="/assets/deck-keys-v1-900.webp" srcset="/assets/deck-keys-v1-640.webp 640w, /assets/deck-keys-v1-900.webp 900w, /assets/deck-keys-v1-1600.webp 1600w" sizes="(min-width:2400px) 960px, (min-width:1800px) 800px, (min-width:980px) 56vw, calc(100vw - 52px)" width="1600" height="1009" fetchpriority="high"
+          <img src="/assets/deck-keys-v1-900.webp" srcset="/assets/deck-keys-v1-640.webp 640w, /assets/deck-keys-v1-900.webp 900w, /assets/deck-keys-v1-1600.webp 1600w" sizes="(min-width:2400px) 860px, (min-width:1800px) 700px, (min-width:1280px) 624px, (min-width:980px) 50vw, calc(100vw - 52px)" width="1600" height="1009" fetchpriority="high"
                alt="Photograph of a Stream Deck + XL running HWiNFO Sensors: 36 keys of CPU temperatures, clock speeds, usage and voltages in several themes, one amber and one red key, and six readouts on the touch strip">
           <span class="pin" style="left:89.9%;top:36.6%" aria-hidden="true">1</span>
           <span class="pin" style="left:89.9%;top:54%" aria-hidden="true">2</span>
@@ -284,11 +292,11 @@
         </div>
         <ol class="notes" aria-label="Callouts on the photograph">
           <li><span aria-hidden="true">1</span><span>Amber: a reading past its warn threshold (a demo key)</span></li>
-          <li><span aria-hidden="true">2</span><span>Red: past critical. Alert colours never change with the theme</span></li>
+          <li><span aria-hidden="true">2</span><span>Red: past critical (also a demo key). Alert colours never change with the theme</span></li>
           <li><span aria-hidden="true">3</span><span>Four readings on one key, each in its own colour</span></li>
           <li><span aria-hidden="true">4</span><span>Touch strip: a readout per dial, with session min and max</span></li>
         </ol>
-        <figcaption>The plugin on my Stream Deck + XL. A photograph, not a render; the numbers are that machine's, not yours.</figcaption>
+        <figcaption>The plugin on my Stream Deck + XL, photographed 25 July 2026. A photograph, not a render; the numbers are that machine's, not yours.</figcaption>
       </figure>
     </div>
   </section>
@@ -296,7 +304,7 @@
   <section class="band stone" id="products" aria-labelledby="p-title">
     <div class="wrap">
       <h2 id="p-title">One instrument, shown the way you will use it.</h2>
-      <p class="sec-lead">Every key and dial face on this page is real output from the plugin's own renderer, taken from its documentation. The readings are fixed examples from the author's machine; this page does not read yours.</p>
+      <p class="sec-lead">Every key and dial face on this page is real output from the plugin's own renderer, taken from its documentation. The readings are fixed example values; this page does not read your machine.</p>
 
       <div class="entry compare-block">
         <div class="entry-text">
@@ -347,11 +355,12 @@
 
       <div class="entry flip">
         <div class="entry-text">
-          <h3>Alerts you can read across the room</h3>
-          <p>Set a warn and a critical value. Past either one, the whole key turns amber or red. Those two colours are the same on all seven themes, so an alert never depends on the theme you picked, and it is carried by the whole field changing, not by hue alone.</p>
+          <h3>Seven themes, one alert language</h3>
+          <p>Themes apply per key or to the whole deck. Paper is a high-contrast light theme for bright rooms and low vision. Set a warn and a critical value: past either one, the whole key turns amber or red, in the same two colours on every theme, so an alert is carried by the whole field changing, not by hue alone.</p>
         </div>
-        <div class="tiles alerts">
-          <figure><img src="/assets/face-void-v1.webp" width="144" height="144" loading="lazy" alt="Normal: CPU 56.3 °C on a black key"><figcaption>Normal</figcaption></figure>
+        <div class="tiles">
+          <figure><img src="/assets/face-void-v1.webp" width="144" height="144" loading="lazy" alt="Void theme, normal: CPU 56.3 °C on a black key"><figcaption>Void, normal</figcaption></figure>
+          <figure><img src="/assets/face-paper-v1.webp" width="144" height="144" loading="lazy" alt="Paper theme, normal: Vcore 1.288 V in dark ink on a light key"><figcaption>Paper, normal</figcaption></figure>
           <figure><img src="/assets/face-warn-v1.webp" width="144" height="144" loading="lazy" alt="Warn: CPU 87 °C, the key field is amber with black text"><figcaption>Warn</figcaption></figure>
           <figure><img src="/assets/face-crit-v1.webp" width="144" height="144" loading="lazy" alt="Critical: CPU maximum 104 °C, the key field is red with white text"><figcaption>Critical</figcaption></figure>
         </div>
@@ -373,12 +382,12 @@
       <div class="entry flip">
         <div class="entry-text">
           <h3>Dials on the Stream Deck + and + XL</h3>
-          <p>Rotate to step through readings, push to reset the session min and max, touch to cycle the stat. A dial can also list its rotation set as two or three rows.</p>
+          <p>Rotate to step through readings, push to reset the session min and max, touch to cycle the stat. A dial can also list its rotation set as two or three rows, and an HWiNFO Control key can drive dials from anywhere on the deck.</p>
         </div>
         <div class="dials">
           <img src="/assets/dial-one-v1.webp" width="233" height="117" loading="lazy" alt="Dial face: CPU 56.3 °C with session minimum 42.0 and maximum 78.5 and a range bar">
-          <img src="/assets/dial-rows3-v1.webp" width="233" height="117" loading="lazy" alt="Dial overview with three rows: CPU, GPU temperature and pump RPM">
-          <img src="/assets/dial-rows2-v1.webp" width="233" height="117" loading="lazy" alt="Dial overview with two rows and trend sparklines">
+          <img src="/assets/dial-rows3-v1.webp" width="233" height="117" loading="lazy" alt="Dial overview with three rows: CPU 56.3 °C, GPU temperature 44.1 °C and pump 1762 RPM">
+          <img src="/assets/dial-rows2-v1.webp" width="233" height="117" loading="lazy" alt="Dial overview with two rows and trend sparklines: CPU 56.3 °C and GPU temperature 44.1 °C">
           <img src="/assets/dial-crit-v1.webp" width="233" height="117" loading="lazy" alt="Dial face at critical: GPU Hot Spot maximum 104 °C with a red range bar">
         </div>
       </div>
@@ -406,10 +415,10 @@
           <dl>
             <div class="row"><dt>Release</dt><dd><span class="num">1.6.0</span>, September 2026</dd></div>
             <div class="row"><dt>Requires</dt><dd>Windows 10 or later (x64), Stream Deck app 6.9 or later, HWiNFO with Shared Memory Support or Gadget reporting</dd></div>
-            <div class="row"><dt>Keys</dt><dd>any Stream Deck</dd></div>
+            <div class="row"><dt>Keys</dt><dd>Stream Deck models with screen keys; the Studio and Galleon 100 SD are untested</dd></div>
             <div class="row"><dt>Dials</dt><dd>Stream Deck + and Stream Deck + XL</dd></div>
             <div class="row"><dt>Verified on hardware</dt><dd>Stream Deck + XL. Other models are simulated against Elgato's SDK or listed with their limits: <a href="https://docs.slawrensen.com/hwinfo-streamdeck/hardware.html">compatibility</a></dd></div>
-            <div class="row"><dt>Download</dt><dd><span class="num">285 KB</span>. The native bridge is unsigned; every release publishes SHA-256 hashes (<a href="https://github.com/slawrensen/hwinfo-streamdeck/blob/main/SECURITY.md">how to check</a>)</dd></div>
+            <div class="row"><dt>Download</dt><dd><span class="num">285 KB</span>. The native bridge is unsigned; every GitHub release publishes SHA-256 hashes (<a href="https://github.com/slawrensen/hwinfo-streamdeck/blob/v1.6.0/SECURITY.md">how to check</a>)</dd></div>
             <div class="row"><dt>Network</dt><dd>none: the plugin's only connection is to the Stream Deck app on your PC</dd></div>
             <div class="row"><dt>Licence</dt><dd>MIT, free, <a href="https://github.com/slawrensen/hwinfo-streamdeck">source on GitHub</a></dd></div>
           </dl>
@@ -440,17 +449,17 @@
         </article>
         <article class="proof">
           <h3>Show the failure, not a stale number</h3>
-          <p>Every failure state has its own screen that names the cause and the fix, so a frozen value is never presented as a live one.</p>
+          <p>Every failure state has its own screen that names the cause and the fix, so a frozen value does not sit on a key as if it were live: after 15 seconds without an update, the key says so.</p>
           <p class="ev"><img src="/assets/status-busy-v1.webp" width="288" height="288" loading="lazy" alt="Status screen: HWiNFO busy, retrying"><a href="https://docs.slawrensen.com/hwinfo-streamdeck/status-screens.html">Status screens</a></p>
         </article>
         <article class="proof">
           <h3>Measure, and say how</h3>
-          <p>One poll of 548 live readings, copied and decoded, takes <span class="num">8.5 µs</span> on average over 1,000 runs on the author's machine. The performance log names the harness behind each figure.</p>
-          <p class="ev"><a href="https://github.com/slawrensen/hwinfo-streamdeck/blob/main/PERF.md">Performance log</a></p>
+          <p>One shared-memory poll of 548 live readings, copied and decoded, takes <span class="num">8.5 µs</span> on average over 1,000 runs on my machine. The performance log names the harness behind each figure.</p>
+          <p class="ev"><a href="https://github.com/slawrensen/hwinfo-streamdeck/blob/v1.6.0/PERF.md">Performance log</a></p>
         </article>
         <article class="proof">
           <h3>Make the unsigned part checkable</h3>
-          <p>The native bridge has no code-signing certificate, so every release since 1.4.0 publishes SHA-256 hashes you can compare with your download. Version 1.6.0: <span class="num">57fdf219…</span></p>
+          <p>The native bridge has no code-signing certificate, so every release since 1.4.0 publishes SHA-256 hashes. A GitHub download matches them byte for byte; Marketplace copies are repackaged by Elgato. Version 1.6.0: <span class="num">57fdf219…</span></p>
           <p class="ev"><a href="https://github.com/slawrensen/hwinfo-streamdeck/releases/tag/v1.6.0">1.6.0 release notes</a></p>
         </article>
       </div>
@@ -468,7 +477,7 @@
         </ul>
       </div>
       <div class="body">
-        <p>slawrensen is the name I publish that work under. HWiNFO Sensors is the first public release: I design it, write it, test it on my own Stream Deck + XL, document it, and answer its issues. One person makes all of it.</p>
+        <p>slawrensen is the name I publish that work under. HWiNFO Sensors is the first public release: I design it, write it, test it on my own Stream Deck + XL, document it, and answer its issues. I am its only maintainer.</p>
         <p>It is a ground-up TypeScript rewrite on Elgato's official SDK, inspired by <a href="https://github.com/shayne/hwinfo-streamdeck">shayne's original Go plugin</a>; no code is shared (<a href="https://github.com/slawrensen/hwinfo-streamdeck/blob/main/NOTICE.md">credits</a>).</p>
         <p>Questions, bugs and ideas go through <a href="https://github.com/slawrensen/hwinfo-streamdeck/issues">GitHub Issues</a>, where they are answered in the open.</p>
       </div>
@@ -490,7 +499,7 @@
         <li><a href="https://github.com/slawrensen/hwinfo-streamdeck/issues">Issues</a></li>
         <li><a href="https://github.com/slawrensen">GitHub</a></li>
       </ul></nav>
-      <p class="fine" style="margin-top:12px">This website is static HTML and images from one origin, with no analytics, cookies, trackers or third-party requests. It is hosted on Cloudflare Pages, so your request, including your IP address, reaches Cloudflare as it would reach any host. <a href="https://github.com/slawrensen/slawrensen-site">Site source</a></p>
+      <p class="fine" style="margin-top:12px">This website is static HTML and images from one origin, with no analytics, cookies, trackers or third-party requests. It is hosted on Cloudflare Pages, so your request, including your IP address, reaches Cloudflare as it would reach any host, and Cloudflare asks browsers to report failed connections to it (Network Error Logging). <a href="https://github.com/slawrensen/slawrensen-site">Site source</a></p>
       <p class="fine">Not affiliated with, endorsed by, or sponsored by REALiX, Elgato or Corsair. "HWiNFO" is a trademark of REALiX, s.r.o. "Stream Deck" and "Elgato" are trademarks of Corsair Memory, Inc. All product names and trademarks are the property of their respective owners.</p>
     </div>
   </div>

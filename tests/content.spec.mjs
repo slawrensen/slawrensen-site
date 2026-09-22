@@ -39,6 +39,16 @@ test('structured data agrees with the page', async ({ page }) => {
   const specRelease = await page.locator('.sheet .row').filter({ has: page.locator('dt', { hasText: /^Release$/ }) }).locator('dd').innerText();
   expect(specRelease.startsWith(ld.softwareVersion)).toBe(true);
   await expect(page.locator('#principles')).toContainText(`Version ${ld.softwareVersion}`);
+  // Release notes and version-specific documents point at the same tag.
+  const tag = `v${ld.softwareVersion}`;
+  const notes = page.locator('a[href*="/releases/tag/"]');
+  await expect(notes).toHaveAttribute('href', `https://github.com/slawrensen/hwinfo-streamdeck/releases/tag/${tag}`);
+  await expect(notes).toContainText(ld.softwareVersion);
+  for (const doc of ['PERF.md', 'SECURITY.md']) {
+    const hrefs = await page.$$eval(`a[href$="/${doc}"]`, (as) => as.map((a) => a.getAttribute('href')));
+    expect(hrefs.length, doc).toBeGreaterThan(0);
+    for (const h of hrefs) expect(h, doc).toBe(`https://github.com/slawrensen/hwinfo-streamdeck/blob/${tag}/${doc}`);
+  }
 });
 
 test('the SL mark has one geometry everywhere', async () => {
@@ -54,7 +64,12 @@ test('the SL mark has one geometry everywhere', async () => {
 });
 
 test('claims removed as unsupported do not come back', () => {
-  for (const stale of ['5.9 µs', 'SIGNAL OK', 'PHONES HOME', 'everything that comes next', 'Every line is on GitHub', 'CPU PKG', 'GPU FAN']) {
+  for (const stale of [
+    // removed from the previous site (docs/redesign/CLAIMS.md)
+    '5.9 µs', 'SIGNAL OK', 'PHONES HOME', 'everything that comes next', 'Every line is on GitHub', 'CPU PKG', 'GPU FAN',
+    // corrected after review: over-claims against the product's own documentation
+    'any Stream Deck', "author's machine", 'One person makes all of it', 'never presented as a live one', 'read across the room',
+  ]) {
     expect(html.includes(stale), stale).toBe(false);
   }
 });
