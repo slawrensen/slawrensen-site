@@ -1,0 +1,48 @@
+name: Validate
+
+# Review-time checks for pull requests. This workflow never deploys and uses
+# no secrets: production deploys only from pages-deployment.yaml on main.
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Source checks (same script as the deploy job)
+        run: sh scripts/check-source.sh
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dev tooling
+        run: npm ci
+
+      - name: Install browsers
+        run: npx playwright install --with-deps chromium firefox webkit
+
+      - name: Browser tests (Chromium, Firefox, WebKit) against the Pages emulator
+        run: npx playwright test
+        env:
+          WRANGLER_SEND_METRICS: 'false'
+
+      - name: Keep traces of failures
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-results
+          path: test-results/
+          retention-days: 14
