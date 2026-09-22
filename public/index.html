@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>HWiNFO Sensors for Stream Deck · slawrensen</title>
-<meta name="description" content="HWiNFO Sensors puts live hardware readings on Elgato Stream Deck keys and dials: temperatures, clocks, fan RPM, usage and power. Free, MIT licensed, for Windows. Built by Stephen Lawrensen.">
+<meta name="description" content="HWiNFO Sensors puts live hardware readings on Elgato Stream Deck keys and dials: temperatures, clocks, fan RPM, usage and power. Free, MIT licensed, no ads, no telemetry, for Windows. Built by Stephen Lawrensen.">
 <meta name="author" content="Stephen Lawrensen">
 <meta name="theme-color" content="#121417">
 <meta name="color-scheme" content="dark">
@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="canonical" href="https://slawrensen.com/">
 <meta property="og:title" content="HWiNFO Sensors for Stream Deck · slawrensen">
-<meta property="og:description" content="Live HWiNFO hardware readings on Elgato Stream Deck keys and dials. Free, MIT licensed, for Windows. Built by Stephen Lawrensen.">
+<meta property="og:description" content="Live HWiNFO hardware readings on Elgato Stream Deck keys and dials. Free, MIT licensed, no ads, no telemetry, for Windows. Built by Stephen Lawrensen.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://slawrensen.com/">
 <meta property="og:site_name" content="slawrensen">
@@ -56,7 +56,7 @@
   :focus-visible{outline:2px solid var(--signal);outline-offset:3px;border-radius:2px}
   .wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gutter)}
   @supports (padding:max(0px)){ .wrap{padding-inline:max(var(--gutter),env(safe-area-inset-left)) max(var(--gutter),env(safe-area-inset-right))} }
-  .skip{position:absolute;left:-9999px;top:8px;z-index:10;background:var(--signal);color:var(--signal-ink);padding:10px 14px;font-weight:600}
+  .skip{position:absolute;left:-9999px;top:8px;z-index:30;background:var(--signal);color:var(--signal-ink);padding:10px 14px;font-weight:600}
   .skip:focus{left:8px}
   .num{font-family:var(--mono);font-size:.92em;font-variant-numeric:tabular-nums}
 
@@ -66,8 +66,14 @@
   .bracket::before{left:-10px;bottom:-10px;border-left:var(--stroke) solid var(--signal);border-bottom:var(--stroke) solid var(--signal)}
   .bracket::after{right:-10px;top:-10px;border-right:var(--stroke) solid var(--control);border-top:var(--stroke) solid var(--control)}
 
-  /* header */
-  header.top{border-bottom:1px solid var(--line)}
+  /* header: stays in view where it is one 64 px row; on phones it scrolls away
+     rather than cover a seventh of the screen and, with enlarged text, the
+     element that has focus */
+  header.top{border-bottom:1px solid var(--line);background:var(--bg)}
+  @media (min-width:641px){
+    header.top{position:sticky;top:0;z-index:20}
+    html{scroll-padding-top:80px}
+  }
   .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:8px 16px;min-height:64px;flex-wrap:wrap}
   .brand{display:inline-flex;align-items:center;gap:10px;min-height:44px;font-weight:650;letter-spacing:-.01em;text-decoration:none;font-size:1.02rem}
   .brand svg{width:28px;height:28px;flex:none}
@@ -174,6 +180,14 @@
   .tiles figcaption{font-size:.78rem;color:var(--muted);margin-top:6px;overflow-wrap:anywhere}
   @media (max-width:479px){ .tiles{grid-template-columns:repeat(2,minmax(0,1fr));max-width:320px} }
   .dials{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:560px}
+  .themes{list-style:none;padding:0;display:grid;gap:10px;grid-template-columns:repeat(4,minmax(0,1fr));max-width:560px}
+  @media (min-width:560px){ .themes{grid-template-columns:repeat(7,minmax(0,1fr))} }
+  .themes img{border-radius:var(--face)}
+  .themes figcaption{font-size:.74rem;color:var(--muted);margin-top:4px;overflow-wrap:anywhere}
+  .alerts{grid-template-columns:repeat(3,minmax(0,1fr));max-width:420px}
+  .dial-photo{max-width:560px;margin-bottom:14px}
+  .dial-photo img{border-radius:3px;background:#050607}
+  .dial-photo figcaption{font-size:.84rem;color:var(--faint);margin-top:8px}
   .dials img{border-radius:6px}
 
   /* install: steps beside a specification sheet framed by the bracket */
@@ -274,7 +288,7 @@
         <p class="kicker"><b>HWiNFO Sensors</b> for Elgato Stream Deck</p>
         <h1 id="hero-title">Software for people who care how their machines run.</h1>
         <p class="byline"><span>Built by <a href="#about">Stephen Lawrensen</a></span></p>
-        <p class="lead">HWiNFO Sensors puts live readings from HWiNFO on your Stream Deck: temperatures, clock speeds, fan RPM, usage and power, on Stream Deck keys and on the dials of the Stream Deck + and + XL. Free and open source.</p>
+        <p class="lead">HWiNFO Sensors puts live readings from HWiNFO on your Stream Deck: temperatures, clock speeds, fan RPM, usage and power, on Stream Deck keys and on the dials of the Stream Deck + and + XL. Free and open source, with no ads and no telemetry.</p>
         <div class="actions">
           <a class="btn btn-primary" href="https://marketplace.elgato.com/product/hwinfo-sensors-82436166-3d61-4527-9034-8fdf16d92c54">Get it on the Elgato Marketplace</a>
           <a class="btn btn-secondary" href="https://docs.slawrensen.com/hwinfo-streamdeck/getting-started.html">Setup guide</a>
@@ -325,27 +339,27 @@
           </fieldset>
           <div class="stage">
             <figure class="face" data-f="1">
-              <div class="views"><div><img class="big" src="/assets/face-void-v1.webp" width="144" height="144" loading="lazy" alt="Key face, Void theme: CPU (Tctl/Tdie) 56.3 °C with a rising sparkline"><p aria-hidden="true">enlarged</p></div><div><img class="small" src="/assets/face-void-v1.webp" width="144" height="144" loading="lazy" alt=""><p aria-hidden="true">key size</p></div></div>
+              <div class="views"><div><img class="big" src="/assets/face-void-v1.webp" width="432" height="432" loading="lazy" alt="Key face, Void theme: CPU (Tctl/Tdie) 56.3 °C with a rising sparkline"><p aria-hidden="true">enlarged</p></div><div><img class="small" src="/assets/face-void-v1.webp" width="432" height="432" loading="lazy" alt=""><p aria-hidden="true">key size</p></div></div>
               <figcaption><h4>One reading</h4><dl><dt>Shows</dt><dd>label, value, unit, and a sparkline, bar or ring</dd><dt>Contrast</dt><dd>value 21:1, label 5.5:1, unit 4.2:1 on the default theme</dd><dt>Press</dt><dd>cycles current, min, max and average</dd></dl></figcaption>
             </figure>
             <figure class="face" data-f="2">
-              <div class="views"><div><img class="big" src="/assets/face-two-v1.webp" width="144" height="144" loading="lazy" alt="Key face with two readings stacked: CPU 56.3 °C and GPU 44.1 °C"><p aria-hidden="true">enlarged</p></div><div><img class="small" src="/assets/face-two-v1.webp" width="144" height="144" loading="lazy" alt=""><p aria-hidden="true">key size</p></div></div>
+              <div class="views"><div><img class="big" src="/assets/face-two-v1.webp" width="432" height="432" loading="lazy" alt="Key face with two readings stacked: CPU 56.3 °C and GPU 44.1 °C"><p aria-hidden="true">enlarged</p></div><div><img class="small" src="/assets/face-two-v1.webp" width="432" height="432" loading="lazy" alt=""><p aria-hidden="true">key size</p></div></div>
               <figcaption><h4>Two readings</h4><dl><dt>Shows</dt><dd>two sensors stacked, each with its own label and stat</dd><dt>Good for</dt><dd>pairs, such as CPU and GPU, or min and max</dd></dl></figcaption>
             </figure>
             <figure class="face" data-f="3">
-              <div class="views"><div><img class="big" src="/assets/face-three-v1.webp" width="144" height="144" loading="lazy" alt="Key face with three rows: CCD1 54.5, CCD2 47.9 and Core Max 59.4 °C"><p aria-hidden="true">enlarged</p></div><div><img class="small" src="/assets/face-three-v1.webp" width="144" height="144" loading="lazy" alt=""><p aria-hidden="true">key size</p></div></div>
+              <div class="views"><div><img class="big" src="/assets/face-three-v1.webp" width="432" height="432" loading="lazy" alt="Key face with three rows: CCD1 54.5, CCD2 47.9 and Core Max 59.4 °C"><p aria-hidden="true">enlarged</p></div><div><img class="small" src="/assets/face-three-v1.webp" width="432" height="432" loading="lazy" alt=""><p aria-hidden="true">key size</p></div></div>
               <figcaption><h4>Three readings</h4><dl><dt>Shows</dt><dd>compact rows, labels left and values right</dd><dt>Good for</dt><dd>related sensors read as a group</dd></dl></figcaption>
             </figure>
             <figure class="face" data-f="4">
-              <div class="views"><div><img class="big" src="/assets/face-four-v1.webp" width="144" height="144" loading="lazy" alt="Key face with a two by two grid: 56.3 °C, 44.1 °C, 1762 RPM and 95.4 W, each in its own colour"><p aria-hidden="true">enlarged</p></div><div><img class="small" src="/assets/face-four-v1.webp" width="144" height="144" loading="lazy" alt=""><p aria-hidden="true">key size</p></div></div>
+              <div class="views"><div><img class="big" src="/assets/face-four-v1.webp" width="432" height="432" loading="lazy" alt="Key face with a two by two grid: 56.3 °C, 44.1 °C, 1762 RPM and 95.4 W, each in its own colour"><p aria-hidden="true">enlarged</p></div><div><img class="small" src="/assets/face-four-v1.webp" width="432" height="432" loading="lazy" alt=""><p aria-hidden="true">key size</p></div></div>
               <figcaption><h4>Four readings</h4><dl><dt>Shows</dt><dd>a 2×2 grid with a colour or label per cell</dd><dt>Trade-off</dt><dd>the densest layout: values only, no sparkline</dd></dl></figcaption>
             </figure>
             <figure class="face" data-f="5">
-              <div class="views"><div><img class="big" src="/assets/face-bar-v1.webp" width="144" height="144" loading="lazy" alt="Key face: Total CPU Usage 37.4 % with a bar showing amber and red threshold zones"><p aria-hidden="true">enlarged</p></div><div><img class="small" src="/assets/face-bar-v1.webp" width="144" height="144" loading="lazy" alt=""><p aria-hidden="true">key size</p></div></div>
+              <div class="views"><div><img class="big" src="/assets/face-bar-v1.webp" width="432" height="432" loading="lazy" alt="Key face: Total CPU Usage 37.4 % with a bar showing amber and red threshold zones"><p aria-hidden="true">enlarged</p></div><div><img class="small" src="/assets/face-bar-v1.webp" width="432" height="432" loading="lazy" alt=""><p aria-hidden="true">key size</p></div></div>
               <figcaption><h4>Bar</h4><dl><dt>Shows</dt><dd>the value inside its range, with the warn and critical zones marked</dd></dl></figcaption>
             </figure>
             <figure class="face" data-f="6">
-              <div class="views"><div><img class="big" src="/assets/face-ring-v1.webp" width="144" height="144" loading="lazy" alt="Key face: CPU (Tctl/Tdie) 56.3 °C inside a ring gauge with amber and red zones"><p aria-hidden="true">enlarged</p></div><div><img class="small" src="/assets/face-ring-v1.webp" width="144" height="144" loading="lazy" alt=""><p aria-hidden="true">key size</p></div></div>
+              <div class="views"><div><img class="big" src="/assets/face-ring-v1.webp" width="432" height="432" loading="lazy" alt="Key face: CPU (Tctl/Tdie) 56.3 °C inside a ring gauge with amber and red zones"><p aria-hidden="true">enlarged</p></div><div><img class="small" src="/assets/face-ring-v1.webp" width="432" height="432" loading="lazy" alt=""><p aria-hidden="true">key size</p></div></div>
               <figcaption><h4>Ring</h4><dl><dt>Shows</dt><dd>the same range as a ring gauge</dd></dl></figcaption>
             </figure>
           </div>
@@ -358,11 +372,21 @@
           <h3>Seven themes, one alert language</h3>
           <p>Themes apply per key or to the whole deck. Paper is a high-contrast light theme for bright rooms and low vision. Set a warn and a critical value: past either one, the whole key turns amber or red, in the same two colours on every theme, so an alert is carried by the whole field changing, not by hue alone.</p>
         </div>
-        <div class="tiles">
-          <figure><img src="/assets/face-void-v1.webp" width="144" height="144" loading="lazy" alt="Void theme, normal: CPU 56.3 °C on a black key"><figcaption>Void, normal</figcaption></figure>
-          <figure><img src="/assets/face-paper-v1.webp" width="144" height="144" loading="lazy" alt="Paper theme, normal: Vcore 1.288 V in dark ink on a light key"><figcaption>Paper, normal</figcaption></figure>
-          <figure><img src="/assets/face-warn-v1.webp" width="144" height="144" loading="lazy" alt="Warn: CPU 87 °C, the key field is amber with black text"><figcaption>Warn</figcaption></figure>
-          <figure><img src="/assets/face-crit-v1.webp" width="144" height="144" loading="lazy" alt="Critical: CPU maximum 104 °C, the key field is red with white text"><figcaption>Critical</figcaption></figure>
+        <div>
+          <ul class="themes" aria-label="The seven themes">
+            <li><figure><img src="/assets/face-void-v1.webp" width="432" height="432" loading="lazy" alt="Void theme: CPU (Tctl/Tdie) 56.3 °C"><figcaption>Void</figcaption></figure></li>
+            <li><figure><img src="/assets/face-graphite-v1.webp" width="432" height="432" loading="lazy" alt="Graphite theme: CPU Fan 1180 RPM"><figcaption>Graphite</figcaption></figure></li>
+            <li><figure><img src="/assets/face-ultraviolet-v1.webp" width="432" height="432" loading="lazy" alt="Ultraviolet theme: Total CPU Usage 37.4 %"><figcaption>Ultraviolet</figcaption></figure></li>
+            <li><figure><img src="/assets/face-midnight-v1.webp" width="432" height="432" loading="lazy" alt="Midnight theme: Current DL rate 390 Mbps"><figcaption>Midnight</figcaption></figure></li>
+            <li><figure><img src="/assets/face-forest-v1.webp" width="432" height="432" loading="lazy" alt="Forest theme: Core 0 Clock 5462 MHz"><figcaption>Forest</figcaption></figure></li>
+            <li><figure><img src="/assets/face-ember-v1.webp" width="432" height="432" loading="lazy" alt="Ember theme: CPU Package Power 142.8 W"><figcaption>Ember</figcaption></figure></li>
+            <li><figure><img src="/assets/face-paper-v1.webp" width="432" height="432" loading="lazy" alt="Paper theme: Vcore 1.288 V, dark ink on a light key"><figcaption>Paper</figcaption></figure></li>
+          </ul>
+          <div class="tiles alerts" style="margin-top:22px">
+          <figure><img src="/assets/face-void-v1.webp" width="432" height="432" loading="lazy" alt="Normal: CPU 56.3 °C on a black key"><figcaption>Normal</figcaption></figure>
+          <figure><img src="/assets/face-warn-v1.webp" width="432" height="432" loading="lazy" alt="Warn: CPU 87 °C, the key field is amber with black text"><figcaption>Warn</figcaption></figure>
+          <figure><img src="/assets/face-crit-v1.webp" width="432" height="432" loading="lazy" alt="Critical: CPU maximum 104 °C, the key field is red with white text"><figcaption>Critical</figcaption></figure>
+          </div>
         </div>
       </div>
 
@@ -384,11 +408,18 @@
           <h3>Dials on the Stream Deck + and + XL</h3>
           <p>Rotate to step through readings, push to reset the session min and max, touch to cycle the stat. A dial can also list its rotation set as two or three rows, and an HWiNFO Control key can drive dials from anywhere on the deck.</p>
         </div>
-        <div class="dials">
-          <img src="/assets/dial-one-v1.webp" width="233" height="117" loading="lazy" alt="Dial face: CPU 56.3 °C with session minimum 42.0 and maximum 78.5 and a range bar">
-          <img src="/assets/dial-rows3-v1.webp" width="233" height="117" loading="lazy" alt="Dial overview with three rows: CPU 56.3 °C, GPU temperature 44.1 °C and pump 1762 RPM">
-          <img src="/assets/dial-rows2-v1.webp" width="233" height="117" loading="lazy" alt="Dial overview with two rows and trend sparklines: CPU 56.3 °C and GPU temperature 44.1 °C">
-          <img src="/assets/dial-crit-v1.webp" width="233" height="117" loading="lazy" alt="Dial face at critical: GPU Hot Spot maximum 104 °C with a red range bar">
+        <div>
+          <figure class="dial-photo">
+            <img src="/assets/deck-dials-v1-700.webp" srcset="/assets/deck-dials-v1-700.webp 700w, /assets/deck-dials-v1-1200.webp 1200w" sizes="(min-width:900px) 560px, calc(100vw - 32px)" width="1200" height="499" loading="lazy"
+                 alt="Photograph of the Stream Deck + XL's touch strip showing six readouts, including CPU package power and PSU power, above its six metal dials">
+            <figcaption>The touch strip and dials of the same Stream Deck + XL, photographed.</figcaption>
+          </figure>
+          <div class="dials">
+          <img src="/assets/dial-one-v1.webp" width="699" height="350" loading="lazy" alt="Dial face: CPU 56.3 °C with session minimum 42.0 and maximum 78.5 and a range bar">
+          <img src="/assets/dial-rows3-v1.webp" width="699" height="350" loading="lazy" alt="Dial overview with three rows: CPU 56.3 °C, GPU temperature 44.1 °C and pump 1762 RPM">
+          <img src="/assets/dial-rows2-v1.webp" width="699" height="350" loading="lazy" alt="Dial overview with two rows and trend sparklines: CPU 56.3 °C and GPU temperature 44.1 °C">
+          <img src="/assets/dial-crit-v1.webp" width="699" height="350" loading="lazy" alt="Dial face at critical: GPU Hot Spot maximum 104 °C with a red range bar">
+          </div>
         </div>
       </div>
     </div>
@@ -417,9 +448,10 @@
             <div class="row"><dt>Requires</dt><dd>Windows 10 or later (x64), Stream Deck app 6.9 or later, HWiNFO with Shared Memory Support or Gadget reporting</dd></div>
             <div class="row"><dt>Keys</dt><dd>Stream Deck models with screen keys; the Studio and Galleon 100 SD are untested</dd></div>
             <div class="row"><dt>Dials</dt><dd>Stream Deck + and Stream Deck + XL</dd></div>
+            <div class="row"><dt>Updates</dt><dd>once a second by default (250 ms to 5 s), one reader however many keys are showing</dd></div>
             <div class="row"><dt>Verified on hardware</dt><dd>Stream Deck + XL. Other models are simulated against Elgato's SDK or listed with their limits: <a href="https://docs.slawrensen.com/hwinfo-streamdeck/hardware.html">compatibility</a></dd></div>
             <div class="row"><dt>Download</dt><dd><span class="num">285 KB</span>. The native bridge is unsigned; every GitHub release publishes SHA-256 hashes (<a href="https://github.com/slawrensen/hwinfo-streamdeck/blob/v1.6.0/SECURITY.md">how to check</a>)</dd></div>
-            <div class="row"><dt>Network</dt><dd>none: the plugin's only connection is to the Stream Deck app on your PC</dd></div>
+            <div class="row"><dt>Privacy</dt><dd>no ads, no telemetry, no network requests: the plugin's only connection is to the Stream Deck app on your PC</dd></div>
             <div class="row"><dt>Licence</dt><dd>MIT, free, <a href="https://github.com/slawrensen/hwinfo-streamdeck">source on GitHub</a></dd></div>
           </dl>
         </div>

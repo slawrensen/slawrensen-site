@@ -72,6 +72,44 @@ test('keyboard: skip link first, visible focus, and the install path within reac
   expect(order).toContain('Get it on the Elgato Marketplace');
 });
 
+test('the sticky header never hides the focused element or an anchor target (WCAG 2.4.11)', async ({ page, browserName }) => {
+  test.skip(browserName === 'webkit', 'WebKit tabs to form controls only by default');
+  for (const [w, h] of [[768, 1024], [1440, 900]]) {
+    await page.setViewportSize({ width: w, height: h });
+    await page.goto('/');
+    const header = await page.locator('header.top').boundingBox();
+    expect(await page.$eval('header.top', (e) => getComputedStyle(e).position)).toBe('sticky');
+    let stops = 0;
+    for (let i = 0; i < 80; i++) {
+      await page.keyboard.press('Tab');
+      const f = await page.evaluate(() => {
+        const el = document.activeElement;
+        if (!el || el === document.body) return null;
+        const r = el.getBoundingClientRect();
+        const hit = document.elementFromPoint(r.left + Math.min(8, r.width / 2), r.top + Math.min(8, r.height / 2));
+        const target = el.matches('input') ? document.querySelector(`label[for="${el.id}"]`) : el;
+        return { skip: el.matches('.skip'), inHeader: !!el.closest('header'), top: r.top, bottom: r.bottom, topmost: !!hit && (target.contains(hit) || hit.contains(target)), name: (el.textContent || el.id).trim().slice(0, 40) };
+      });
+      if (!f) break;
+      stops++;
+      if (f.skip) expect(f.topmost, `skip link is on top of the header at ${w}px`).toBe(true);
+      else if (!f.inHeader) expect(f.top, `${f.name} at ${w}px is below the sticky header`).toBeGreaterThanOrEqual(header.height - 1);
+    }
+    expect(stops).toBeGreaterThan(30);
+    for (const id of ['products', 'install', 'support', 'principles', 'about']) {
+      await page.goto(`/#${id}`);
+      const t = await page.locator(`#${id}`).boundingBox();
+      expect(t.y, `#${id} lands below the header at ${w}px`).toBeGreaterThanOrEqual(header.height - 1);
+    }
+  }
+});
+
+test('on phones the header scrolls away instead of covering the page', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  expect(await page.$eval('header.top', (e) => getComputedStyle(e).position)).toBe('static');
+});
+
 test('the comparison is a native radio group that works from the keyboard', async ({ page }) => {
   await page.goto('/');
   const group = page.getByRole('group', { name: 'Show a key holding' });

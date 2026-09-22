@@ -74,6 +74,20 @@ test('claims removed as unsupported do not come back', () => {
   }
 });
 
+test('the plugin\'s privacy promise stays up front, scoped to the plugin', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('.hero .lead')).toContainText('no ads and no telemetry');
+  expect(await page.getAttribute('meta[name="description"]', 'content')).toContain('no telemetry');
+  const privacy = page.locator('.sheet .row').filter({ has: page.locator('dt', { hasText: /^Privacy$/ }) });
+  await expect(privacy).toContainText('no network requests');
+});
+
+test('all seven themes are shown by name', async ({ page }) => {
+  await page.goto('/');
+  const names = await page.$$eval('.themes figcaption', (fs) => fs.map((f) => f.textContent));
+  expect(names).toEqual(['Void', 'Graphite', 'Ultraviolet', 'Midnight', 'Forest', 'Ember', 'Paper']);
+});
+
 test('the maker is named, and the brand stays lowercase', async ({ page }) => {
   await page.goto('/');
   await expect(page.locator('.byline')).toContainText('Built by Stephen Lawrensen');

@@ -11,7 +11,8 @@ described in `LEDGER.md`, folder `before/`.
 
 Windows 10 IoT Enterprise LTSC 2021 (19044), Git Bash + PowerShell 7, Node
 24.16.0, Python 3.12.10, gh 2.94.0, Playwright 1.63.0 (Chromium 153.0.8010.12,
-Firefox and WebKit builds 1543/2359), Google Chrome 153.0.8010.52, wrangler
+WebKit 26.6; Playwright's Firefox build installs but cannot start on this
+host, a Windows side-by-side error), Google Chrome 153.0.8010.52, wrangler
 4.136.3 (`pages dev` emulator for `_headers`/`_redirects`).
 
 ## Architecture (reconfirmed)
@@ -20,9 +21,9 @@ Firefox and WebKit builds 1543/2359), Google Chrome 153.0.8010.52, wrangler
   is null, so no Git integration and no branch preview builds). Every one of the
   last ten deployments is `ad_hoc` from `main`, made by the GitHub Actions
   workflow, which triggers only on push to `main` and manual dispatch.
-- `public/index.html`: one 45,973-byte file with inline CSS and about 8 KB of
-  inline vanilla JS (scroll progress bar, reveal-on-scroll, section tracking,
-  canvas "oscilloscope", animated fake readouts). No runtime dependencies.
+- `public/index.html`: one 45,973-byte file with inline CSS and 7.7 KB (2.7 KB
+  brotli) of inline vanilla JS: scroll progress bar, reveal-on-scroll, section
+  tracking, canvas "oscilloscope", animated fake readouts. No runtime dependencies.
 - `_headers`: strict CSP (`default-src 'none'`, inline style/script allowed),
   HSTS, nosniff, frame denial, Permissions-Policy; `no-cache` HTML; one-year
   immutable caching for versioned images. `_redirects`: six retired image names
@@ -38,7 +39,7 @@ Firefox and WebKit builds 1543/2359), Google Chrome 153.0.8010.52, wrangler
 | Measure | Baseline |
 | --- | --- |
 | HTML | 45,973 B raw; ~11.9 KB brotli |
-| Inline JS | ~8.1 KB raw |
+| Inline JS | 7,697 B raw; 2.7 KB brotli |
 | Eager requests | HTML + one 79 KB WebP (two further WebPs lazy) |
 | Cross-origin requests, cookies, storage | 0, none, none |
 | Console errors (home) | 0 (404 page logs the expected 404 for itself) |
@@ -79,8 +80,9 @@ Observations
 - First viewport (1440×900 and 390×844) shows no product image, only a
   headline, gradient buttons and two animated fake readouts.
 - The primary CTA "Get HWiNFO Sensors" scrolls to `#products`; the actual
-  Marketplace link is at the end of a long product card (about 5,000 px down
-  on a 390 px phone, after three large images).
+  Marketplace link is at the end of a long product card (3,819 px down on a
+  390 px phone and 4,238 px at 1440 px, after three large images; measured by
+  the independent final reviewer).
 - Requirements are split across chips ("Windows x64", "Stream Deck 6.9+"); the
   Windows 10 floor and the HWiNFO requirement are only in setup prose.
 - Support paths: GitHub Issues appears once, inside About. Troubleshooting,
@@ -113,8 +115,9 @@ Observations (not defects)
   states both.
 - The local emulator joins both matching `Cache-Control` rules for versioned
   assets (`public, max-age=86400, public, max-age=31536000, immutable`); the
-  live edge returns only the immutable value. The redesign detaches the
-  one-day rule for versioned files so both agree.
+  live edge returns only the immutable value. The redesign removes the
+  overlap: every file in `/assets/` is versioned, so one immutable rule covers
+  them, and a test checks each asset gets exactly one Cache-Control value.
 - The canvas animation is well behaved (pauses offscreen and when hidden,
   respects reduced motion, including changes mid-session), but it is ~4 KB
   of JS for decoration.
