@@ -14,8 +14,10 @@ metrics and Lighthouse JSON live on the orphan branch `evidence/redesign-2026-09
 | 6 | Comparison and decision (A, Instrument House) | done | `DECISION.md` |
 | 7 | Production candidate: page, 404, icons, headers, checks | done | `public/`, `scripts/check-source.sh` |
 | 8 | Tests: Playwright (Chromium, WebKit locally; + Firefox in CI) | done | `tests/`, `VALIDATION.md` |
-| 9 | Independent adversarial review and repair | see `VALIDATION.md` | `VALIDATION.md` (Review) |
-| 10 | Final validation, before/after, draft PR | see `VALIDATION.md` | `after/`, PR link in `VALIDATION.md` |
+| 9 | Independent adversarial review (3 reviewers) and repair; independent before/after comparison and repair | done | `VALIDATION.md` (Independent review) |
+| 10 | Final validation at `aa37fe3`, before/after evidence | done | `VALIDATION.md`, `after/`, `final/` |
+| 11 | Feature branch and evidence branch pushed, draft PR opened | see PR | PR description; hosted CI on the PR |
+| 12 | Production deploy | not started: needs the owner's approval to merge | README "Deploy" |
 
 Resuming: read `VALIDATION.md` last section for the latest state. Nothing in
 this work merges to `main` or deploys; production publication is a separate
