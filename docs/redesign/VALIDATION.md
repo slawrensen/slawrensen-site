@@ -7,7 +7,7 @@ production are reported separately at the end; nothing here was deployed.
 
 | | |
 | --- | --- |
-| Commit | `aa37fe335afe51cee4782974c23a36388ccb7345` on `redesign/2026-09` (later commits change only `docs/`) |
+| Commit | `aa37fe335afe51cee4782974c23a36388ccb7345` on `redesign/2026-09` (later commits change only `docs/` and one test, `tests/images.spec.mjs`) |
 | Working tree | clean (0 changes) when the checks ran |
 | Started | 2026-09-22T18:39:37Z |
 | Host | Windows 10 IoT Enterprise LTSC 2021 (19044), Node 24.16.0 |
@@ -27,7 +27,7 @@ Production files (SHA-256 of the files as committed, LF line endings):
 
 The full list of 75 files is in the evidence branch (`final/public-sha256.txt`).
 To confirm nothing that ships changed after validation:
-`git diff --stat aa37fe3..HEAD -- public tests scripts` prints nothing.
+`git diff --stat aa37fe3..HEAD -- public scripts` prints nothing.
 
 ## Commands and exit codes
 
@@ -196,7 +196,8 @@ original site. Dispositions:
   started a `loading="lazy"` image that the test had scrolled past. The test
   now scrolls each visible image into view and then requires it to load (it
   still fails on a missing file, checked by mutation). `public/` did not
-  change. The result of the rerun is on the pull request.
+  change. Rerun (run 35769811856, on `868d579`): **success**, 147 passed,
+  42 skipped, in Chromium, Firefox and WebKit.
 - **Hosted preview:** not performed. It would need a `wrangler pages deploy
   --branch` upload, which this work was not authorised to make.
 - **Live edge:** not verified for the new files. The deploy workflow checks
