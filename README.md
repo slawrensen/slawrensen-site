@@ -16,5 +16,5 @@ dev` 4.136.3. Local paths in JSON are replaced by `<repo>` and `<scratch>`.
 | `before-reduced-motion/` | The original at 390 and 1440 px with `prefers-reduced-motion: reduce`, which makes its reveal-on-scroll sections visible in a full-page capture (the plain `before/` full pages show them blank, which is the old page's print/capture defect) |
 | `final/` | Final validation of `aa37fe3`: `head.txt`, `dirty.txt`, `started.txt`, `check-source.txt`, `exit-codes.txt`, `playwright.txt` (104 passed, 22 skipped), `lighthouse.txt` and `lighthouse-after.json` (5 cold mobile runs), `eager.txt` (first-load transfer before/after, median of 3), `sizes.txt`, `public-sha256.txt` (every validated production file) |
 
-The written reports are in the main branch under `docs/redesign/`:
+The written reports are under `docs/redesign/` in branch `redesign/2026-09`:
 `AUDIT.md`, `CLAIMS.md`, `DECISION.md`, `VALIDATION.md`, `LEDGER.md`.
