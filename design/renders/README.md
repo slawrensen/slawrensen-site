@@ -19,8 +19,12 @@ cp <this repo>/design/renders/site-faces.mjs scripts/
 npx tsx scripts/site-faces.mjs <output dir>
 ```
 
-Then copy the files into `public/assets/` under a new version (`-v2`), and add
-the old names to `public/_redirects`. Rendered 2026-09-22 on Windows with
+Run it three times, with `<output dir> 1 -1x`, `<output dir> 2 -2x` and
+`<output dir> 3`; the page serves all three through `srcset` (`-v1-144`,
+`-v1-288` and `-v1` for keys; `-v1-233`, `-v1-466` and `-v1` for dials), so
+each screen downloads only the density it shows. For a changed face, copy the
+files into `public/assets/` under a new version (`-v2`) and add the old names
+to `public/_redirects`. Rendered 2026-09-22 on Windows with
 Segoe UI, as the documentation images were; each face matches the published
 1x render to within 1.2/255 mean difference per channel when downscaled.
 

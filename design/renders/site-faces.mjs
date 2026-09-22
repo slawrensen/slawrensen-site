@@ -1,8 +1,5 @@
-// Scratch-only (not part of the product repo): render the website's key and
-// dial faces with the plugin's own renderers and exactly the inputs of
-// scripts/contact-sheet.mjs at tag v1.6.0, rasterised at 3x density so they
-// stay sharp on high-DPI screens. Output: one lossless WebP per face.
-// Usage: npx tsx scripts/site-faces.mjs <outDir>
+// Render the website's key and dial faces (see design/renders/README.md).
+// Usage: npx tsx scripts/site-faces.mjs <outDir> [scale=3] [suffix=""]
 import path from "node:path";
 import sharp from "sharp";
 
@@ -12,7 +9,8 @@ import { classifyTypeAccent, loadThemes, resolvePalette } from "../src/ui/themes
 import { SensorType } from "../src/hwinfo/types";
 
 const outDir = process.argv[2] ?? ".";
-const SCALE = 3;
+const SCALE = Number(process.argv[3] ?? 3);
+const SUFFIX = process.argv[4] ?? "";
 const config = loadThemes();
 const history = [52, 54, 53, 58, 61, 60, 64, 63, 66, 71, 69, 74, 72, 70, 75, 78, 74, 77, 80, 79, 83, 82, 85, 84, 88, 87, 86, 89, 91, 90, 92, 94, 93, 95, 97, 96];
 const READINGS = {
@@ -27,12 +25,12 @@ const READINGS = {
 
 // Keys: the SVG is 144x144; density 72*SCALE rasterises it at SCALE x.
 const key = (svg, name) => sharp(Buffer.from(svg), { density: 72 * SCALE })
-	.webp({ lossless: true, effort: 6 }).toFile(path.join(outDir, `${name}.webp`));
+	.webp({ lossless: true, effort: 6 }).toFile(path.join(outDir, `${name}${SUFFIX}.webp`));
 // Dials: contact-sheet.mjs draws the 200x100 render into a 233x117 box
 // measured off the hardware photo; keep that proportion at SCALE x.
 const DIAL_W = Math.round(144 * 470 / 290) * SCALE, DIAL_H = Math.round(DIAL_W / 2);
 const dial = (svg, name) => sharp(Buffer.from(svg), { density: 72 * SCALE * 1.2 })
-	.resize(DIAL_W, DIAL_H, { fit: "fill" }).webp({ lossless: true, effort: 6 }).toFile(path.join(outDir, `${name}.webp`));
+	.resize(DIAL_W, DIAL_H, { fit: "fill" }).webp({ lossless: true, effort: 6 }).toFile(path.join(outDir, `${name}${SUFFIX}.webp`));
 
 for (const [theme, r] of Object.entries(READINGS)) {
 	const accent = classifyTypeAccent(r.type, r.unit, r.label);
