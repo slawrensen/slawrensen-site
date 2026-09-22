@@ -11,13 +11,18 @@ for (const [w, h, dpr] of [[390, 844, 3], [1440, 900, 1], [1440, 900, 2], [2560,
     await page.goto('/');
     await scrollThrough(page);
     for (const name of FACE_OPTIONS) await chooseFace(page, name);
-    await page.waitForLoadState('networkidle');
-    // Lazy images start loading when shown, so wait for them; a missing file
-    // never completes with pixels and still fails after the timeout.
-    await expect.poll(() => page.$$eval('img', (xs) => xs
-      .filter((i) => i.getBoundingClientRect().width > 0)
-      .filter((i) => !(i.complete && i.naturalWidth > 0))
-      .map((i) => i.currentSrc || i.src)), { timeout: 10_000 }).toEqual([]);
+    // A lazy image only loads once it nears the viewport, and how early is up
+    // to the engine, so bring each visible image into view the way a reader
+    // would, then require it to load. A missing file never gets pixels and
+    // still fails after the timeout.
+    const imgs = page.locator('img');
+    for (let i = 0; i < await imgs.count(); i++) {
+      const img = imgs.nth(i);
+      if (!(await img.isVisible())) continue;
+      await img.scrollIntoViewIfNeeded();
+      await expect.poll(() => img.evaluate((el) => el.complete && el.naturalWidth > 0),
+        { message: await img.getAttribute('src'), timeout: 10_000 }).toBe(true);
+    }
     const hero = await page.$eval('.folio img', (i) => ({ src: i.currentSrc, w: i.naturalWidth }));
     expect(hero.w, hero.src).toBeGreaterThan(0);
     await ctx.close();

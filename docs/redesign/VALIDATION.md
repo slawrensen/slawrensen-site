@@ -189,8 +189,14 @@ original site. Dispositions:
 
 ## Hosted CI, preview and production
 
-- **Hosted CI (exact head):** see the draft pull request's `Validate` run
-  (Chromium, Firefox, WebKit on ubuntu-latest). Not available locally.
+- **Hosted CI (exact head):** the draft pull request's `Validate` workflow
+  (ubuntu-latest; Chromium, Firefox, WebKit). First run (run 35769230582, on
+  `2274254`): 146 passed, 42 skipped, 1 failed. Firefox ran for the first time
+  with no failures. The failure was a test race: WebKit on Linux had not yet
+  started a `loading="lazy"` image that the test had scrolled past. The test
+  now scrolls each visible image into view and then requires it to load (it
+  still fails on a missing file, checked by mutation). `public/` did not
+  change. The result of the rerun is on the pull request.
 - **Hosted preview:** not performed. It would need a `wrangler pages deploy
   --branch` upload, which this work was not authorised to make.
 - **Live edge:** not verified for the new files. The deploy workflow checks
