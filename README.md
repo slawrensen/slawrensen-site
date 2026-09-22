@@ -1,44 +1,106 @@
 # slawrensen.com
 
-Static marketing site for Stephen Lawrensen — independent software for the
-Windows desktop. Single page, no build step, no dependencies. Product 01 is
-HWiNFO Sensors for the Elgato Stream Deck.
+Home of slawrensen, the name Stephen Lawrensen publishes software under, and
+of its first public product, HWiNFO Sensors for the Elgato Stream Deck.
+
+One static page, no build step, no JavaScript, no runtime dependencies.
+Cloudflare Pages serves `public/` as it is.
 
 ## Structure
 
 ```
-public/
-  index.html    the whole site — self-contained (inline CSS + dependency-free vanilla JS)
-  _headers      Cloudflare Pages security + cache headers
-  favicon.svg   brand mark
+public/                     everything that ships
+  index.html                the site: inline CSS, no script (JSON-LD data only)
+  404.html                  not-found page with ways back
+  _headers                  security headers (CSP), cache policy
+  _redirects                retired asset names -> current files
+  favicon.svg               the SL mark (generated, see design/mark/)
+  apple-touch-icon.png      the mark as a 180 px bitmap (generated)
   robots.txt
-  404.html      styled 404 page
-  assets/       product screenshot (webp), device photo (webp), social card (jpg)
-.github/workflows/pages-deployment.yaml   CI/CD
+  assets/                   versioned images only: name-vN.ext
+design/
+  mark/                     SL mark source of truth, geometry notes, specimen
+  explorations/             the three design directions compared in 2026-09
+docs/redesign/              audit, claim sources, decision, validation, ledger
+scripts/                    source checks and dev-only measurement tools
+tests/                      Playwright tests run against the Pages emulator
+.github/workflows/
+  pages-deployment.yaml     deploy public/ on push to main (production)
+  validate.yaml             pull-request checks (no secrets, no deploy)
 ```
 
-## Deploy
+## Editing content
 
-Push to `main`; GitHub Actions deploys `public/` to Cloudflare Pages via
-`cloudflare/wrangler-action`. Live at <https://slawrensen.com> — `www` 301s to
-the apex, and it is also served at <https://slawrensen.pages.dev>.
+Facts on the page (versions, requirements, figures) each have a source in
+`docs/redesign/CLAIMS.md`. When the plugin releases, change all of these in
+`public/index.html` together, from the new release's notes and PERF.md:
 
-Manual deploy:
+1. `softwareVersion` in the JSON-LD block
+2. Specification, Release row (version and month)
+3. Specification, Download row (package size)
+4. Principles, "Make the unsigned part checkable": version and pack SHA-256
+5. The release-notes link (`releases/tag/vX.Y.Z`) and its text
+6. The `PERF.md` and `SECURITY.md` links (`blob/vX.Y.Z/...`), and the
+   8.5 µs figure if the new PERF.md entry measured something else
+
+`tests/content.spec.mjs` fails if the version, the tag link and the pinned
+document links disagree; the hash, size and figure need a human check.
+Describe released features only, never previews. Keep product faces and
+photographs real: crops of the plugin's own renders or the hardware
+photograph, captioned as examples.
+
+Design tokens (colour, type, spacing, the bracket) are the `:root` variables
+at the top of `index.html`. Every text colour pair is at least 4.5:1; control
+borders use `--control`, which is at least 3:1 on every surface.
+
+## Images and caching
+
+Files in `public/assets/` are cached for a year as immutable, so a file's
+bytes must never change under its name. To change an image, save it under a
+new version (`deck-keys-v2-900.webp`), point the page at it, and add the old
+name to `_redirects` so external links keep resolving. `scripts/check-source.sh`
+fails on an unversioned asset name.
+
+## The mark
+
+`design/mark/sl-mark.mjs` holds the SL geometry. After changing it, run
+`npm run mark` and paste the new path data into the three inline SVGs in
+`index.html` and `404.html`; a test checks they all match `favicon.svg`.
+
+## Checks
 
 ```
-npx wrangler pages deploy public --project-name=slawrensen
+npm ci
+npx playwright install chromium firefox webkit
+npm run check:source        # privacy/caching rules in public/ (also run by CI)
+npm test                    # Playwright: Chromium, Firefox, WebKit
+npm run test:local          # Chromium and WebKit only
+npm run lighthouse          # 5 cold mobile runs, median and range
 ```
+
+Tests run `public/` through `wrangler pages dev`, Cloudflare's own emulator, so
+`_headers` and `_redirects` apply as on the edge. It does not reproduce
+edge-only behaviour (compression choices, headers Cloudflare injects, zone
+settings); the deploy job checks the live site for those.
 
 ## Local preview
 
 ```
-python -m http.server 8791 --directory public
+npm run serve
 ```
 
-then open <http://localhost:8791/>.
+then open <http://127.0.0.1:8788/>. The explorations need a server at the
+repository root: `python -m http.server 8791`, then
+<http://localhost:8791/design/explorations/a-instrument-house/>.
 
-## Editing
+## Deploy
 
-It is one HTML file. Design tokens (colour, spacing, type scale) live in the
-`:root` CSS variables at the top. Add a product by copying the `.product`
-block and bumping `Products / 02`.
+Pushing to `main` deploys: GitHub Actions runs the source checks, deploys
+`public/` to Cloudflare Pages (a Direct Upload project, so branches and pull
+requests never deploy), then checks the live page for injected trackers and
+for the expected Content-Security-Policy. Live at <https://slawrensen.com>;
+`www` 301s to the apex; also served at <https://slawrensen.pages.dev>.
+
+Rollback: revert the merge commit on `main` and push, or promote the previous
+deployment in the Cloudflare Pages dashboard (Deployments, then "Rollback to
+this deployment").

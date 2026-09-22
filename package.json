@@ -1,0 +1,22 @@
+{
+  "name": "slawrensen-site",
+  "private": true,
+  "description": "Development-only tooling for slawrensen.com. Nothing here ships: Cloudflare Pages serves public/ as static files.",
+  "type": "module",
+  "scripts": {
+    "serve": "wrangler pages dev public --port 8788 --ip 127.0.0.1",
+    "check:source": "sh scripts/check-source.sh",
+    "test": "playwright test",
+    "lighthouse": "node scripts/lighthouse.mjs",
+    "test:local": "playwright test --project=chromium --project=webkit",
+    "capture": "node scripts/capture.mjs",
+    "mark": "node design/mark/sl-mark.mjs && node design/mark/render-icons.mjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.63.0",
+    "chrome-launcher": "^1.2.1",
+    "lighthouse": "^13.5.0",
+    "wrangler": "^4.136.3"
+  }
+}

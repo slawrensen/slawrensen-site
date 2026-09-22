@@ -5,3 +5,7 @@ node_modules/
 # Personal Claude Code settings (permission grants, machine-specific).
 # .claude/launch.json is intentionally tracked: it is shared project config.
 .claude/settings.local.json
+
+# Playwright output.
+test-results/
+playwright-report/
