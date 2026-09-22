@@ -4,20 +4,23 @@
 # Security headers on every response. HSTS only takes effect once a response is
 # already served over HTTPS; no `preload` so HTTPS can still be disabled later.
 #
-# The CSP is the page's "no telemetry" promise made browser-enforceable:
-# default-src 'none' inherits to connect-src, font-src, media-src, worker-src
-# and manifest-src, so fetch/XHR/beacons/WebSockets, web fonts and CDNs are all
-# impossible: any visitor can verify the claim in one DevTools glance.
-# 'unsafe-inline' is deliberate and required: the page is a single file whose
-# CSS and JS are inline. A hash-based policy would silently break the page on
-# every hand edit, and there is no build step to regenerate hashes.
+# The CSP makes "no third-party requests" browser-enforceable: default-src
+# 'none' inherits to connect-src, font-src, media-src, worker-src and
+# manifest-src, so fetch/XHR/beacons/WebSockets, web fonts and CDNs are all
+# impossible, and any visitor can check that in one DevTools glance.
+# script-src 'none': the site runs no JavaScript. (The JSON-LD block in
+# index.html is data, not script, and is not executed.) Adding a script means
+# changing this line on purpose, and scripts/check-source.sh, which fails the
+# build on any executable <script>.
+# style-src keeps 'unsafe-inline' because each page is one file with inline
+# CSS; a hash-based policy would break on every hand edit with no build step.
 # No report-uri/report-to: that would phone home.
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Strict-Transport-Security: max-age=31536000; includeSubDomains
   X-Frame-Options: DENY
-  Content-Security-Policy: default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'none'; script-src 'none'; style-src 'self' 'unsafe-inline'; img-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
   Permissions-Policy: accelerometer=(), camera=(), geolocation=(), gyroscope=(), microphone=(), payment=(), usb=(), browsing-topics=()
 
 # HTML must revalidate on every request so deploys are visible immediately.
@@ -26,21 +29,16 @@
 /*.html
   Cache-Control: no-cache, must-revalidate
 
-# Images and the favicon change rarely and may cache for a day. Filenames are
-# not content-hashed, so a day is the honest ceiling: rename to bust.
+# Every file in /assets/ carries a version in its name (name-vN.ext), so its
+# bytes never change under a given URL and it may be cached for a year. To
+# change an image, give it a new name and add the old name to _redirects.
+# scripts/check-source.sh fails the build on an unversioned asset name.
 /assets/*
-  Cache-Control: public, max-age=86400
+  Cache-Control: public, max-age=31536000, immutable
+
+# Fixed, unversioned paths that browsers request by name: a day is the honest
+# ceiling.
 /favicon.svg
   Cache-Control: public, max-age=86400
-
-# A version in the filename is what earns a long TTL: the name changes when the
-# bytes change, so a stale copy can never be served. Unversioned assets stay on
-# the one-day ceiling above.
-/assets/og-card-v2.jpg
-  Cache-Control: public, max-age=31536000, immutable
-/assets/hwinfo-sensors-v4.webp
-  Cache-Control: public, max-age=31536000, immutable
-/assets/hwinfo-layouts-v2.webp
-  Cache-Control: public, max-age=31536000, immutable
-/assets/streamdeck-plusxl-v2.webp
-  Cache-Control: public, max-age=31536000, immutable
+/apple-touch-icon.png
+  Cache-Control: public, max-age=86400
