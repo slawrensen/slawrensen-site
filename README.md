@@ -13,7 +13,7 @@ public/
   favicon.svg   brand mark
   robots.txt
   404.html      styled 404 page
-  assets/       key and dial faces drawn by the plugin (webp), social card (jpg),
+  assets/       the deck and key faces drawn by the plugin (webp), social card (jpg),
                 older images kept for redirects
 design/
   README.md          where the pictures and colours come from, word budget
