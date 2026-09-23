@@ -25,7 +25,11 @@ It is dark on every page, 404 included.
   - 9 × 4 keys, 294 px each on a 357.4 px pitch
   - touch strip 2960 × 248 px (the 12:1 of its 1200 × 100 screen) in a
     glass panel
-  - six knobs on a 525 px pitch in a recessed bay
+  - six knobs on a 525 px pitch in a recessed bay, each 215 px across and
+    318 px tall as the camera sees them, from 27° above. The knobs are
+    nearly as dark as the bay in the photo, so their size comes from the
+    average of all six, contrast-enhanced, where the dark flanks show the
+    edge
 
   The Elgato wordmark is left off.
 - **Colour:**
