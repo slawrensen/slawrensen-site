@@ -1,0 +1,146 @@
+{
+ "words1440": {
+  "counted": 95,
+  "legal": 45,
+  "total": 140,
+  "regions": {
+   "header": {
+    "n": 4,
+    "text": "slawrensen Sensors About Docs"
+   },
+   "opening": {
+    "n": 37,
+    "text": "Stream Deck XL, photographed HWiNFO Sensors for Stream Deck Read the machine. Live HWiNFO temperatures, clocks, fans and power on your Stream Deck. Get it free Elgato Marketplace Setup guide Windows 10+ x64 Stream Deck 6.9+ HWiNFO"
+   },
+   "product": {
+    "n": 34,
+    "text": "HWiNFO Sensors Set a limit. The whole key turns amber, then red Normal Warn Critical Photographed on a Stream Deck XL v1.6.0 Free Open source No ads No telemetry Get it free Docs Source"
+   },
+   "maker": {
+    "n": 17,
+    "text": "Made by Stephen Lawrensen I build tools for people who care how their machines run. GitHub Issues"
+   },
+   "footer": {
+    "n": 3,
+    "text": "2026 Stephen Lawrensen"
+   },
+   "legal": {
+    "n": 45,
+    "text": "No trackers, no cookies. A ground-up rewrite inspired by shayne's Go plugin; no code shared credits Not affiliated with, endorsed by, or sponsored by REALiX, Elgato or Corsair. \"HWiNFO\" is a trademark of REALiX, s.r.o. \"Stream Deck\" and \"Elgato\" are trademarks of Corsair Memory, Inc."
+   }
+  }
+ },
+ "words390": {
+  "counted": 91,
+  "legal": 45,
+  "total": 136,
+  "regions": {
+   "header": {
+    "n": 4,
+    "text": "slawrensen Sensors About Docs"
+   },
+   "opening": {
+    "n": 33,
+    "text": "HWiNFO Sensors for Stream Deck Read the machine. Live HWiNFO temperatures, clocks, fans and power on your Stream Deck. Get it free Elgato Marketplace Setup guide Windows 10+ x64 Stream Deck 6.9+ HWiNFO"
+   },
+   "product": {
+    "n": 34,
+    "text": "HWiNFO Sensors Set a limit. The whole key turns amber, then red Normal Warn Critical Photographed on a Stream Deck XL v1.6.0 Free Open source No ads No telemetry Get it free Docs Source"
+   },
+   "maker": {
+    "n": 17,
+    "text": "Made by Stephen Lawrensen I build tools for people who care how their machines run. GitHub Issues"
+   },
+   "footer": {
+    "n": 3,
+    "text": "2026 Stephen Lawrensen"
+   },
+   "legal": {
+    "n": 45,
+    "text": "No trackers, no cookies. A ground-up rewrite inspired by shayne's Go plugin; no code shared credits Not affiliated with, endorsed by, or sponsored by REALiX, Elgato or Corsair. \"HWiNFO\" is a trademark of REALiX, s.r.o. \"Stream Deck\" and \"Elgato\" are trademarks of Corsair Memory, Inc."
+   }
+  }
+ },
+ "axe / 1440 normal": "clean",
+ "axe / 1440 warn": "clean",
+ "axe / 1440 crit": "clean",
+ "axe / 390 normal": "clean",
+ "axe / 390 warn": "clean",
+ "axe / 390 crit": "clean",
+ "axe /404.html 1440 ": "clean",
+ "axe /404.html 390 ": "clean",
+ "tabOrder": [
+  "Skip to content",
+  "slawrensen home",
+  "Sensors",
+  "About",
+  "Docs",
+  "Get it free Elgato Marketplace",
+  "Setup guide",
+  "k-normal"
+ ],
+ "afterArrow": [
+  "warn"
+ ],
+ "afterArrow2": [
+  "crit"
+ ],
+ "forced": {
+  "before": "none rgb(153, 200, 255)",
+  "after": "solid rgb(153, 200, 255)"
+ },
+ "print": {
+  "keys": 3,
+  "ink": "rgb(0, 0, 0)"
+ },
+ "animations reduce": {
+  "duringChange": 0,
+  "settled": 0
+ },
+ "animations no-preference": {
+  "duringChange": 5,
+  "settled": 0
+ },
+ "eager 390@3": {
+  "kb": 104,
+  "files": [
+   "/",
+   "/assets/neon-keys-v1.webp",
+   "/assets/key-warn-v1.webp",
+   "/assets/key-crit-v1.webp",
+   "/assets/key-normal-v1.webp"
+  ]
+ },
+ "eager 1440@2": {
+  "kb": 168,
+  "files": [
+   "/assets/neon-deck-v1.webp",
+   "/",
+   "/assets/key-normal-v1.webp",
+   "/assets/key-warn-v1.webp",
+   "/assets/key-crit-v1.webp"
+  ]
+ },
+ "eager 1920@1": {
+  "kb": 128,
+  "files": [
+   "/assets/neon-deck-v1-1440.webp",
+   "/",
+   "/assets/key-normal-v1.webp",
+   "/assets/key-warn-v1.webp",
+   "/assets/key-crit-v1.webp"
+  ]
+ },
+ "eager 3440@1": {
+  "kb": 168,
+  "files": [
+   "/",
+   "/assets/neon-deck-v1.webp",
+   "/assets/key-normal-v1.webp",
+   "/assets/key-warn-v1.webp",
+   "/assets/key-crit-v1.webp"
+  ]
+ }
+}
+
+ALL CHECKS PASSED

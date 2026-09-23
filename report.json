@@ -1,0 +1,32 @@
+{
+  "before": {
+    "words 1440": {
+      "counted": 666,
+      "legal": 50,
+      "total": 716,
+      "height": 6062
+    },
+    "words 390": {
+      "counted": 666,
+      "legal": 50,
+      "total": 716,
+      "height": 6387
+    }
+  },
+  "after": {
+    "words 1440": {
+      "counted": 98,
+      "legal": 45,
+      "total": 143,
+      "height": 2580
+    },
+    "words 390": {
+      "counted": 94,
+      "legal": 45,
+      "total": 139,
+      "height": 2689
+    }
+  },
+  "chromium": "153.0.8010.12",
+  "webkit": "26.6"
+}
