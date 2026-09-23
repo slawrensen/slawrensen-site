@@ -1,0 +1,139 @@
+{
+ "words 1440": {
+  "counted": 97,
+  "legal": 39,
+  "byRegion": {
+   "header": 4,
+   "opening": 46,
+   "product": 27,
+   "maker": 17,
+   "footer": 3,
+   "legal": 39
+  },
+  "text": {
+   "header": "slawrensen Sensors About Docs",
+   "opening": "HWiNFO Sensors for Stream Deck How’s your machine doing? Live HWiNFO readings on your Stream Deck keys and dials. Get it free Elgato Marketplace Setup guide Windows 10+ x64 Stream Deck 6.9+ HWiNFO Ember Void Graphite Ultraviolet Midnight Forest Paper Drawn by the plugin. Example readings.",
+   "product": "HWiNFO Sensors Set a limit, then relax. Keys turn amber then red v1.6.0 Open source No ads No telemetry Get it free Docs Source Normal Warn Critical",
+   "maker": "Made by Stephen Lawrensen I build tools for people who care how their machines run. GitHub Issues",
+   "footer": "2026 Stephen Lawrensen",
+   "legal": "No trackers or cookies. Inspired by shayne's Go plugin credits Not affiliated with, endorsed by, or sponsored by REALiX, Elgato or Corsair. \"HWiNFO\" is a trademark of REALiX, s.r.o. \"Stream Deck\" and \"Elgato\" are trademarks of Corsair Memory, Inc."
+  }
+ },
+ "words 390": {
+  "counted": 97,
+  "legal": 39,
+  "byRegion": {
+   "header": 4,
+   "opening": 46,
+   "product": 27,
+   "maker": 17,
+   "footer": 3,
+   "legal": 39
+  },
+  "text": {
+   "header": "slawrensen Sensors About Docs",
+   "opening": "HWiNFO Sensors for Stream Deck How’s your machine doing? Live HWiNFO readings on your Stream Deck keys and dials. Get it free Elgato Marketplace Setup guide Windows 10+ x64 Stream Deck 6.9+ HWiNFO Ember Void Graphite Ultraviolet Midnight Forest Paper Drawn by the plugin. Example readings.",
+   "product": "HWiNFO Sensors Set a limit, then relax. Keys turn amber then red v1.6.0 Open source No ads No telemetry Get it free Docs Source Normal Warn Critical",
+   "maker": "Made by Stephen Lawrensen I build tools for people who care how their machines run. GitHub Issues",
+   "footer": "2026 Stephen Lawrensen",
+   "legal": "No trackers or cookies. Inspired by shayne's Go plugin credits Not affiliated with, endorsed by, or sponsored by REALiX, Elgato or Corsair. \"HWiNFO\" is a trademark of REALiX, s.r.o. \"Stream Deck\" and \"Elgato\" are trademarks of Corsair Memory, Inc."
+  }
+ },
+ "axe / 1440 ember": "clean",
+ "axe / 1440 void": "clean",
+ "axe / 1440 graphite": "clean",
+ "axe / 1440 ultraviolet": "clean",
+ "axe / 1440 midnight": "clean",
+ "axe / 1440 forest": "clean",
+ "axe / 1440 paper": "clean",
+ "axe 404 1440": "clean",
+ "axe / 390 ember": "clean",
+ "axe / 390 void": "clean",
+ "axe / 390 graphite": "clean",
+ "axe / 390 ultraviolet": "clean",
+ "axe / 390 midnight": "clean",
+ "axe / 390 forest": "clean",
+ "axe / 390 paper": "clean",
+ "axe 404 390": "clean",
+ "tab 1440": [
+  "Skip to content",
+  "slawrensen home",
+  "Sensors",
+  "About",
+  "Docs",
+  "Get it free Elgato Marketplace",
+  "Setup guide",
+  "t-ember",
+  "v1.6.0",
+  "Get it free",
+  "Docs",
+  "Source",
+  "GitHub",
+  "Issues",
+  "credits"
+ ],
+ "tab 390": [
+  "Skip to content",
+  "slawrensen home",
+  "Sensors",
+  "About",
+  "Docs",
+  "Get it free Elgato Marketplace",
+  "Setup guide",
+  "t-ember",
+  "v1.6.0",
+  "Get it free",
+  "Docs",
+  "Source",
+  "GitHub",
+  "Issues",
+  "credits"
+ ],
+ "forced": "solid rgb(25, 103, 210)",
+ "print": {
+  "ink": "rgb(20, 18, 13)",
+  "deck": [
+   "ember"
+  ]
+ },
+ "animations reduce": {
+  "during": 0,
+  "after": 0
+ },
+ "animations no-preference": {
+  "during": 5,
+  "after": 0
+ },
+ "eager 390@3x": {
+  "kb": 153,
+  "files": [
+   "/assets/deck-ember-v1.webp",
+   "/",
+   "/assets/alert-normal-v1.webp",
+   "/assets/alert-warn-v1.webp",
+   "/assets/alert-crit-v1.webp"
+  ]
+ },
+ "eager 1440@2x": {
+  "kb": 153,
+  "files": [
+   "/assets/deck-ember-v1.webp",
+   "/",
+   "/assets/alert-normal-v1.webp",
+   "/assets/alert-warn-v1.webp",
+   "/assets/alert-crit-v1.webp"
+  ]
+ },
+ "eager 1920@1x": {
+  "kb": 153,
+  "files": [
+   "/assets/deck-ember-v1.webp",
+   "/",
+   "/assets/alert-normal-v1.webp",
+   "/assets/alert-warn-v1.webp",
+   "/assets/alert-crit-v1.webp"
+  ]
+ }
+}
+
+ALL CHECKS PASSED
