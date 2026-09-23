@@ -105,32 +105,32 @@
   "after": 0
  },
  "eager 390@3x": {
-  "kb": 197,
+  "kb": 210,
   "files": [
-   "/assets/deck-ember-v2.webp",
    "/",
-   "/assets/alert-warn-v1.webp",
+   "/assets/deck-ember-v3.webp",
    "/assets/alert-normal-v1.webp",
+   "/assets/alert-warn-v1.webp",
    "/assets/alert-crit-v1.webp"
   ]
  },
  "eager 1440@2x": {
-  "kb": 197,
+  "kb": 210,
   "files": [
-   "/assets/deck-ember-v2.webp",
    "/",
-   "/assets/alert-warn-v1.webp",
+   "/assets/deck-ember-v3.webp",
    "/assets/alert-normal-v1.webp",
+   "/assets/alert-warn-v1.webp",
    "/assets/alert-crit-v1.webp"
   ]
  },
  "eager 1920@1x": {
-  "kb": 197,
+  "kb": 210,
   "files": [
    "/",
-   "/assets/deck-ember-v2.webp",
-   "/assets/alert-normal-v1.webp",
+   "/assets/deck-ember-v3.webp",
    "/assets/alert-warn-v1.webp",
+   "/assets/alert-normal-v1.webp",
    "/assets/alert-crit-v1.webp"
   ]
  }

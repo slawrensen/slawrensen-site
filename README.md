@@ -15,7 +15,8 @@ merged and never deployed.
     origins, and first-load bytes
 - `compare/`: full-page length side by side at 1440 px, the seven themes,
   and `proportions.jpg`: the drawn Stream Deck + XL beside and over the
-  straightened product photograph, at the same scale.
+  straightened product photograph, at the same scale, and `knobs.jpg`: the
+  photographed knobs beside the drawn ones.
 
 
 Captured on Windows 10 with Playwright (Chromium 153.0.8010.12 headless shell,
