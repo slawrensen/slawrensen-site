@@ -1,19 +1,23 @@
 # slawrensen.com
 
-Static marketing site for Stephen Lawrensen — independent software for the
-Windows desktop. Single page, no build step, no dependencies. Product 01 is
+Static site for Stephen Lawrensen's software, published as slawrensen.
+Single page, no build step, no dependencies, no JavaScript. Its product is
 HWiNFO Sensors for the Elgato Stream Deck.
 
 ## Structure
 
 ```
 public/
-  index.html    the whole site — self-contained (inline CSS + dependency-free vanilla JS)
+  index.html    the whole site, self-contained (inline CSS, no script)
   _headers      Cloudflare Pages security + cache headers
   favicon.svg   brand mark
   robots.txt
   404.html      styled 404 page
-  assets/       product screenshot (webp), device photo (webp), social card (jpg)
+  assets/       key and dial faces drawn by the plugin (webp), social card (jpg),
+                older images kept for redirects
+design/
+  README.md          where the pictures and colours come from, word budget
+  render-faces.mjs   draws every picture with the plugin's own renderers
 .github/workflows/pages-deployment.yaml   CI/CD
 ```
 
@@ -39,6 +43,6 @@ then open <http://localhost:8791/>.
 
 ## Editing
 
-It is one HTML file. Design tokens (colour, spacing, type scale) live in the
-`:root` CSS variables at the top. Add a product by copying the `.product`
-block and bumping `Products / 02`.
+It is one HTML file. Design tokens live in the `:root` CSS variables at the
+top, taken from the plugin's `themes.json`. The page has a word budget: read
+`design/README.md` before adding copy.
