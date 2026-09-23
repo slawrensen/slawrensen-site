@@ -3,63 +3,47 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>No signal · slawrensen</title>
+<title>Not found · slawrensen</title>
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#08090b">
+<meta name="theme-color" content="#020305">
 <meta name="color-scheme" content="dark">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <style>
   :root{
-    --bg:#08090b; --text:#e9ebf0; --muted:#a3abb8; --faint:#7b8493;
-    --accent:#5cb8ff; --accent-2:#8f7cff; --line-2:#222835;
-    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    --mono:"SF Mono","Cascadia Code","JetBrains Mono",Consolas,ui-monospace,monospace;
     color-scheme:dark;
+    --void:#020305; --ink:#f2f6fa; --dim:#9ba7b5; --neon:#3cc8ff; --hair:rgba(214,232,255,.10);
+    --display:Bahnschrift,"DIN Alternate","DIN Condensed","Roboto Condensed","Arial Narrow",sans-serif;
+    --sans:"Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",Arial,sans-serif;
+    --mono:"Cascadia Mono","SF Mono",ui-monospace,Menlo,Consolas,monospace;
   }
-  *{box-sizing:border-box; margin:0}
-  a{color:inherit; text-decoration:none}
-  body{
-    min-height:100svh; display:grid; place-items:center; padding:32px;
-    background:var(--bg); color:var(--text); font-family:var(--sans); line-height:1.65;
-    -webkit-font-smoothing:antialiased;
-  }
-  body::before{
-    content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
-    background-image:radial-gradient(rgba(150,170,205,.05) 1px, transparent 1.5px);
-    background-size:44px 44px;
-    -webkit-mask-image:linear-gradient(#000, transparent 80%);
-            mask-image:linear-gradient(#000, transparent 80%);
-  }
-  main{max-width:44ch}
-  .eyebrow{
-    display:inline-flex; align-items:center; gap:10px; color:var(--accent);
-    font-family:var(--mono); font-size:.72rem; letter-spacing:.2em; text-transform:uppercase;
-  }
-  .eyebrow::before{content:""; width:22px; height:1px; background:currentColor; opacity:.55}
-  h1{font-size:clamp(1.7rem,1.2rem + 2vw,2.4rem); line-height:1.12; letter-spacing:-.02em; margin-top:.5em; font-weight:600; text-wrap:balance}
-  p{color:var(--muted); margin-top:14px}
-  a.home{
-    display:inline-flex; align-items:center; gap:9px; margin-top:28px; height:46px; padding:0 20px;
-    border:1px solid var(--line-2); border-radius:12px; color:var(--text); text-decoration:none;
-    font-weight:600; font-size:.95rem;
-  }
-  a.home:hover{border-color:#39424f}
-  :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:8px}
-  .brand{display:flex; width:max-content; align-items:center; gap:11px; margin-bottom:30px; font-weight:600}
-  .mark{
-    width:30px; height:30px; border-radius:9px; display:grid; place-items:center;
-    background:linear-gradient(115deg,var(--accent),var(--accent-2));
-    color:#05070a; font-family:var(--mono); font-weight:800; font-size:.82rem;
-  }
+  *,*::before,*::after{box-sizing:border-box;margin:0}
+  body{min-height:100svh;display:grid;place-items:center;padding:32px 20px;background:var(--void);color:var(--ink);font:1rem/1.55 var(--sans);-webkit-font-smoothing:antialiased;
+       background-image:radial-gradient(closest-side at 50% 40%,rgba(60,200,255,.12),transparent);background-repeat:no-repeat}
+  main{display:grid;justify-items:center;text-align:center;gap:22px}
+  :focus-visible{outline:2px solid var(--neon);outline-offset:4px}
+  svg{width:clamp(96px,22vw,150px);height:auto;overflow:visible;
+      filter:drop-shadow(0 0 3px rgba(60,200,255,.9)) drop-shadow(0 0 16px rgba(60,200,255,.55)) drop-shadow(0 0 44px rgba(60,200,255,.3))}
+  .tube{fill:none;stroke:var(--neon);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+  .core{fill:none;stroke:#e9f9ff;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
+  .plate{fill:none;stroke:rgba(214,232,255,.12)}
+  p{font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--neon)}
+  h1{font-family:var(--display);font-weight:700;text-transform:uppercase;line-height:.9;font-size:clamp(2.6rem,1.6rem + 5vw,5rem)}
+  ul{list-style:none;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:6px 30px}
+  a{display:inline-flex;align-items:center;min-height:44px;color:var(--ink);font-weight:600;text-decoration:none;border-bottom:1px solid var(--hair)}
+  a:hover{border-color:var(--ink)}
+  @media (forced-colors:active){ .tube,.core{stroke:CanvasText} }
+  @media print{ :root{--void:#fff;--ink:#000;--neon:#005a8c} body{background:#fff} svg{filter:none} }
 </style>
 </head>
 <body>
 <main>
-  <a class="brand" href="/"><span class="mark" aria-hidden="true">SL</span><span>slawrensen</span></a>
-  <p class="eyebrow">404 · No signal</p>
-  <h1>That page is not on this instrument.</h1>
-  <p>The address does not match anything here. The sensor wall is one page: everything lives on the front.</p>
-  <a class="home" href="/">Back to slawrensen.com</a>
+  <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect class="plate" x=".5" y=".5" width="63" height="63" rx="14"/><path class="tube" d="M30 19H20A6.5 6.5 0 0 0 20 32H24A6.5 6.5 0 0 1 24 45H13M38 19V45H52"/><path class="core" d="M30 19H20A6.5 6.5 0 0 0 20 32H24A6.5 6.5 0 0 1 24 45H13M38 19V45H52"/></svg>
+  <p>404</p>
+  <h1>Nothing here.</h1>
+  <ul>
+    <li><a href="/">slawrensen.com</a></li>
+    <li><a href="https://docs.slawrensen.com/hwinfo-streamdeck/">Docs</a></li>
+  </ul>
 </main>
 </body>
 </html>
