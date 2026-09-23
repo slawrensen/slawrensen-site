@@ -89,9 +89,9 @@
   "Issues",
   "credits"
  ],
- "forced": "solid rgb(25, 103, 210)",
+ "forced": "solid rgb(153, 200, 255)",
  "print": {
-  "ink": "rgb(20, 18, 13)",
+  "ink": "rgb(0, 0, 0)",
   "deck": [
    "ember"
   ]
@@ -101,34 +101,34 @@
   "after": 0
  },
  "animations no-preference": {
-  "during": 5,
+  "during": 1,
   "after": 0
  },
  "eager 390@3x": {
-  "kb": 153,
+  "kb": 197,
   "files": [
-   "/assets/deck-ember-v1.webp",
+   "/assets/deck-ember-v2.webp",
    "/",
-   "/assets/alert-normal-v1.webp",
    "/assets/alert-warn-v1.webp",
+   "/assets/alert-normal-v1.webp",
    "/assets/alert-crit-v1.webp"
   ]
  },
  "eager 1440@2x": {
-  "kb": 153,
+  "kb": 197,
   "files": [
-   "/assets/deck-ember-v1.webp",
+   "/assets/deck-ember-v2.webp",
    "/",
-   "/assets/alert-normal-v1.webp",
    "/assets/alert-warn-v1.webp",
+   "/assets/alert-normal-v1.webp",
    "/assets/alert-crit-v1.webp"
   ]
  },
  "eager 1920@1x": {
-  "kb": 153,
+  "kb": 197,
   "files": [
-   "/assets/deck-ember-v1.webp",
    "/",
+   "/assets/deck-ember-v2.webp",
    "/assets/alert-normal-v1.webp",
    "/assets/alert-warn-v1.webp",
    "/assets/alert-crit-v1.webp"
