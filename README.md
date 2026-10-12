@@ -1,8 +1,6 @@
 # slawrensen.com
 
-Static marketing site for Stephen Lawrensen — independent software for the
-Windows desktop. Single page, no build step, no dependencies. Product 01 is
-HWiNFO Sensors for the Elgato Stream Deck.
+Static marketing site for Stephen Lawrensen: independent software for Windows and macOS. Single page, no build step, no dependencies. HWiNFO Sensors and Mac Sensors serve their respective platforms on Elgato Stream Deck.
 
 ## Structure
 
