@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>HWiNFO Sensors for Stream Deck · slawrensen</title>
-<meta name="description" content="HWiNFO Sensors for Stream Deck: live CPU and GPU temperatures, clocks, fan RPM, usage and power on your Elgato keys and dials. Free, open source, no telemetry.">
+<title>Stream Deck plugins for Windows and Mac · slawrensen</title>
+<meta name="description" content="HWiNFO Sensors for Windows and Mac Sensors for macOS. Local hardware readings on Stream Deck keys and dials. Free, MIT licensed, no telemetry.">
 <meta name="theme-color" content="#08090b">
 <meta name="color-scheme" content="dark">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://slawrensen.com/">
-<meta property="og:title" content="HWiNFO Sensors for Stream Deck · slawrensen">
-<meta property="og:description" content="HWiNFO Sensors for Stream Deck: live CPU and GPU temperatures, clocks, fan RPM, usage and power on your Elgato keys and dials. Free, open source, no telemetry.">
+<meta property="og:title" content="Stream Deck plugins for Windows and Mac · slawrensen">
+<meta property="og:description" content="HWiNFO Sensors for Windows and Mac Sensors for macOS. Local hardware readings on Stream Deck keys and dials. Free, MIT licensed, no telemetry.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://slawrensen.com/">
 <meta property="og:site_name" content="slawrensen">
@@ -20,7 +20,7 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="A Stream Deck + XL on a desk, its 36 keys showing live CPU temperatures, clock speeds, usage and voltages from HWiNFO, with six dial readouts on the touch strip">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"HWiNFO Sensors for Stream Deck","applicationCategory":"UtilitiesApplication","operatingSystem":"Windows","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"url":"https://slawrensen.com/","downloadUrl":"https://marketplace.elgato.com/product/hwinfo-sensors-82436166-3d61-4527-9034-8fdf16d92c54","codeRepository":"https://github.com/slawrensen/hwinfo-streamdeck","author":{"@type":"Person","name":"slawrensen","url":"https://github.com/slawrensen"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","name":"HWiNFO Sensors for Stream Deck","applicationCategory":"UtilitiesApplication","operatingSystem":"Windows","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"url":"https://slawrensen.com/","downloadUrl":"https://marketplace.elgato.com/product/hwinfo-sensors-82436166-3d61-4527-9034-8fdf16d92c54","codeRepository":"https://github.com/slawrensen/hwinfo-streamdeck","author":{"@type":"Person","name":"slawrensen","url":"https://github.com/slawrensen"},"softwareVersion":"1.7.0"},{"@type":"SoftwareApplication","name":"Mac Sensors","applicationCategory":"UtilitiesApplication","operatingSystem":"macOS 13.5+","softwareVersion":"1.0.0","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"url":"https://docs.slawrensen.com/mac-streamdeck/","author":{"@type":"Person","name":"slawrensen","url":"https://github.com/slawrensen"}}]}</script>
 <script>try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window)document.documentElement.classList.add('js-reveal')}catch(e){}</script>
 <style>
   :root{
@@ -98,7 +98,7 @@
   :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:8px}
   .btn-primary:focus-visible{outline:2px solid #fff; outline-offset:3px}
   /* keep the sticky nav from swallowing anchor targets and focused controls */
-  section[id]{scroll-margin-top:calc(var(--nav-h) + 16px)}
+  section[id],.product[id]{scroll-margin-top:calc(var(--nav-h) + 16px)}
   a[href],button,summary,[tabindex]{scroll-margin-block:calc(var(--nav-h) + 12px) 24px}
 
   .wrap{width:100%; max-width:var(--maxw); margin-inline:auto; padding-inline:var(--gutter)}
@@ -412,9 +412,9 @@
     <div class="wrap">
       <span class="eyebrow" data-reveal>Independent software</span>
       <h1 data-reveal>Precision instruments for the <span class="grad">machine on your desk.</span></h1>
-      <p class="lead" data-reveal>Small, honest tools that read your machine and respect it. HWiNFO Sensors puts live CPU and GPU temperatures, clock speeds, fan RPM, usage and power on your Elgato Stream Deck keys and dials. No ads, no telemetry, open source.</p>
+      <p class="lead" data-reveal>Small, honest tools that read your machine and respect it. Bring available hardware readings to your Stream Deck keys and dials with a plugin built for your platform. No ads, no telemetry, MIT licensed.</p>
       <div class="cta-row" data-reveal>
-        <a class="btn btn-primary" href="#products">Get HWiNFO Sensors</a>
+        <a class="btn btn-primary" href="#products">Choose your plugin</a>
         <a class="btn btn-ghost" href="https://github.com/slawrensen" target="_blank" rel="noopener">
           <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
           View on GitHub
@@ -438,15 +438,16 @@
   <section id="products" tabindex="-1">
     <div class="wrap">
       <div class="sec-head" data-reveal>
-        <span class="eyebrow">Products / 01</span>
-        <h2>HWiNFO Sensors for Stream Deck</h2>
-        <p>A Stream Deck plugin that puts live HWiNFO hardware sensors on your keys and dials, updated every second.</p>
+        <span class="eyebrow">Products / 02</span>
+        <h2>Readings for the machine you use</h2>
+        <p>Choose the Windows or Mac plugin. Each reads local sources and keeps your hardware in your hands.</p>
+        <div class="cta-row"><a class="btn btn-ghost" href="#windows-sensors">Windows: HWiNFO Sensors</a><a class="btn btn-ghost" href="#mac-sensors">macOS: Mac Sensors</a></div>
       </div>
 
-      <div class="product" data-reveal>
+      <div class="product" id="windows-sensors" data-reveal>
         <div class="phead">
           <span class="eyebrow">Windows / Elgato Stream Deck</span>
-          <h3>Your hardware, at a glance</h3>
+          <h3>HWiNFO Sensors</h3>
           <p>Put CPU and GPU temperature, clock speeds, fan RPM, usage and power on your keys and dials.</p>
         </div>
 
@@ -509,7 +510,32 @@
             <a class="btn btn-ghost" href="https://github.com/slawrensen/hwinfo-streamdeck" target="_blank" rel="noopener">Source code</a>
           </div>
         </div>
-        <p class="soon"><a href="https://github.com/slawrensen/hwinfo-streamdeck/releases/latest" target="_blank" rel="noopener">v1.7.0</a> · updated Oct 2026</p>
+        <p class="soon"><a href="https://github.com/slawrensen/hwinfo-streamdeck/releases/latest" target="_blank" rel="noopener">v1.7.0</a> · Stream Deck 6.9+ · Windows x64</p>
+      </div>
+
+      <div class="product" id="mac-sensors" data-reveal>
+        <div class="phead">
+          <span class="eyebrow">macOS / Elgato Stream Deck</span>
+          <h3>Mac Sensors</h3>
+          <p>Read available temperatures, fans, power and system counters on your Mac. No separate sensor app or privileged helper.</p>
+        </div>
+        <ul class="pspec">
+          <li><span class="l">Keys</span><span>A large reading or two, three or four readings on a key, with themes, graphs and thresholds.</span></li>
+          <li><span class="l">Details</span><span>Open a group behind one key and return through a configurable Back tile.</span></li>
+          <li><span class="l">Dials</span><span>Reading sets, groups, multiple views and local session statistics. <a href="https://docs.slawrensen.com/mac-streamdeck/hardware.html" target="_blank" rel="noopener">Measured compatibility and physical-check status</a></span></li>
+          <li><span class="l">Read-only</span><span>No sensor-register writes or fan control. Failed and expired readings do not remain live.</span></li>
+          <li><span class="l">Privacy</span><span>Local macOS interfaces and the local app connection. No internet requests, ads or telemetry.</span></li>
+        </ul>
+        <figure class="pshot">
+          <div class="shot-frame"><img src="assets/mac-sensors-v1.webp" width="1280" height="720" loading="lazy" decoding="async" alt="Production-rendered Mac Sensors sample readings on keys and a two-row dial"></div>
+          <figcaption><em>Production-rendered sample data using Mac catalog readings and short custom labels.</em></figcaption>
+        </figure>
+        <div class="pmeta">
+          <ul class="chips" role="list"><li class="chip">macOS 13.5+</li><li class="chip">Stream Deck 7.1+</li><li class="chip">Apple silicon / x86_64</li><li class="chip">Tahoma Bold</li><li class="chip ok">Free</li><li class="chip ok">MIT licensed</li></ul>
+          <div class="prod-links"><a class="btn btn-primary" href="https://docs.slawrensen.com/mac-streamdeck/installation.html" target="_blank" rel="noopener">Setup guide</a><a class="btn btn-ghost" href="https://docs.slawrensen.com/mac-streamdeck/sensor-reading.html" target="_blank" rel="noopener">Explore the layouts</a></div>
+        </div>
+        <p class="soon"><strong>v1.0.0</strong> · Stream Deck 7.1+ · macOS 13.5+</p>
+        <p class="soon">Repository access is required for downloads. Marketplace release is pending.</p>
       </div>
     </div>
   </section>
@@ -587,10 +613,10 @@
       </nav>
     </div>
     <p class="legal">
-      Not affiliated with, endorsed by, or sponsored by REALiX, Elgato, or Corsair.
+      Not affiliated with, endorsed by, or sponsored by Apple, REALiX, Elgato, or Corsair.
       "HWiNFO" is a trademark of REALiX, s.r.o. "Stream Deck" and "Elgato" are trademarks
       of Corsair Memory, Inc. All product names and trademarks are the property of their
-      respective owners.<br>
+      respective owners. Mac and macOS are trademarks of Apple Inc.<br>
       &copy; 2026 slawrensen. Built with no trackers and no cookies.
     </p>
   </div>
