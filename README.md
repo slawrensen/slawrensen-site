@@ -1,24 +1,24 @@
 # slawrensen.com
 
-Static marketing site for Stephen Lawrensen: independent software for Windows and macOS. Single page, no build step, no dependencies. HWiNFO Sensors and Mac Sensors serve their respective platforms on Elgato Stream Deck.
+Personal site of Stephen Lawrensen: Mac Sensors and HWiNFO Sensors, Stream Deck plugins for macOS and Windows. Single page, no build step, no dependencies, no JavaScript.
 
 ## Structure
 
 ```
 public/
-  index.html    the whole site — self-contained (inline CSS + dependency-free vanilla JS)
+  index.html    the whole site, self-contained (inline CSS, no JavaScript)
   _headers      Cloudflare Pages security + cache headers
   favicon.svg   brand mark
   robots.txt
   404.html      styled 404 page
-  assets/       product screenshot (webp), device photo (webp), social card (jpg)
+  assets/       Mac Sensors board (webp), Stream Deck + XL photo (webp), social card (jpg)
 .github/workflows/pages-deployment.yaml   CI/CD
 ```
 
 ## Deploy
 
 Push to `main`; GitHub Actions deploys `public/` to Cloudflare Pages via
-`cloudflare/wrangler-action`. Live at <https://slawrensen.com> — `www` 301s to
+`cloudflare/wrangler-action`. Live at <https://slawrensen.com>; `www` 301s to
 the apex, and it is also served at <https://slawrensen.pages.dev>.
 
 Manual deploy:
@@ -37,6 +37,8 @@ then open <http://localhost:8791/>.
 
 ## Editing
 
-It is one HTML file. Design tokens (colour, spacing, type scale) live in the
-`:root` CSS variables at the top. Add a product by copying the `.product`
-block and bumping `Products / 02`.
+It is one HTML file. Design tokens (color, type and column width) live in the
+`:root` CSS variables at the top, with a dark set under
+`prefers-color-scheme: dark`. Add a product by copying an `article.product`
+block. Images carry a version in the filename; when the bytes change, bump the
+version and add the old name to `_redirects`.
