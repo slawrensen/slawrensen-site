@@ -11,7 +11,7 @@ public/
   favicon.svg   brand mark
   robots.txt
   404.html      styled 404 page
-  assets/       Mac Sensors board (webp), Stream Deck + XL photo (webp), social card (jpg)
+  assets/       desk photo and its key close-up (webp), Mac Sensors board (webp), social card (jpg)
 .github/workflows/pages-deployment.yaml   CI/CD
 ```
 
@@ -38,7 +38,6 @@ then open <http://localhost:8791/>.
 ## Editing
 
 It is one HTML file. Design tokens (color, type and column width) live in the
-`:root` CSS variables at the top, with a dark set under
-`prefers-color-scheme: dark`. Add a product by copying an `article.product`
+`:root` CSS variables at the top. The page is dark only. Add a product by copying an `article.product`
 block. Images carry a version in the filename; when the bytes change, bump the
 version and add the old name to `_redirects`.

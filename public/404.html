@@ -2,35 +2,34 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Not found · Stephen Lawrensen</title>
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#f6f2eb" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#131210" media="(prefers-color-scheme: dark)">
-<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0b0806">
+<meta name="color-scheme" content="dark">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <style>
   :root{
-    color-scheme:light dark;
-    --bg:#f6f2eb; --text:#1c1a17; --muted:#5b554c; --accent-line:rgba(143,76,6,.35); --accent:#8f4c06;
-    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Charter,Georgia,serif;
-    --sans:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color-scheme:dark;
+    --night:#0b0806; --ink:#f3eadc; --copy:#d2c6b4; --line:#2a2119; --amber:#e8940d; --amber-soft:#f2b45c;
+    --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",system-ui,sans-serif;
+    --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI Variable Display","Segoe UI",system-ui,sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
   }
-  @media (prefers-color-scheme: dark){
-    :root{--bg:#131210; --text:#ece6dc; --muted:#aaa296; --accent-line:rgba(231,165,74,.4); --accent:#e7a54a}
-  }
-  *{box-sizing:border-box; margin:0}
-  body{min-height:100svh; display:grid; place-items:center; padding:2rem 1.25rem; background:var(--bg); color:var(--text); font-family:var(--sans); line-height:1.65; -webkit-font-smoothing:antialiased}
+  *{box-sizing:border-box;margin:0}
+  body{min-height:100svh;display:grid;place-items:center;padding:32px max(20px,env(safe-area-inset-right,0px)) 32px max(20px,env(safe-area-inset-left,0px));background:var(--night);color:var(--copy);font:400 1.0625rem/1.65 var(--sans);-webkit-font-smoothing:antialiased}
   main{max-width:30rem}
-  h1{font-family:var(--serif); font-weight:400; font-size:2.2rem; line-height:1.15}
-  p{margin-top:.9rem; color:var(--muted)}
-  a{color:var(--text); text-decoration:underline; text-decoration-color:var(--accent-line); text-underline-offset:.22em}
-  a:hover{text-decoration-color:var(--accent)}
-  :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px}
+  .code{font:500 .8rem/1 var(--mono);color:var(--amber-soft);letter-spacing:.04em}
+  h1{margin-top:12px;font:600 2.4rem/1.05 var(--display);letter-spacing:-.03em;color:var(--ink)}
+  p{margin-top:14px}
+  a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:.22em}
+  a:hover{text-decoration-color:var(--amber)}
+  :focus-visible{outline:2px solid var(--amber-soft);outline-offset:3px;border-radius:4px}
 </style>
 </head>
 <body>
 <main>
+  <p class="code">404</p>
   <h1>Nothing here.</h1>
   <p>This page does not exist. The plugins are on the <a href="/">home page</a>.</p>
 </main>

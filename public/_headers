@@ -45,5 +45,9 @@
 /assets/streamdeck-plusxl-v2.webp
   Cache-Control: public, max-age=31536000, immutable
 
-/assets/mac-sensors-v2.webp
+/assets/mac-sensors-v3.webp
+  Cache-Control: public, max-age=31536000, immutable
+/assets/desk-night-v1.webp
+  Cache-Control: public, max-age=31536000, immutable
+/assets/desk-keys-v1.webp
   Cache-Control: public, max-age=31536000, immutable
