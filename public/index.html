@@ -80,7 +80,7 @@
   .frame{background:var(--frame); border:1px solid var(--frame-line); border-radius:14px; overflow:hidden}
   .frame.pad{padding:clamp(.6rem, 2vw, 1.1rem)}
   figcaption{margin-top:.7rem; font-size:.85rem; color:var(--faint)}
-  .facts{margin-top:1.4rem; font-size:.92rem; color:var(--muted)}
+  .facts{display:flex; flex-wrap:wrap; row-gap:.15rem; margin-top:1.4rem; font-size:.92rem; color:var(--muted)}
   .facts span{white-space:nowrap}
   .facts span:not(:last-child)::after{content:"·"; margin-inline:.55rem; color:var(--faint)}
   .links{display:flex; flex-wrap:wrap; align-items:center; gap:.5rem 1.4rem; margin-top:1.4rem; font-size:.97rem}
