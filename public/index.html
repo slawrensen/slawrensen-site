@@ -20,7 +20,7 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="A Stream Deck + XL on a desk, its 36 keys showing live CPU temperatures, clock speeds, usage and voltages from HWiNFO, with six dial readouts on the touch strip">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","name":"HWiNFO Sensors for Stream Deck","applicationCategory":"UtilitiesApplication","operatingSystem":"Windows","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"url":"https://slawrensen.com/","downloadUrl":"https://marketplace.elgato.com/product/hwinfo-sensors-82436166-3d61-4527-9034-8fdf16d92c54","codeRepository":"https://github.com/slawrensen/hwinfo-streamdeck","author":{"@type":"Person","name":"slawrensen","url":"https://github.com/slawrensen"},"softwareVersion":"1.7.1"},{"@type":"SoftwareApplication","name":"Mac Sensors","applicationCategory":"UtilitiesApplication","operatingSystem":"macOS 13.5+","softwareVersion":"1.0.0","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"url":"https://docs.slawrensen.com/mac-streamdeck/","author":{"@type":"Person","name":"slawrensen","url":"https://github.com/slawrensen"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","name":"HWiNFO Sensors for Stream Deck","applicationCategory":"UtilitiesApplication","operatingSystem":"Windows","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"url":"https://slawrensen.com/","downloadUrl":"https://marketplace.elgato.com/product/hwinfo-sensors-82436166-3d61-4527-9034-8fdf16d92c54","codeRepository":"https://github.com/slawrensen/hwinfo-streamdeck","author":{"@type":"Person","name":"slawrensen","url":"https://github.com/slawrensen"},"softwareVersion":"1.7.1"},{"@type":"SoftwareApplication","name":"Mac Sensors","applicationCategory":"UtilitiesApplication","operatingSystem":"macOS 13.5+","softwareVersion":"1.0.1","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"url":"https://docs.slawrensen.com/mac-streamdeck/","downloadUrl":"https://marketplace.elgato.com/product/mac-sensors-f04e345c-21c5-411c-9ecd-01864c3a8c3c","codeRepository":"https://github.com/slawrensen/mac-sensors-streamdeck","author":{"@type":"Person","name":"slawrensen","url":"https://github.com/slawrensen"}}]}</script>
 <script>try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window)document.documentElement.classList.add('js-reveal')}catch(e){}</script>
 <style>
   :root{
@@ -517,25 +517,64 @@
         <div class="phead">
           <span class="eyebrow">macOS / Elgato Stream Deck</span>
           <h3>Mac Sensors</h3>
-          <p>Read available temperatures, fans, power and system counters on your Mac. No separate sensor app or privileged helper.</p>
+          <p>Put your Mac's temperatures, fan speeds, power, CPU activity, memory, storage and network on your keys and dials.</p>
         </div>
+
         <ul class="pspec">
-          <li><span class="l">Keys</span><span>A large reading or two, three or four readings on a key, with themes, graphs and thresholds.</span></li>
-          <li><span class="l">Details</span><span>Open a group behind one key and return through a configurable Back tile.</span></li>
-          <li><span class="l">Dials</span><span>Reading sets, groups, multiple views and local session statistics. <a href="https://docs.slawrensen.com/mac-streamdeck/hardware.html" target="_blank" rel="noopener">Measured compatibility and physical-check status</a></span></li>
-          <li><span class="l">Read-only</span><span>No sensor-register writes or fan control. Failed and expired readings do not remain live.</span></li>
-          <li><span class="l">Privacy</span><span>Local macOS interfaces and the local app connection. No internet requests, ads or telemetry.</span></li>
+          <li><span class="l">Keys</span><span>Any Stream Deck. One reading per key with a live sparkline, bar or ring gauge, or two, three or four readings on a single key. A press cycles MIN, MAX and AVG.</span></li>
+          <li><span class="l">Dials</span><span>Stream Deck + and Stream Deck + XL: one reading, two rows or three rows, reading sets with named groups, and a Sensor Control key that steers dials from anywhere. <a href="https://docs.slawrensen.com/mac-streamdeck/hardware.html" target="_blank" rel="noopener">Hardware compatibility</a></span></li>
+          <li><span class="l">Details</span><span>A key press opens a page of related readings and returns with a Back tile.</span></li>
+          <li><span class="l">Display</span><span>Seven themes, including Paper, a light theme. Amber warn and red critical alerts look the same on every theme.</span></li>
+          <li><span class="l">Read-only</span><span>No fan control, no administrator password, no helper app. No ads, no telemetry and no network requests: its only connection is the local one to the Stream Deck app.</span></li>
         </ul>
-        <figure class="pshot">
-          <div class="shot-frame"><img src="assets/mac-sensors-v1.webp" width="1280" height="720" loading="lazy" decoding="async" alt="Production-rendered Mac Sensors sample readings on keys and a two-row dial"></div>
-          <figcaption><em>Production-rendered sample data using Mac catalog readings and short custom labels.</em></figcaption>
+
+        <figure class="pshot pshot-scan">
+          <div class="shot-frame">
+            <div class="shot-scroll" tabindex="0" role="group" aria-label="Mac Sensors key and dial faces, scroll horizontally to pan">
+              <img src="assets/mac-sensors-board-v1.webp" width="1480" height="776" loading="lazy" decoding="async"
+                   alt="Mac Sensors key and dial faces: one CPU temperature key in each of the seven themes and a four-reading key; single keys for GPU temperature, fan speed, system power, CPU activity, active memory, network and free space; two- and three-reading keys, a ring and a bar, an amber warn key and a red critical key, a Back tile and a detail title tile; and four Stream Deck + dial faces">
+            </div>
+            <span class="shot-hint" aria-hidden="true">SCROLL</span>
+          </div>
+          <figcaption>Seven themes, warn and critical alert states, what one key can hold, and Stream Deck + dials</figcaption>
         </figure>
+
+        <figure class="pshot pshot-scan">
+          <div class="shot-frame">
+            <div class="shot-scroll" tabindex="0" role="group" aria-label="Mac Sensors key layouts and dial views, scroll horizontally to pan">
+              <img src="assets/mac-sensors-layouts-v1.webp" width="1180" height="715" loading="lazy" decoding="async"
+                   alt="Mac Sensors key layouts and dial views: one reading with a sparkline, two readings stacked, three readings in rows, a four-reading quad grid, CPU usage as a bar and as a ring, active memory and network receive; and three dial views: one reading with its session range, two rows with trend lines, and three compact rows">
+            </div>
+            <span class="shot-hint" aria-hidden="true">SCROLL</span>
+          </div>
+          <figcaption>One key can carry two, three or four readings; a dial shows one reading or a list. Drawn by the plugin with sample values</figcaption>
+        </figure>
+
+        <ol class="psetup">
+          <li><span><b>Install the plugin</b> from the Elgato Marketplace, or double-click the .streamDeckPlugin from GitHub Releases.</span></li>
+          <li><span><b>Check for Tahoma Bold.</b> It ships with macOS; if a key says Tahoma needed, turn it on in Font Book.</span></li>
+          <li><span><b>Drag Sensor Reading onto a key</b> and pick a reading from this Mac's list.</span></li>
+        </ol>
+        <p class="psetup-note">Which readings appear depends on the Mac and its macOS version. Measured on an Apple silicon M5 Pro; the Intel reader has run on hosted test machines, not yet on a physical Intel Mac.</p>
+
         <div class="pmeta">
-          <ul class="chips" role="list"><li class="chip">macOS 13.5+</li><li class="chip">Stream Deck 7.1+</li><li class="chip">Apple silicon / x86_64</li><li class="chip">Tahoma Bold</li><li class="chip ok">Free</li><li class="chip ok">MIT licensed</li></ul>
-          <div class="prod-links"><a class="btn btn-primary" href="https://docs.slawrensen.com/mac-streamdeck/installation.html" target="_blank" rel="noopener">Setup guide</a><a class="btn btn-ghost" href="https://docs.slawrensen.com/mac-streamdeck/sensor-reading.html" target="_blank" rel="noopener">Explore the layouts</a></div>
+          <ul class="chips" role="list">
+            <li class="chip">macOS 13.5+</li>
+            <li class="chip">Stream Deck 7.1+</li>
+            <li class="chip">Apple silicon / Intel</li>
+            <li class="chip">Dials: Stream Deck + / + XL</li>
+            <li class="chip">MIT license</li>
+            <li class="chip ok">Free</li>
+            <li class="chip ok">Open source</li>
+            <li class="chip ok">No telemetry</li>
+          </ul>
+          <div class="prod-links">
+            <a class="btn btn-primary" href="https://marketplace.elgato.com/product/mac-sensors-f04e345c-21c5-411c-9ecd-01864c3a8c3c" target="_blank" rel="noopener">Elgato Marketplace</a>
+            <a class="btn btn-ghost" href="https://docs.slawrensen.com/mac-streamdeck/getting-started.html" target="_blank" rel="noopener">Setup guide</a>
+            <a class="btn btn-ghost" href="https://github.com/slawrensen/mac-sensors-streamdeck" target="_blank" rel="noopener">Source code</a>
+          </div>
         </div>
-        <p class="soon"><strong>v1.0.0</strong> · Stream Deck 7.1+ · macOS 13.5+</p>
-        <p class="soon">Repository access is required for downloads. Marketplace release is pending.</p>
+        <p class="soon"><a href="https://github.com/slawrensen/mac-sensors-streamdeck/releases/latest" target="_blank" rel="noopener">v1.0.1</a> · Stream Deck 7.1+ · macOS 13.5+</p>
       </div>
     </div>
   </section>
@@ -590,7 +629,7 @@
         <div data-reveal>
           <p>The work is open source, so you never have to take my word for any of it. The code is the documentation of intent.</p>
           <p>HWiNFO Sensors is a ground-up TypeScript rewrite on Elgato's official SDK, inspired by the archived Go-based plugin by @shayne: no code shared, credits in <a href="https://github.com/slawrensen/hwinfo-streamdeck/blob/main/NOTICE.md" target="_blank" rel="noopener">NOTICE.md</a>.</p>
-          <p>Questions, bugs, or ideas go through <a href="https://github.com/slawrensen/hwinfo-streamdeck/issues" target="_blank" rel="noopener">GitHub Issues</a>, where they are answered in the open.</p>
+          <p>Questions, bugs, or ideas go through GitHub Issues for <a href="https://github.com/slawrensen/mac-sensors-streamdeck/issues" target="_blank" rel="noopener">Mac Sensors</a> or <a href="https://github.com/slawrensen/hwinfo-streamdeck/issues" target="_blank" rel="noopener">HWiNFO Sensors</a>, where they are answered in the open.</p>
         </div>
       </div>
     </div>
@@ -607,8 +646,7 @@
       <span class="sig" aria-hidden="true"><span class="sig-dot"></span>SIGNAL OK</span>
       <nav class="foot-links" aria-label="Footer">
         <a href="#products">Products</a>
-        <a href="https://docs.slawrensen.com/hwinfo-streamdeck/" target="_blank" rel="noopener">Docs</a>
-        <a href="https://marketplace.elgato.com/product/hwinfo-sensors-82436166-3d61-4527-9034-8fdf16d92c54" target="_blank" rel="noopener">Marketplace</a>
+        <a href="https://docs.slawrensen.com/" target="_blank" rel="noopener">Docs</a>
         <a href="https://github.com/slawrensen" target="_blank" rel="noopener">GitHub</a>
       </nav>
     </div>

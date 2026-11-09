@@ -47,3 +47,7 @@
 
 /assets/mac-sensors-v1.webp
   Cache-Control: public, max-age=31536000, immutable
+/assets/mac-sensors-board-v1.webp
+  Cache-Control: public, max-age=31536000, immutable
+/assets/mac-sensors-layouts-v1.webp
+  Cache-Control: public, max-age=31536000, immutable
