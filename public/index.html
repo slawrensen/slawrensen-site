@@ -3,35 +3,38 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Stephen Lawrensen · Stream Deck plugins for Mac and Windows</title>
-<meta name="description" content="Mac Sensors and HWiNFO Sensors put your computer's temperatures, fan speeds, power and load on Stream Deck keys and dials. Free, open source, no ads, no telemetry.">
+<title>slawrensen · Stream Deck plugins by Stephen Lawrensen</title>
+<meta name="description" content="Mac Sensors and HWiNFO Sensors by Stephen Lawrensen put your computer's temperatures, fan speeds, power and load on Stream Deck keys and dials. Free, open source, no ads, no telemetry.">
 <meta name="author" content="Stephen Lawrensen">
 <meta name="theme-color" content="#0b0806">
 <meta name="color-scheme" content="dark">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://slawrensen.com/">
-<meta property="og:title" content="Stephen Lawrensen · Stream Deck plugins for Mac and Windows">
+<meta property="og:title" content="slawrensen · Stream Deck plugins by Stephen Lawrensen">
 <meta property="og:description" content="Mac Sensors and HWiNFO Sensors put your computer's temperatures, fan speeds, power and load on Stream Deck keys and dials. Free, open source, no ads, no telemetry.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://slawrensen.com/">
-<meta property="og:site_name" content="Stephen Lawrensen">
+<meta property="og:site_name" content="slawrensen">
 <meta property="og:image" content="https://slawrensen.com/assets/og-card-v2.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="A Stream Deck + XL on a desk, its 36 keys showing live CPU temperatures, clock speeds, usage and voltages from HWiNFO, with six dial readouts on the touch strip">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://slawrensen.com/#me","name":"Stephen Lawrensen","url":"https://slawrensen.com/","sameAs":["https://github.com/slawrensen"]},{"@type":"SoftwareApplication","name":"Mac Sensors","applicationCategory":"UtilitiesApplication","operatingSystem":"macOS 13.5 or later","softwareVersion":"1.0.1","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"url":"https://docs.slawrensen.com/mac-streamdeck/","downloadUrl":"https://marketplace.elgato.com/product/mac-sensors-f04e345c-21c5-411c-9ecd-01864c3a8c3c","codeRepository":"https://github.com/slawrensen/mac-sensors-streamdeck","author":{"@id":"https://slawrensen.com/#me"}},{"@type":"SoftwareApplication","name":"HWiNFO Sensors","applicationCategory":"UtilitiesApplication","operatingSystem":"Windows 10 or later","softwareVersion":"1.7.1","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"url":"https://docs.slawrensen.com/hwinfo-streamdeck/","downloadUrl":"https://marketplace.elgato.com/product/hwinfo-sensors-82436166-3d61-4527-9034-8fdf16d92c54","codeRepository":"https://github.com/slawrensen/hwinfo-streamdeck","author":{"@id":"https://slawrensen.com/#me"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://slawrensen.com/#me","name":"Stephen Lawrensen","alternateName":"slawrensen","url":"https://slawrensen.com/","sameAs":["https://github.com/slawrensen"]},{"@type":"WebSite","name":"slawrensen","url":"https://slawrensen.com/","author":{"@id":"https://slawrensen.com/#me"}},{"@type":"SoftwareApplication","name":"Mac Sensors","applicationCategory":"UtilitiesApplication","operatingSystem":"macOS 13.5 or later","softwareVersion":"1.0.1","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"url":"https://docs.slawrensen.com/mac-streamdeck/","downloadUrl":"https://marketplace.elgato.com/product/mac-sensors-f04e345c-21c5-411c-9ecd-01864c3a8c3c","codeRepository":"https://github.com/slawrensen/mac-sensors-streamdeck","author":{"@id":"https://slawrensen.com/#me"}},{"@type":"SoftwareApplication","name":"HWiNFO Sensors","applicationCategory":"UtilitiesApplication","operatingSystem":"Windows 10 or later","softwareVersion":"1.7.1","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"url":"https://docs.slawrensen.com/hwinfo-streamdeck/","downloadUrl":"https://marketplace.elgato.com/product/hwinfo-sensors-82436166-3d61-4527-9034-8fdf16d92c54","codeRepository":"https://github.com/slawrensen/hwinfo-streamdeck","author":{"@id":"https://slawrensen.com/#me"}}]}</script>
 <style>
-  /* Night Desk: the real desk photo opens the page edge to edge; text sits in the dark the photo already has.
-     Dark only. System fonts only: the CSP allows no web fonts. Amber is the plugins' own warning color. */
+  /* Night Desk: the real desk photo opens the page edge to edge; one dial reading at page scale is the second beat;
+     then the two plugins in the same pattern. Dark only, system fonts (the CSP allows no web fonts).
+     Amber is the plugins' warning color; the blue is their Void accent; Tahoma is the face they draw in. */
   :root{
     color-scheme:dark;
     --night:#0b0806; --well:#110e0c; --ink:#f3eadc; --copy:#d2c6b4; --muted:#a8998a; --line:#2a2119;
     --amber:#e8940d; --amber-soft:#f2b45c; --amber-ink:#1a0f02;
+    --void:#4cc2ff; --face-gray:#8f97a4; --track:#1b1d20; --warn-zone:rgba(232,148,13,.5); --crit-zone:rgba(203,33,20,.6);
     --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",system-ui,sans-serif;
     --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI Variable Display","Segoe UI",system-ui,sans-serif;
     --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --face:Tahoma,Verdana,"Segoe UI",sans-serif;
   }
   *,*::before,*::after{box-sizing:border-box;margin:0}
   html{-webkit-text-size-adjust:100%}
@@ -43,6 +46,7 @@
   .wrap{max-width:68rem;margin-inline:auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
   .skip{position:absolute;left:-9999px}
   .skip:focus{left:16px;top:16px;z-index:9;padding:8px 12px;background:var(--night);color:var(--ink);border:1px solid var(--line)}
+  .tag{font:500 .8rem/1 var(--mono);color:var(--amber-soft);letter-spacing:.04em}
 
   .hero{position:relative;isolation:isolate}
   .hero > img{width:100%;height:min(94vh,78vw);min-height:520px;object-fit:cover;object-position:50% 22%}
@@ -50,7 +54,7 @@
     background:linear-gradient(180deg,rgba(11,8,6,.85) 0%,rgba(11,8,6,0) 18%,rgba(11,8,6,0) 50%,rgba(11,8,6,.93) 76%,var(--night) 100%)}
   .top{position:absolute;inset:0 0 auto;z-index:2;padding-top:env(safe-area-inset-top,0px)}
   .bar{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:22px}
-  .name{font-weight:600;letter-spacing:-.01em;color:var(--ink);text-decoration:none}
+  .brand{font:700 1.15rem/1 var(--display);letter-spacing:-.03em;color:var(--ink);text-decoration:none}
   nav{display:flex;gap:22px;font-size:.95rem;color:var(--copy)}
   nav a{text-decoration:none;padding-block:8px}
   nav a:hover{color:var(--ink)}
@@ -58,7 +62,25 @@
   h1{font:600 clamp(2.3rem,1.3rem + 4.4vw,4.6rem)/1.02 var(--display);letter-spacing:-.035em;color:var(--ink);max-width:15ch;text-wrap:balance}
   .cap{margin-top:14px;font:500 .8rem/1.4 var(--mono);color:var(--muted)}
 
-  .lead{padding-block:clamp(36px,6vw,64px) clamp(28px,5vw,48px);font-size:clamp(1.12rem,1rem + .5vw,1.35rem);line-height:1.55;max-width:40rem;text-wrap:pretty}
+  /* The big sensor: a Sensor Dial's one-reading view, 2:1 like one touch strip segment, at page scale. */
+  .reading{padding-block:clamp(48px,8vw,104px) clamp(36px,6vw,64px);display:grid;gap:22px}
+  .scale{container-type:inline-size;width:100%;max-width:58rem}
+  .dial{aspect-ratio:2/1;background:#000;border-radius:2.4cqw;padding:5cqw 6.5cqw 5.2cqw;display:flex;flex-direction:column;
+    font-family:var(--face);font-weight:700;color:#fff;font-variant-numeric:tabular-nums;
+    box-shadow:0 0 0 1px #24201b,0 50px 120px -50px rgba(76,194,255,.22),0 30px 60px -30px rgba(0,0,0,.9)}
+  .d-label{font-size:7.6cqw;line-height:1;color:var(--face-gray)}
+  .d-value{display:flex;align-items:baseline;gap:2cqw;margin-top:2.2cqw;line-height:.9}
+  .d-num{font-size:20cqw;letter-spacing:-.03em}
+  .d-unit{font-size:8.5cqw;color:var(--face-gray)}
+  .d-stats{margin-top:auto;font-size:5.6cqw;line-height:1;color:var(--face-gray)}
+  .d-bar{position:relative;height:2.6cqw;margin-top:3.2cqw;border-radius:99px;background:var(--track);overflow:hidden}
+  .d-bar .z{position:absolute;top:0;bottom:0}
+  .d-bar .warn{left:75%;right:8.333%;background:var(--warn-zone)}
+  .d-bar .crit{left:91.667%;right:0;background:var(--crit-zone)}
+  .d-bar .fill{position:absolute;left:0;top:0;bottom:0;border-radius:99px;background:var(--void);width:53.3%;transition:width .4s ease}
+  .reading p{max-width:40rem;font-size:.95rem;color:var(--muted)}
+
+  .lead{padding-block:clamp(28px,5vw,48px) clamp(28px,5vw,48px);font-size:clamp(1.12rem,1rem + .5vw,1.35rem);line-height:1.55;max-width:40rem;text-wrap:pretty;border-top:1px solid var(--line)}
   .lead b{color:var(--ink);font-weight:600}
 
   .product{display:grid;grid-template-columns:1fr;gap:28px;padding-block:clamp(40px,6vw,72px);border-top:1px solid var(--line);align-items:center}
@@ -67,7 +89,6 @@
   .media.board{padding:5%}
   .media img{width:100%}
   .text{min-width:0;display:flex;flex-direction:column;gap:14px}
-  .tag{font:500 .8rem/1 var(--mono);color:var(--amber-soft);letter-spacing:.04em}
   h2{font:600 clamp(1.8rem,1.4rem + 1.6vw,2.5rem)/1.08 var(--display);letter-spacing:-.03em;color:var(--ink)}
   .req{font-size:.92rem;color:var(--muted)}
   .actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px;margin-top:6px}
@@ -82,12 +103,14 @@
   .notes a{text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:.2em}
   .notes a:hover{text-decoration-color:var(--amber)}
 
-  footer{border-top:1px solid var(--line);padding-block:28px calc(44px + env(safe-area-inset-bottom,0px));font-size:.82rem;color:var(--muted)}
+  footer{border-top:1px solid var(--line);padding-block:32px calc(44px + env(safe-area-inset-bottom,0px));font-size:.82rem;color:var(--muted)}
+  .sig{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;margin-bottom:12px}
+  .sig strong{font:600 1rem/1.2 var(--display);letter-spacing:-.015em;color:var(--ink)}
   footer p+p{margin-top:6px}
 
   @media (forced-colors: active){
     .hero::after{display:none}
-    .btn,.media{border:1px solid CanvasText}
+    .btn,.media,.dial{border:1px solid CanvasText}
   }
   @media (prefers-reduced-motion: reduce){ *{transition:none!important} }
 </style>
@@ -97,9 +120,9 @@
 
 <header class="hero">
   <img src="assets/desk-night-v1.webp" width="2000" height="1815" fetchpriority="high" decoding="async"
-       alt="My Stream Deck + XL on the desk at night: 36 keys and the touch strip glowing with live CPU temperatures, clocks, usage and voltages, one key amber and one red">
+       alt="A Stream Deck + XL on a desk at night: 36 keys and the touch strip glowing with live CPU temperatures, clocks, usage and voltages, one key amber and one red">
   <div class="top"><div class="wrap bar">
-    <a class="name" href="/">Stephen Lawrensen</a>
+    <a class="brand" href="/">slawrensen</a>
     <nav aria-label="Primary"><a href="#plugins">Plugins</a><a href="https://docs.slawrensen.com/">Docs</a><a href="https://github.com/slawrensen">GitHub</a></nav>
   </div></div>
   <div class="over"><div class="wrap">
@@ -108,52 +131,87 @@
   </div></div>
 </header>
 
-<main class="wrap" id="plugins">
-  <p class="lead">I build two Stream Deck plugins. <b>Mac Sensors</b> reads your Mac. <b>HWiNFO Sensors</b> reads Windows through HWiNFO. Both are free and open source, with no ads and no telemetry.</p>
-
-  <article class="product" id="mac-sensors">
-    <div class="media board"><img src="assets/mac-sensors-v3.webp" width="1480" height="776" loading="lazy" decoding="async"
-      alt="Mac Sensors key and dial faces drawn by the plugin with sample values: seven themes, single and multi-reading keys, a ring, a bar, amber and red alerts, and four dial views"></div>
-    <div class="text">
-      <span class="tag">macOS · 1.0.1</span>
-      <h2>Mac Sensors</h2>
-      <p>Temperatures, fan speeds, power, CPU activity, memory, storage and network from your Mac, on keys and Stream Deck + dials. It only reads: no fan control, no administrator password, no helper app.</p>
-      <p class="req">macOS 13.5 or later · Stream Deck 7.1 or later · Apple silicon and Intel</p>
-      <div class="actions">
-        <a class="btn" href="https://marketplace.elgato.com/product/mac-sensors-f04e345c-21c5-411c-9ecd-01864c3a8c3c">Get it on the Marketplace</a>
-        <a href="https://docs.slawrensen.com/mac-streamdeck/">Docs</a>
-        <a href="https://github.com/slawrensen/mac-sensors-streamdeck">Source</a>
+<main id="plugins">
+  <section class="wrap reading" aria-label="One reading at page scale">
+    <span class="tag">Sensor Dial · one reading</span>
+    <div class="scale">
+      <div class="dial" role="img" aria-label="A Sensor Dial face showing CPU super 1 at about 62 degrees Celsius, with its session low and high and a range bar">
+        <span class="d-label">CPU super 1</span>
+        <span class="d-value"><span class="d-num" id="dnum">62.4</span><span class="d-unit">°C</span></span>
+        <span class="d-stats">▼ <span id="dlo">39.9</span>&nbsp;&nbsp;▲ <span id="dhi">63.7</span>&nbsp;&nbsp;session</span>
+        <span class="d-bar" aria-hidden="true"><span class="z warn"></span><span class="z crit"></span><span class="fill" id="dfill"></span></span>
       </div>
     </div>
-  </article>
-
-  <article class="product flip" id="hwinfo-sensors">
-    <div class="media"><img src="assets/desk-keys-v1.webp" width="2400" height="1503" loading="lazy" decoding="async"
-      alt="The keys and touch strip of the same Stream Deck + XL up close: CPU core temperatures, clocks, usage and voltages, and six dial readouts"></div>
-    <div class="text">
-      <span class="tag">Windows · 1.7.1</span>
-      <h2>HWiNFO Sensors</h2>
-      <p>CPU and GPU temperatures, clock speeds, fan speeds, usage and power from HWiNFO, on the same keys and dials. HWiNFO is a separate free program; turn on its Shared Memory Support.</p>
-      <p class="req">Windows 10 or later, x64 · Stream Deck 6.9 or later · HWiNFO</p>
-      <div class="actions">
-        <a class="btn" href="https://marketplace.elgato.com/product/hwinfo-sensors-82436166-3d61-4527-9034-8fdf16d92c54">Get it on the Marketplace</a>
-        <a href="https://docs.slawrensen.com/hwinfo-streamdeck/">Docs</a>
-        <a href="https://github.com/slawrensen/hwinfo-streamdeck">Source</a>
-      </div>
-    </div>
-  </article>
-
-  <section class="notes" aria-label="How I build them">
-    <p><b>No ads, no telemetry.</b> Neither plugin makes a network request; the only connection is to the Stream Deck app on your computer.</p>
-    <p><b>Read-only, open source.</b> They never change a hardware setting. The code is MIT licensed, and questions go to GitHub Issues for <a href="https://github.com/slawrensen/mac-sensors-streamdeck/issues">Mac Sensors</a> or <a href="https://github.com/slawrensen/hwinfo-streamdeck/issues">HWiNFO Sensors</a>.</p>
+    <p>One dial reading drawn in the plugins' style at the size of the page: the value, its lowest and highest this session, and a bar from 30 to 90 °C with amber and red zones from 75 and 85. Sample values, read once a second like the default.</p>
   </section>
+
+  <div class="wrap">
+    <p class="lead">I build two Stream Deck plugins. <b>Mac Sensors</b> reads your Mac. <b>HWiNFO Sensors</b> reads Windows through HWiNFO. Both are free and open source, with no ads and no telemetry.</p>
+
+    <article class="product" id="mac-sensors">
+      <div class="media board"><img src="assets/mac-sensors-v3.webp" width="1480" height="776" loading="lazy" decoding="async"
+        alt="Mac Sensors key and dial faces drawn by the plugin with sample values: seven themes, single and multi-reading keys, a ring, a bar, amber and red alerts, and four dial views"></div>
+      <div class="text">
+        <span class="tag">macOS · 1.0.1</span>
+        <h2>Mac Sensors</h2>
+        <p>Temperatures, fan speeds, power, CPU activity, memory, storage and network from your Mac, on keys and Stream Deck + dials. It only reads: no fan control, no administrator password, no helper app.</p>
+        <p class="req">macOS 13.5 or later · Stream Deck 7.1 or later · Apple silicon and Intel</p>
+        <div class="actions">
+          <a class="btn" href="https://marketplace.elgato.com/product/mac-sensors-f04e345c-21c5-411c-9ecd-01864c3a8c3c">Get it on the Marketplace</a>
+          <a href="https://docs.slawrensen.com/mac-streamdeck/">Docs</a>
+          <a href="https://github.com/slawrensen/mac-sensors-streamdeck">Source</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="product flip" id="hwinfo-sensors">
+      <div class="media"><img src="assets/desk-keys-v1.webp" width="2400" height="1503" loading="lazy" decoding="async"
+        alt="The keys and touch strip of the same Stream Deck + XL up close: CPU core temperatures, clocks, usage and voltages, and six dial readouts"></div>
+      <div class="text">
+        <span class="tag">Windows · 1.7.1</span>
+        <h2>HWiNFO Sensors</h2>
+        <p>CPU and GPU temperatures, clock speeds, fan speeds, usage and power from HWiNFO, on the same keys and dials. HWiNFO is a separate free program; turn on its Shared Memory Support.</p>
+        <p class="req">Windows 10 or later, x64 · Stream Deck 6.9 or later · HWiNFO</p>
+        <div class="actions">
+          <a class="btn" href="https://marketplace.elgato.com/product/hwinfo-sensors-82436166-3d61-4527-9034-8fdf16d92c54">Get it on the Marketplace</a>
+          <a href="https://docs.slawrensen.com/hwinfo-streamdeck/">Docs</a>
+          <a href="https://github.com/slawrensen/hwinfo-streamdeck">Source</a>
+        </div>
+      </div>
+    </article>
+
+    <section class="notes" aria-label="How I build them">
+      <p><b>No ads, no telemetry.</b> Neither plugin makes a network request; the only connection is to the Stream Deck app on your computer.</p>
+      <p><b>Read-only, open source.</b> They never change a hardware setting. The code is MIT licensed, and questions go to GitHub Issues for <a href="https://github.com/slawrensen/mac-sensors-streamdeck/issues">Mac Sensors</a> or <a href="https://github.com/slawrensen/hwinfo-streamdeck/issues">HWiNFO Sensors</a>.</p>
+    </section>
+  </div>
 </main>
 
 <footer>
   <div class="wrap">
+    <div class="sig"><strong>Stephen Lawrensen</strong><span>slawrensen on <a href="https://github.com/slawrensen">GitHub</a></span></div>
     <p>&copy; 2026 Stephen Lawrensen. No trackers, no cookies.</p>
     <p>Not affiliated with, endorsed by, or sponsored by Apple, REALiX, Elgato or Corsair. Mac and macOS are trademarks of Apple Inc. HWiNFO is a trademark of REALiX, s.r.o. Stream Deck and Elgato are trademarks of Corsair Memory, Inc.</p>
   </div>
 </footer>
+
+<script>
+(function(){
+  /* Sample reading for the big dial: one update a second, like the plugins' default Read every. */
+  try{
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var num=document.getElementById('dnum'),lo=document.getElementById('dlo'),hi=document.getElementById('dhi'),fill=document.getElementById('dfill');
+    if(!num||!fill) return;
+    var BAR_FROM_C=30, BAR_TO_C=90, low=39.9, high=63.7, t=0;
+    setInterval(function(){
+      t++;
+      var v=60.6+Math.sin(t*.23)*2.4+Math.sin(t*.061+1.2)*1.7+Math.sin(t*.97)*.3;
+      if(v<low) low=v; if(v>high) high=v;
+      num.textContent=v.toFixed(1); lo.textContent=low.toFixed(1); hi.textContent=high.toFixed(1);
+      fill.style.width=(Math.max(0,Math.min(1,(v-BAR_FROM_C)/(BAR_TO_C-BAR_FROM_C)))*100).toFixed(1)+'%';
+    },1000);
+  }catch(e){}
+})();
+</script>
 </body>
 </html>
