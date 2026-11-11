@@ -115,7 +115,7 @@
   @media(max-width:380px){ .nav-links{font-size:.82rem} }
 
   /* hero */
-  .hero{padding:clamp(36px,6vw,88px) 0 clamp(48px,7vw,88px)}
+  .hero{padding:clamp(24px,4vw,56px) 0 clamp(40px,5.5vw,72px)}
   .hero-grid{display:grid; grid-template-columns:minmax(0,1fr); gap:clamp(30px,4.5vw,52px); align-items:center}
   .hero h1{
     /* 12.5vw keeps the longest word inside a very narrow or zoomed viewport */
@@ -140,14 +140,13 @@
      narrower column it shrinks to fit. */
   .hero-art{width:min(100%, var(--deck))}
   .hero-art img{width:100%}
-  .hero-art figcaption{margin-top:14px; max-width:60ch}
   figcaption{color:var(--faint); font-size:.8rem; font-family:var(--mono); letter-spacing:.02em; line-height:1.55}
   /* From 1440 px the deck stands beside the text, and never taller than the window. Below that it
      sits under the text, where the full column lets it reach life size from about 1050 px. */
   @media(min-width:1440px){
     /* the deck's column is as wide as the deck; the text takes the rest, never under 26rem */
     .hero-grid{grid-template-columns:minmax(26rem,1fr) minmax(0,var(--deck)); gap:clamp(44px,4vw,76px)}
-    .hero-art{justify-self:end; max-width:calc((100svh - 8rem) * 1.117)}
+    .hero-art{justify-self:end; max-width:calc((100svh - 6.5rem) * 1.117)}
     .hero h1{max-width:none}
   }
   /* on a wide monitor the headline grows into the room beside the deck */
@@ -245,6 +244,22 @@
   .about-grid strong{color:var(--text); font-weight:600}
   .pphoto{max-width:36rem; justify-self:end; width:100%}
   .pphoto img{width:100%; border:1px solid var(--line-2); border-radius:var(--radius-sm)}
+  /* The photograph opens larger. It is a popover: the browser puts it above the page, dims what
+     is behind it, and closes it on Escape, on a click outside, or on a click on the picture. No
+     script, and nothing on the page moves. Without popover support the picture simply stays put. */
+  .zoom,.unzoom{display:block; width:100%; padding:0; border:0; background:none; color:inherit; font:inherit; cursor:zoom-in; border-radius:var(--radius-sm)}
+  .unzoom{cursor:zoom-out}
+  .lightbox{
+    inset:0; margin:auto; padding:0; border:0; background:none; overflow:visible;
+    width:min(94vw, 1500px, (100svh - 2.5rem) * 1.1025); max-width:none; max-height:none;
+  }
+  .lightbox img{width:100%; border:1px solid var(--line-2); border-radius:var(--radius-sm); background:#000}
+  .lightbox::backdrop{background:rgba(0,0,0,.88)}
+  @media(prefers-reduced-motion:no-preference){
+    .lightbox,.lightbox::backdrop{transition:opacity .16s var(--ease), overlay .16s allow-discrete, display .16s allow-discrete; opacity:0}
+    .lightbox:popover-open,.lightbox:popover-open::backdrop{opacity:1}
+    @starting-style{ .lightbox:popover-open,.lightbox:popover-open::backdrop{opacity:0} }
+  }
   .pphoto figcaption{margin-top:12px}
 
   /* footer */
@@ -311,7 +326,7 @@
   /* Windows High Contrast: keep every boundary visible */
   @media (forced-colors: active){
     .btn-primary{background:ButtonFace; color:ButtonText; border:1px solid ButtonText}
-    .product,.frame,.btn-ghost,.pphoto img{border-color:CanvasText}
+    .product,.frame,.btn-ghost,.pphoto img,.lightbox img{border-color:CanvasText}
     .aura{display:none}
     body::before,body::after{content:none!important}
   }
@@ -362,8 +377,7 @@
              srcset="assets/deck-plusxl-880-v1.webp 880w, assets/deck-plusxl-1320-v1.webp 1320w, assets/deck-plusxl-1760-v1.webp 1760w, assets/deck-plusxl-2619-v1.webp 2619w"
              sizes="(min-width:1440px) min(880px, 52vw), min(880px, 92vw)"
              width="2619" height="2345" fetchpriority="high" decoding="async"
-             alt="A Stream Deck + XL drawn to scale. Its 36 keys show CPU temperatures, core clocks, usage and voltages with sparklines in the seven themes, a column of two, three and four readings per key, a ring, two bars, an amber warn key and a red critical key. Below them the touch strip carries six dial readouts, above the six dials.">
-        <figcaption>A Stream Deck + XL drawn to scale, life size where the window allows. Faces drawn by the plugin with sample values.</figcaption>
+             alt="A Stream Deck + XL drawn to scale, its faces drawn by the plugin with sample values. Its 36 keys show CPU temperatures, core clocks, usage and voltages with sparklines in the seven themes, a column of two, three and four readings per key, a ring, two bars, an amber warn key and a red critical key. Below them the touch strip carries six dial readouts, above the six dials.">
       </figure>
     </div>
   </section>
@@ -512,10 +526,18 @@
           <p>Questions, bugs, or ideas go through GitHub Issues for <a href="https://github.com/slawrensen/mac-sensors-streamdeck/issues" target="_blank" rel="noopener">Mac Sensors</a> or <a href="https://github.com/slawrensen/hwinfo-streamdeck/issues" target="_blank" rel="noopener">HWiNFO Sensors</a>.</p>
         </div>
         <figure class="pphoto">
-          <img src="assets/streamdeck-plusxl-v2.webp" width="1000" height="907" loading="lazy" decoding="async"
-               alt="A Stream Deck + XL on a wooden desk, its 36 keys showing live CPU core temperatures, clock speeds, usage percentages and voltages from HWiNFO, one key amber and one red demonstrating warn and critical alerts, with six dial readouts on the touch strip below">
+          <button class="zoom" type="button" popovertarget="photo-large" aria-label="Show the photograph larger">
+            <img src="assets/streamdeck-plusxl-v2.webp" width="1000" height="907" loading="lazy" decoding="async"
+                 alt="A Stream Deck + XL on a wooden desk, its 36 keys showing live CPU core temperatures, clock speeds, usage percentages and voltages from HWiNFO, one key amber and one red demonstrating warn and critical alerts, with six dial readouts on the touch strip below">
+          </button>
           <figcaption>Photograph: my Stream Deck + XL live on HWiNFO, 25 July 2026, on an earlier version</figcaption>
         </figure>
+        <div class="lightbox" id="photo-large" popover>
+          <button class="unzoom" type="button" popovertarget="photo-large" popovertargetaction="hide" aria-label="Close the larger photograph">
+            <img src="assets/streamdeck-plusxl-2000-v1.webp" width="2000" height="1815" loading="lazy" decoding="async"
+                 alt="The same photograph, larger: a Stream Deck + XL on a wooden desk with its 36 keys and six dial readouts live from HWiNFO">
+          </button>
+        </div>
       </div>
     </div>
   </section>

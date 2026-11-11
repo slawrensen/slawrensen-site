@@ -104,6 +104,10 @@ wherever the window is wide enough for it.
   `role="group"` and an `aria-label`, so a keyboard can pan it in Safari. The
   cost is a tab stop that does nothing at widths where the board does not
   scroll.
+- **The photograph** in About opens larger when clicked. It is a `popover`
+  element opened by a `popovertarget` button: the browser layers it above the
+  page, dims the rest, and closes it on Escape or a click. No script; the
+  2000 px file loads only when it is opened.
 - A new or changed file in `public/assets/` carries `-vN` in its name and gets
   an `immutable` entry in `_headers`; the name it replaces gets a line in
   `_redirects`.
