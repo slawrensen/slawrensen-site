@@ -75,7 +75,9 @@ doors and a photograph of the keys large enough to read.
   `tools/board-backdrop.py` puts each on `--board` (`#100f0c`) and leaves every
   plugin-drawn face pixel-identical. Run it on any new board.
 - A board wider than about 1.6:1 gets `.pan`: under 35em it scrolls sideways
-  at 680 px wide, so its faces stay legible on a phone.
+  at 680 px wide, so its faces stay legible on a phone. Its `.frame` carries
+  `tabindex="0"`, `role="group"` and an `aria-label` naming the board, so a
+  keyboard can pan it in Safari.
 - A new or changed file in `public/assets/` carries `-vN` in its name and gets
   an `immutable` entry in `_headers`; the name it replaces gets a line in
   `_redirects`.

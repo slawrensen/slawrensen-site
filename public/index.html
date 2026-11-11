@@ -161,6 +161,9 @@
     .pan .frame img{width:680px; max-width:none}
     .swipe{display:inline}
   }
+  /* These frames take focus so a keyboard can pan them where they scroll. Safari does not focus a
+     scroll container on its own, and without script the stop cannot be limited to narrow screens. */
+  .pan .frame:focus-visible{outline-offset:-2px; border-radius:var(--r)}
 
   /* term and description rows: the product specs and the principles share them */
   .spec{margin-top:clamp(28px,4vw,44px); border-top:1px solid var(--rule)}
@@ -283,7 +286,7 @@
       </dl>
 
       <figure class="board pan">
-        <div class="frame">
+        <div class="frame" tabindex="0" role="group" aria-label="HWiNFO Sensors multi-readout layouts board">
           <img src="assets/hwinfo-layouts-v3.webp" width="1550" height="716" loading="lazy" decoding="async"
                alt="Multi-readout key and dial faces: two sensors stacked on one key, the same sensor as a min and max pair, a press-cycled pair showing MAX, a three-row key with labels left and values right, a quad grid key with four colour-coded readings, and the Stream Deck + dial overview and two-row views">
         </div>
@@ -322,7 +325,7 @@
       </div>
 
       <figure class="board pan">
-        <div class="frame">
+        <div class="frame" tabindex="0" role="group" aria-label="Mac Sensors key and dial faces board">
           <img src="assets/mac-sensors-board-v2.webp" width="1480" height="776" loading="lazy" decoding="async"
                alt="Mac Sensors key and dial faces: one CPU temperature key in each of the seven themes and a four-reading key; single keys for GPU temperature, fan speed, system power, CPU activity, active memory, network and free space; two- and three-reading keys, a ring and a bar, an amber warn key and a red critical key, a Back tile and a detail title tile; and four Stream Deck + dial faces">
         </div>
@@ -338,7 +341,7 @@
       </dl>
 
       <figure class="board pan">
-        <div class="frame">
+        <div class="frame" tabindex="0" role="group" aria-label="Mac Sensors layouts and dial views board">
           <img src="assets/mac-sensors-layouts-v2.webp" width="1180" height="715" loading="lazy" decoding="async"
                alt="Mac Sensors key layouts and dial views: one reading with a sparkline, two readings stacked, three readings in rows, a four-reading quad grid, CPU usage as a bar and as a ring, active memory and network receive; and three dial views: one reading with its session range, two rows with trend lines, and three compact rows">
         </div>
