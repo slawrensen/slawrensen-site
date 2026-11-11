@@ -155,6 +155,6 @@ on iOS is a closed build that could not be run here.
 
 ## Editing
 
-It is one HTML file. A plugin's version number appears twice: the `v1.x` link
-at the foot of its card, and `softwareVersion` in the JSON-LD block. Add a
-product by copying a `.product` block.
+It is one HTML file. A plugin's version number appears twice: the link in its
+`Requires` row, and `softwareVersion` in the JSON-LD block. Add a product by
+copying a `.product` block.

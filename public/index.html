@@ -145,9 +145,13 @@
   /* From 1440 px the deck stands beside the text, and never taller than the window. Below that it
      sits under the text, where the full column lets it reach life size from about 1050 px. */
   @media(min-width:1440px){
-    .hero-grid{grid-template-columns:minmax(0,26rem) minmax(0,1fr); gap:clamp(44px,4vw,76px)}
+    /* the deck's column is as wide as the deck; the text takes the rest, never under 26rem */
+    .hero-grid{grid-template-columns:minmax(26rem,1fr) minmax(0,var(--deck)); gap:clamp(44px,4vw,76px)}
     .hero-art{justify-self:end; max-width:calc((100svh - 8rem) * 1.117)}
+    .hero h1{max-width:none}
   }
+  /* on a wide monitor the headline grows into the room beside the deck */
+  @media(min-width:1920px){ .hero h1{font-size:clamp(3.5rem, 1rem + 2.6vw, 4.4rem)} }
   @media(min-width:700px) and (max-width:1439.98px){
     .hero h1{max-width:none}
     .hero .lead{max-width:66ch}
@@ -171,10 +175,10 @@
   }
   @media(min-width:1440px){
     .product{
-      grid-template-columns:minmax(0,25rem) minmax(0,1fr); grid-template-rows:auto 1fr auto;
-      grid-template-areas:"a media" "b media" "meta meta";
+      grid-template-columns:minmax(0,25rem) minmax(0,1fr); grid-template-rows:auto 1fr;
+      grid-template-areas:"a media" "b media";
     }
-    .pa{grid-area:a} .pmedia{grid-area:media} .pb{grid-area:b} .pmeta{grid-area:meta}
+    .pa{grid-area:a} .pmedia{grid-area:media} .pb{grid-area:b}
   }
   .phead{max-width:66ch}
   .phead h3{font-size:var(--fs-h3); letter-spacing:-.015em; font-weight:600; margin-top:.5em}
@@ -194,7 +198,8 @@
   @media(max-width:560px){ .pspec li{grid-template-columns:minmax(0,1fr); gap:4px} }
 
   /* boards: the plugin's own art on its graphite plate */
-  .pmedia{display:grid; grid-template-columns:minmax(0,1fr); gap:clamp(18px,2.4vw,26px); align-content:start}
+  /* capped so a board is not blown up far past its own pixels on a very wide screen */
+  .pmedia{display:grid; grid-template-columns:minmax(0,1fr); gap:clamp(18px,2.4vw,26px); align-content:start; max-width:62rem}
   .frame{border:1px solid var(--line-2); border-radius:var(--radius-sm); overflow:hidden; background:var(--plate)}
   .frame img{width:100%}
   .pshot figcaption{margin-top:12px}
@@ -226,17 +231,6 @@
   .psetup li::before{content:counter(s) "."; color:var(--faint); font-variant-numeric:tabular-nums}
   .psetup b{color:var(--text); font-weight:600}
   .psetup-note{margin-top:14px; color:var(--faint); font-size:.875rem; max-width:66ch}
-
-  .pmeta{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px clamp(16px,3vw,24px)}
-  .chips{display:flex; flex-wrap:wrap; gap:8px; list-style:none; padding:0}
-  .chip{
-    font-family:var(--mono); font-size:.75rem; letter-spacing:.02em; color:var(--muted); padding:6px 11px;
-    border:1px solid var(--line-2); border-radius:999px; background:var(--bg);
-  }
-  .chip.ok{color:var(--ok); border-color:rgba(56,205,137,.38)}
-  .soon{color:var(--faint); font-family:var(--mono); font-size:.75rem; letter-spacing:.02em}
-  .soon a{color:var(--muted); border-bottom:1px solid var(--line-2)}
-  .soon a:hover{color:var(--text)}
 
   /* principles: the same labelled rows as a product's features */
   .pspec.rules{margin-top:clamp(26px,3.6vw,40px); max-width:64rem}
@@ -317,7 +311,7 @@
   /* Windows High Contrast: keep every boundary visible */
   @media (forced-colors: active){
     .btn-primary{background:ButtonFace; color:ButtonText; border:1px solid ButtonText}
-    .product,.chip,.frame,.btn-ghost,.pphoto img{border-color:CanvasText}
+    .product,.frame,.btn-ghost,.pphoto img{border-color:CanvasText}
     .aura{display:none}
     body::before,body::after{content:none!important}
   }
@@ -399,6 +393,7 @@
             <li><span class="l">Display</span><span>Seven themes. Amber warn and red critical alerts look the same on every one.</span></li>
             <li><span class="l">Status</span><span>When HWiNFO stops publishing, keys say so with a screen that names the problem and its fix.</span></li>
             <li><span class="l">Privacy</span><span>No ads, no telemetry and no network requests. Its only connection is the local one to the Stream Deck app.</span></li>
+            <li><span class="l">Requires</span><span>Windows 10 or later (x64), Stream Deck 6.9+ and HWiNFO. Free, MIT licensed. <a href="https://github.com/slawrensen/hwinfo-streamdeck/releases/latest" target="_blank" rel="noopener">Version 1.7.1</a></span></li>
           </ul>
         </div>
 
@@ -437,15 +432,6 @@
           <p class="psetup-note">Free HWiNFO switches Shared Memory off after 12 hours; <a href="https://docs.slawrensen.com/hwinfo-streamdeck/data-sources.html" target="_blank" rel="noopener">Data sources</a> covers the Gadget fallback. HWiNFO is a separate free program by REALiX; this plugin does not bundle it.</p>
         </div>
 
-        <div class="pmeta">
-          <ul class="chips" role="list">
-            <li class="chip">Windows 10+ x64</li>
-            <li class="chip">Stream Deck 6.9+</li>
-            <li class="chip">MIT license</li>
-            <li class="chip ok">Free</li>
-          </ul>
-          <p class="soon"><a href="https://github.com/slawrensen/hwinfo-streamdeck/releases/latest" target="_blank" rel="noopener">v1.7.1</a></p>
-        </div>
       </div>
 
       <div class="product" id="mac-sensors">
@@ -466,6 +452,7 @@
             <li><span class="l">Details</span><span>A key press opens a page of related readings and returns with a Back tile.</span></li>
             <li><span class="l">Display</span><span>Seven themes. Amber warn and red critical alerts look the same on every one.</span></li>
             <li><span class="l">Read-only</span><span>No fan control, no administrator password, no helper app. No ads, no telemetry and no network requests.</span></li>
+            <li><span class="l">Requires</span><span>macOS 13.5+ on Apple silicon or Intel, and Stream Deck 7.1+. Free, MIT licensed. <a href="https://github.com/slawrensen/mac-sensors-streamdeck/releases/latest" target="_blank" rel="noopener">Version 1.0.1</a></span></li>
           </ul>
         </div>
 
@@ -495,16 +482,6 @@
           <p class="psetup-note">Which readings appear depends on the Mac and its macOS version. Measured on an Apple silicon M5 Pro; the Intel reader has run on hosted test machines, not yet on a physical Intel Mac.</p>
         </div>
 
-        <div class="pmeta">
-          <ul class="chips" role="list">
-            <li class="chip">macOS 13.5+</li>
-            <li class="chip">Stream Deck 7.1+</li>
-            <li class="chip">Apple silicon / Intel</li>
-            <li class="chip">MIT license</li>
-            <li class="chip ok">Free</li>
-          </ul>
-          <p class="soon"><a href="https://github.com/slawrensen/mac-sensors-streamdeck/releases/latest" target="_blank" rel="noopener">v1.0.1</a></p>
-        </div>
       </div>
     </div>
   </section>
