@@ -269,7 +269,13 @@
   .aura summary:hover{color:var(--muted)}
   .lamp{width:7px; height:7px; flex:none; border-radius:50%; background:var(--line-ui)}
   body:has(#aura-nebula:checked) .lamp,body:has(#aura-stars:checked) .lamp{background:var(--accent)}
-  .aura fieldset{display:flex; flex-wrap:wrap; gap:6px; border:0; padding:0; margin:4px 0 10px}
+  /* The choices float above the lamp. They are out of the flow, so opening them moves nothing. */
+  .aura fieldset{
+    position:absolute; left:0; bottom:100%; z-index:2; display:flex; flex-wrap:wrap; gap:6px;
+    width:max-content; max-width:calc(100vw - 2 * var(--gutter)); border:0; padding:0; margin:0 0 2px;
+  }
+  /* on a phone the lamp sits mid-row: anchor the choices to the row's left edge so they fit */
+  @media(max-width:600px){ .foot-top{position:relative} .aura{position:static} }
   .aura legend{position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%)}
   .aura label{position:relative; display:inline-flex; align-items:center; min-height:40px; padding:0 13px; border:1px solid var(--line-2); border-radius:999px; background:var(--bg); color:var(--muted); cursor:pointer; letter-spacing:.06em}
   .aura label:hover{border-color:var(--line-ui)}
