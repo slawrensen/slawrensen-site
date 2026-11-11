@@ -107,13 +107,13 @@
     /* the link row becomes a mode-selector: four equal cells, etched dividers */
     /* four cells while each can hold its word; with very large text they fold to two rows */
     .nav-links{
-      width:100%; display:grid; grid-template-columns:repeat(auto-fit,minmax(max(25%,4.9em),1fr)); gap:0;
+      width:100%; display:grid; grid-template-columns:repeat(auto-fit,minmax(max(20%,4.4em),1fr)); gap:0;
       margin-top:9px; padding-top:9px; border-top:1px solid var(--line); font-size:.86rem;
     }
     .nav-links a{justify-content:center}
     .nav-links a:not(:last-child){border-inline-end:1px solid var(--line)}
   }
-  @media(max-width:380px){ .nav-links{font-size:.82rem} }
+  @media(max-width:380px){ .nav-links{font-size:.78rem} }
 
   /* hero */
   .hero{padding:clamp(24px,4vw,56px) 0 clamp(40px,5.5vw,72px)}
@@ -252,13 +252,16 @@
   @media(max-width:560px){ .pspec.rules li{grid-template-columns:minmax(0,1fr)} }
 
   /* about: the words beside the photograph of the real deck */
-  .about-grid{display:grid; grid-template-columns:minmax(0,1fr); gap:clamp(24px,5vw,64px); align-items:start; margin-top:clamp(28px,4vw,40px)}
-  @media(min-width:900px){ .about-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)} }
+  /* The heading and the words sit beside the photograph, packed from the left edge with one gap
+     between them, and the photograph's top lines up with the heading's. */
+  .about-grid{display:grid; grid-template-columns:minmax(0,1fr); gap:clamp(28px,4vw,40px) clamp(36px,4vw,72px); align-items:start}
+  @media(min-width:900px){ .about-grid{grid-template-columns:minmax(0,34rem) minmax(0,40rem); justify-content:start} }
+  .about-text .sec-head h2{margin-top:0}
+  .about-text .sec-head{margin-bottom:clamp(18px,2.4vw,26px)}
   .about-grid p{color:var(--muted); font-size:1.02rem; margin-bottom:16px; max-width:58ch; text-wrap:pretty}
   .about-grid p:last-child{margin-bottom:0}
   .about-grid strong{color:var(--text); font-weight:600}
-  .pphoto{max-width:36rem; justify-self:start; width:100%}
-  @media(min-width:900px){ .pphoto{justify-self:end} }
+  .pphoto{max-width:40rem; width:100%}
   .pphoto img{width:100%; border:1px solid var(--line-2); border-radius:var(--radius-sm)}
   /* The photograph opens larger. It is a popover: the browser puts it above the page, dims what
      is behind it, and closes it on Escape, on a click outside, or on a click on the picture. No
@@ -380,6 +383,7 @@
       <a href="#products">Products</a>
       <a href="#principles">Principles</a>
       <a href="#about">About</a>
+      <a href="https://docs.slawrensen.com/" target="_blank" rel="noopener">Docs</a>
       <a class="gh" href="https://github.com/slawrensen" target="_blank" rel="noopener">GitHub</a>
     </nav>
   </div>
@@ -540,11 +544,11 @@
 
   <section id="about">
     <div class="wrap">
-      <div class="sec-head">
-        <h2>Built by one person, on purpose.</h2>
-      </div>
       <div class="about-grid">
-        <div>
+        <div class="about-text">
+          <div class="sec-head">
+            <h2>Built by one person, on purpose.</h2>
+          </div>
           <p>I am <strong><a href="https://github.com/slawrensen" target="_blank" rel="noopener">slawrensen</a></strong>, an independent developer. I build small tools for people who care how their machines run.</p>
           <p>HWiNFO Sensors is a ground-up TypeScript rewrite on Elgato's official SDK, inspired by the original Go-based plugin by @shayne: no code shared, credits in <a href="https://github.com/slawrensen/hwinfo-streamdeck/blob/main/NOTICE.md" target="_blank" rel="noopener">NOTICE.md</a>.</p>
           <p>Questions, bugs, or ideas go through GitHub Issues for <a href="https://github.com/slawrensen/mac-sensors-streamdeck/issues" target="_blank" rel="noopener">Mac Sensors</a> or <a href="https://github.com/slawrensen/hwinfo-streamdeck/issues" target="_blank" rel="noopener">HWiNFO Sensors</a>.</p>
@@ -552,7 +556,7 @@
         <figure class="pphoto">
           <button class="zoom" type="button" popovertarget="photo-large" aria-label="Show the photograph larger">
             <img src="assets/streamdeck-plusxl-v2.webp" srcset="assets/streamdeck-plusxl-v2.webp 1000w, assets/streamdeck-plusxl-2000-v1.webp 2000w"
-                 sizes="(min-width:900px) min(36rem, 46vw), 92vw" width="1000" height="907" loading="lazy" decoding="async"
+                 sizes="(min-width:900px) min(40rem, 46vw), 92vw" width="1000" height="907" loading="lazy" decoding="async"
                  alt="A Stream Deck + XL on a wooden desk, its 36 keys showing live CPU core temperatures, clock speeds, usage percentages and voltages from HWiNFO, one key amber and one red demonstrating warn and critical alerts, with six dial readouts on the touch strip below">
           </button>
           <figcaption>Photograph: my Stream Deck + XL live on HWiNFO, 25 July 2026, on an earlier version</figcaption>
