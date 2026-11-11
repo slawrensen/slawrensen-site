@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="darkreader-lock">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>No signal · slawrensen</title>
 <meta name="robots" content="noindex">
@@ -51,6 +52,8 @@
     background:linear-gradient(115deg,var(--accent),var(--accent-2));
     color:#05070a; font-family:var(--mono); font-weight:800; font-size:.82rem;
   }
+  /* Dark Reader running despite the lock darkens the gradient: keep the mark's edge and ink. */
+  html[data-darkreader-scheme] .mark{border:1px solid #525c6b; color:var(--text)}
 </style>
 </head>
 <body>

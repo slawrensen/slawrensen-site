@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<!-- This page is dark already. Dark Reader leaves a page with this tag alone. It sits first so the
+     extension meets it before any style. -->
+<meta name="darkreader-lock">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Stream Deck plugins for Windows and Mac · slawrensen</title>
 <meta name="description" content="HWiNFO Sensors for Windows and Mac Sensors for macOS. Local hardware readings on Stream Deck keys and dials. Free, MIT licensed, no telemetry.">
@@ -29,7 +32,9 @@
     --line:#171b22; --line-2:#222835; --line-ui:#525c6b;
     --text:#e9ebf0; --muted:#a3abb8; --faint:#7b8493;
     --accent:#5cb8ff; --accent-2:#8f7cff; --accent-ink:#05070a;
-    --grad:linear-gradient(115deg,var(--accent),var(--accent-2));
+    /* Literal stops, not var(--accent)/var(--accent-2): Dark Reader rewrites a nested var() to a
+       variable it only defines for colours used as backgrounds, and the whole fill computes to none. */
+    --grad:linear-gradient(115deg,#5cb8ff,#8f7cff);
     --ok:#49d3a4; --warn:#f5a623; --crit:#e5484d;
     --tick:rgba(152,166,192,.13); --tick-major:rgba(152,166,192,.24);
     --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
@@ -378,6 +383,13 @@
     .trace{display:none}
     .pcard,.product,.chip,.shot-frame,.btn-ghost,.pphoto img{border-color:CanvasText}
   }
+
+  /* Dark Reader, when it runs anyway (an old build, or the lock ignored): it marks <html> with
+     data-darkreader-scheme and repaints every gradient stop as a dark background. Text clipped
+     to that gradient would be dark on dark, and filled controls would lose their edge. */
+  html[data-darkreader-scheme] .hero h1 .grad{background:none; -webkit-background-clip:border-box; background-clip:border-box; color:var(--accent); -webkit-text-fill-color:currentColor}
+  html[data-darkreader-scheme] .btn-primary,
+  html[data-darkreader-scheme] .brand .mark{border:1px solid var(--line-ui); color:var(--text)}
 
   @media(prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
