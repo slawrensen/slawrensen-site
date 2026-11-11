@@ -31,11 +31,19 @@ jobs:
             fi
           }
           check '<script[^>]+src=' 'external or separate <script src> found - the page must stay self-contained'
+          # The pages run no JavaScript, and the CSP is script-src 'none'. The only
+          # <script> allowed is the JSON-LD data block.
+          if grep -REn '<script' public --include='*.html' | grep -v 'type="application/ld+json"'; then
+            echo "::error::a <script> other than the JSON-LD block found - the pages run no JavaScript"
+            fail=1
+          fi
+          # Images, media and frames must come from this origin.
+          check "<(img|source|video|audio|track|iframe|embed|object|input)[^>]+(src|srcset|poster|data)=[\"']?(https?:)?//" 'an image, media element or frame loads from another origin'
           # Only relations that actually fetch something. rel=canonical and
           # rel=icon (relative) are absolute-URL-bearing but request-free.
           check '<link[^>]+rel="?(stylesheet|preload|prefetch|preconnect|dns-prefetch|modulepreload)' 'a fetching <link> (stylesheet/preload/preconnect) found'
           check '@import' 'CSS @import found - would create an extra request'
-          check 'url\((https?:)?//' 'absolute url() reference found in CSS'
+          check "url\([[:space:]]*[\"']?(https?:)?//" 'absolute url() reference found in CSS'
           check 'fetch\(|XMLHttpRequest|navigator\.sendBeacon|new WebSocket' 'network call found in page script'
           check 'document\.cookie|localStorage|sessionStorage' 'client-side storage/cookie use found'
           if [ "$fail" = "1" ]; then

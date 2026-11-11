@@ -8,16 +8,19 @@
 # default-src 'none' inherits to connect-src, font-src, media-src, worker-src
 # and manifest-src, so fetch/XHR/beacons/WebSockets, web fonts and CDNs are all
 # impossible: any visitor can verify the claim in one DevTools glance.
-# 'unsafe-inline' is deliberate and required: the page is a single file whose
-# CSS and JS are inline. A hash-based policy would silently break the page on
-# every hand edit, and there is no build step to regenerate hashes.
+# style-src 'unsafe-inline' is deliberate and required: the page is a single
+# file whose CSS is inline. A hash-based policy would silently break the page
+# on every hand edit, and there is no build step to regenerate hashes.
+# script-src 'none': the pages run no JavaScript at all, so nothing injected
+# at the edge or by a mistake in the source can execute. The JSON-LD block is
+# data, not script, and is unaffected.
 # No report-uri/report-to: that would phone home.
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Strict-Transport-Security: max-age=31536000; includeSubDomains
   X-Frame-Options: DENY
-  Content-Security-Policy: default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
+  Content-Security-Policy: default-src 'none'; script-src 'none'; style-src 'self' 'unsafe-inline'; img-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
   Permissions-Policy: accelerometer=(), camera=(), geolocation=(), gyroscope=(), microphone=(), payment=(), usb=(), browsing-topics=()
 
 # HTML must revalidate on every request so deploys are visible immediately.
@@ -38,16 +41,28 @@
 # the one-day ceiling above.
 /assets/og-card-v2.jpg
   Cache-Control: public, max-age=31536000, immutable
-/assets/hwinfo-sensors-v4.webp
+/assets/hwinfo-deck-v1.webp
   Cache-Control: public, max-age=31536000, immutable
-/assets/hwinfo-layouts-v2.webp
+/assets/hwinfo-deck-1100-v1.webp
+  Cache-Control: public, max-age=31536000, immutable
+/assets/hwinfo-deck-phone-v1.webp
+  Cache-Control: public, max-age=31536000, immutable
+/assets/hwinfo-themes-v1.webp
+  Cache-Control: public, max-age=31536000, immutable
+/assets/hwinfo-keys-v1.webp
+  Cache-Control: public, max-age=31536000, immutable
+/assets/hwinfo-dials-v1.webp
+  Cache-Control: public, max-age=31536000, immutable
+/assets/aura-nebula-v1.svg
+  Cache-Control: public, max-age=31536000, immutable
+/assets/aura-stars-v1.svg
   Cache-Control: public, max-age=31536000, immutable
 /assets/streamdeck-plusxl-v2.webp
   Cache-Control: public, max-age=31536000, immutable
 
 /assets/mac-sensors-v1.webp
   Cache-Control: public, max-age=31536000, immutable
-/assets/mac-sensors-board-v1.webp
+/assets/mac-sensors-board-v2.webp
   Cache-Control: public, max-age=31536000, immutable
-/assets/mac-sensors-layouts-v1.webp
+/assets/mac-sensors-layouts-v2.webp
   Cache-Control: public, max-age=31536000, immutable
