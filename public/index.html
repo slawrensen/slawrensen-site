@@ -390,6 +390,12 @@
   html[data-darkreader-scheme] .hero h1 .grad{background:none; -webkit-background-clip:border-box; background-clip:border-box; color:var(--accent); -webkit-text-fill-color:currentColor}
   html[data-darkreader-scheme] .btn-primary,
   html[data-darkreader-scheme] .brand .mark{border:1px solid var(--line-ui); color:var(--text)}
+  /* Dark Reader's Static mode ignores the lock. It forces a dark background colour and light text on
+     every element but leaves background images alone, so light text would sit on the bright gradient.
+     Dropping the gradient lets its own colours apply. Filter mode needs nothing: it inverts the page whole. */
+  html[data-darkreader-mode="static"] .btn-primary,
+  html[data-darkreader-mode="static"] .brand .mark{background-image:none; border:1px solid var(--line-ui)}
+  html[data-darkreader-mode="static"] .hero h1 .grad{background:none; -webkit-background-clip:border-box; background-clip:border-box; -webkit-text-fill-color:currentColor}
 
   @media(prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}

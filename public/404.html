@@ -54,6 +54,8 @@
   }
   /* Dark Reader running despite the lock darkens the gradient: keep the mark's edge and ink. */
   html[data-darkreader-scheme] .mark{border:1px solid #525c6b; color:var(--text)}
+  /* Static mode forces light text but keeps background images: drop the gradient under it. */
+  html[data-darkreader-mode="static"] .mark{background-image:none; border:1px solid #525c6b}
 </style>
 </head>
 <body>
