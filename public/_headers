@@ -41,13 +41,13 @@
 # the one-day ceiling above.
 /assets/og-card-v2.jpg
   Cache-Control: public, max-age=31536000, immutable
-/assets/deck-plusxl-880-v1.webp
+/assets/deck-plusxl-880-v2.webp
   Cache-Control: public, max-age=31536000, immutable
-/assets/deck-plusxl-1320-v1.webp
+/assets/deck-plusxl-1320-v2.webp
   Cache-Control: public, max-age=31536000, immutable
-/assets/deck-plusxl-1760-v1.webp
+/assets/deck-plusxl-1760-v2.webp
   Cache-Control: public, max-age=31536000, immutable
-/assets/deck-plusxl-2619-v1.webp
+/assets/deck-plusxl-2619-v2.webp
   Cache-Control: public, max-age=31536000, immutable
 /assets/hwinfo-themes-v1.webp
   Cache-Control: public, max-age=31536000, immutable

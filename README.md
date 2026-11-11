@@ -53,25 +53,28 @@ properties at the top of `index.html`; `404.html` repeats the few it needs.
   accent and `--text`, `--faint`, `--line` and `--line-2` are Void and
   Graphite values from `themes.json` in hwinfo-streamdeck; the other greys sit
   on the same blue-grey hue. `--plate` (`#111317`) is the backdrop the plugin's
-  README boards are drawn on. There are no gradients.
+  README boards are drawn on. The page's own styles use no gradients; the aura's clouds are
+  the plugin's.
 - **Type:** the system sans and mono stacks. Nothing is smaller than 12 px.
 - **The mark** is a key face: black, with the accent as the bar a key draws
   under its reading.
-- **Motion:** colour changes on hover. The only animation is the aura's
-  drift, and only when the aura is on.
+- **Motion:** colour changes on hover, a 160 ms fade on the photograph's
+  lightbox, and the aura's drift when the aura is on. Reduced motion removes
+  the last two.
 
 ## Layout
 
 The page is fluid: it has no fixed column.
 
 - **Type** grows with the window (`html{font-size}`): the reader's own size up
-  to 1280 px wide, about 19 px at 1920, 21 px from 2560. Everything sized in
+  to 1200 px wide, about 19 px at 1920, 21 px from 2560. Everything sized in
   rem follows it.
 - **The column** (`--maxw`) is 94% of the window, between 70 and 104 rem.
-- **Hero:** from 1440 px the deck stands beside the text; below that it sits
-  under it.
-- **Products:** from 1440 px a product's words sit beside its pictures; below
-  that they stack as words, pictures, setup.
+- **Hero:** from 1440 px the deck stands beside the text. From 1000 px the
+  headline and the lead share one band above it; narrower, everything stacks.
+- **Products:** from 1440 px a product's words sit beside its pictures with
+  the three setup steps side by side beneath; below that they stack as words,
+  pictures, setup.
 - **Phones:** one column. Wide boards pan sideways.
 
 ## The deck at life size
@@ -88,10 +91,11 @@ wherever the window is wide enough for it.
   unit: its `mm` is 96 CSS px to the inch on every screen. `--true` (1.1333)
   corrects for the 109 CSS px to the real inch of a 27-inch 1440p or 4K
   monitor, a 34-inch ultrawide and most scaled laptop panels. The deck is true
-  to size on those, about 15% large on a 24-inch 1080p panel and about 15%
+  to size on those, about 19% large on a 24-inch 1080p panel and about 15%
   small on a MacBook. Nothing short of the reader measuring their screen can
   do better, and the page runs no script to ask.
-- In a column narrower than the deck (under about 1050 px) it shrinks to fit.
+- In a column narrower than the deck (a window under about 970 px) it shrinks
+  to fit.
 
 ## Images
 
