@@ -43,9 +43,9 @@
 # the one-day ceiling above.
 /assets/og-card-v2.jpg
   Cache-Control: public, max-age=31536000, immutable
-/assets/hwinfo-sensors-v5.webp
+/assets/hwinfo-deck-v1.webp
   Cache-Control: public, max-age=31536000, immutable
-/assets/hwinfo-layouts-v3.webp
+/assets/hwinfo-keys-v1.webp
   Cache-Control: public, max-age=31536000, immutable
 /assets/streamdeck-plusxl-v2.webp
   Cache-Control: public, max-age=31536000, immutable
@@ -54,6 +54,10 @@
 /assets/deck-keys-1400-v1.webp
   Cache-Control: public, max-age=31536000, immutable
 /assets/deck-keys-2200-v1.webp
+  Cache-Control: public, max-age=31536000, immutable
+/assets/deck-keys-phone-800-v1.webp
+  Cache-Control: public, max-age=31536000, immutable
+/assets/deck-keys-phone-1200-v1.webp
   Cache-Control: public, max-age=31536000, immutable
 /assets/atkinson-hyperlegible-next-v1.woff2
   Cache-Control: public, max-age=31536000, immutable
