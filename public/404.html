@@ -3,66 +3,61 @@
 <head>
 <meta charset="utf-8">
 <meta name="darkreader-lock">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>No signal · slawrensen</title>
-<meta name="robots" content="noindex">
-<meta name="theme-color" content="#08090b">
 <meta name="color-scheme" content="dark">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found · slawrensen</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#14120d">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon-v1.png">
 <style>
+  /* Same tokens and typeface as index.html. Paths are absolute: this page is served at any address. */
+  @font-face{
+    font-family:"Atkinson Hyperlegible Next";
+    src:url(/assets/atkinson-hyperlegible-next-v1.woff2) format("woff2");
+    font-weight:200 800; font-style:normal; font-display:swap;
+  }
   :root{
-    --bg:#08090b; --text:#e9ebf0; --muted:#a3abb8; --faint:#7b8493;
-    --accent:#5cb8ff; --accent-2:#8f7cff; --line-2:#222835;
-    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    --mono:"SF Mono","Cascadia Code","JetBrains Mono",Consolas,ui-monospace,monospace;
     color-scheme:dark;
+    --ink:#14120d; --paper:#e9e6de; --text:#cdc9bd;
+    --font:"Atkinson Hyperlegible Next",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   }
-  *{box-sizing:border-box; margin:0}
-  a{color:inherit; text-decoration:none}
+  *,*::before,*::after{box-sizing:border-box; margin:0}
+  html{-webkit-text-size-adjust:100%}
   body{
-    min-height:100svh; display:grid; place-items:center; padding:32px;
-    background:var(--bg); color:var(--text); font-family:var(--sans); line-height:1.65;
-    -webkit-font-smoothing:antialiased;
+    min-height:100vh; min-height:100svh; display:grid; place-items:center; padding:32px 24px;
+    background:var(--ink); color:var(--text);
+    font-family:var(--font); font-size:1.0625rem; line-height:1.6; -webkit-font-smoothing:antialiased;
   }
-  body::before{
-    content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
-    background-image:radial-gradient(rgba(150,170,205,.05) 1px, transparent 1.5px);
-    background-size:44px 44px;
-    -webkit-mask-image:linear-gradient(#000, transparent 80%);
-            mask-image:linear-gradient(#000, transparent 80%);
-  }
-  main{max-width:44ch}
-  .eyebrow{
-    display:inline-flex; align-items:center; gap:10px; color:var(--accent);
-    font-family:var(--mono); font-size:.72rem; letter-spacing:.2em; text-transform:uppercase;
-  }
-  .eyebrow::before{content:""; width:22px; height:1px; background:currentColor; opacity:.55}
-  h1{font-size:clamp(1.7rem,1.2rem + 2vw,2.4rem); line-height:1.12; letter-spacing:-.02em; margin-top:.5em; font-weight:600; text-wrap:balance}
-  p{color:var(--muted); margin-top:14px}
-  a.home{
-    display:inline-flex; align-items:center; gap:9px; margin-top:28px; height:46px; padding:0 20px;
-    border:1px solid var(--line-2); border-radius:12px; color:var(--text); text-decoration:none;
-    font-weight:600; font-size:.95rem;
-  }
-  a.home:hover{border-color:#39424f}
-  :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:8px}
-  .brand{display:flex; width:max-content; align-items:center; gap:11px; margin-bottom:30px; font-weight:600}
+  main{width:100%; max-width:30rem}
+  ::selection{background:var(--paper); color:var(--ink)}
+  :focus-visible{outline:2px solid var(--paper); outline-offset:3px; border-radius:6px}
+  .brand{display:inline-flex; align-items:center; gap:10px; min-height:44px; font-weight:700; color:var(--paper); text-decoration:none}
   .mark{
-    width:30px; height:30px; border-radius:9px; display:grid; place-items:center;
-    background:linear-gradient(115deg,var(--accent),var(--accent-2));
-    color:#05070a; font-family:var(--mono); font-weight:800; font-size:.82rem;
+    display:grid; place-items:center; width:2.15em; height:2.15em; flex:none; border-radius:.55em;
+    background:var(--paper); border:1px solid var(--paper); color:var(--ink);
+    font-weight:800; font-size:.875rem; letter-spacing:-.02em;
   }
-  /* Dark Reader running despite the lock darkens the gradient: keep the mark's edge and ink. */
-  html[data-darkreader-scheme] .mark{border:1px solid #525c6b; color:var(--text)}
+  h1{margin-top:28px; color:var(--paper); font-size:min(clamp(2.1rem,1.5rem + 3vw,2.9rem),12vw); font-weight:800; line-height:1.05; letter-spacing:-.025em; text-wrap:balance}
+  p{margin-top:14px}
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; min-height:46px; margin-top:26px; padding:8px 18px;
+    border-radius:10px; border:1px solid var(--paper); background:var(--paper);
+    color:var(--ink); font-weight:700; text-decoration:none;
+  }
+  .btn:hover{background:#f6f4ef; border-color:#f6f4ef}
+  .btn:active{background:var(--text); border-color:var(--text)}
+  /* Dark Reader running despite the lock repaints light fills dark: keep their edge. */
+  html[data-darkreader-scheme] .btn{border-width:2px; border-color:var(--paper)}
+  html[data-darkreader-scheme] .mark{border-color:var(--paper)}
 </style>
 </head>
 <body>
 <main>
-  <a class="brand" href="/"><span class="mark" aria-hidden="true">SL</span><span>slawrensen</span></a>
-  <p class="eyebrow">404 · No signal</p>
-  <h1>That page is not on this instrument.</h1>
-  <p>The address does not match anything here. The sensor wall is one page: everything lives on the front.</p>
-  <a class="home" href="/">Back to slawrensen.com</a>
+  <a class="brand" href="/"><span class="mark" aria-hidden="true">SL</span>slawrensen</a>
+  <h1>Nothing at this address.</h1>
+  <p>Error 404. The site is one page, and both plugins are on it.</p>
+  <a class="btn" href="/">Go to slawrensen.com</a>
 </main>
 </body>
 </html>
