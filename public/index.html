@@ -36,7 +36,15 @@
     --ok:#38cd89; --warn:#e8940d; --crit:#ff3b30;
     --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     --mono:"SF Mono","Cascadia Code","JetBrains Mono",Consolas,ui-monospace,monospace;
-    --maxw:1120px;
+    /* the column takes 94% of the window, between 70 and 104 rem */
+    --maxw:clamp(70rem, 94vw, 104rem);
+    /* Life size. The Stream Deck + XL is 205 mm wide. CSS has no true physical unit: its mm is
+       96 CSS px to the inch on every screen. A 27-inch 1440p or 4K monitor, a 34-inch ultrawide and
+       most scaled laptop panels show about 109 CSS px to the real inch, so the deck is drawn 109/96
+       of its CSS size. It is then true to size on those, about 15% large on a 24-inch 1080p panel
+       and about 15% small on a MacBook. */
+    --true:1.1333;
+    --deck:calc(205mm * var(--true));
     --gutter:clamp(22px, 4vw + 8px, 60px);
     --nav-h:65px;
     --radius:18px; --radius-sm:12px;
@@ -48,10 +56,12 @@
   }
   *{box-sizing:border-box}
   *,*::before,*::after{margin:0}
-  html{-webkit-text-size-adjust:100%}
+  /* Type grows with the window: the reader's own size up to 1280 px wide, about 19 px at 1920 and
+     21 px from 2560. Sizes are in rem, so the page scales with it and with the reader's setting. */
+  html{-webkit-text-size-adjust:100%; font-size:clamp(100%, .7rem + .4vw, 131.25%)}
   body{
     background:var(--bg); color:var(--text); overflow-x:clip;
-    font-family:var(--sans); font-size:16px; line-height:1.65;
+    font-family:var(--sans); font-size:1rem; line-height:1.65;
     -webkit-font-smoothing:antialiased; overflow-wrap:break-word;
   }
   a{color:inherit; text-decoration:none}
@@ -69,11 +79,10 @@
     .wrap{padding-left:max(var(--gutter),env(safe-area-inset-left)); padding-right:max(var(--gutter),env(safe-area-inset-right))}
   }
   .eyebrow{
-    display:inline-flex; align-items:center; gap:10px;
+    display:block;
     font-family:var(--mono); font-size:.75rem; letter-spacing:.2em;
     text-transform:uppercase; color:var(--accent);
   }
-  .eyebrow::before{content:""; width:22px; height:1px; background:currentColor; opacity:.55}
 
   /* nav */
   header.nav{position:sticky; top:0; z-index:60; background:var(--bg); border-bottom:1px solid var(--line)}
@@ -106,9 +115,8 @@
   @media(max-width:380px){ .nav-links{font-size:.82rem} }
 
   /* hero */
-  .hero{padding:clamp(40px,7vw,96px) 0 clamp(48px,7vw,88px)}
-  .hero-grid{display:grid; grid-template-columns:minmax(0,1fr); gap:clamp(30px,5vw,56px); align-items:center}
-  @media(min-width:1000px){ .hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.14fr)} }
+  .hero{padding:clamp(36px,6vw,88px) 0 clamp(48px,7vw,88px)}
+  .hero-grid{display:grid; grid-template-columns:minmax(0,1fr); gap:clamp(30px,4.5vw,52px); align-items:center}
   .hero h1{
     /* 12.5vw keeps the longest word inside a very narrow or zoomed viewport */
     font-size:min(var(--fs-display),12.5vw); line-height:1.04; letter-spacing:-.025em;
@@ -128,15 +136,24 @@
   .btn-ghost{border-color:var(--line-ui); color:var(--text); background:var(--panel)}
   .btn-ghost:hover{border-color:var(--muted); background:var(--panel-2)}
   .btn svg{width:17px; height:17px; flex:none}
-  /* the deck, drawn by the plugin: this is where decorative readouts used to sit */
-  .hero-art img{width:100%; border:1px solid var(--line-2); border-radius:var(--radius-sm); background:var(--plate)}
-  .hero-art figcaption{margin-top:12px}
+  /* The deck, drawn to scale and shown at life size wherever the column is wide enough. In a
+     narrower column it shrinks to fit. */
+  .hero-art{width:min(100%, var(--deck))}
+  .hero-art img{width:100%}
+  .hero-art figcaption{margin-top:14px; max-width:60ch}
   figcaption{color:var(--faint); font-size:.8rem; font-family:var(--mono); letter-spacing:.02em; line-height:1.55}
-  @media(max-width:640px){
-    .hero-art{margin-inline:calc(-1 * var(--gutter))}
-    .hero-art img{border-inline:0; border-radius:0}
-    .hero-art figcaption{padding-inline:var(--gutter)}
+  /* From 1440 px the deck stands beside the text, and never taller than the window. Below that it
+     sits under the text, where the full column lets it reach life size from about 1050 px. */
+  @media(min-width:1440px){
+    .hero-grid{grid-template-columns:minmax(0,26rem) minmax(0,1fr); gap:clamp(44px,4vw,76px)}
+    .hero-art{justify-self:end; max-width:calc((100svh - 8rem) * 1.117)}
   }
+  @media(min-width:700px) and (max-width:1439.98px){
+    .hero h1{max-width:none}
+    .hero .lead{max-width:66ch}
+  }
+  /* on a phone the nav already carries GitHub; one button leaves room for the deck */
+  @media(max-width:640px){ .hero .cta-row .btn-ghost{display:none} }
 
   /* section scaffolding */
   main>section{position:relative; border-top:1px solid var(--line)}
@@ -145,11 +162,19 @@
   .sec-head h2{font-size:min(var(--fs-h2),11vw); line-height:1.1; letter-spacing:-.02em; font-weight:600; margin-top:.5em; text-wrap:balance}
   .sec-head p{color:var(--muted); font-size:clamp(1rem,.96rem + .3vw,1.15rem); margin-top:.62em; max-width:52ch; text-wrap:pretty}
 
-  /* product */
+  /* product: its words, its pictures, its setup. One column until 1440 px, then words beside pictures. */
   .product{
-    position:relative; margin-top:clamp(28px,4vw,44px);
+    display:grid; grid-template-columns:minmax(0,1fr); gap:clamp(24px,3.4vw,38px) clamp(36px,4vw,68px);
+    margin-top:clamp(28px,4vw,44px);
     border:1px solid var(--line-2); border-radius:var(--radius);
     padding:clamp(20px,3.2vw,40px); background:var(--panel);
+  }
+  @media(min-width:1440px){
+    .product{
+      grid-template-columns:minmax(0,25rem) minmax(0,1fr); grid-template-rows:auto 1fr auto;
+      grid-template-areas:"a media" "b media" "meta meta";
+    }
+    .pa{grid-area:a} .pmedia{grid-area:media} .pb{grid-area:b} .pmeta{grid-area:meta}
   }
   .phead{max-width:66ch}
   .phead h3{font-size:var(--fs-h3); letter-spacing:-.015em; font-weight:600; margin-top:.5em}
@@ -157,25 +182,25 @@
   .prod-links{display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-top:clamp(18px,2.4vw,24px)}
   .prod-links .btn{min-height:44px; font-size:.9rem}
   /* spec readout rows: the feature set as labelled rows, not a paragraph */
-  .pspec{list-style:none; padding:0; margin-top:clamp(22px,2.8vw,30px)}
+  .pspec{list-style:none; padding:0; margin-top:clamp(22px,2.8vw,30px); border-bottom:1px solid var(--line)}
   .pspec li{
-    display:grid; grid-template-columns:96px minmax(0,1fr); gap:14px; align-items:baseline;
+    display:grid; grid-template-columns:6rem minmax(0,1fr); gap:14px; align-items:baseline;
     padding:11px 0; border-top:1px solid var(--line); color:var(--muted); font-size:.94rem;
   }
+  .pspec li>span:last-child{max-width:62ch}
   .pspec .l{font-family:var(--mono); font-size:.75rem; letter-spacing:.14em; text-transform:uppercase; color:var(--faint)}
-  .pspec a,.psetup a,.psetup-note a,.about-grid a,.pcard a{color:var(--accent); border-bottom:1px solid rgba(76,194,255,.4)}
-  .pspec a:hover,.psetup a:hover,.psetup-note a:hover,.about-grid a:hover,.pcard a:hover{border-bottom-color:var(--accent)}
+  .pspec a,.psetup a,.psetup-note a,.about-grid p a,.pcard a{color:var(--accent); border-bottom:1px solid rgba(76,194,255,.4)}
+  .pspec a:hover,.psetup a:hover,.psetup-note a:hover,.about-grid p a:hover,.pcard a:hover{border-bottom-color:var(--accent)}
   @media(max-width:560px){ .pspec li{grid-template-columns:minmax(0,1fr); gap:4px} }
 
   /* boards: the plugin's own art on its graphite plate */
-  .pshot{margin-top:clamp(24px,3.5vw,34px)}
+  .pmedia{display:grid; grid-template-columns:minmax(0,1fr); gap:clamp(18px,2.4vw,26px); align-content:start}
   .frame{border:1px solid var(--line-2); border-radius:var(--radius-sm); overflow:hidden; background:var(--plate)}
   .frame img{width:100%}
   .pshot figcaption{margin-top:12px}
+  /* two boards side by side, their widths in the ratio of their shapes so their heights match */
   .pair{display:grid; grid-template-columns:minmax(0,1fr); gap:clamp(18px,2.4vw,24px); align-items:start}
-  @media(min-width:860px){ .pair{grid-template-columns:minmax(0,952fr) minmax(0,1302fr)} }
-  .pair .pshot{margin-top:0}
-  .pair{margin-top:clamp(24px,3.5vw,34px)}
+  @media(min-width:860px){ .pair{grid-template-columns:minmax(0,1.354fr) minmax(0,1.516fr)} }
   .swipe{display:none}
   @media(max-width:680px){
     /* a wide board keeps its faces legible on a phone by panning instead of shrinking */
@@ -190,20 +215,19 @@
   /* These frames take focus so a keyboard can pan them where they scroll. Safari does not focus a
      scroll container on its own, and without script the stop cannot be limited to narrow screens. */
   .pan .frame:focus-visible{outline-offset:-2px; border-radius:var(--radius-sm)}
-  /* the real device */
-  .pphoto img{width:100%; border:1px solid var(--line-2); border-radius:var(--radius-sm)}
 
   /* setup: the three steps that get it running */
-  .psetup{list-style:none; padding:0; margin-top:clamp(24px,3vw,32px); counter-reset:s; border-top:1px solid var(--line)}
+  .psetup{list-style:none; padding:0; counter-reset:s; border-top:1px solid var(--line)}
   .psetup li{
     counter-increment:s; display:grid; grid-template-columns:auto minmax(0,1fr); gap:14px; align-items:baseline;
-    padding:14px 0; border-bottom:1px solid var(--line); color:var(--muted); font-size:.95rem;
+    padding:13px 0; border-bottom:1px solid var(--line); color:var(--muted); font-size:.95rem;
   }
-  .psetup li::before{content:counter(s,decimal-leading-zero); font-family:var(--mono); font-size:.75rem; letter-spacing:.14em; color:var(--faint)}
+  .psetup li>span{max-width:66ch}
+  .psetup li::before{content:counter(s) "."; color:var(--faint); font-variant-numeric:tabular-nums}
   .psetup b{color:var(--text); font-weight:600}
-  .psetup-note{margin-top:14px; color:var(--faint); font-size:.875rem; max-width:70ch}
+  .psetup-note{margin-top:14px; color:var(--faint); font-size:.875rem; max-width:66ch}
 
-  .pmeta{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px clamp(16px,3vw,24px); margin-top:clamp(24px,3vw,32px)}
+  .pmeta{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px clamp(16px,3vw,24px)}
   .chips{display:flex; flex-wrap:wrap; gap:8px; list-style:none; padding:0}
   .chip{
     font-family:var(--mono); font-size:.75rem; letter-spacing:.02em; color:var(--muted); padding:6px 11px;
@@ -214,20 +238,20 @@
   .soon a{color:var(--muted); border-bottom:1px solid var(--line-2)}
   .soon a:hover{color:var(--text)}
 
-  /* principles */
-  .grid4{display:grid; grid-template-columns:minmax(0,1fr); gap:clamp(14px,1.6vw,18px); margin-top:clamp(30px,4vw,44px)}
-  @media(min-width:540px){ .grid4{grid-template-columns:repeat(2,minmax(0,1fr))} }
-  @media(min-width:960px){ .grid4{grid-template-columns:repeat(4,minmax(0,1fr))} }
-  .pcard{background:var(--panel); border:1px solid var(--line-2); border-radius:var(--radius-sm); padding:clamp(20px,2.4vw,26px)}
-  .pcard h3{font-size:1rem; font-weight:600; letter-spacing:-.01em}
-  .pcard p{margin-top:9px; color:var(--muted); font-size:.92rem}
+  /* principles: the same labelled rows as a product's features */
+  .pspec.rules{margin-top:clamp(26px,3.6vw,40px); max-width:64rem}
+  .pspec.rules li{grid-template-columns:12rem minmax(0,1fr); font-size:1rem; padding:14px 0}
+  @media(max-width:560px){ .pspec.rules li{grid-template-columns:minmax(0,1fr)} }
 
-  /* about */
-  .about-grid{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(28px,5vw,56px); align-items:start; margin-top:clamp(28px,4vw,40px)}
-  @media(max-width:900px){ .about-grid{grid-template-columns:minmax(0,1fr); gap:clamp(16px,4vw,22px)} }
-  .about-grid p{color:var(--muted); font-size:1.02rem; margin-bottom:16px; max-width:60ch; text-wrap:pretty}
+  /* about: the words beside the photograph of the real deck */
+  .about-grid{display:grid; grid-template-columns:minmax(0,1fr); gap:clamp(24px,5vw,64px); align-items:center; margin-top:clamp(28px,4vw,40px)}
+  @media(min-width:900px){ .about-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)} }
+  .about-grid p{color:var(--muted); font-size:1.02rem; margin-bottom:16px; max-width:58ch; text-wrap:pretty}
   .about-grid p:last-child{margin-bottom:0}
   .about-grid strong{color:var(--text); font-weight:600}
+  .pphoto{max-width:36rem; justify-self:end; width:100%}
+  .pphoto img{width:100%; border:1px solid var(--line-2); border-radius:var(--radius-sm)}
+  .pphoto figcaption{margin-top:12px}
 
   /* footer */
   footer{
@@ -254,13 +278,18 @@
   body::before,body::after{content:none; position:fixed; z-index:-1; pointer-events:none; background:center / cover no-repeat}
   body::before{inset:-5%; z-index:-2}
   body::after{inset:0}
+  /* the large viewport height, so the layers do not rescale when a phone's toolbar slides away */
+  @supports(height:100lvh){
+    body::before{inset:auto; top:-5lvh; left:-5%; right:-5%; height:110lvh}
+    body::after{inset:auto; top:0; left:0; right:0; height:100lvh}
+  }
   body:has(#aura-nebula:checked)::before,
   body:has(#aura-stars:checked)::before{content:""; background-image:url(assets/aura-nebula-v1.svg)}
-  body:has(#aura-stars:checked)::after{content:""; background-image:url(assets/aura-stars-v1.svg)}
+  body:has(#aura-stars:checked)::after{content:""; background-image:url(assets/aura-stars-v2.svg)}
   /* small labels sit a step brighter over the clouds */
   body:has(#aura-nebula:checked),body:has(#aura-stars:checked){--faint:#98a1af}
   @media(prefers-reduced-motion:no-preference){
-    body::before{animation:aura 90s ease-in-out infinite alternate; will-change:transform}
+    body::before{animation:aura 60s ease-in-out infinite alternate; will-change:transform}
   }
   @keyframes aura{from{transform:translate3d(-2.2%,-1.6%,0)} to{transform:translate3d(2.2%,1.6%,0)}}
   .aura{position:relative; font-family:var(--mono); font-size:.75rem; letter-spacing:.14em; color:var(--faint)}
@@ -277,16 +306,20 @@
   /* on a phone the lamp sits mid-row: anchor the choices to the row's left edge so they fit */
   @media(max-width:600px){ .foot-top{position:relative} .aura{position:static} }
   .aura legend{position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%)}
-  .aura label{position:relative; display:inline-flex; align-items:center; min-height:40px; padding:0 13px; border:1px solid var(--line-2); border-radius:999px; background:var(--bg); color:var(--muted); cursor:pointer; letter-spacing:.06em}
+  .aura label{position:relative; display:inline-flex; align-items:center; min-height:44px; padding:0 15px; border:1px solid var(--line-2); border-radius:999px; background:var(--bg); color:var(--muted); cursor:pointer; letter-spacing:.06em}
   .aura label:hover{border-color:var(--line-ui)}
   .aura input{position:absolute; inset:0; margin:0; opacity:0; cursor:pointer}
   .aura label:has(input:checked){border-color:var(--accent); color:var(--text)}
   .aura label:has(input:focus-visible){outline:2px solid var(--accent); outline-offset:3px}
+  /* without :has() the choices could do nothing, so the control is not offered */
+  @supports not selector(:has(*)){ .aura{display:none} }
 
   /* Windows High Contrast: keep every boundary visible */
   @media (forced-colors: active){
     .btn-primary{background:ButtonFace; color:ButtonText; border:1px solid ButtonText}
-    .pcard,.product,.chip,.frame,.btn-ghost,.pphoto img,.hero-art img{border-color:CanvasText}
+    .product,.chip,.frame,.btn-ghost,.pphoto img{border-color:CanvasText}
+    .aura{display:none}
+    body::before,body::after{content:none!important}
   }
   /* Dark Reader running despite the lock (an old build, or Static mode) repaints light fills dark
      and lightens their text. An edge in that text colour keeps the filled button a button. */
@@ -321,7 +354,7 @@
       <div>
         <span class="eyebrow">Independent software</span>
         <h1>Precision instruments for the <span class="hl">machine on your desk.</span></h1>
-        <p class="lead">Tools that read your machine locally and respect it. Bring available hardware readings to your Stream Deck keys and dials with a plugin built for your platform. No ads, no telemetry, MIT licensed.</p>
+        <p class="lead">Hardware readings on your Stream Deck keys and dials, with a plugin for Windows and one for Mac. No ads, no telemetry, MIT licensed.</p>
         <div class="cta-row">
           <a class="btn btn-primary" href="#products">Choose your plugin</a>
           <a class="btn btn-ghost" href="https://github.com/slawrensen" target="_blank" rel="noopener">
@@ -331,15 +364,12 @@
         </div>
       </div>
       <figure class="hero-art">
-        <picture>
-          <source media="(max-width:640px)" srcset="assets/hwinfo-deck-phone-v1.webp" width="1057" height="848">
-          <img src="assets/hwinfo-deck-1100-v1.webp"
-               srcset="assets/hwinfo-deck-1100-v1.webp 1100w, assets/hwinfo-deck-v1.webp 1938w"
-               sizes="(min-width:1000px) 34rem, 92vw"
-               width="1938" height="1094" fetchpriority="high" decoding="async"
-               alt="A Stream Deck + XL layout drawn by the plugin with sample values: seven columns of keys in the seven themes showing CPU temperatures, core clocks, usage and voltages with sparklines; a column of two, three and four readings per key; a ring, two bars, an amber warn key and a red critical key; and, on wide screens, six dial faces below, including two-row and three-row views">
-        </picture>
-        <figcaption>HWiNFO Sensors on a Stream Deck + XL. Drawn by the plugin with sample values.</figcaption>
+        <img src="assets/deck-plusxl-1320-v1.webp"
+             srcset="assets/deck-plusxl-880-v1.webp 880w, assets/deck-plusxl-1320-v1.webp 1320w, assets/deck-plusxl-1760-v1.webp 1760w, assets/deck-plusxl-2619-v1.webp 2619w"
+             sizes="(min-width:1440px) min(880px, 52vw), min(880px, 92vw)"
+             width="2619" height="2345" fetchpriority="high" decoding="async"
+             alt="A Stream Deck + XL drawn to scale. Its 36 keys show CPU temperatures, core clocks, usage and voltages with sparklines in the seven themes, a column of two, three and four readings per key, a ring, two bars, an amber warn key and a red critical key. Below them the touch strip carries six dial readouts, above the six dials.">
+        <figcaption>A Stream Deck + XL drawn to scale, life size where the window allows. Faces drawn by the plugin with sample values.</figcaption>
       </figure>
     </div>
   </section>
@@ -347,137 +377,131 @@
   <section id="products">
     <div class="wrap">
       <div class="sec-head">
-        <span class="eyebrow">Products</span>
         <h2>Readings for the machine you use</h2>
-        <p>Choose the Windows or Mac plugin. Each reads local sources and keeps your hardware in your hands.</p>
         <div class="cta-row"><a class="btn btn-ghost" href="#windows-sensors">Windows: HWiNFO Sensors</a><a class="btn btn-ghost" href="#mac-sensors">macOS: Mac Sensors</a></div>
       </div>
 
       <div class="product" id="windows-sensors">
-        <div class="phead">
-          <span class="eyebrow">Windows / Elgato Stream Deck</span>
-          <h3>HWiNFO Sensors</h3>
-          <p>Put CPU and GPU temperature, clock speeds, fan RPM, usage and power on your keys and dials.</p>
-        </div>
-        <div class="prod-links">
-          <a class="btn btn-primary" href="https://marketplace.elgato.com/product/hwinfo-sensors-82436166-3d61-4527-9034-8fdf16d92c54" target="_blank" rel="noopener">Elgato Marketplace</a>
-          <a class="btn btn-ghost" href="https://docs.slawrensen.com/hwinfo-streamdeck/getting-started.html" target="_blank" rel="noopener">Setup guide</a>
-          <a class="btn btn-ghost" href="https://github.com/slawrensen/hwinfo-streamdeck" target="_blank" rel="noopener">Source code</a>
-        </div>
-
-        <ul class="pspec">
-          <li><span class="l">Keys</span><span>Stream Deck models with keys. One reading per key with a live sparkline, bar or ring gauge, or two, three or four readings on one key. A press can open a detail page.</span></li>
-          <li><span class="l">Dials</span><span>Stream Deck + and Stream Deck + XL: rotate, push and touch, rotation sets with named groups, and an HWiNFO Control key that drives dials from anywhere. <a href="https://docs.slawrensen.com/hwinfo-streamdeck/hardware.html" target="_blank" rel="noopener">Hardware compatibility</a></span></li>
-          <li><span class="l">Display</span><span>Seven themes, including a light theme. Amber warn and red critical alerts keep the same palette on every theme.</span></li>
-          <li><span class="l">Status</span><span>When HWiNFO stops publishing, keys say so with a screen that names the problem and its fix. The Gadget source cannot prove HWiNFO is still updating, so steady Gadget values show Age unknown.</span></li>
-          <li><span class="l">Privacy</span><span>No ads, no telemetry, and no network requests at all: this plugin's only connection is the local one to the Stream Deck app.</span></li>
-        </ul>
-
-        <figure class="pshot pan">
-          <div class="frame" tabindex="0" role="group" aria-label="HWiNFO Sensors themes and alerts board">
-            <img src="assets/hwinfo-themes-v1.webp" width="2256" height="1191" loading="lazy" decoding="async"
-                 alt="The seven themes (Void, Graphite, Ultraviolet, Midnight, Forest, Ember, Paper) in two rows of keys: with type accents on, each graph takes its sensor type's color; with type accents off, rings, bars and multi-reading keys take each theme's own color. Below, the alert states: an amber warn key, a red critical key, dials whose bar turns amber or red, and a three-row dial whose alerting row turns amber">
+        <div class="pa">
+          <div class="phead">
+            <span class="eyebrow">Windows / Elgato Stream Deck</span>
+            <h3>HWiNFO Sensors</h3>
+            <p>Put CPU and GPU temperature, clock speeds, fan RPM, usage and power on your keys and dials.</p>
           </div>
-          <figcaption>Seven themes, and alerts that look the same on every one. Drawn by the plugin with sample values.<span class="swipe"> Swipe sideways for the rest.</span></figcaption>
-        </figure>
-
-        <div class="pair">
-          <figure class="pshot">
-            <div class="frame">
-              <img src="assets/hwinfo-keys-v1.webp" width="952" height="703" loading="lazy" decoding="async"
-                   alt="Six key faces: one reading with a sparkline, a bar with warn and critical zones, and a ring; then two sensors on one key, three readings in rows, and four readings in a quad grid">
-            </div>
-            <figcaption>What one key can hold</figcaption>
-          </figure>
-          <figure class="pshot">
-            <div class="frame">
-              <img src="assets/hwinfo-dials-v1.webp" width="1302" height="859" loading="lazy" decoding="async"
-                   alt="Nine dial faces with sample values across all seven themes: Void with one CPU temperature reading, Ultraviolet with two power readings and trend lines, Forest with three fan rows, Midnight with three temperature rows, Ember with PSU power, Graphite with memory and CPU usage trends, Paper with a core clock, Graphite at a warn value with an amber bar, and Void at a critical value with a red bar">
-            </div>
-            <figcaption>Stream Deck + dials: one reading, two rows or three</figcaption>
-          </figure>
+          <div class="prod-links">
+            <a class="btn btn-primary" href="https://marketplace.elgato.com/product/hwinfo-sensors-82436166-3d61-4527-9034-8fdf16d92c54" target="_blank" rel="noopener">Elgato Marketplace</a>
+            <a class="btn btn-ghost" href="https://docs.slawrensen.com/hwinfo-streamdeck/getting-started.html" target="_blank" rel="noopener">Setup guide</a>
+            <a class="btn btn-ghost" href="https://github.com/slawrensen/hwinfo-streamdeck" target="_blank" rel="noopener">Source code</a>
+          </div>
+          <ul class="pspec">
+            <li><span class="l">Keys</span><span>One reading per key with a sparkline, bar or ring, or up to four readings on one key. A press can open a detail page.</span></li>
+            <li><span class="l">Dials</span><span>Stream Deck + and Stream Deck + XL: one reading, two rows or three. Rotate through readings, touch to cycle stats, push to reset the session. <a href="https://docs.slawrensen.com/hwinfo-streamdeck/hardware.html" target="_blank" rel="noopener">Hardware compatibility</a></span></li>
+            <li><span class="l">Display</span><span>Seven themes. Amber warn and red critical alerts look the same on every one.</span></li>
+            <li><span class="l">Status</span><span>When HWiNFO stops publishing, keys say so with a screen that names the problem and its fix.</span></li>
+            <li><span class="l">Privacy</span><span>No ads, no telemetry and no network requests. Its only connection is the local one to the Stream Deck app.</span></li>
+          </ul>
         </div>
 
-        <figure class="pshot pphoto">
-          <img src="assets/streamdeck-plusxl-v2.webp" width="1000" height="907" loading="lazy" decoding="async"
-               alt="A Stream Deck + XL on a wooden desk, its 36 keys showing live CPU core temperatures, clock speeds, usage percentages and voltages from HWiNFO, one key amber and one red demonstrating warn and critical alerts, with six dial readouts on the touch strip below">
-          <figcaption>Photograph: Stream Deck + XL, 36 keys and six dials live on HWiNFO, 25 July 2026, on an earlier version</figcaption>
-        </figure>
+        <div class="pmedia">
+          <figure class="pshot pan">
+            <div class="frame" tabindex="0" role="group" aria-label="HWiNFO Sensors themes and alerts board">
+              <img src="assets/hwinfo-themes-v1.webp" width="2256" height="1191" loading="lazy" decoding="async"
+                   alt="The seven themes (Void, Graphite, Ultraviolet, Midnight, Forest, Ember, Paper) in two rows of keys: with type accents on, each graph takes its sensor type's color; with type accents off, rings, bars and multi-reading keys take each theme's own color. Below, the alert states: an amber warn key, a red critical key, dials whose bar turns amber or red, and a three-row dial whose alerting row turns amber">
+            </div>
+            <figcaption>Seven themes, and alerts that look the same on every one. Drawn by the plugin with sample values.<span class="swipe"> Swipe sideways for the rest.</span></figcaption>
+          </figure>
+          <div class="pair">
+            <figure class="pshot">
+              <div class="frame">
+                <img src="assets/hwinfo-keys-v1.webp" width="952" height="703" loading="lazy" decoding="async"
+                     alt="Six key faces: one reading with a sparkline, a bar with warn and critical zones, and a ring; then two sensors on one key, three readings in rows, and four readings in a quad grid">
+              </div>
+              <figcaption>What one key can hold</figcaption>
+            </figure>
+            <figure class="pshot">
+              <div class="frame">
+                <img src="assets/hwinfo-dials-v1.webp" width="1302" height="859" loading="lazy" decoding="async"
+                     alt="Nine dial faces with sample values across all seven themes: Void with one CPU temperature reading, Ultraviolet with two power readings and trend lines, Forest with three fan rows, Midnight with three temperature rows, Ember with PSU power, Graphite with memory and CPU usage trends, Paper with a core clock, Graphite at a warn value with an amber bar, and Void at a critical value with a red bar">
+              </div>
+              <figcaption>Stream Deck + dials: one reading, two rows or three</figcaption>
+            </figure>
+          </div>
+        </div>
 
-        <ol class="psetup">
-          <li><span><b>Install the plugin</b> from the <a href="https://marketplace.elgato.com/product/hwinfo-sensors-82436166-3d61-4527-9034-8fdf16d92c54" target="_blank" rel="noopener">Elgato Marketplace</a>, or double-click the .streamDeckPlugin from <a href="https://github.com/slawrensen/hwinfo-streamdeck/releases/latest" target="_blank" rel="noopener">GitHub Releases</a>.</span></li>
-          <li><span><b>Run HWiNFO</b> (free or Pro) and tick <b>Shared Memory Support</b> in its Settings. If a key shows Access denied, the <a href="https://docs.slawrensen.com/hwinfo-streamdeck/troubleshooting.html#keys-show-access-denied" target="_blank" rel="noopener">troubleshooting guide</a> lists what to check.</span></li>
-          <li><span><b>Drag Sensor Reading onto a key</b> and pick a sensor from the searchable list. The key goes live immediately.</span></li>
-        </ol>
-        <p class="psetup-note">Free HWiNFO switches Shared Memory off after 12 hours. With Gadget reporting enabled, Auto can fall back to Gadget, then switch back when Shared Memory returns. Saved readings need <a href="https://docs.slawrensen.com/hwinfo-streamdeck/data-sources.html#link-readings-across-providers" target="_blank" rel="noopener">explicit links</a> to work across sources. HWiNFO is a separate free program by REALiX; this plugin does not bundle it.</p>
+        <div class="pb">
+          <ol class="psetup">
+            <li><span><b>Install the plugin</b> from the <a href="https://marketplace.elgato.com/product/hwinfo-sensors-82436166-3d61-4527-9034-8fdf16d92c54" target="_blank" rel="noopener">Elgato Marketplace</a> or <a href="https://github.com/slawrensen/hwinfo-streamdeck/releases/latest" target="_blank" rel="noopener">GitHub Releases</a>.</span></li>
+            <li><span><b>Run HWiNFO</b> (free or Pro) and tick <b>Shared Memory Support</b> in its Settings.</span></li>
+            <li><span><b>Drag Sensor Reading onto a key</b> and pick a sensor.</span></li>
+          </ol>
+          <p class="psetup-note">Free HWiNFO switches Shared Memory off after 12 hours; <a href="https://docs.slawrensen.com/hwinfo-streamdeck/data-sources.html" target="_blank" rel="noopener">Data sources</a> covers the Gadget fallback. HWiNFO is a separate free program by REALiX; this plugin does not bundle it.</p>
+        </div>
 
         <div class="pmeta">
           <ul class="chips" role="list">
-            <li class="chip">Windows x64</li>
+            <li class="chip">Windows 10+ x64</li>
             <li class="chip">Stream Deck 6.9+</li>
-            <li class="chip">Dials: Stream Deck + / + XL</li>
             <li class="chip">MIT license</li>
             <li class="chip ok">Free</li>
-            <li class="chip ok">Open source</li>
-            <li class="chip ok">No telemetry</li>
           </ul>
           <p class="soon"><a href="https://github.com/slawrensen/hwinfo-streamdeck/releases/latest" target="_blank" rel="noopener">v1.7.1</a></p>
         </div>
       </div>
 
       <div class="product" id="mac-sensors">
-        <div class="phead">
-          <span class="eyebrow">macOS / Elgato Stream Deck</span>
-          <h3>Mac Sensors</h3>
-          <p>Put your Mac's temperatures, fan speeds, power, CPU activity, memory, storage and network on your keys and dials.</p>
-        </div>
-        <div class="prod-links">
-          <a class="btn btn-primary" href="https://marketplace.elgato.com/product/mac-sensors-f04e345c-21c5-411c-9ecd-01864c3a8c3c" target="_blank" rel="noopener">Elgato Marketplace</a>
-          <a class="btn btn-ghost" href="https://docs.slawrensen.com/mac-streamdeck/getting-started.html" target="_blank" rel="noopener">Setup guide</a>
-          <a class="btn btn-ghost" href="https://github.com/slawrensen/mac-sensors-streamdeck" target="_blank" rel="noopener">Source code</a>
-        </div>
-
-        <ul class="pspec">
-          <li><span class="l">Keys</span><span>Any Stream Deck. One reading per key with a live sparkline, bar or ring gauge, or two, three or four readings on a single key. A press cycles MIN, MAX and AVG.</span></li>
-          <li><span class="l">Dials</span><span>Stream Deck + and Stream Deck + XL: one reading, two rows or three rows, reading sets with named groups, and a Sensor Control key that steers dials from anywhere. <a href="https://docs.slawrensen.com/mac-streamdeck/hardware.html" target="_blank" rel="noopener">Hardware compatibility</a></span></li>
-          <li><span class="l">Details</span><span>A key press opens a page of related readings and returns with a Back tile.</span></li>
-          <li><span class="l">Display</span><span>Seven themes, including Paper, a light theme. Amber warn and red critical alerts look the same on every theme.</span></li>
-          <li><span class="l">Read-only</span><span>No fan control, no administrator password, no helper app. No ads, no telemetry and no network requests: its only connection is the local one to the Stream Deck app.</span></li>
-        </ul>
-
-        <figure class="pshot pan">
-          <div class="frame" tabindex="0" role="group" aria-label="Mac Sensors key and dial faces board">
-            <img src="assets/mac-sensors-board-v2.webp" width="1526" height="816" loading="lazy" decoding="async"
-                 alt="Mac Sensors key and dial faces: one CPU temperature key in each of the seven themes and a four-reading key; single keys for GPU temperature, fan speed, system power, CPU activity, active memory, network and free space; two- and three-reading keys, a ring and a bar, an amber warn key and a red critical key, a Back tile and a detail title tile; and four Stream Deck + dial faces">
+        <div class="pa">
+          <div class="phead">
+            <span class="eyebrow">macOS / Elgato Stream Deck</span>
+            <h3>Mac Sensors</h3>
+            <p>Put your Mac's temperatures, fan speeds, power, CPU activity, memory, storage and network on your keys and dials.</p>
           </div>
-          <figcaption>Seven themes, warn and critical alert states, what one key can hold, and Stream Deck + dials. Drawn by the plugin with sample values.<span class="swipe"> Swipe sideways for the rest.</span></figcaption>
-        </figure>
-
-        <figure class="pshot pan">
-          <div class="frame" tabindex="0" role="group" aria-label="Mac Sensors layouts and dial views board">
-            <img src="assets/mac-sensors-layouts-v2.webp" width="1157" height="712" loading="lazy" decoding="async"
-                 alt="Mac Sensors key layouts and dial views: one reading with a sparkline, two readings stacked, three readings in rows, a four-reading quad grid, CPU usage as a bar and as a ring, active memory and network receive; and three dial views: one reading with its session range, two rows with trend lines, and three compact rows">
+          <div class="prod-links">
+            <a class="btn btn-primary" href="https://marketplace.elgato.com/product/mac-sensors-f04e345c-21c5-411c-9ecd-01864c3a8c3c" target="_blank" rel="noopener">Elgato Marketplace</a>
+            <a class="btn btn-ghost" href="https://docs.slawrensen.com/mac-streamdeck/getting-started.html" target="_blank" rel="noopener">Setup guide</a>
+            <a class="btn btn-ghost" href="https://github.com/slawrensen/mac-sensors-streamdeck" target="_blank" rel="noopener">Source code</a>
           </div>
-          <figcaption>One key can carry two, three or four readings; a dial shows one reading or a list. Drawn by the plugin with sample values.<span class="swipe"> Swipe sideways for the rest.</span></figcaption>
-        </figure>
+          <ul class="pspec">
+            <li><span class="l">Keys</span><span>One reading per key with a sparkline, bar or ring, or two, three or four readings on one key. A press cycles MIN, MAX and AVG.</span></li>
+            <li><span class="l">Dials</span><span>Stream Deck + and Stream Deck + XL: one reading, two rows or three rows. A Sensor Control key steers dials from anywhere. <a href="https://docs.slawrensen.com/mac-streamdeck/hardware.html" target="_blank" rel="noopener">Hardware compatibility</a></span></li>
+            <li><span class="l">Details</span><span>A key press opens a page of related readings and returns with a Back tile.</span></li>
+            <li><span class="l">Display</span><span>Seven themes. Amber warn and red critical alerts look the same on every one.</span></li>
+            <li><span class="l">Read-only</span><span>No fan control, no administrator password, no helper app. No ads, no telemetry and no network requests.</span></li>
+          </ul>
+        </div>
 
-        <ol class="psetup">
-          <li><span><b>Install the plugin</b> from the <a href="https://marketplace.elgato.com/product/mac-sensors-f04e345c-21c5-411c-9ecd-01864c3a8c3c" target="_blank" rel="noopener">Elgato Marketplace</a>, or double-click the .streamDeckPlugin from <a href="https://github.com/slawrensen/mac-sensors-streamdeck/releases/latest" target="_blank" rel="noopener">GitHub Releases</a>.</span></li>
-          <li><span><b>Check for Tahoma Bold.</b> It ships with macOS; if a key says Tahoma needed, turn it on in Font Book.</span></li>
-          <li><span><b>Drag Sensor Reading onto a key</b> and pick a reading from this Mac's list.</span></li>
-        </ol>
-        <p class="psetup-note">Which readings appear depends on the Mac and its macOS version. Measured on an Apple silicon M5 Pro; the Intel reader has run on hosted test machines, not yet on a physical Intel Mac.</p>
+        <div class="pmedia">
+          <figure class="pshot pan">
+            <div class="frame" tabindex="0" role="group" aria-label="Mac Sensors key and dial faces board">
+              <img src="assets/mac-sensors-board-v2.webp" width="1526" height="816" loading="lazy" decoding="async"
+                   alt="Mac Sensors key and dial faces: one CPU temperature key in each of the seven themes and a four-reading key; single keys for GPU temperature, fan speed, system power, CPU activity, active memory, network and free space; two- and three-reading keys, a ring and a bar, an amber warn key and a red critical key, a Back tile and a detail title tile; and four Stream Deck + dial faces">
+            </div>
+            <figcaption>Themes, alert states, key layouts and dials. Drawn by the plugin with sample values.<span class="swipe"> Swipe sideways for the rest.</span></figcaption>
+          </figure>
+          <figure class="pshot pan">
+            <div class="frame" tabindex="0" role="group" aria-label="Mac Sensors layouts and dial views board">
+              <img src="assets/mac-sensors-layouts-v2.webp" width="1157" height="712" loading="lazy" decoding="async"
+                   alt="Mac Sensors key layouts and dial views: one reading with a sparkline, two readings stacked, three readings in rows, a four-reading quad grid, CPU usage as a bar and as a ring, active memory and network receive; and three dial views: one reading with its session range, two rows with trend lines, and three compact rows">
+            </div>
+            <figcaption>Key layouts and dial views. Drawn by the plugin with sample values.<span class="swipe"> Swipe sideways for the rest.</span></figcaption>
+          </figure>
+        </div>
+
+        <div class="pb">
+          <ol class="psetup">
+            <li><span><b>Install the plugin</b> from the <a href="https://marketplace.elgato.com/product/mac-sensors-f04e345c-21c5-411c-9ecd-01864c3a8c3c" target="_blank" rel="noopener">Elgato Marketplace</a> or <a href="https://github.com/slawrensen/mac-sensors-streamdeck/releases/latest" target="_blank" rel="noopener">GitHub Releases</a>.</span></li>
+            <li><span><b>Check for Tahoma Bold.</b> It ships with macOS; if a key says Tahoma needed, turn it on in Font Book.</span></li>
+            <li><span><b>Drag Sensor Reading onto a key</b> and pick a reading from this Mac's list.</span></li>
+          </ol>
+          <p class="psetup-note">Which readings appear depends on the Mac and its macOS version. Measured on an Apple silicon M5 Pro; the Intel reader has run on hosted test machines, not yet on a physical Intel Mac.</p>
+        </div>
 
         <div class="pmeta">
           <ul class="chips" role="list">
             <li class="chip">macOS 13.5+</li>
             <li class="chip">Stream Deck 7.1+</li>
             <li class="chip">Apple silicon / Intel</li>
-            <li class="chip">Dials: Stream Deck + / + XL</li>
             <li class="chip">MIT license</li>
             <li class="chip ok">Free</li>
-            <li class="chip ok">Open source</li>
-            <li class="chip ok">No telemetry</li>
           </ul>
           <p class="soon"><a href="https://github.com/slawrensen/mac-sensors-streamdeck/releases/latest" target="_blank" rel="noopener">v1.0.1</a></p>
         </div>
@@ -488,47 +512,33 @@
   <section id="principles">
     <div class="wrap">
       <div class="sec-head">
-        <span class="eyebrow">How I build</span>
         <h2>Principles</h2>
-        <p>The same four rules apply to everything on this site, and everything that comes next.</p>
       </div>
-      <div class="grid4">
-        <div class="pcard">
-          <h3>No ads. Ever.</h3>
-          <p>Nothing on screen you did not ask for. No upsells, no nags, no dark patterns.</p>
-        </div>
-        <div class="pcard">
-          <h3>No telemetry.</h3>
-          <p>Nothing about you or your machine is ever sent to me. When a tool does need the network, it talks only to the server you pointed it at.</p>
-        </div>
-        <div class="pcard">
-          <h3>Open source.</h3>
-          <p>Every line is on GitHub. Read it, audit it, or build it yourself from source.</p>
-        </div>
-        <div class="pcard">
-          <h3>Lean and efficient.</h3>
-          <p>Polling stops when no reading key or dial is on screen. Each measurement, with its method, is in <a href="https://github.com/slawrensen/hwinfo-streamdeck/blob/main/PERF.md" target="_blank" rel="noopener">PERF.md</a>.</p>
-        </div>
-      </div>
+      <ul class="pspec rules">
+        <li><span class="l">No ads</span><span>Nothing on screen you did not ask for.</span></li>
+        <li><span class="l">No telemetry</span><span>Nothing about you or your machine is sent to me.</span></li>
+        <li><span class="l">Open source</span><span>Every line is on GitHub. Read it, audit it, or build it yourself.</span></li>
+        <li><span class="l">Lean and efficient</span><span>Polling stops when no reading key or dial is on screen. Measurements are in <a href="https://github.com/slawrensen/hwinfo-streamdeck/blob/main/PERF.md" target="_blank" rel="noopener">PERF.md</a>.</span></li>
+      </ul>
     </div>
   </section>
 
   <section id="about">
     <div class="wrap">
       <div class="sec-head">
-        <span class="eyebrow">About</span>
         <h2>Built by one person, on purpose.</h2>
       </div>
       <div class="about-grid">
         <div>
           <p>I am <strong><a href="https://github.com/slawrensen" target="_blank" rel="noopener">slawrensen</a></strong>, an independent developer. I build small tools for people who care how their machines run.</p>
-          <p>Every product here is made to be fast, quiet, and trustworthy. If it reads your hardware, it does so locally and tells you exactly what it does.</p>
-        </div>
-        <div>
-          <p>The work is open source, so you never have to take my word for any of it. The code is the documentation of intent.</p>
           <p>HWiNFO Sensors is a ground-up TypeScript rewrite on Elgato's official SDK, inspired by the original Go-based plugin by @shayne: no code shared, credits in <a href="https://github.com/slawrensen/hwinfo-streamdeck/blob/main/NOTICE.md" target="_blank" rel="noopener">NOTICE.md</a>.</p>
-          <p>Questions, bugs, or ideas go through GitHub Issues for <a href="https://github.com/slawrensen/mac-sensors-streamdeck/issues" target="_blank" rel="noopener">Mac Sensors</a> or <a href="https://github.com/slawrensen/hwinfo-streamdeck/issues" target="_blank" rel="noopener">HWiNFO Sensors</a>, where they are answered in the open.</p>
+          <p>Questions, bugs, or ideas go through GitHub Issues for <a href="https://github.com/slawrensen/mac-sensors-streamdeck/issues" target="_blank" rel="noopener">Mac Sensors</a> or <a href="https://github.com/slawrensen/hwinfo-streamdeck/issues" target="_blank" rel="noopener">HWiNFO Sensors</a>.</p>
         </div>
+        <figure class="pphoto">
+          <img src="assets/streamdeck-plusxl-v2.webp" width="1000" height="907" loading="lazy" decoding="async"
+               alt="A Stream Deck + XL on a wooden desk, its 36 keys showing live CPU core temperatures, clock speeds, usage percentages and voltages from HWiNFO, one key amber and one red demonstrating warn and critical alerts, with six dial readouts on the touch strip below">
+          <figcaption>Photograph: my Stream Deck + XL live on HWiNFO, 25 July 2026, on an earlier version</figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -547,7 +557,7 @@
           <legend>Page background</legend>
           <label><input type="radio" name="aura" id="aura-off" checked>Black</label>
           <label><input type="radio" name="aura" id="aura-nebula">Nebula</label>
-          <label><input type="radio" name="aura" id="aura-stars">Nebula + stars</label>
+          <label><input type="radio" name="aura" id="aura-stars">Stars</label>
         </fieldset>
       </details>
       <nav class="foot-links" aria-label="Footer">

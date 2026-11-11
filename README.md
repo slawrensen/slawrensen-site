@@ -49,17 +49,49 @@ then open <http://localhost:8791/>.
 Pure black, and the plugin's own colours. Tokens are the `:root` custom
 properties at the top of `index.html`; `404.html` repeats the few it needs.
 
-- **Colour:** `--bg` is `#000`. The neutrals and `--accent` (`#4cc2ff`) are
-  the Void and Graphite themes from `themes.json` in hwinfo-streamdeck.
-  `--plate` (`#111317`) is the graphite backdrop the plugin's README boards
-  are drawn on. There are no gradients.
+- **Colour:** `--bg` is `#000`. `--accent` (`#4cc2ff`) is the Void theme's
+  accent and `--text`, `--faint`, `--line` and `--line-2` are Void and
+  Graphite values from `themes.json` in hwinfo-streamdeck; the other greys sit
+  on the same blue-grey hue. `--plate` (`#111317`) is the backdrop the plugin's
+  README boards are drawn on. There are no gradients.
 - **Type:** the system sans and mono stacks. Nothing is smaller than 12 px.
 - **The mark** is a key face: black, with the accent as the bar a key draws
   under its reading.
-- **Hero art** is the plugin's own deck render (`.github/readme/hero.png` in
-  hwinfo-streamdeck), with a five-column crop on phones via `<picture>`.
 - **Motion:** colour changes on hover. The only animation is the aura's
   drift, and only when the aura is on.
+
+## Layout
+
+The page is fluid: it has no fixed column.
+
+- **Type** grows with the window (`html{font-size}`): the reader's own size up
+  to 1280 px wide, about 19 px at 1920, 21 px from 2560. Everything sized in
+  rem follows it.
+- **The column** (`--maxw`) is 94% of the window, between 70 and 104 rem.
+- **Hero:** from 1440 px the deck stands beside the text; below that it sits
+  under it.
+- **Products:** from 1440 px a product's words sit beside its pictures; below
+  that they stack as words, pictures, setup.
+- **Phones:** one column. Wide boards pan sideways.
+
+## The deck at life size
+
+The hero is a Stream Deck + XL drawn to scale and shown at its real size
+wherever the window is wide enough for it.
+
+- `tools/deck-device.py` draws it. Keys and strip follow Elgato's published
+  panel layout (the plugin's `DECK_PANELS[13]`); the scale comes from Elgato's
+  figures of a 161 mm touch strip and a 205 mm body; the body, glass and dial
+  bay come from the photograph of the device. The faces are cut from the
+  plugin's README board, so they are the plugin's own drawing. No logo is drawn.
+- `--deck` in `index.html` is `205mm` times `--true`. CSS has no true physical
+  unit: its `mm` is 96 CSS px to the inch on every screen. `--true` (1.1333)
+  corrects for the 109 CSS px to the real inch of a 27-inch 1440p or 4K
+  monitor, a 34-inch ultrawide and most scaled laptop panels. The deck is true
+  to size on those, about 15% large on a 24-inch 1080p panel and about 15%
+  small on a MacBook. Nothing short of the reader measuring their screen can
+  do better, and the page runs no script to ask.
+- In a column narrower than the deck (under about 1050 px) it shrinks to fit.
 
 ## Images
 
@@ -79,18 +111,25 @@ properties at the top of `index.html`; `404.html` repeats the few it needs.
 ## The aura
 
 A hidden option: the lamp marked Aura in the footer opens three choices,
-Black (the default), Nebula, and Nebula + stars.
+Black (the default), Nebula, and Stars (the nebula with its stars).
 
 - The picture is the plugin's own Nebula background, rendered by
   `tools/aura.mts` from `artScene()` in hwinfo-streamdeck's
   `src/ui/deck-art.ts` (Void theme, seed `slawrensen.com`). That code is on
   the 1.8 branch, which is not released; the page does not name the feature.
 - Two fixed layers behind the page: `aura-nebula-v1.svg` (1.6 KB, the clouds)
-  and `aura-stars-v1.svg` (12.5 KB, the scene's stars).
+  and `aura-stars-v2.svg` (5.5 KB). The plugin keeps every star out from
+  under text. A page cannot, so only the scene's faint one-pixel stars are
+  drawn; the brighter ones read as stray marks inside a sentence.
 - It is CSS only: radio inputs and `:has()`. Nothing is fetched or painted
-  while it is off, the choice is not stored, and it resets on reload.
-- The clouds drift by one `transform` over 90 seconds, which the compositor
-  runs without repainting. With reduced motion set, they hold still.
+  while it is off, the choice is not stored, and it resets on reload. A
+  browser without `:has()`, and forced-colours mode, do not get the control.
+- The choices float above the lamp, out of the flow, so opening them moves
+  nothing.
+- The clouds drift by one `transform` over 60 seconds, which the compositor
+  runs without repainting. With reduced motion set, they hold still. In
+  Chromium at 1x, text over the fixed layers is smoothed in greyscale rather
+  than subpixel colour while the aura is on.
 - With the aura on, `--faint` steps up so small labels keep 4.5:1 over the
   brightest cloud.
 

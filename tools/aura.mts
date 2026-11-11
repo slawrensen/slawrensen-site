@@ -5,7 +5,7 @@
 //
 // Builds the plugin's Nebula scene (artScene in src/ui/deck-art.ts) for the Void theme at page
 // size, seed "slawrensen.com", and writes it as two SVG layers: aura-nebula-v1.svg, the clouds on
-// black, and aura-stars-v1.svg, the scene's stars on a transparent ground. The scene is the
+// black, and aura-stars-v2.svg, the scene's faint stars on a transparent ground. The scene is the
 // plugin's, unchanged. Only the serialisation differs from the plugin's drawPiece(), which cuts a
 // scene into key-sized pieces under a 3 KB limit. Change the -vN when the bytes change.
 import { writeFileSync } from "node:fs";
@@ -23,7 +23,10 @@ const PROFILE_MID = { at: 0.45, of: 0.6 };     // deck-art.ts: full at the centr
 const short = (n: number) => String(Math.round(n * 1000) / 1000).replace(/^0\./, ".");
 
 const blobs = scene.items.filter((i: any) => i.kind === "blob");
-const stars = scene.items.filter((i: any) => i.kind === "star");
+// Only the scene's faint one-pixel stars. The plugin keeps every star out from under text; a page
+// cannot, so the brighter two-pixel stars and their glows, which read as stray marks inside a
+// sentence, are left out.
+const stars = scene.items.filter((i: any) => i.kind === "star" && i.size === 1);
 const used = [...new Set(blobs.map((b: any) => b.profile))].sort() as number[];
 const defs = used.map((p) => {
   const pr = scene.profiles[p];
@@ -42,7 +45,7 @@ const GLOW_DEF = '<radialGradient id="g"><stop stop-color="#FFFFFF" stop-opacity
 const starSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice">${glows.length ? `<defs>${GLOW_DEF}</defs>${glows.join("")}` : ""}${[...fills].map(([fill, ds]) => `<path fill="${fill}" d="${ds.join("")}"/>`).join("")}</svg>\n`;
 
 writeFileSync(`${out}/aura-nebula-v1.svg`, clouds);
-writeFileSync(`${out}/aura-stars-v1.svg`, starSvg);
+writeFileSync(`${out}/aura-stars-v2.svg`, starSvg);
 console.log(JSON.stringify({
   base: scene.bg, clouds: blobs.length, stars: stars.length,
   profiles: scene.profiles, colors: art.artColors(VOID.bg, VOID.label).clouds,
