@@ -7,6 +7,7 @@
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#08090b">
 <meta name="color-scheme" content="dark">
+<meta name="darkreader-lock">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <style>
   :root{
@@ -51,6 +52,8 @@
     background:linear-gradient(115deg,var(--accent),var(--accent-2));
     color:#05070a; font-family:var(--mono); font-weight:800; font-size:.82rem;
   }
+  /* Dark Reader running despite the lock darkens the gradient: keep the mark's edge and ink. */
+  html[data-darkreader-scheme] .mark{border:1px solid #525c6b; color:var(--text)}
 </style>
 </head>
 <body>

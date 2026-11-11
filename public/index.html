@@ -7,6 +7,9 @@
 <meta name="description" content="HWiNFO Sensors for Windows and Mac Sensors for macOS. Local hardware readings on Stream Deck keys and dials. Free, MIT licensed, no telemetry.">
 <meta name="theme-color" content="#08090b">
 <meta name="color-scheme" content="dark">
+<!-- This page is dark already. Dark Reader honours this tag and leaves the page alone;
+     without it the extension darkens the accent gradient until the headline vanishes. -->
+<meta name="darkreader-lock">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://slawrensen.com/">
 <meta property="og:title" content="Stream Deck plugins for Windows and Mac · slawrensen">
@@ -378,6 +381,13 @@
     .trace{display:none}
     .pcard,.product,.chip,.shot-frame,.btn-ghost,.pphoto img{border-color:CanvasText}
   }
+
+  /* Dark Reader, when it runs anyway (an old build, or the lock ignored): it marks <html> with
+     data-darkreader-scheme and repaints every gradient stop as a dark background. Text clipped
+     to that gradient would disappear, and filled controls would lose their edge. */
+  html[data-darkreader-scheme] .hero h1 .grad{background:none; -webkit-background-clip:border-box; background-clip:border-box; color:var(--accent); -webkit-text-fill-color:currentColor}
+  html[data-darkreader-scheme] .btn-primary,
+  html[data-darkreader-scheme] .brand .mark{border:1px solid var(--line-ui); color:var(--text)}
 
   @media(prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
