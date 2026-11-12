@@ -252,10 +252,10 @@
   @media(max-width:560px){ .pspec.rules li{grid-template-columns:minmax(0,1fr)} }
 
   /* about: the words beside the photograph of the real deck */
-  /* The heading and the words sit beside the photograph, packed from the left edge with one gap
-     between them, and the photograph's top lines up with the heading's. */
+  /* The heading and the words hold the left edge of the column and the photograph the right edge,
+     as the menu and the cards above do; the photograph's top lines up with the heading's. */
   .about-grid{display:grid; grid-template-columns:minmax(0,1fr); gap:clamp(28px,4vw,40px) clamp(36px,4vw,72px); align-items:start}
-  @media(min-width:900px){ .about-grid{grid-template-columns:minmax(0,34rem) minmax(0,40rem); justify-content:start} }
+  @media(min-width:900px){ .about-grid{grid-template-columns:minmax(0,34rem) minmax(0,40rem); justify-content:space-between} }
   .about-text .sec-head h2{margin-top:0}
   .about-text .sec-head{margin-bottom:clamp(18px,2.4vw,26px)}
   .about-grid p{color:var(--muted); font-size:1.02rem; margin-bottom:16px; max-width:58ch; text-wrap:pretty}
