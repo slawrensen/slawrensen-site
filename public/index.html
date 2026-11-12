@@ -175,14 +175,23 @@
   .sec-head h2{font-size:min(var(--fs-h2),11vw); line-height:1.1; letter-spacing:-.02em; font-weight:600; margin-top:.5em; text-wrap:balance}
   .sec-head p{color:var(--muted); font-size:clamp(1rem,.96rem + .3vw,1.15rem); margin-top:.62em; max-width:52ch; text-wrap:pretty}
 
-  /* product: its words, its pictures, its setup, stacked in that order. From 1440 px the words split
-     into two columns (name and buttons beside the feature rows), and the pictures and the setup
-     steps keep the full width, so no column is left with an empty stretch beside a longer one. */
+  /* product: its words, its pictures, its setup. One column until 1440 px, then words beside pictures. */
   .product{
     display:grid; grid-template-columns:minmax(0,1fr); gap:clamp(24px,3.4vw,38px) clamp(36px,4vw,68px);
     margin-top:clamp(28px,4vw,44px);
     border:1px solid var(--line-2); border-radius:var(--radius);
     padding:clamp(20px,3.2vw,40px); background:var(--panel);
+  }
+  @media(min-width:1440px){
+    .product{
+      grid-template-columns:minmax(0,25rem) minmax(0,1fr);
+      grid-template-areas:"a media" "b b";
+    }
+    .pa{grid-area:a} .pmedia{grid-area:media} .pb{grid-area:b}
+    /* the three steps side by side under the words and the pictures */
+    .psetup{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); column-gap:clamp(28px,3vw,56px)}
+    .prod-links{gap:8px}
+    .prod-links .btn{padding-inline:15px}
   }
   .phead{max-width:66ch}
   .phead h3{font-size:var(--fs-h3); letter-spacing:-.015em; font-weight:600; margin-top:.5em}
@@ -200,24 +209,11 @@
   .pspec a,.psetup a,.psetup-note a,.about-grid p a,.pcard a{color:var(--accent); border-bottom:1px solid rgba(76,194,255,.4)}
   .pspec a:hover,.psetup a:hover,.psetup-note a:hover,.about-grid p a:hover,.pcard a:hover{border-bottom-color:var(--accent)}
   @media(max-width:560px){ .pspec li{grid-template-columns:minmax(0,1fr); gap:4px} }
-  @media(min-width:1440px){
-    .product{
-      grid-template-columns:minmax(0,25rem) minmax(0,1fr); grid-template-rows:auto 1fr auto auto;
-      grid-template-areas:"head spec" "links spec" "media media" "b b";
-    }
-    .pa{display:contents}
-    .phead{grid-area:head; align-self:start}
-    .prod-links{grid-area:links; align-self:start; margin-top:0; gap:8px}
-    .prod-links .btn{padding-inline:15px}
-    .pspec{grid-area:spec; margin-top:0; align-self:start}
-    /* the boards are 1157 to 2256 px wide: past 1600 px they would only be enlarged, so the gallery stops there and centres */
-    .pmedia{grid-area:media; width:100%; max-width:1600px; justify-self:center} .pb{grid-area:b}
-    /* the three steps side by side under the pictures */
-    .psetup{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); column-gap:clamp(28px,3vw,56px)}
-  }
 
   /* boards: the plugin's own art on its graphite plate */
   .pmedia{display:grid; grid-template-columns:minmax(0,1fr); gap:clamp(18px,2.4vw,26px); align-content:start}
+  /* a board with few pixels of its own is not stretched across a wide column */
+  .pshot.small{max-width:46rem}
   .frame{border:1px solid var(--line-2); border-radius:var(--radius-sm); overflow:hidden; background:var(--plate)}
   .frame img{width:100%}
   .pshot figcaption{margin-top:12px}
@@ -254,10 +250,6 @@
   .pspec.rules{margin-top:clamp(26px,3.6vw,40px)}
   .pspec.rules li{grid-template-columns:12rem minmax(0,1fr); font-size:1rem; padding:14px 0}
   @media(max-width:560px){ .pspec.rules li{grid-template-columns:minmax(0,1fr)} }
-  @media(min-width:1440px){
-    .pspec.rules{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:clamp(40px,4vw,80px)}
-    .pspec.rules li{grid-template-columns:11rem minmax(0,1fr)}
-  }
 
   /* about: the words beside the photograph of the real deck */
   /* The heading and the words hold the left edge of the column and the photograph the right edge,
@@ -513,6 +505,13 @@
                    alt="Mac Sensors key and dial faces: one CPU temperature key in each of the seven themes and a four-reading key; single keys for GPU temperature, fan speed, system power, CPU activity, active memory, network and free space; two- and three-reading keys, a ring and a bar, an amber warn key and a red critical key, a Back tile and a detail title tile; and four Stream Deck + dial faces">
             </div>
             <figcaption>Themes, alert states, key layouts and dials. Drawn by the plugin with sample values.<span class="swipe"> Swipe sideways for the rest.</span></figcaption>
+          </figure>
+          <figure class="pshot pan small">
+            <div class="frame" tabindex="0" role="group" aria-label="Mac Sensors layouts and dial views board">
+              <img src="assets/mac-sensors-layouts-v2.webp" width="1157" height="712" loading="lazy" decoding="async"
+                   alt="Mac Sensors key layouts and dial views: one reading with a sparkline, two readings stacked, three readings in rows, a four-reading quad grid, CPU usage as a bar and as a ring, active memory and network receive; and three dial views: one reading with its session range, two rows with trend lines, and three compact rows">
+            </div>
+            <figcaption>Key layouts and dial views. Drawn by the plugin with sample values.<span class="swipe"> Swipe sideways for the rest.</span></figcaption>
           </figure>
         </div>
 
