@@ -95,8 +95,10 @@
     background:var(--bg); border:1px solid var(--line-2); border-bottom:3px solid var(--accent);
     color:var(--text); font-weight:800; font-size:.8rem; font-family:var(--mono);
   }
-  .nav-links{display:flex; flex-wrap:wrap; align-items:center; gap:0 clamp(18px,2.4vw,30px); font-size:.9rem; color:var(--muted)}
-  .nav-links a{display:inline-flex; align-items:center; justify-content:center; min-width:44px; min-height:44px}
+  .nav-links{display:flex; flex-wrap:wrap; align-items:center; gap:0; font-size:.9rem; color:var(--muted)}
+  /* each word gets the same padding, so the gaps match and every link is at least 44 px wide */
+  .nav-links a{display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding-inline:clamp(9px,1.2vw,15px)}
+  .nav-links a:last-child{padding-right:0}
   .nav-links a:hover{color:var(--text)}
   .nav-links .gh{color:var(--text); font-weight:500}
   @media(max-width:600px){
@@ -104,13 +106,12 @@
     header.nav{position:static}
     :root{--nav-h:0px}
     .nav-inner{flex-wrap:wrap; min-height:0; padding-block:9px; gap:0}
-    /* the link row becomes a mode-selector: four equal cells, etched dividers */
-    /* four cells while each can hold its word; with very large text they fold to two rows */
+    /* the link row becomes five equal cells with etched dividers; with very large text they fold to two rows */
     .nav-links{
       width:100%; display:grid; grid-template-columns:repeat(auto-fit,minmax(max(20%,4.4em),1fr)); gap:0;
       margin-top:9px; padding-top:9px; border-top:1px solid var(--line); font-size:.86rem;
     }
-    .nav-links a{justify-content:center}
+    .nav-links a{justify-content:center; padding-inline:0}
     .nav-links a:not(:last-child){border-inline-end:1px solid var(--line)}
   }
   @media(max-width:380px){ .nav-links{font-size:.78rem} }
@@ -143,7 +144,7 @@
   .hero-art img{width:100%}
   figcaption{color:var(--faint); font-size:.85rem; line-height:1.5}
   /* From 1440 px the deck stands beside the text, and never taller than the window. Below that it
-     sits under the text, where the full column lets it reach life size from about 1050 px. */
+     sits under the text, where the full column lets it reach life size from about a 970 px window. */
   @media(min-width:1440px){
     /* the deck's column is as wide as the deck; the text takes the rest, never under 26rem */
     .hero-grid{grid-template-columns:minmax(26rem,1fr) minmax(0,var(--deck)); gap:clamp(44px,4vw,76px)}
@@ -156,14 +157,13 @@
     .hero h1{max-width:none}
     .hero .lead{max-width:66ch}
   }
-  /* on a phone the nav already carries GitHub; one button leaves room for the deck */
   /* Between 1000 and 1440 px the headline sits left and the lead and doors right, in one band
      above the deck, so the deck starts higher; it is centred under the band. */
   @media(min-width:1000px) and (max-width:1439.98px){
-    .hero-text{display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); column-gap:clamp(36px,5vw,72px); align-items:end}
+    .hero-text{display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); grid-template-rows:auto 1fr auto; column-gap:clamp(36px,5vw,72px); align-items:end}
     .hero-text .eyebrow{grid-column:1 / -1}
     .hero-text h1{grid-column:1; grid-row:2 / span 2}
-    .hero-text .lead{grid-column:2; grid-row:2; margin-top:0}
+    .hero-text .lead{grid-column:2; grid-row:2; margin-top:0; align-self:end}
     .hero-text .cta-row{grid-column:2; grid-row:3}
     .hero-art{justify-self:center}
   }
@@ -175,23 +175,14 @@
   .sec-head h2{font-size:min(var(--fs-h2),11vw); line-height:1.1; letter-spacing:-.02em; font-weight:600; margin-top:.5em; text-wrap:balance}
   .sec-head p{color:var(--muted); font-size:clamp(1rem,.96rem + .3vw,1.15rem); margin-top:.62em; max-width:52ch; text-wrap:pretty}
 
-  /* product: its words, its pictures, its setup. One column until 1440 px, then words beside pictures. */
+  /* product: its words, its pictures, its setup, stacked in that order. From 1440 px the words split
+     into two columns (name and buttons beside the feature rows), and the pictures and the setup
+     steps keep the full width, so no column is left with an empty stretch beside a longer one. */
   .product{
     display:grid; grid-template-columns:minmax(0,1fr); gap:clamp(24px,3.4vw,38px) clamp(36px,4vw,68px);
     margin-top:clamp(28px,4vw,44px);
     border:1px solid var(--line-2); border-radius:var(--radius);
     padding:clamp(20px,3.2vw,40px); background:var(--panel);
-  }
-  @media(min-width:1440px){
-    .product{
-      grid-template-columns:minmax(0,25rem) minmax(0,1fr);
-      grid-template-areas:"a media" "b b";
-    }
-    .pa{grid-area:a} .pmedia{grid-area:media} .pb{grid-area:b}
-    /* the three steps side by side under the words and the pictures */
-    .psetup{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); column-gap:clamp(28px,3vw,56px)}
-    .prod-links{gap:8px}
-    .prod-links .btn{padding-inline:15px}
   }
   .phead{max-width:66ch}
   .phead h3{font-size:var(--fs-h3); letter-spacing:-.015em; font-weight:600; margin-top:.5em}
@@ -209,11 +200,24 @@
   .pspec a,.psetup a,.psetup-note a,.about-grid p a,.pcard a{color:var(--accent); border-bottom:1px solid rgba(76,194,255,.4)}
   .pspec a:hover,.psetup a:hover,.psetup-note a:hover,.about-grid p a:hover,.pcard a:hover{border-bottom-color:var(--accent)}
   @media(max-width:560px){ .pspec li{grid-template-columns:minmax(0,1fr); gap:4px} }
+  @media(min-width:1440px){
+    .product{
+      grid-template-columns:minmax(0,25rem) minmax(0,1fr); grid-template-rows:auto 1fr auto auto;
+      grid-template-areas:"head spec" "links spec" "media media" "b b";
+    }
+    .pa{display:contents}
+    .phead{grid-area:head; align-self:start}
+    .prod-links{grid-area:links; align-self:start; margin-top:0; gap:8px}
+    .prod-links .btn{padding-inline:15px}
+    .pspec{grid-area:spec; margin-top:0; align-self:start}
+    /* the boards are 1157 to 2256 px wide: past 1600 px they would only be enlarged, so the gallery stops there and centres */
+    .pmedia{grid-area:media; width:100%; max-width:1600px; justify-self:center} .pb{grid-area:b}
+    /* the three steps side by side under the pictures */
+    .psetup{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); column-gap:clamp(28px,3vw,56px)}
+  }
 
   /* boards: the plugin's own art on its graphite plate */
   .pmedia{display:grid; grid-template-columns:minmax(0,1fr); gap:clamp(18px,2.4vw,26px); align-content:start}
-  /* a board with few pixels of its own is not stretched across a wide column */
-  .pshot.small{max-width:46rem}
   .frame{border:1px solid var(--line-2); border-radius:var(--radius-sm); overflow:hidden; background:var(--plate)}
   .frame img{width:100%}
   .pshot figcaption{margin-top:12px}
@@ -250,6 +254,10 @@
   .pspec.rules{margin-top:clamp(26px,3.6vw,40px)}
   .pspec.rules li{grid-template-columns:12rem minmax(0,1fr); font-size:1rem; padding:14px 0}
   @media(max-width:560px){ .pspec.rules li{grid-template-columns:minmax(0,1fr)} }
+  @media(min-width:1440px){
+    .pspec.rules{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:clamp(40px,4vw,80px)}
+    .pspec.rules li{grid-template-columns:11rem minmax(0,1fr)}
+  }
 
   /* about: the words beside the photograph of the real deck */
   /* The heading and the words hold the left edge of the column and the photograph the right edge,
@@ -280,7 +288,7 @@
     @starting-style{ .lightbox:popover-open,.lightbox:popover-open::backdrop{opacity:0} }
   }
   /* on a phone the picture is as tall as the screen and pans sideways, or it would barely grow */
-  @media(max-width:700px){
+  @media(max-width:899.98px){
     .lightbox{width:94vw; overflow-x:auto; overscroll-behavior:contain}
     .lightbox .unzoom{width:max-content}
     .lightbox img{width:auto; max-width:none; height:min(100svh - 2.5rem, 185vw)}
@@ -490,7 +498,7 @@
           </div>
           <ul class="pspec">
             <li><span class="l">Keys</span><span>One reading per key with a sparkline, bar or ring, or two, three or four readings on one key. A press cycles MIN, MAX and AVG.</span></li>
-            <li><span class="l">Dials</span><span>Stream Deck + and Stream Deck + XL: one reading, two rows or three rows. A Sensor Control key steers dials from anywhere. <a href="https://docs.slawrensen.com/mac-streamdeck/hardware.html" target="_blank" rel="noopener" aria-label="Hardware compatibility: Mac Sensors">Hardware compatibility</a></span></li>
+            <li><span class="l">Dials</span><span>Stream Deck + and Stream Deck + XL: one reading, two rows or three. A Sensor Control key steers dials from anywhere. <a href="https://docs.slawrensen.com/mac-streamdeck/hardware.html" target="_blank" rel="noopener" aria-label="Hardware compatibility: Mac Sensors">Hardware compatibility</a></span></li>
             <li><span class="l">Details</span><span>A key press opens a page of related readings and returns with a Back tile.</span></li>
             <li><span class="l">Display</span><span>Seven themes. Amber warn and red critical alerts look the same on every one.</span></li>
             <li><span class="l">Read-only</span><span>No fan control, no administrator password, no helper app.</span></li>
@@ -505,13 +513,6 @@
                    alt="Mac Sensors key and dial faces: one CPU temperature key in each of the seven themes and a four-reading key; single keys for GPU temperature, fan speed, system power, CPU activity, active memory, network and free space; two- and three-reading keys, a ring and a bar, an amber warn key and a red critical key, a Back tile and a detail title tile; and four Stream Deck + dial faces">
             </div>
             <figcaption>Themes, alert states, key layouts and dials. Drawn by the plugin with sample values.<span class="swipe"> Swipe sideways for the rest.</span></figcaption>
-          </figure>
-          <figure class="pshot pan small">
-            <div class="frame" tabindex="0" role="group" aria-label="Mac Sensors layouts and dial views board">
-              <img src="assets/mac-sensors-layouts-v2.webp" width="1157" height="712" loading="lazy" decoding="async"
-                   alt="Mac Sensors key layouts and dial views: one reading with a sparkline, two readings stacked, three readings in rows, a four-reading quad grid, CPU usage as a bar and as a ring, active memory and network receive; and three dial views: one reading with its session range, two rows with trend lines, and three compact rows">
-            </div>
-            <figcaption>Key layouts and dial views. Drawn by the plugin with sample values.<span class="swipe"> Swipe sideways for the rest.</span></figcaption>
           </figure>
         </div>
 
@@ -556,7 +557,7 @@
         <figure class="pphoto">
           <button class="zoom" type="button" popovertarget="photo-large" aria-label="Show the photograph larger">
             <img src="assets/streamdeck-plusxl-v2.webp" srcset="assets/streamdeck-plusxl-v2.webp 1000w, assets/streamdeck-plusxl-2000-v1.webp 2000w"
-                 sizes="(min-width:900px) min(40rem, 46vw), 92vw" width="1000" height="907" loading="lazy" decoding="async"
+                 sizes="(min-width:900px) min(840px, 46vw), 92vw" width="1000" height="907" loading="lazy" decoding="async"
                  alt="A Stream Deck + XL on a wooden desk, its 36 keys showing live CPU core temperatures, clock speeds, usage percentages and voltages from HWiNFO, one key amber and one red demonstrating warn and critical alerts, with six dial readouts on the touch strip below">
           </button>
           <figcaption>Photograph: my Stream Deck + XL live on HWiNFO, 25 July 2026, on an earlier version</figcaption>
