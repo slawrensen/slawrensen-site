@@ -95,8 +95,10 @@
     background:var(--bg); border:1px solid var(--line-2); border-bottom:3px solid var(--accent);
     color:var(--text); font-weight:800; font-size:.8rem; font-family:var(--mono);
   }
-  .nav-links{display:flex; flex-wrap:wrap; align-items:center; gap:0 clamp(18px,2.4vw,30px); font-size:.9rem; color:var(--muted)}
-  .nav-links a{display:inline-flex; align-items:center; justify-content:center; min-width:44px; min-height:44px}
+  .nav-links{display:flex; flex-wrap:wrap; align-items:center; gap:0; font-size:.9rem; color:var(--muted)}
+  /* each word gets the same padding, so the gaps match and every link is at least 44 px wide */
+  .nav-links a{display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding-inline:clamp(9px,1.2vw,15px)}
+  .nav-links a:last-child{padding-right:0}
   .nav-links a:hover{color:var(--text)}
   .nav-links .gh{color:var(--text); font-weight:500}
   @media(max-width:600px){
@@ -104,13 +106,12 @@
     header.nav{position:static}
     :root{--nav-h:0px}
     .nav-inner{flex-wrap:wrap; min-height:0; padding-block:9px; gap:0}
-    /* the link row becomes a mode-selector: four equal cells, etched dividers */
-    /* four cells while each can hold its word; with very large text they fold to two rows */
+    /* the link row becomes five equal cells with etched dividers; with very large text they fold to two rows */
     .nav-links{
       width:100%; display:grid; grid-template-columns:repeat(auto-fit,minmax(max(20%,4.4em),1fr)); gap:0;
       margin-top:9px; padding-top:9px; border-top:1px solid var(--line); font-size:.86rem;
     }
-    .nav-links a{justify-content:center}
+    .nav-links a{justify-content:center; padding-inline:0}
     .nav-links a:not(:last-child){border-inline-end:1px solid var(--line)}
   }
   @media(max-width:380px){ .nav-links{font-size:.78rem} }
@@ -143,7 +144,7 @@
   .hero-art img{width:100%}
   figcaption{color:var(--faint); font-size:.85rem; line-height:1.5}
   /* From 1440 px the deck stands beside the text, and never taller than the window. Below that it
-     sits under the text, where the full column lets it reach life size from about 1050 px. */
+     sits under the text, where the full column lets it reach life size from about a 970 px window. */
   @media(min-width:1440px){
     /* the deck's column is as wide as the deck; the text takes the rest, never under 26rem */
     .hero-grid{grid-template-columns:minmax(26rem,1fr) minmax(0,var(--deck)); gap:clamp(44px,4vw,76px)}
@@ -156,14 +157,13 @@
     .hero h1{max-width:none}
     .hero .lead{max-width:66ch}
   }
-  /* on a phone the nav already carries GitHub; one button leaves room for the deck */
   /* Between 1000 and 1440 px the headline sits left and the lead and doors right, in one band
      above the deck, so the deck starts higher; it is centred under the band. */
   @media(min-width:1000px) and (max-width:1439.98px){
-    .hero-text{display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); column-gap:clamp(36px,5vw,72px); align-items:end}
+    .hero-text{display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); grid-template-rows:auto 1fr auto; column-gap:clamp(36px,5vw,72px); align-items:end}
     .hero-text .eyebrow{grid-column:1 / -1}
     .hero-text h1{grid-column:1; grid-row:2 / span 2}
-    .hero-text .lead{grid-column:2; grid-row:2; margin-top:0}
+    .hero-text .lead{grid-column:2; grid-row:2; margin-top:0; align-self:end}
     .hero-text .cta-row{grid-column:2; grid-row:3}
     .hero-art{justify-self:center}
   }
@@ -280,8 +280,9 @@
     @starting-style{ .lightbox:popover-open,.lightbox:popover-open::backdrop{opacity:0} }
   }
   /* on a phone the picture is as tall as the screen and pans sideways, or it would barely grow */
-  @media(max-width:700px){
-    .lightbox{width:94vw; overflow-x:auto; overscroll-behavior:contain}
+  @media(max-width:899.98px){
+    /* as wide as the picture, so it stays centred and a tap beside it closes it; wider pictures pan */
+    .lightbox{width:max-content; max-width:94vw; overflow-x:auto; overscroll-behavior:contain}
     .lightbox .unzoom{width:max-content}
     .lightbox img{width:auto; max-width:none; height:min(100svh - 2.5rem, 185vw)}
   }
@@ -490,7 +491,7 @@
           </div>
           <ul class="pspec">
             <li><span class="l">Keys</span><span>One reading per key with a sparkline, bar or ring, or two, three or four readings on one key. A press cycles MIN, MAX and AVG.</span></li>
-            <li><span class="l">Dials</span><span>Stream Deck + and Stream Deck + XL: one reading, two rows or three rows. A Sensor Control key steers dials from anywhere. <a href="https://docs.slawrensen.com/mac-streamdeck/hardware.html" target="_blank" rel="noopener" aria-label="Hardware compatibility: Mac Sensors">Hardware compatibility</a></span></li>
+            <li><span class="l">Dials</span><span>Stream Deck + and Stream Deck + XL: one reading, two rows or three. A Sensor Control key steers dials from anywhere. <a href="https://docs.slawrensen.com/mac-streamdeck/hardware.html" target="_blank" rel="noopener" aria-label="Hardware compatibility: Mac Sensors">Hardware compatibility</a></span></li>
             <li><span class="l">Details</span><span>A key press opens a page of related readings and returns with a Back tile.</span></li>
             <li><span class="l">Display</span><span>Seven themes. Amber warn and red critical alerts look the same on every one.</span></li>
             <li><span class="l">Read-only</span><span>No fan control, no administrator password, no helper app.</span></li>
@@ -556,7 +557,7 @@
         <figure class="pphoto">
           <button class="zoom" type="button" popovertarget="photo-large" aria-label="Show the photograph larger">
             <img src="assets/streamdeck-plusxl-v2.webp" srcset="assets/streamdeck-plusxl-v2.webp 1000w, assets/streamdeck-plusxl-2000-v1.webp 2000w"
-                 sizes="(min-width:900px) min(40rem, 46vw), 92vw" width="1000" height="907" loading="lazy" decoding="async"
+                 sizes="(min-width:900px) min(840px, 46vw), 92vw" width="1000" height="907" loading="lazy" decoding="async"
                  alt="A Stream Deck + XL on a wooden desk, its 36 keys showing live CPU core temperatures, clock speeds, usage percentages and voltages from HWiNFO, one key amber and one red demonstrating warn and critical alerts, with six dial readouts on the touch strip below">
           </button>
           <figcaption>Photograph: my Stream Deck + XL live on HWiNFO, 25 July 2026, on an earlier version</figcaption>
