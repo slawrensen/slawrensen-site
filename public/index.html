@@ -281,7 +281,8 @@
   }
   /* on a phone the picture is as tall as the screen and pans sideways, or it would barely grow */
   @media(max-width:899.98px){
-    .lightbox{width:94vw; overflow-x:auto; overscroll-behavior:contain}
+    /* as wide as the picture, so it stays centred and a tap beside it closes it; wider pictures pan */
+    .lightbox{width:max-content; max-width:94vw; overflow-x:auto; overscroll-behavior:contain}
     .lightbox .unzoom{width:max-content}
     .lightbox img{width:auto; max-width:none; height:min(100svh - 2.5rem, 185vw)}
   }
